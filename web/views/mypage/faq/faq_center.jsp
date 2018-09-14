@@ -99,7 +99,7 @@
 					<!-- 중앙 게시판 -->
 					<div id="serviceMainImg"
 						onclick="location.href='serviceCenter.jsp'">
-						<img src="../../images/상담원.jpg">
+						<img src="../../../images/gwangseong/상담원.jpg">
 					</div>
 					<br>
 					<div>
@@ -128,7 +128,6 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -137,14 +136,12 @@
 									<td>1</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
 								</tr>
 							</tbody>
 						</table>
@@ -159,7 +156,6 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -168,14 +164,14 @@
 									<td>2</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
+
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
+
 								</tr>
 							</tbody>
 						</table>
@@ -190,7 +186,7 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
+
 								</tr>
 							</thead>
 							<tbody>
@@ -199,14 +195,14 @@
 									<td>3</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
+
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
+
 								</tr>
 							</tbody>
 						</table>
@@ -221,7 +217,7 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
+
 								</tr>
 							</thead>
 							<tbody>
@@ -230,14 +226,14 @@
 									<td>4</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
+
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
+
 								</tr>
 							</tbody>
 						</table>
@@ -252,7 +248,7 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
+
 								</tr>
 							</thead>
 							<tbody>
@@ -261,14 +257,14 @@
 									<td>5</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
+
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
+
 								</tr>
 							</tbody>
 						</table>
@@ -283,7 +279,7 @@
 									<th>제목</th>
 									<th>작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
+
 								</tr>
 							</thead>
 							<tbody>
@@ -292,14 +288,14 @@
 									<td>6</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
+
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
+
 								</tr>
 							</tbody>
 						</table>
@@ -534,7 +530,6 @@
 			$("#etc").css("display", "block");
 		});
 	</script>
-	<%@ include file="../common/footer.jsp"%>
 
 </body>
 </html>

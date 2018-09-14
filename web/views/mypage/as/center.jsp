@@ -57,13 +57,13 @@ div {
 	background-color: #F3F4F6;
 }
 
-.first-child {
+.box_2 .first-child {
 	border: 1px solid #ccc;
 	border-top: 0px;
 	width: 100px;
 }
 
-.last-child {
+.box_2 .last-child {
 	border: 1px solid #ccc;
 	border-left: 0px;
 	border-top: 0px;
