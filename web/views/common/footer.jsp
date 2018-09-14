@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 
 <style>
+
+</style>
+</head>
+<body>
+	<hr>
+	<p>Copyright. All rights reserved</p>
+
+
+<style>
 .footerHr { border-color: #f43641; }
 .footerP { text-align:center; }
 .footer1{ display: inline-block; }
@@ -74,5 +83,6 @@
 	</div>
 		<p class="footerP" align="center" style="font-size:14px;">Copyrightⓒ. All Rights Reserved </p>
 	<br><br>
+
 </body>
 </html>

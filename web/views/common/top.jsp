@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 /***************************** 로고 + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A)*****************************/
 
 .main_layer {
@@ -185,6 +188,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
+
 			<a href="mainPage.jsp" title="바로가기"> <img
 				src="../../images/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
@@ -205,6 +209,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				onclick="clickcr(this,'sch.action','','',event);">
 				<span class="blind">검색</span> <span class="ico_search_submit"></span>
 			</button>
+
 		</div>
 		<div id="top_menu">
 			<ul>
@@ -296,5 +301,6 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
