@@ -50,10 +50,10 @@
 	font-size: 50px;
 }
 
-.carousel .list li.a1 { background-image:url('../../images/test/banner_1.png'); background-repeat: no-repeat;}
-.carousel .list li.a2 { background-image:url('../../images/test/banner_2.png'); background-repeat: no-repeat; }
-.carousel .list li.a3 { background-image:url('../../images/test/banner_3.png'); background-repeat: no-repeat; }
-.carousel .list li.a4 { background-image:url('../../images/test/banner_4.png'); background-repeat: no-repeat; }
+.carousel .list li.a1 { background-image:url('./images/kimjaeyup/test/banner_1.png'); background-repeat: no-repeat;}
+.carousel .list li.a2 { background-image:url('./images/kimjaeyup/test/banner_2.png'); background-repeat: no-repeat; }
+.carousel .list li.a3 { background-image:url('./images/kimjaeyup/test/banner_3.png'); background-repeat: no-repeat; }
+.carousel .list li.a4 { background-image:url('./images/kimjaeyup/test/banner_4.png'); background-repeat: no-repeat; }
 	
 .prev {
 	position: absolute;
@@ -118,12 +118,12 @@ a{ text-decoration:none }
 .product_gbtm2{font-size:17px; font-weight:bold; color: #ee2929; letter-spacing: -2px;}
 
 /* 1경품 2리뷰 3무료배송 4사은품  5이용후기 6특가 */
-.product_event1{background-image:url('../../images/main/경품.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
-.product_event2{background-image:url('../../images/main/리뷰.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
-.product_event3{background-image:url('../../images/main/무료배송.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
-.product_event4{background-image:url('../../images/main/사은품.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
-.product_event5{background-image:url('../../images/main/이용후기.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
-.product_event6{background-image:url('../../images/main/특가.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event1{background-image:url('./images/kimjaeyup/경품.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event2{background-image:url('./images/kimjaeyup/리뷰.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event3{background-image:url('./images/kimjaeyup/무료배송.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event4{background-image:url('./images/kimjaeyup/사은품.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event5{background-image:url('./images/kimjaeyup/이용후기.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
+.product_event6{background-image:url('./images/kimjaeyup/특가.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
 
 #footerCenter, #footerDeposit, #footerAs, #footerQuick{cursor:pointer;}
 
@@ -206,8 +206,8 @@ a{ text-decoration:none }
 				<li class="a4"></li>
 			</ul>
 		</div>
-		<p class="prev"><img src='../../images/main/arrow_left.png' style="width:40px; height:50px;"></p>
-		<p class="next"><img src='../../images/main/arrow_right.png' style="width:40px; height:50px;"></p>
+		<p class="prev"><img src='./images/kimjaeyup/arrow_left.png' style="width:40px; height:50px;"></p>
+		<p class="next"><img src='./images/kimjaeyup/arrow_right.png' style="width:40px; height:50px;"></p>
 	</div>
 	<div class="left_banner">
 		<ul style="list-style:none;">
@@ -219,7 +219,7 @@ a{ text-decoration:none }
  	<div class="right_banner">
 		<span>
 			<a href="../event_zone/eventzone_view.htm?EventNo=17607&amp;bannerid=LeftTopWingBanner">
-				<img src='../../images/main/right_banner.jpg'>
+				<img src='./images/kimjaeyup/right_banner.jpg'>
 			</a>
 		</span>
 	</div> 
@@ -282,7 +282,7 @@ a{ text-decoration:none }
 			<div class="product_1">
 				<!-- <link rel="stylesheet" type="text/css" href="/main/css/index_renew_addmask.css?t=godo150414" media="all"> -->
 				<div class="view view-show" style="margin-right:140px;">
-					<img src="../../images/main/best.jpg" width="466" height="287" >
+					<img src="./images/kimjaeyup/best.jpg" width="466" height="287" >
 						<div class="mask"></div>
 						<div class="product_content">
 						<p class="productName">기가바이트 Z370 AORUS Ultra Gaming 2.0 제이씨현 [일반/LGA1151v2/DDR4]</p>
@@ -293,7 +293,7 @@ a{ text-decoration:none }
 					</div>
 				</div>
 				<div class="view view-show">
-					<img src="../../images/main/sale.jpg" width="466" height="287">
+					<img src="./images/kimjaeyup/sale.jpg" width="466" height="287">
 						<div class="mask"></div>
 						<div class="product_content">
 						<p class="productName">AORUS ROG STRIX 3D프린팅 친화적인 설계, <br>Aura RGB 조명</p>
@@ -310,7 +310,7 @@ a{ text-decoration:none }
 				<span class="product_subMp2">당사에서 제작한 걸작을 만나보실 수 있습니다.</span><br>
 				<div class="product_2">
 					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'" >
-						<img src="../../images/main/mp1.png" style="width: 200px; height: 220px;"> <br>
+						<img src="./images/kimjaeyup/mp1.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! NO.001</span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
@@ -320,7 +320,7 @@ a{ text-decoration:none }
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/mp2.png" style="width: 200px; height: 220px;"> <br>
+						<img src="./images/kimjaeyup/mp2.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! NO.002</span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
@@ -329,7 +329,7 @@ a{ text-decoration:none }
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/mp3.png" style="width: 200px; height: 220px;"> <br>
+						<img src="./images/kimjaeyup/mp3.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! NO.003</span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,230,000원 </span>
@@ -338,7 +338,7 @@ a{ text-decoration:none }
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/mp4.png" style="width: 200px; height: 220px;"> <br>
+						<img src="./images/kimjaeyup/mp4.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span> <br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! NO.004</span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,100,000원 </span>
@@ -353,7 +353,7 @@ a{ text-decoration:none }
 				<span class="product_subMp2">이전과는 다르다. 더욱 더 강력해진 성능</span><br>
 				<div class="product_3">
 					<div class="product_graphic1 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/graphic4.jpg" style="width: 200px; height: 200px;"><br>
+						<img src="./images/kimjaeyup/graphic4.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_gcomment"">ASUS ROG STRIX 지포스 GTX1080 A8G GAMING D5X 8GB</span><br>
 						<span class="product_gname">GEFORCE GTX 1080</span><br><hr class="product_hr">
 						<span class="product_gbtm1" style="text-decoration: line-through;">809,440원 </span>
@@ -362,7 +362,7 @@ a{ text-decoration:none }
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_graphic2 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/graphic5.jpg" style="width: 200px; height: 200px;"><br>
+						<img src="./images/kimjaeyup/graphic5.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_gcomment"">이엠텍 XENON 지포스 GTX1070 </span><br>
 						<span class="product_gname">Super JETSTREAM D5 8GB</span><br><hr class="product_hr">
 						<span class="product_gbtm1" style="text-decoration: line-through;">703,670원 </span>
@@ -371,7 +371,7 @@ a{ text-decoration:none }
 						<span class="product_event5">이용후기</span>
 					</div>
 					<div class="product_graphic3 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/graphic6.jpg" style="width: 200px; height: 200px;"><br>
+						<img src="./images/kimjaeyup/graphic6.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_gcomment"">이엠텍 XENON GTX1060</span><br>
 						<span class="product_gname">STORM X Dual D5 6GB</span><br><hr class="product_hr">
 						<span class="product_gbtm1" style="text-decoration: line-through;">1,230,000원 </span>
@@ -386,7 +386,7 @@ a{ text-decoration:none }
 				<span class="product_subMp2">선명함의 깊이를 발견하다.</span><br>
 				<div class="product_4">
 					<div class="product_monitor1 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/monitor4.jpg" style="width: 200px; height: 200px;"><br>
+						<img src="./images/kimjaeyup/monitor4.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_comment"">[LG전자] LG모니터 32MP58HQ</span> <br>
 						<span class="product_name">32형(80cm) LED LCD(와이드) / IPS패널 / 1920*1080 / 1,200:1 </span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
@@ -394,7 +394,7 @@ a{ text-decoration:none }
 						<span class="product_event3" style="margin-right:10px;">무료배송</span>
 					</div>
 					<div class="product_monitor2 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-						<img src="../../images/main/monitor5.jpg" style="width: 200px; height: 200px;"><br>
+						<img src="./images/kimjaeyup/monitor5.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_comment"">[삼성전자] 삼성모니터 LS27F350F[무결점]</span> <br>
 						<span class="product_name">27형(68.6cm) LED(와이드) / PLS패널 / 1920*1080 / 1,000:1 </span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
@@ -403,7 +403,7 @@ a{ text-decoration:none }
 						<span class="product_event4">사은품</span>
 					</div>
 					<div class="product_monitor3 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-							<img src="../../images/main/monitor6.jpg" style="width: 200px; height: 200px;"><br>
+							<img src="./images/kimjaeyup/monitor6.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_gcomment"">[한성컴퓨터] ULTRON 2757C 커브드 144HZ [무결점]</span><br>
 						<span class="product_gname">27형(68.6cm) LED LCD(와이드) / PVA패널 / 1920*1080</span><br><hr class="product_hr">
 						<span class="product_gbtm1" style="text-decoration: line-through;">279,000 </span>
@@ -421,7 +421,7 @@ a{ text-decoration:none }
 		<hr class="mainHr">
 		<!--------------------------------------- 하단 고객센터  --------------------------------------->
 		<div class="information" align="center">
-			<img  src="../../images/main/information_1.gif" usemap="#informationFooter">
+			<img  src="./images/kimjaeyup/information_1.gif" usemap="#informationFooter">
 			<map name="informationFooter">
 				<area shape="rect" coords="0,153,174,186" id="question" href="http://www.google.co.kr" title="1:1 상담센터">
 				<area shape="rect" coords="207,153,381,186" id="road" href="http://www.google.co.kr" title="찾아오시는길">
@@ -437,7 +437,7 @@ a{ text-decoration:none }
 	<div id="popupDiv">
 
 		<div style="margin-left: 1200px; margin-bottom: -110px; opacity: 0.6; width: 32px; height: 32px; " id="closePicture" >
-			<img src="../../images/X1.png" title="창닫기">
+			<img src="<%=request.getContextPath() %>/images/kimjaeyup/X1.png" title="창닫기">
 		</div>
 		<form name="pop_form">
 				<div id="check" style=" margin-left: 500px; margin-top: 100px; color:white; font-size:18px;">
@@ -454,7 +454,7 @@ a{ text-decoration:none }
 			<div id="myCarousel" style="position: unset;" class="carousel slide" data-ride="carousel" align="center">
 				<div class="carousel-inner">
 					<div class="item active" style="margin-top: 20px; margin-bottom: 20px;">
-						<img src="../../images/main/intro.png"  alt="Los Angeles">
+						<img src="./images/kimjaeyup/intro.png"  alt="Los Angeles">
 					</div>
 				</div>
 			</div>

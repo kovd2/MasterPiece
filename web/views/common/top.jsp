@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
 pageEncoding="UTF-8"%>
-
+<%int login = 0; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,12 +185,21 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 </style>
 </head>
 <body>
+
+<!-- ajax -->
+<script>
+	
+	
+	
+	
+</script>
+
+
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
-
 			<a href="mainPage.jsp" title="바로가기"> <img
-				src="../../images/MasterPiece.png" alt="로고"
+				src="<%=request.getContextPath() %>/images/kimjaeyup/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
 				width="200px" height="70px">
 			</a>
@@ -212,36 +221,39 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 
 		</div>
 		<div id="top_menu">
-			<ul>
-				<li class="top_subMenuLogin">
+		 	 <!-- 로그인 전 메뉴(로그인,회원가입,고객센터,Q&A) -->
+			 <ul>
+				<li class="top_subMenuLogin" id="login_menu" type="button">
 					<a href="<%=request.getContextPath() %>/views/member/login.jsp" title="로그인">
-					<img src="../../images/login_off.png"
-					     onmouseover="this.src='../../images/login_on.png'"
-					     onmouseout="this.src='../../images/login_off.png'"
+					<img src="<%=request.getContextPath() %>/images/kimjaeyup/login_off.png"
+					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_on.png'"
+					     onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_off.png'"
 					     border="0" style="width: 90px; height: 40px;">
 					</a>
 				</li>
 				<li class="top_subMenuMemberShip">
 					<a href="<%=request.getContextPath() %>/views/member/memberTerms.jsp" title="회원가입">
-						<img src="../../images/membership_off.png"
-					     onmouseover="this.src='../../images/membership_on.png'"
-					     onmouseout="this.src='../../images/membership_off.png'" border="0"
+						<img src="<%=request.getContextPath() %>/images/kimjaeyup/membership_off.png"
+					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/membership_on.png'"
+					     onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/membership_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 					</a>
 				</li>
 				<li class="top_subMenuService"><a href="https://www.google.com/" title="고객센터">
-					<img src="../../images/service_off.png"
-					     onmouseover="this.src='../../images/service_on.png'"
-						    onmouseout="this.src='../../images/service_off.png'" border="0"
+					<img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
+					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
+						    onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 				</a></li>
 				<li class="top_subMenuQnA"><a href="https://www.google.com/"
-					title="Q&A"> <img src="../../images/qna_off.png"
-						onmouseover="this.src='../../images/qna_on.png'"
-						onmouseout="this.src='../../images/qna_off.png'" border="0"
+					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 				</a></li>
 			</ul>
+			
+			
 		</div>
 	</div>
 	<hr class="hrtop">
@@ -304,3 +316,36 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 
 </body>
 </html>
+
+
+
+
+		<%-- 
+			<!-- 로그인 후 메뉴(마이페이지, 로그아웃, 고객센터, Q&A) -->
+			<ul>
+				<li class="top_subMenuLogin"><a href="https://www.google.com/"
+					title="마이페이지"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuMemberShip"><a
+					href="http://www.naver.com" title="로그아읏"> <img
+						src="<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuService"><a href="https://www.google.com/"
+					title="고객센터"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuQnA"><a href="https://www.google.com/"
+					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+			</ul> --%>
