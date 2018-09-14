@@ -132,7 +132,7 @@
 		
 		function logout(){
 				
-			location.href="/main/logout.me";
+			location.href="/MasterPiece/logout.me";
 		}
 	
 	</script>

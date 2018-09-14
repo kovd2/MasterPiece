@@ -45,8 +45,8 @@ public class insertMemberServlet extends HttpServlet {
 		String page = "";
 		
 		if(result > 0){
-			
-			page = "views/main/main.jsp";
+
+			page = "index.jsp";
 		}else{
 			
 			page = "views/common/errorPage.jsp";
