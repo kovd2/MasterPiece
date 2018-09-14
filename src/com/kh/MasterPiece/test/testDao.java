@@ -1,3 +1,5 @@
+package com.kh.MasterPiece.test;
+
 
 
 import static com.kh.MasterPiece.common.JDBCTemplate.close;
