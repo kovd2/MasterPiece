@@ -145,7 +145,7 @@
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
 				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
-					<img src="/mp/images/cus_intro_pic.jpg">
+					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
 				<div>
@@ -230,14 +230,9 @@
 							</tr>
 							<tr>
 								<td style="border:1px solid lightgray; width:100px; height:50px; text-align:left; padding-left:10px; font-size:small;">
-									택배사 선택
+									반송정보
 								</td>
 								<td style="padding-left:10px;">
-									<select style="width:150px; font-size:small;">
-										<option>택배사 1</option>
-										<option>택배사 2</option>
-									</select>
-									&nbsp;&nbsp;
 									<input type="text" name="deliveryNumber" id="deliveryNumber" size="40" placeholder="운송장번호 - 없이 입력" style="font-size:small;">
 									<input type="button" name="addition" id="addition" value="추가" style="font-size:small;">
 								</td>

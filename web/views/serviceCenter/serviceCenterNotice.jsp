@@ -141,7 +141,7 @@
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
 				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
-					<img src="/mp/images/cus_intro_pic.jpg">
+					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
 				<div>
@@ -152,57 +152,24 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td align="center">1</td>
-								<td>[견적문의]견적 문의합니다.</td>
-								<td>임하룡</td>
+								<td>공지사항</td>
+								<td>제목입니다.</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
-							</tr>
-						</tbody>
-					</table>
-					<br><br clear="both">
-				</div>
-				<div id="delivery" style="display:none;">
-					<table class="boardTable" style="margin-top:10px;">
-						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td align="center">1</td>
-								<td>[견적문의]견적 문의합니다.</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
-								<td align="center">23</td>
-							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>

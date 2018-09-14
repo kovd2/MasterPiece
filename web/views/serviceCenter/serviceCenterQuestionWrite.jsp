@@ -149,7 +149,7 @@
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
 				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
-					<img src="/mp/images/cus_intro_pic.jpg">
+					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
 				<div>

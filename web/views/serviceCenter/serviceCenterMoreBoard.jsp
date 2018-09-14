@@ -149,7 +149,7 @@
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
 				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
-					<img src="/mp/images/cus_intro_pic.jpg">
+					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
 				<div>
@@ -178,11 +178,10 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -191,14 +190,12 @@
 								<td>1</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -208,27 +205,24 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td align="center">1</td>
-								<td>2</td>
+								<td>환불.반품.교환.AS</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -238,27 +232,24 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td align="center">1</td>
-								<td>3</td>
+								<td>주문결제</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -268,11 +259,10 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -281,14 +271,12 @@
 								<td>4</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -298,11 +286,10 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -311,14 +298,12 @@
 								<td>5</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -328,11 +313,10 @@
 					<table class="boardTable" style="margin-top:10px;">
 						<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
+								<th style="width:50px;">번호</th>
+								<th style="width:100px;">분류</th>
+								<th style="width:400px;">제목</th>
+								<th style="width:100px;">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -341,14 +325,12 @@
 								<td>6</td>
 								<td>임하룡</td>
 								<td>2018-08-31</td>
-								<td align="center">23</td>
 							</tr>
 							<tr>
 								<td align="center">John</td>
 								<td>Doe</td>
 								<td>john@example.com</td>
 								<td>2018-08-31</td>
-								<td align="center">2</td>
 							</tr>
 						</tbody>
 					</table>

@@ -11,8 +11,6 @@
 </style>
 </head>
 <body>
-	<hr>
-	<p>Copyright. All rights reserved</p>
 
 
 <style>

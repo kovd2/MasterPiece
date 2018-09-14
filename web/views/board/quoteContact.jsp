@@ -65,6 +65,10 @@
 {
 	background:#F5F5F5;
 }
+.boardTable th
+{
+	background:#F5F5F5;
+}
 .boardTable>tbody>tr:hover
 {
 	background:lightgray;
@@ -118,11 +122,10 @@
 						<table class="boardTable" style="margin-top:-19px;">
 							<thead>
 								<tr>
-									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
+									<th style="width:50px;">번호</th>
+									<th style="width:350px;">제목</th>
+									<th style="width:100px;">작성자</th>
 									<th>작성일</th>
-									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -131,14 +134,12 @@
 									<td>[견적문의]견적 문의합니다.</td>
 									<td>임하룡</td>
 									<td>2018-08-31</td>
-									<td align="center">23</td>
 								</tr>
 								<tr>
 									<td align="center">John</td>
 									<td>Doe</td>
 									<td>john@example.com</td>
 									<td>2018-08-31</td>
-									<td align="center">2</td>
 								</tr>
 							</tbody>
 						</table>
