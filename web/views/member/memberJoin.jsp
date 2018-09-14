@@ -95,7 +95,7 @@
 				<tr>
 					<th width="100px" height="40px">아이디</th>
 					<td><input type="text" maxlength="13" name="userId" id="userId" class="form-control"></td>
-					<td width="100px" style="padding-left:10px"><div id="idCheck" style="display: table-cell; vertical-align: middle;">중복확인</div></td>
+					<td width="100px" style="padding-left:10px"><div id="idCheck" name="idCheck" style="display: table-cell; vertical-align: middle;">중복확인</div></td>
 				</tr>
 				<tr>
 					<th height="40px">비밀번호</th>
@@ -133,7 +133,7 @@
 				<tr>
 					<th height="40px">이메일</th>
 					<td><input type="email" id="email" name="email" class="form-control"></td>
-					<td width="100px" style="padding-left:10px"><div id="emailCheck" style="display: table-cell; vertical-align: middle;">중복확인</div></td>
+					<td width="100px" style="padding-left:10px"><div id="emailCheck" name="emailCheck" style="display: table-cell; vertical-align: middle;">중복확인</div></td>
 				</tr>
 			</table>
 			<br>
@@ -143,6 +143,7 @@
 			</div>
 			<script>
 				function insertMember(){
+					
 					$("#joinForm").submit();
 				}
 					
@@ -191,11 +192,11 @@
 				$(function(){
 					  //id="btn" 클릭시
 					  $("#joinBtn").click(function(){
-					   //id="text1"이 공백일경우
+					   //id="userName"이 공백일경우
 					   if($('#userName').val()==""){
 					    //얼럿으로처리
 					    alert("이름을 입력 해 주세요");
-					    //id="text1"인 곳으로 커서를 이동
+					    //id="userName"인 곳으로 커서를 이동
 					    $('#userName').focus();
 					   
 					   }
