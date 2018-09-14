@@ -70,7 +70,7 @@ a:HOVER {
 
 	<div id="top">
 		<img alt="" src="<%=request.getContextPath()%>/images/logo.png" id="logo"> 
-		<img alt=""	src="<%=request.getContextPath()%>/images/title.png" id="title">
+		<img alt=""	src="<%=request.getContextPath()%>/images/MasterPiece.png" id="title">
 	</div>
 	<div id="menu">
 		<table align="center" id="tm">
@@ -85,49 +85,49 @@ a:HOVER {
 			<%if(view == 2){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>상품관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/product/adminProduct.jsp'"><h3>상품관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/product/adminProduct.jsp'"><h3>상품관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 3){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>회원관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/member/member.jsp'"><h3>회원관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/member/member.jsp'"><h3>회원관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 4){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>주문관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/ordermember/ordermember.jsp'"><h3>주문관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/ordermember/ordermember.jsp'"><h3>주문관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 5){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>발주관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/order/order.jsp'"><h3>발주관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/order/order.jsp'"><h3>발주관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 6){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>문의관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/question/question.jsp'"><h3>문의관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/question/question.jsp'"><h3>문의관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 7){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>게시판 관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/board/board.jsp'"><h3>게시판 관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/board/board.jsp'"><h3>게시판 관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 8){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>프로모션</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/promotion/pro.jsp'"><h3>프로모션</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/promotion/pro.jsp'"><h3>프로모션</h3></td>
 			<%} %>
 			</tr>
 		</table>

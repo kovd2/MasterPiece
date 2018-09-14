@@ -1,6 +1,8 @@
+package com.kh.MasterPiece.test.model.dao;
 
 
-import static common.JDBCTemplate.close;
+
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class testDao {
 	private Properties prop = new Properties();
 
 	public testDao() {
-		String fileName = testDao.class.getResource("/sql/member/member-query.properties").getPath();
+		String fileName = testDao.class.getResource("/sql/test-query.properties").getPath();
 	
 		try {
 			prop.load(new FileReader(fileName));
@@ -53,24 +55,7 @@ public class testDao {
 			close(rset);
 			
 		}
-		
-		/*PreparedStatement pstmt = null;
-		int[] result ={0};
-		
-		String query = prop.getProperty("insert");
-		System.out.println(query);
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
-			result[0] = pstmt.executeUpdate();
-			System.out.println(result);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}*/
+	
 		
 		
 		return result;

@@ -21,7 +21,7 @@ int deliveryComplate = (int)request.getAttribute("3");
 </style>
 </head>
 <body>
- <jsp:include page="./views/common/menu.jsp">
+ <jsp:include page="./views/admin/common/menu.jsp">
     <jsp:param name="name" value="1"/>
 </jsp:include>
 	<div id="main">

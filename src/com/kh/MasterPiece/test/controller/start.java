@@ -1,3 +1,5 @@
+package com.kh.MasterPiece.test.controller;
+
 
 
 import java.io.IOException;
@@ -8,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.MasterPiece.test.model.service.testService;
 
 /**
  * Servlet implementation class start
@@ -35,7 +39,7 @@ public class start extends HttpServlet {
 		}
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("main.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("adminMain.jsp");
 		view.forward(request, response);
 		
 	}
