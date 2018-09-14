@@ -58,12 +58,13 @@
 	<div class="wrap">
 		<!-- 결제완료 페이지 전체 div -->
 		<div class="step">
-			<img src="../../images/step_complet.png">
+			<img src="../../images/jinseok/icon/step_complet.png">
 		</div>
 		<div class="complet_msg">결제가 성공적으로 완료 되었습니다.</div>
 		<div class="btnArea">
 			<div class="goHome_btn">홈으로</div>
 		</div>
 	</div>
+	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>
