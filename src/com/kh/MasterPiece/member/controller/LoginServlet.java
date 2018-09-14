@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 				
 			}else{
 				
-				response.sendRedirect("index.jsp"); //관리자 페이지로 이동되게.
+				request.getRequestDispatcher("/start").forward(request, response); //관리자 페이지로 이동되게.
 			}
 		}else{
 

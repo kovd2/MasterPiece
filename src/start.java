@@ -35,7 +35,7 @@ public class start extends HttpServlet {
 		}
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("main.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("adminMain.jsp");
 		view.forward(request, response);
 		
 	}

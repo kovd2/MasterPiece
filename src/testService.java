@@ -1,7 +1,7 @@
 
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.getConnection;
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 

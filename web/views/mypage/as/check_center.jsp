@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<style>
 <title>A/S 조회</title>
+<style>
+
+    /*서브(리스트)_페이지넘버*/
+    .list_number{padding-top:25px; text-align:center;}
+    .list_n_menu {padding:3px; MARGIN:3px; TEXT-ALIGN: center}
+	.list_n_menu A {padding: 1px 4px 0px 4px;MARGIN: 2px;/* BORDER: #ccc 1px solid; */COLOR: #999;TEXT-DECORATION: none;}
+    .list_n_menu A:hover {BORDER:#999 1px solid; COLOR: #666;}
+    .list_n_menu A:active {BORDER:#999 1px solid; COLOR: #666;}
+	.list_n_menu .current {BORDER: #117bff 1px solid;padding: 1px 4px 0px 4px;FONT-WEIGHT: bold;MARGIN: 2px;COLOR: #036cb4;}
+    .list_n_menu .disabled {BORDER: #eee 1px solid;padding: 1px 4px 0px 4px;MARGIN: 2px;COLOR: #ddd;}
+    
+
 .centerWrapArea {
 	display: inline-block;
 	width: 79%;
@@ -80,7 +90,7 @@
 					<!-- 중앙 게시판 -->
 					<div id="serviceMainImg"
 						onclick="location.href='serviceCenter.jsp'">
-						<img src="/mp/images/cus_intro_pic.jpg">
+						<img src="../../../images/gwangseong/상담원.jpg">
 					</div>
 					<br>
 					<div

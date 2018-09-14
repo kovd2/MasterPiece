@@ -5,20 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<style>
-
-</style>
-</head>
-<body>
-
 <style>
 .footerHr { border-color: #f43641; }
 .footerP { text-align:center; }
 .footerLogo{padding-top:-50px;}
-
 </style>
-
 </head>
 <body>
 	<hr class="footerHr">

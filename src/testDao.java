@@ -1,6 +1,6 @@
 
 
-import static common.JDBCTemplate.close;
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
