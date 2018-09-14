@@ -274,7 +274,7 @@
 }
 
 .orange_icon {
-	vertical-align: -4px !important; @
+	vertical-align: -4px !important;
 	vertical-align: 1px !important;
 }
 
@@ -285,7 +285,7 @@
 }
 
 .orange_btn {
-	vertical-align: -7px !important; @
+	vertical-align: -7px !important;
 	vertical-align: -4px !important;
 }
 
@@ -444,7 +444,7 @@
 	<div class="wrap">
 		<!-- 배송 및 주문 페이지 전체 div -->
 		<div class="step">
-			<img src="../../images/step_delivery_move.PNG">
+			<img src="../../images/jinseok/icon/step_delivery.PNG">
 		</div>
 		<div class="prd_delivery">
 			<!-- 주문 상품 div -->
@@ -460,7 +460,7 @@
 					</tr>
 					<tr>
 						<td style="text-align: center;"><img
-							src="../../images/cpu.png" style="width: 85px; height: 85px;"></td>
+							src="../../images/jinseok/cpu/i3_7100.jpg" style="width: 85px; height: 85px;"></td>
 						<td style="width: 350px; height: 31px;">[AMD] 라이젠 3 레이븐릿지
 							2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어)
 							/ 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
@@ -531,7 +531,7 @@
 		</div>
 		<br> <br>
 		<div id="pay_price_method_layer" class="div_all_layer pay_box_layer">
-
+		<div style="width:100%; height:500px;">
 			<div id="pay_price_method_left">
 				<div id="pay_method_list">
 					<span class="pay_method_title_text">결제방법 선택</span>
@@ -765,12 +765,13 @@
 						</div>
 
 						<div id="pay_right_btn_layer">
-							<img src="../../images/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="location.replace('#');">
-							<img src="../../images/pay_go_pay_btn.gif" alt="결제하기" style="float: right" onclick="#" id="pay_submit_btn"> 
-							<img src="../../images/pay_go_pay_btn_ing.gif" alt="결제중" style="float: right; display: none;" id="pay_submit_btn_ing" onclick="alert('현재 결제 처리중입니다. 잠시만 기다리세요.');">
+							<img src="../../images/jinseok/icon/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="location.replace('#');">
+							<img src="../../images/jinseok/icon/pay_go_pay_btn.gif" alt="결제하기" style="float:right;" onclick="#" id="pay_submit_btn"> 
+							<!-- <img src="../../images/pay_go_pay_btn_ing.gif" alt="결제중" style="float:right; display: none;" id="pay_submit_btn_ing" onclick="alert('현재 결제 처리중입니다. 잠시만 기다리세요.');"> -->
 						</div>
 					</div>
 				</div>
+			</div><!-- -------------------- -->
 			</div>
 		</div>
 			<script>
@@ -813,5 +814,6 @@
 					
 				}
 			</script>
+			<%@include file = "../common/footer.jsp" %>
 </body>
 </html>

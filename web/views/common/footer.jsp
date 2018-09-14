@@ -4,14 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
-
-</style>
-</head>
-<body>
-
+  <title>Insert title here</title>
 
 <style>
 .footerHr { border-color: #f43641; }
@@ -24,7 +17,6 @@
 .footerCopyright .footerInfo .info_conpany .btn {display:inline-block; height:15px; padding:0 4px; border:1px solid #ccc; background-color:#fff; color:#999; font-size:11px; line-height:15px; margin-left:5px; text-decoration:none;}
 .footerCopyright .footerInfo .info_tel .btn{display:inline-block; height:15px; padding:0 4px; border:1px solid #ccc; background-color:#fff; color:#999; font-size:11px; line-height:15px; margin-left:5px; text-decoration:none;}
 .btnB{display:inline-block; height:15px; padding:8px 61px; border:1px solid #ccc; background-color:#eaeaec; color:#000000; font-size:14px; line-height:14px; font-family:Noto-R; text-decoration:none;}
-
 
 </style>
 
