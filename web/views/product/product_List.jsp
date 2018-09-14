@@ -8,7 +8,7 @@
 <style>
 .wrap {
 	width: 1100px;
-	height: 3000px;
+	height: 2000px;
 	margin: 0 auto;
 	align:center;
 }
@@ -336,7 +336,7 @@
 				<ul class="bestPrd_list">
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/product/cpu/i7_8700K.jpg">
+							<img src="../../images/jinseok/cpu/i7_8700K.jpg">
 							<div class="Prd_name">
 								[대리점정품]인텔 코어8세대 i7-8700K 커피레이크 (CPU/3.7GHz/12MB/LGA1151-V2)
 								<div class="Prd_price">569,000원</div>
@@ -345,7 +345,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/product/cpu/i7_8700.jpg">
+							<img src="../../images/jinseok/cpu/i7_8700.jpg">
 							<div class="Prd_name">
 								[대리점정품]인텔 코어8세대 i7-8700 커피레이크 (CPU/3.2GHz/12MB/LGA1151-V2)
 								<div class="Prd_price">555,000원</div>
@@ -354,7 +354,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/product/cpu/i7_7740X.jpg">
+							<img src="../../images/jinseok/cpu/i7_7740X.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -363,7 +363,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/product/cpu/i5_8600K.jpg">
+							<img src="../../images/jinseok/cpu/i5_8600K.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -372,7 +372,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/product/cpu/i5_8600.jpg">
+							<img src="../../images/jinseok/cpu/i5_8600.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -404,7 +404,7 @@
 				</div>
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i3_7100.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_7100.jpg">
 					</div>
 					<div class="Prd_Info">
 						
@@ -418,10 +418,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -429,7 +429,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i3_7350K.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_7350K.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -443,10 +443,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -454,7 +454,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i3_8100.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_8100.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -468,10 +468,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -479,7 +479,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i3_8350K.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_8350K.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -493,10 +493,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -504,7 +504,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i5_7400.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7400.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -518,10 +518,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -529,7 +529,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i5_7500.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7500.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -543,10 +543,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -554,7 +554,7 @@
 				
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/product/cpu/i5_7600.jpg">
+						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7600.jpg">
 					</div>
 					<div class="Prd_Info">
 					
@@ -568,10 +568,10 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/go_cart_btn.gif">
+								<img src="../../images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/go_pay_btn.gif">
+								<img src="../../images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
@@ -592,6 +592,7 @@
 		}
 		
 	</script>
+	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>
 

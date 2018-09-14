@@ -149,7 +149,7 @@
 	<%@ include file="../common/top.jsp"%>
 	<div class="wrap">
 		<div class="step">
-			<img src="/main/images/step_cart_move.PNG">
+			<img src="../..//images/jinseok/icon/step_cart.PNG">
 		</div>
 			<div class="empty_cart">
 				<div id="no_cart_item" class="div_all_layer">장바구니에 상품이 존재하지 않습니다.</div>
@@ -174,7 +174,7 @@
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
-						<td><img src="../../images/product/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
+						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어) / 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
 						<td style="width: 120px; height: 31px;">가격 : 217000원</td>
 						<td style="width: 120px; height: 31px;">
@@ -196,7 +196,7 @@
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
-						<td><img src="../../images/product/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
+						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어) / 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
 						<td style="width: 120px; height: 31px;">가격 : 217000원</td>
 						<td style="width: 120px; height: 31px;">
@@ -217,7 +217,7 @@
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
-						<td><img src="../../images/product/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
+						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어) / 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
 						<td style="width: 120px; height: 31px;">가격 : 217000원</td>
 						<td style="width: 120px; height: 31px;">
@@ -238,7 +238,7 @@
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
-						<td><img src="../../images/product/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
+						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어) / 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
 						<td style="width: 120px; height: 31px;">가격 : 217000원</td>
 						<td style="width: 120px; height: 31px;">
@@ -259,7 +259,7 @@
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
-						<td><img src="../../images/product/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
+						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어) / 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
 						<td style="width: 120px; height: 31px;">가격 : 217000원</td>
 						<td style="width: 120px; height: 31px;">
@@ -301,14 +301,16 @@
 			</div>
 			</div>
 			
-			<img alt="" src="../../images/payment.png" style="width:1050px; height:230px;">
+			<img alt="" src="../../images/jinseok/icon/payment.png" style="width:1050px; height:230px;">
 			
 			
-			<div class="go_shopping" onclick="goList()"><img src="../../images/cart_go_shopping_btn.gif"></div>
-			<div class="purchase" onclick="goBuy()"><img src="../../images/cart_pay_btn.gif"></div>
+			<div class="go_shopping" onclick="goList()"><img src="../../images/jinseok/icon/cart_go_shopping_btn.gif"></div>
+			<div class="purchase" onclick="goBuy()"><img src="../../images/jinseok/icon/cart_pay_btn.gif"></div>
 		</div>
 		<br><br><br><br>
 		</div>
+	</div>
+	<%@include file = "../common/footer.jsp" %>
 		<script>
 			function goList(){
 				location.href="./product_List.jsp";
@@ -317,7 +319,5 @@
 				location.href="./delivery_page.jsp";
 			}
 		</script>
-	</div>
-	
 </body>
 </html>

@@ -296,7 +296,7 @@
 		<div class="info_layout">
 			<div class="item_info_layout">
 				<div class="item_img">
-					<img src="../../images/product/cpu/i3_7100.jpg">
+					<img src="../../images/jinseok/cpu/i3_7100.jpg">
 				</div>
 			</div>
 			<div class="item_spec">
@@ -356,13 +356,13 @@
 		<br>
 		<div class="detail_div">
 			<div class="before_buy">
-				<img src="../../images/before_buy.PNG">
+				<img src="../../images/jinseok/icon/before_buy.PNG">
 			</div>
 			<div class="cpu_division">
-				<img src="../../images/intel_cpu_division.PNG">
+				<img src="../../images/jinseok/icon/intel_cpu_division.PNG">
 			</div>
 			<div class="detail_info">
-				<p align="center"><img src="../../images/Intel_core_8_i3_8100_info.jpg"></p>
+				<p align="center"><img src="../../images/jinseok/cpu/8_i3_8100_info.jpg"></p>
 			</div>
 		</div>
 		<br>
@@ -497,6 +497,7 @@
 			}
 		</script>
 	</div>
+	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>
 
