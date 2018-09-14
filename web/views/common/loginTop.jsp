@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
-pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 /***************************** 로고 + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A)*****************************/
 
 .main_layer {
@@ -40,10 +37,10 @@ pageEncoding="UTF-8"%>
 	outline: 0;
 	border: 0;
 	background-color: transparent;
-	color: #000;
-	font-weight: 700;
-	font-size: 18px;
-	line-height: 23px;
+    color: #000;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
 }
 
 .sch_smit {
@@ -69,9 +66,9 @@ pageEncoding="UTF-8"%>
 
 #top_menu {
 	position: absolute;
-	width: 403px;
+	width: 423px;
 	height: 70px;
-	margin-left: 697px;
+	margin-left: 710px;
 	margin-top: 25px;
 	top: 10px;
 }
@@ -80,6 +77,7 @@ pageEncoding="UTF-8"%>
 	float: left;
 	border-left: 1px solid #999;
 	display: block;
+	padding-right: 5px;
 }
 
 #top_menu ul li:first-child {
@@ -188,7 +186,6 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
-
 			<a href="mainPage.jsp" title="바로가기"> <img
 				src="../../images/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
@@ -209,37 +206,33 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				onclick="clickcr(this,'sch.action','','',event);">
 				<span class="blind">검색</span> <span class="ico_search_submit"></span>
 			</button>
-
 		</div>
 		<div id="top_menu">
 			<ul>
-				<li class="top_subMenuLogin">
-					<a href="<%=request.getContextPath() %>/views/member/login.jsp" title="로그인">
-					<img src="../../images/login_off.png"
-					     onmouseover="this.src='../../images/login_on.png'"
-					     onmouseout="this.src='../../images/login_off.png'"
-					     border="0" style="width: 90px; height: 40px;">
-					</a>
-				</li>
-				<li class="top_subMenuMemberShip">
-					<a href="<%=request.getContextPath() %>/views/member/memberTerms.jsp" title="회원가입">
-						<img src="../../images/membership_off.png"
-					     onmouseover="this.src='../../images/membership_on.png'"
-					     onmouseout="this.src='../../images/membership_off.png'" border="0"
-						style="width: 90px; height: 40px;">
-					</a>
-				</li>
-				<li class="top_subMenuService"><a href="https://www.google.com/" title="고객센터">
-					<img src="../../images/service_off.png"
-					     onmouseover="this.src='../../images/service_on.png'"
-						    onmouseout="this.src='../../images/service_off.png'" border="0"
-						style="width: 90px; height: 40px;">
+				<li class="top_subMenuLogin"><a href="https://www.google.com/"
+					title="마이페이지"> <img src="../../images/mypage_off.png"
+						onmouseover="this.src='../../images/mypage_on.png'"
+						onmouseout="this.src='../../images/mypage_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuMemberShip"><a
+					href="http://www.naver.com" title="로그아읏"> <img
+						src="../../images/logout_off.png"
+						onmouseover="this.src='../../images/logout_on.png'"
+						onmouseout="this.src='../../images/logout_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuService"><a href="https://www.google.com/"
+					title="고객센터"> <img src="../../images/service_off.png"
+						onmouseover="this.src='../../images/service_on.png'"
+						onmouseout="this.src='../../images/service_off.png'" border="0"
+						style="width: 80px; height: 35px;">
 				</a></li>
 				<li class="top_subMenuQnA"><a href="https://www.google.com/"
 					title="Q&A"> <img src="../../images/qna_off.png"
 						onmouseover="this.src='../../images/qna_on.png'"
 						onmouseout="this.src='../../images/qna_off.png'" border="0"
-						style="width: 90px; height: 40px;">
+						style="width: 80px; height: 35px;">
 				</a></li>
 			</ul>
 		</div>
@@ -301,6 +294,5 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

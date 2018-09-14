@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
-pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 /***************************** 로고 + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A)*****************************/
 
 .main_layer {
@@ -64,14 +61,14 @@ pageEncoding="UTF-8"%>
 }
 
 .hrtop {
-	border-color: #d9534f; margin-bottom: -10px;
+	border-color: #f43641;
 }
 
 #top_menu {
 	position: absolute;
-	width: 403px;
-	height: 70px;
-	margin-left: 697px;
+	width: 380px;
+	height: 100px;
+	margin-left: 720px;
 	margin-top: 25px;
 	top: 10px;
 }
@@ -138,8 +135,7 @@ pageEncoding="UTF-8"%>
 
 ul.mp_menu, ul.com_menu, ul.mo_menu, ul.de_menu, ul.cate_menu {
 	position: absolute;
-	background-color: #d9534f;
-	color:white;
+	background-color: darkgray;
 	list-style-type: none;
 	width: 180px;
 	visibility: hidden;
@@ -157,11 +153,11 @@ ul.mp_menu>li, ul.com_menu>li, ul.mo_menu>li, ul.de_menu>li, ul.cate_menu>li {
 	margin-left: -40px;
 	padding-left: 20px;
 }
-ul.mp_menu{ width:182px; box-shadow: 3px 3px 10px #ea4c4c;  /* box-shadow: 3px 3px 10px #b5b5b5; */}
-ul.com_menu{ width:173px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.mo_menu{width:173px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.de_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
+ul.mp_menu{ width:182px;}
+ul.com_menu{ width:173px;}
+ul.mo_menu{width:173px;}
+ul.de_menu{width:174px;}
+ul.cate_menu{width:174px;}
 
 .categoryBox_css:hover .mp_menu, .categoryBox_css:hover .com_menu,
 	.categoryBox_css:hover .mo_menu, .categoryBox_css:hover .de_menu,
@@ -169,14 +165,12 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	visibility: visible;
 }
 
-.mp_menu>li:hover, .com_menu>li:hover, .mo_menu>li:hover, .de_menu>li:hover, .cate_menu>li:hover { font-weight:bold; font-size:15px; color:black;}
-
 .mainBanner {
 	z-index: 2;
 }
 
 .categoryBox_css ul li {
-	/* border-bottom: 1px solid white; */
+	border-bottom: 1px solid #999;
 }
 
 .categoryBox_css ul li:last-child {
@@ -188,7 +182,6 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
-
 			<a href="mainPage.jsp" title="바로가기"> <img
 				src="../../images/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
@@ -209,37 +202,33 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				onclick="clickcr(this,'sch.action','','',event);">
 				<span class="blind">검색</span> <span class="ico_search_submit"></span>
 			</button>
-
 		</div>
 		<div id="top_menu">
 			<ul>
-				<li class="top_subMenuLogin">
-					<a href="<%=request.getContextPath() %>/views/member/login.jsp" title="로그인">
-					<img src="../../images/login_off.png"
-					     onmouseover="this.src='../../images/login_on.png'"
-					     onmouseout="this.src='../../images/login_off.png'"
-					     border="0" style="width: 90px; height: 40px;">
-					</a>
-				</li>
-				<li class="top_subMenuMemberShip">
-					<a href="<%=request.getContextPath() %>/views/member/memberTerms.jsp" title="회원가입">
-						<img src="../../images/membership_off.png"
-					     onmouseover="this.src='../../images/membership_on.png'"
-					     onmouseout="this.src='../../images/membership_off.png'" border="0"
-						style="width: 90px; height: 40px;">
-					</a>
-				</li>
-				<li class="top_subMenuService"><a href="https://www.google.com/" title="고객센터">
-					<img src="../../images/service_off.png"
-					     onmouseover="this.src='../../images/service_on.png'"
-						    onmouseout="this.src='../../images/service_off.png'" border="0"
-						style="width: 90px; height: 40px;">
+				<li class="top_subMenuLogin"><a href="https://www.google.com/"
+					title="로그인"> <img src="../../images/login_off.png"
+						onmouseover="this.src='../../images/login_on.png'"
+						onmouseout="this.src='../../images/login_off.png'" border="0"
+						style="width: 83px; height: 40px;">
+				</a></li>
+				<li class="top_subMenuMemberShip"><a
+					href="http://www.naver.com" title="회원가입"> <img
+						src="../../images/membership_off.png"
+						onmouseover="this.src='../../images/membership_on.png'"
+						onmouseout="this.src='../../images/membership_off.png'" border="0"
+						style="width: 83px; height: 40px;">
+				</a></li>
+				<li class="top_subMenuService"><a href="https://www.google.com/"
+					title="고객센터"> <img src="../../images/service_off.png"
+						onmouseover="this.src='../../images/service_on.png'"
+						onmouseout="this.src='../../images/service_off.png'" border="0"
+						style="width: 83px; height: 40px;">
 				</a></li>
 				<li class="top_subMenuQnA"><a href="https://www.google.com/"
 					title="Q&A"> <img src="../../images/qna_off.png"
 						onmouseover="this.src='../../images/qna_on.png'"
 						onmouseout="this.src='../../images/qna_off.png'" border="0"
-						style="width: 90px; height: 40px;">
+						style="width: 83px; height: 40px;">
 				</a></li>
 			</ul>
 		</div>
@@ -301,6 +290,5 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
