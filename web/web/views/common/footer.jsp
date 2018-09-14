@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+</style>
+</head>
+<body>
+	<hr>
+	<p>Copyright. All rights reserved</p>
+  
 	.footerHr {
 		border-color: #f43641;
 	}

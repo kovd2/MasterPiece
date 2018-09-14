@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>메인페이지</h1>
+	<a href="views/member/login.jsp">로그인</a>
+	<a href="views/member/findId.jsp">아이디찾기</a>
+
 </body>
 </html>
