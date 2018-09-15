@@ -541,12 +541,13 @@
 							<tbody>
 								<tr>
 									<th style="border-top: none;">결제방법 선택</th>
-									<td style="border-top: none;"><input type="radio"
-										name="pay_price_method" id="pay_price_method_1" value="bank"><label
-										for="pay_price_method_1">무통장입금</label> &nbsp; <span
-										style="padding-left: 24px;"><input type="radio"
-											name="pay_price_method" id="pay_price_method_2" value="card"><label
-											for="pay_price_method_2">신용카드</label></span></td>
+										<td style="border-top: none;">
+											<input type="radio" name="pay_price_method" id="pay_price_method_1" value="bank">
+											<label for="pay_price_method_1">무통장입금</label> &nbsp; 
+												<span style="padding-left: 24px;">
+											<input type="radio" name="pay_price_method" id="pay_price_method_2" value="card">
+											<label for="pay_price_method_2">신용카드</label></span>
+										</td>
 								</tr>
 							</tbody>
 						</table>
@@ -559,23 +560,17 @@
 									<th>입금은행 선택</th>
 									<td>
 										<div style="float: left;">
-											<select name="input_bank_select" id="id_input_bank_select"
-												style="height: 24px;">
-												<option value="1">국민 015437-04-006259
-													MasterPiece(주)</option>
-												<option value="2">기업 284-039112-04-047
-													MasterPiece(주)</option>
+											<select name="input_bank_select" id="id_input_bank_select" style="height: 24px;">
+												<option value="1">국민 015437-04-006259 MasterPiece(주)</option>
+												<option value="2">기업 284-039112-04-047 MasterPiece(주)</option>
 												<option value="3">농협 011-01-458734 MasterPiece(주)</option>
 												<option value="4">신한 140-008-103125 MasterPiece(주)</option>
 												<option value="5">우리 1005-101-096224 MasterPiece(주)</option>
-												<option value="6">하나 113-910042-03304
-													MasterPiece(주)</option>
+												<option value="6">하나 113-910042-03304 MasterPiece(주)</option>
 											</select>
 										</div>
-										<div style="float: left; padding-left: 18px;">
-											&nbsp; 입금자 <input type="textbox" name="bank_name"
-												id="id_bank_name" class="pay_textbox_style"
-												style="width: 142px !important;" value="">
+										<div style="float: left; padding-left: 18px;">&nbsp; 입금자 
+											<input type="textbox" name="bank_name" id="id_bank_name" class="pay_textbox_style" style="width: 142px !important;" value="">
 										</div>
 									</td>
 								</tr>
@@ -583,73 +578,63 @@
 
 								<tr>
 									<th>증빙서류신청</th>
-									<td><input type="radio" name="pay_tax_bank"
-										id="pay_tax_bank_1" value="tax"><label
-										for="pay_tax_bank_1">세금계산서</label> &nbsp; <span
-										style="padding-left: 24px;"><input type="radio"
-											name="pay_tax_bank" id="pay_tax_bank_2" value="cash"><label
-											for="pay_tax_bank_2">현금영수증</label> &nbsp;</span> <span
-										style="padding-left: 20px;"><input type="radio"
-											name="pay_tax_bank" id="pay_tax_bank_3" value="no"><label
-											for="pay_tax_bank_3">신청안함</label></span></td>
+									<td>
+										<input type="radio" name="pay_tax_bank" id="pay_tax_bank_1" value="tax">
+										<label for="pay_tax_bank_1">세금계산서</label> &nbsp; 
+										<span style="padding-left: 24px;"><input type="radio" name="pay_tax_bank" id="pay_tax_bank_2" value="cash">
+										<label for="pay_tax_bank_2">현금영수증</label> &nbsp;</span> 
+										<span style="padding-left: 20px;"><input type="radio" name="pay_tax_bank" id="pay_tax_bank_3" value="no">
+										<label for="pay_tax_bank_3">신청안함</label></span>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 
 
-					<div id="pay_price_method_no_bank" class="pay_price_table_class"
-						style="display: none;">
+					<div id="pay_price_method_no_bank" class="pay_price_table_class"style="display: none;">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 								<tr>
 									<th>기존적립금</th>
-									<td><input type="textbox" name="point_can_use_no_bank"
-										class="pay_textbox_style pay_textbox_short"
-										style="text-align: right;" value="0"
-										onkeyup="usePointCheck('no_bank');" readonly=""> <img
-										src="./images/pay_orange_point_icon.gif" class="orange_icon">
-										&nbsp; &nbsp; &nbsp; <span style="padding-left: 8px;">(보유머니
-											<span class="pay_price_orage_font">0P</span>)
-									</span></td>
+									<td>
+										<input type="textbox" name="point_can_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');" readonly=""> 
+										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
+										<span style="padding-left: 8px;">(보유머니 <span class="pay_price_orage_font">0P</span>)</span>
+									</td>
 								</tr>
 								<tr>
 									<th>I POINT</th>
-									<td><input type="textbox" name="i_point_use_no_bank"
-										class="pay_textbox_style pay_textbox_short"
-										style="text-align: right;" value="0"
-										onkeyup="usePointCheck('no_bank');"> <img
-										src="./images/pay_orange_point_icon.gif" class="orange_icon">
-										&nbsp; &nbsp; &nbsp; <span style="padding-left: 8px;">(보유
-											I POINT <span class="pay_price_orage_font">0P</span>) &nbsp;
-											&nbsp; &nbsp; <span style="padding-left: 40px;"><input
-												type="checkbox" name="i_point_vat_use"
-												id="id_i_point_vat_use_no_bank" value="use"
-												onclick="iPointVatUse(this.id);"><label
-												for="id_i_point_vat_use_no_bank">I POINT 세금계산서 및
-													현금영수증 발행</label></span>
-									</span></td>
+									<td>
+										<input type="textbox" name="i_point_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');"> 
+										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
+										<span style="padding-left: 8px;">(보유 I POINT <span class="pay_price_orage_font">0P</span>) &nbsp;&nbsp; &nbsp; 
+											<span style="padding-left: 40px;">
+											<input type="checkbox" name="i_point_vat_use" id="id_i_point_vat_use_no_bank" value="use" onclick="iPointVatUse(this.id);">
+											<label for="id_i_point_vat_use_no_bank">I POINT 세금계산서 및 현금영수증 발행</label>
+											</span>
+										</span>
+									</td>
 								</tr>
 								<tr>
 									<th>현금반품적립금</th>
-									<td><input type="textbox" name="cash_point_use_no_bank"
-										class="pay_textbox_style pay_textbox_short"
-										style="text-align: right;" value="0"
-										onkeyup="usePointCheck('no_bank');"> <img
-										src="./images/pay_orange_point_icon.gif" class="orange_icon">
-										&nbsp; &nbsp; &nbsp; <span style="padding-left: 8px;">(보유
-											현금반품적립금 <span class="pay_price_orage_font">0P</span>)
-									</span></td>
+									<td>
+										<input type="textbox" name="cash_point_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');">
+										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
+										<span style="padding-left: 8px;">(보유 현금반품적립금 <span class="pay_price_orage_font">0P</span>)</span>
+									</td>
 								</tr>
 
 								<tr>
 									<th>증빙서류신청</th>
-									<td><input type="radio" name="pay_tax_bank"
-										id="pay_tax_card_1" value="tax"><label
-										for="pay_tax_card_1">세금계산서</label> &nbsp; <span
-										style="padding-left: 23px;"><input type="radio"
-											name="pay_tax_bank" id="pay_tax_card_3" value="no"><label
-											for="pay_tax_card_3">신청안함</label> </span></td>
+									<td>
+									<input type="radio" name="pay_tax_bank"id="pay_tax_card_1" value="tax">
+										<label for="pay_tax_card_1">세금계산서</label> &nbsp; 
+										<span style="padding-left: 23px;">
+										<input type="radio"name="pay_tax_bank" id="pay_tax_card_3" value="no">
+										<label for="pay_tax_card_3">신청안함</label> 
+										</span>
+									</td>
 								</tr>
 
 							</tbody>
@@ -682,32 +667,24 @@
 							<tbody>
 								<tr>
 									<th>기존적립금</th>
-									<td><input type="textbox" name="point_can_use_kakao"
-										class="pay_textbox_style pay_textbox_short"
-										style="text-align: right;" value="0"
-										onkeyup="usePointCheck('kakao');" readonly=""> <img
-										src="./images/pay_orange_point_icon.gif" class="orange_icon">
-										&nbsp; &nbsp; &nbsp; <!-- <img src="./images/pay_point_apply_btn.gif" alt="포인트적용" class="orange_btn" onclick="usePointCheck('kakao');"/> -->
-										<span style="padding-left: 8px;">(보유머니 <span
-											class="pay_price_orage_font">0P</span>)
-									</span></td>
+									<td>
+										<input type="textbox" name="point_can_use_kakao"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0onkeyup="usePointCheck('kakao');" readonly="">
+										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp;
+										 <!-- <img src="./images/pay_point_apply_btn.gif" alt="포인트적용" class="orange_btn" onclick="usePointCheck('kakao');"/> -->
+										<span style="padding-left: 8px;">(보유머니 <span class="pay_price_orage_font">0P</span>)</span>
+									</td>
 								</tr>
 								<tr>
 									<th>I POINT</th>
-									<td><input type="textbox" name="i_point_use_kakao"
-										class="pay_textbox_style pay_textbox_short"
-										style="text-align: right;" value="0"
-										onkeyup="usePointCheck('kakao');"> <img
-										src="./images/pay_orange_point_icon.gif" class="orange_icon">
-										&nbsp; &nbsp; &nbsp; <span style="padding-left: 8px;">(보유
-											I POINT <span class="pay_price_orage_font">0P</span>) &nbsp;
-											&nbsp; &nbsp; <span style="padding-left: 40px;"><input
-												type="checkbox" name="i_point_vat_use"
-												id="id_i_point_vat_use_kakao" value="use"
-												onclick="iPointVatUse(this.id);"><label
-												for="id_i_point_vat_use_kakao">I POINT 세금계산서 및 현금영수증
-													발행</label></span>
-									</span></td>
+									<td>
+										<input type="textbox" name="i_point_use_kakao"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('kakao');"> 
+										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
+										<span style="padding-left: 8px;">(보유 I POINT<span class="pay_price_orage_font">0P</span>) &nbsp;&nbsp; &nbsp; 
+											<span style="padding-left: 40px;">
+											<input type="checkbox" name="i_point_vat_use"id="id_i_point_vat_use_kakao" value="use"onclick="iPointVatUse(this.id);">
+											<label for="id_i_point_vat_use_kakao">I POINT 세금계산서 및 현금영수증 발행</label></span>
+										</span>
+									</td>
 								</tr>
 								<tr>
 									<th>현금반품적립금</th>
@@ -765,9 +742,8 @@
 						</div>
 
 						<div id="pay_right_btn_layer">
-							<img src="../../images/jinseok/icon/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="location.replace('#');">
-							<img src="../../images/jinseok/icon/pay_go_pay_btn.gif" alt="결제하기" style="float:right;" onclick="#" id="pay_submit_btn"> 
-							<!-- <img src="../../images/pay_go_pay_btn_ing.gif" alt="결제중" style="float:right; display: none;" id="pay_submit_btn_ing" onclick="alert('현재 결제 처리중입니다. 잠시만 기다리세요.');"> -->
+							<img src="../../images/jinseok/icon/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="goCart();">
+							<img src="../../images/jinseok/icon/pay_go_pay_btn.gif" alt="결제하기" style="float: right" onclick="billingPage()" id="pay_submit_btn"> 
 						</div>
 					</div>
 				</div>
@@ -778,7 +754,7 @@
 				function search_post(){
 					new daum.Postcode({
                         oncomplete: function(data) {
-                            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                            //팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
              
                             // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
                             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
@@ -812,6 +788,12 @@
                         }
                     }).open();
 					
+				};
+				function goCart(){
+					location.href="./cart_page.jsp";
+				}
+				function billingPage(){
+					location.href="./billingPage.jsp";
 				}
 			</script>
 			<%@include file = "../common/footer.jsp" %>

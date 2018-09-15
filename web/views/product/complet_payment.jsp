@@ -8,7 +8,7 @@
 <style>
 .wrap {
 	width: 1100px;
-	height: auto;
+	height: 700px;
 	margin: 0 auto;
 	align: center;
 }

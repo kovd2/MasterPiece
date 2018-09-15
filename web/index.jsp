@@ -391,7 +391,7 @@ a{ text-decoration:none }
 						<span class="product_name">32형(80cm) LED LCD(와이드) / IPS패널 / 1920*1080 / 1,200:1 </span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
 						<span class="product_btm2">277,000원</span>
-						<span class="product_event3" style="margin-right:10px;">무료배송</span>
+						<span class="product_event3" style="margin-right:10px;">무료배송</span>	
 					</div>
 					<div class="product_monitor2 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/monitor5.jpg" style="width: 200px; height: 200px;"><br>

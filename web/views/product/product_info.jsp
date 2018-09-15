@@ -288,6 +288,7 @@
 	border-color: #cccccc;
 	font-weight: normal;
 }
+
 </style>
 </head>
 <body>
@@ -355,7 +356,7 @@
 		</div>
 		<br>
 		<div class="detail_div">
-			<div class="before_buy">
+			<div class="before_buy" style="margin-left: 85px;">
 				<img src="../../images/jinseok/icon/before_buy.PNG">
 			</div>
 			<div class="cpu_division">
@@ -427,67 +428,79 @@
 			</ul>
 		</div>
 		<div id="detail_return_info" class="detail_info_box">
-	<ul>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰에서는 <span class="detail_info_guide_highlight">별도로 A/S 기간이 정해진 제품을 제외한 나머지 제품들은 1년간 A/S를 보장</span>하며,<br>
-			서울지역을 포함한 지방 출장 A/S는 오렌지 PC와 내 맘대로 PC를 제외하고는 실시하지 않습니다.
-		</li>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰에서 <span class="detail_info_guide_highlight">구매하신 후 1년이 경과한 제품은 해당 제조회사를 통해 A/S</span>를 받으셔야 합니다.
-		</li>
-		<li class="detail_info_guide_fulltext">
-			천재지변을 포함해 소비자 과실에 의한 파손인 경우에는 유상 A/S처리가 되며 경우에 따라 A/S가 불가능할 수 있습니다.
-		</li>
-		<li class="detail_info_guide_fulltext">
-			<span class="detail_info_guide_highlight">제품 구매 인수 후 15일 이내의 제품 불량 발생시 A/S에 관한 택배 운임비는 전액 MasterPiece가 부담합니다.</span><br>
-			구매 인수 후 15일이상 30일 이내 제품 불량인 경우에는 운임비 반액(편도 택배비)을 MasterPiece에서 부담합니다.<br>
-			구매 인수 후 30일 이후 발생하는 모든 배송에 관한 운임비는 소비자분께서 부담하시게 되므로 유의하시기 바랍니다.<br>
-			구매 인수 후 15일 이내의 초기불량 포함한 제품 불량 발생시 A/S에 관해서는 택배로만 처리되며, CJ택배을 이용하실 경우에만 왕복 운임비 지원이 가능합니다.<br>
-			<span class="detail_info_guide_highlight">※ 소비자 변심에 의해 반품하는 경우 운송비는 고객님이 부담하셔야 합니다.</span>
-		</li>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰에서 <span class="detail_info_guide_highlight">브랜드PC인 MasterPiece 오렌지PC는 1년 동안 무상 A/S처리</span>가 됩니다. (단, 부속품 중 단종이 된 상품은 해당 서비스 업체의 처리 기준에 의해 보상됩니다.)
-		</li>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰에서 판매하는 상품 중 소프트웨어는 A/S항목에 포함되지 않으므로 소프트웨어는 해당 제작사로 문의하셔야 합니다.
-		</li>
-		<li class="detail_info_guide_fulltext">
-			<span style="color:#373737 !important;"><b>교환/반품/환불시 주의사항</b></span>
-			<table border="1" cellpadding="0" cellspacing="0" bordercolor="#cccccc">
-				<tbody><tr>
-					<th rowspan="3" scope="col">교환/반품</th>
-					<td>제품 구매 인수 후 15일 이내의 제품은 초기 불량에 한해 1:1 상품 교환 또는 환불이 가능합니다. 단, 제품의 박스 및 구성물이 정상 상태에서만 가능 합니다.</td>
-				</tr>
-				<tr>
-					<td>개봉을 안하신 제품중 변심에 의한 반품도 15일 이내에만 가능합니다. </td>
-				</tr>
-				<tr>
-					<td>교환의 경우 동일 상품으로 1:1 교환은 가능하나 다른 상품으로 교환은 불가합니다.</td>
-				</tr>
-				<tr>
-					<th rowspan="2" scope="col">환불</th>
-					<td>제품을 환불받으시기 위해서는 제품의 포장상태와 내용물이 훼손되지 않아야 하며 스티커, 테이프를 붙여서 제품의 박스 포장이 훼손되면 환불이 불가합니다.</td>
-				</tr>
-				<tr>
-					<td>초기불량 포함한 AS 처리는 택배로만 가능합니다.</td>
-				</tr>
-				<tr>
-					<th rowspan="2" scope="col">교환/환불 불가</th>
-					<td>소프트웨어 상품일 경우, 제품의 개봉 후엔 교환/환불이 절대 불가합니다.</td>
-				</tr>
-				<tr>
-					<td>가전제품의 경우 포장 개봉/포장훼손 및 상품가치가 상실된 경우에는 교환/반품이 불가능합니다.</td>
-				</tr>
-			</tbody></table>
-		</li>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰의 <span class="detail_info_guide_highlight">주문 유효기간은 주문후 3일이며 입금이 되지 않는 주문은 자동 삭제</span> 처리됩니다.
-		</li>
-		<li class="detail_info_guide_fulltext">
-			MasterPiece 쇼핑몰에 표기된 모든 가격은 <span class="detail_info_guide_highlight">부가세가 포함된 금액</span>입니다.
-		</li>
-	</ul>
-</div>
+			<ul>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰에서는 <span
+					class="detail_info_guide_highlight">별도로 A/S 기간이 정해진 제품을 제외한
+						나머지 제품들은 1년간 A/S를 보장</span>하며,<br> 서울지역을 포함한 지방 출장 A/S는 오렌지 PC와 내
+					맘대로 PC를 제외하고는 실시하지 않습니다.
+				</li>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰에서 <span
+					class="detail_info_guide_highlight">구매하신 후 1년이 경과한 제품은 해당
+						제조회사를 통해 A/S</span>를 받으셔야 합니다.
+				</li>
+				<li class="detail_info_guide_fulltext">천재지변을 포함해 소비자 과실에 의한 파손인
+					경우에는 유상 A/S처리가 되며 경우에 따라 A/S가 불가능할 수 있습니다.</li>
+				<li class="detail_info_guide_fulltext"><span
+					class="detail_info_guide_highlight">제품 구매 인수 후 15일 이내의 제품 불량
+						발생시 A/S에 관한 택배 운임비는 전액 MasterPiece가 부담합니다.</span><br> 구매 인수 후 15일이상
+					30일 이내 제품 불량인 경우에는 운임비 반액(편도 택배비)을 MasterPiece에서 부담합니다.<br> 구매
+					인수 후 30일 이후 발생하는 모든 배송에 관한 운임비는 소비자분께서 부담하시게 되므로 유의하시기 바랍니다.<br>
+					구매 인수 후 15일 이내의 초기불량 포함한 제품 불량 발생시 A/S에 관해서는 택배로만 처리되며, CJ택배을 이용하실
+					경우에만 왕복 운임비 지원이 가능합니다.<br> <span
+					class="detail_info_guide_highlight">※ 소비자 변심에 의해 반품하는 경우
+						운송비는 고객님이 부담하셔야 합니다.</span></li>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰에서 <span
+					class="detail_info_guide_highlight">브랜드PC인 MasterPiece
+						오렌지PC는 1년 동안 무상 A/S처리</span>가 됩니다. (단, 부속품 중 단종이 된 상품은 해당 서비스 업체의 처리 기준에
+					의해 보상됩니다.)
+				</li>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰에서 판매하는
+					상품 중 소프트웨어는 A/S항목에 포함되지 않으므로 소프트웨어는 해당 제작사로 문의하셔야 합니다.</li>
+				<li class="detail_info_guide_fulltext">
+				<span style="color: #373737 !important;"><b>교환/반품/환불시 주의사항</b></span>
+					<table border="1" cellpadding="0" cellspacing="0" bordercolor="#cccccc">
+						<tbody>
+							<tr>
+								<th rowspan="3" scope="col">교환/반품</th>
+								<td>제품 구매 인수 후 15일 이내의 제품은 초기 불량에 한해 1:1 상품 교환 또는 환불이
+									가능합니다. 단, 제품의 박스 및 구성물이 정상 상태에서만 가능 합니다.</td>
+							</tr>
+							<tr>
+								<td>개봉을 안하신 제품중 변심에 의한 반품도 15일 이내에만 가능합니다.</td>
+							</tr>
+							<tr>
+								<td>교환의 경우 동일 상품으로 1:1 교환은 가능하나 다른 상품으로 교환은 불가합니다.</td>
+							</tr>
+							<tr>
+								<th rowspan="2" scope="col">환불</th>
+								<td>제품을 환불받으시기 위해서는 제품의 포장상태와 내용물이 훼손되지 않아야 하며 스티커, 테이프를
+									붙여서 제품의 박스 포장이 훼손되면 환불이 불가합니다.</td>
+							</tr>
+							<tr>
+								<td>초기불량 포함한 AS 처리는 택배로만 가능합니다.</td>
+							</tr>
+							<tr>
+								<th rowspan="2" scope="col">교환/환불 불가</th>
+								<td>소프트웨어 상품일 경우, 제품의 개봉 후엔 교환/환불이 절대 불가합니다.</td>
+							</tr>
+							<tr>
+								<td>가전제품의 경우 포장 개봉/포장훼손 및 상품가치가 상실된 경우에는 교환/반품이 불가능합니다.</td>
+							</tr>
+						</tbody>
+					</table></li>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰의 <span
+					class="detail_info_guide_highlight">주문 유효기간은 주문후 3일이며 입금이 되지
+						않는 주문은 자동 삭제</span> 처리됩니다.
+				</li>
+				<li class="detail_info_guide_fulltext">MasterPiece 쇼핑몰에 표기된 모든
+					가격은 <span class="detail_info_guide_highlight">부가세가 포함된 금액</span>입니다.
+				</li>
+			</ul>
+		</div>
+	<div style="width:auto; height:auto; display:inline-block;">	
+	<%@include file = "../common/footer.jsp" %>
+	</div>
+	</div>
 		<script>
 			function goCart(){
 				location.href="./cart_page.jsp";
@@ -496,8 +509,6 @@
 				location.href="./delivery_page.jsp";
 			}
 		</script>
-	</div>
-	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>
 
