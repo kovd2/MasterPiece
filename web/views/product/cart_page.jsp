@@ -213,7 +213,8 @@
 						<td style="width: 120px; height: 31px;"><button>삭제</button></td>
 					</tr>
 				</table>
-			</div><div class="cart_list">
+			</div>
+			<div class="cart_list">
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
@@ -310,7 +311,9 @@
 		<br><br><br><br>
 		</div>
 	</div>
+	<div style="width:100%; height:auto; display:inline-block;">	
 	<%@include file = "../common/footer.jsp" %>
+	</div>
 		<script>
 			function goList(){
 				location.href="./product_List.jsp";
