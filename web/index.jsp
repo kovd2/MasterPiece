@@ -417,7 +417,6 @@ a{ text-decoration:none }
 	</div>
 		
 		<br>
-					
 		<hr class="mainHr">
 		<!--------------------------------------- 하단 고객센터  --------------------------------------->
 		<div class="information" align="center">

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
 pageEncoding="UTF-8"%>
-<%int login = 0; %>
+<%@ page import="com.kh.MasterPiece.member.model.vo.Member" %>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,7 +191,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 
 <!-- ajax -->
 <script>
-	
+
 	
 	
 	
@@ -198,7 +201,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
-			<a href="mainPage.jsp" title="바로가기"> <img
+			<a href="<%=request.getContextPath() %>/index.jsp" title="바로가기"> <img
 				src="<%=request.getContextPath() %>/images/kimjaeyup/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
 				width="200px" height="70px">
@@ -221,11 +224,12 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 
 		</div>
 		<div id="top_menu">
+			<% if(loginUser == null){ %>
 		 	 <!-- 로그인 전 메뉴(로그인,회원가입,고객센터,Q&A) -->
 			 <ul>
 				<li class="top_subMenuLogin" id="login_menu" type="button">
 					<a href="<%=request.getContextPath() %>/views/member/login.jsp" title="로그인">
-					<img src="<%=request.getContextPath() %>/images/kimjaeyup/login_off.png"
+					<img src="views/../images/kimjaeyup/login_off.png"
 					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_on.png'"
 					     onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_off.png'"
 					     border="0" style="width: 90px; height: 40px;">
@@ -252,11 +256,48 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						style="width: 90px; height: 40px;">
 				</a></li>
 			</ul>
-			
-			
+			<%}else{ %>
+				<!-- 로그인 후 메뉴(마이페이지, 로그아웃, 고객센터, Q&A) -->
+			<div id="userInfo" style="margin-top: -20px; margin-left: 40px;">
+				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
+			</div>
+			<ul>
+				<li class="top_subMenuLogin"><a href="<%=request.getContextPath() %>/views/mypage/member/myPage.jsp"
+					title="마이페이지"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuMemberShip">
+				<a title="로그아읏" onclick="logout()">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png'" border="0"
+						style="width: 80px; height: 35px; cursor:pointer;" >
+				</a></li>
+				<li class="top_subMenuService"><a href="https://www.google.com/"
+					title="고객센터"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+				<li class="top_subMenuQnA"><a href="https://www.google.com/"
+					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
+						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
+						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
+						style="width: 80px; height: 35px;">
+				</a></li>
+			</ul>
+			<%} %>
 		</div>
 	</div>
+	<script>
+	function logout(){
+		location.href="/MasterPiece/logout.me";
+	}
+	</script>
 	<hr class="hrtop">
+	
 		<!------------------------------- 카테고리 바 ------------------------------->
 	<div class="topContainer">
 		<div class="categoryBox">
