@@ -8,9 +8,9 @@
 <style>
 .wrap {
 	width: 1300px;
-	height: auto;
 	margin: 0 auto;
 	align: center;
+	overflow:hidden;
 }
 
 .wrap .step {
@@ -137,12 +137,8 @@
  	font-size:11px;
  	font-weight:bold;
  }
-.wrap .cart_list{
-	display:none;
-}
-.wrap .empty_cart{
-	text-align:center;
-}
+
+
 </style>
 </head>
 <body>
@@ -151,13 +147,6 @@
 		<div class="step">
 			<img src="../..//images/jinseok/icon/step_cart.PNG">
 		</div>
-			<div class="empty_cart">
-				<div id="no_cart_item" class="div_all_layer">장바구니에 상품이 존재하지 않습니다.</div>
-
-				<div class="div_all_layer" style="font-size: 12px; text-align: center; margin-bottom: 10px">
-					<span style="color: #f02857;">특정상품의 경우 (30인치 이상 모니터,업체배송제품,파손위험제품, 고가품, 부피가 큰제품) 택배사가 변경되어 발송될수 있습니다.</span>
-				</div>
-			</div>
 		<div class="cart_title">
 			<table>
 				<tr>
@@ -312,8 +301,9 @@
 		</div>
 	</div>
 	<div style="width:100%; height:auto; display:inline-block;">	
-	<%@include file = "../common/footer.jsp" %>
+	
 	</div>
+	<%@include file = "../common/footer.jsp" %>
 		<script>
 			function goList(){
 				location.href="./product_List.jsp";
