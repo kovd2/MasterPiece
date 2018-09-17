@@ -25,13 +25,12 @@ public class LoginServlet extends HttpServlet {
 		String userPwd = request.getParameter("userPwd");
 		
 		Member loginUser = new MemberService().loginCheck(userId, userPwd);
-		
+		System.out.println(loginUser);
 		
 		if(loginUser != null){
-			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			
+			System.out.println(loginUser.getUserType());
 			if(loginUser.getUserType().equals("1")){
 				
 				response.sendRedirect("index.jsp");
@@ -41,7 +40,6 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/start").forward(request, response); //관리자 페이지로 이동되게.
 			}
 		}else{
-
 			request.getRequestDispatcher("views/member/login.jsp").forward(request, response);
 		}
 	}

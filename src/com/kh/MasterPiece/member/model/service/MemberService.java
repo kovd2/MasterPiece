@@ -32,7 +32,6 @@ public class MemberService {
 	//로그인
 	public Member loginCheck(String userId, String userPwd) {
 		Connection con = getConnection();
-		
 		Member loginUser = new MemberDao().loginCheck(con, userId, userPwd);
 		
 		close(con);
