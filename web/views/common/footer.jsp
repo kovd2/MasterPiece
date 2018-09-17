@@ -19,10 +19,10 @@
 			<img src="<%=request.getContextPath() %>/images/kimjaeyup/footer.png" usemap="#mainFooter"> 
 		</div>
 			<map name="mainFooter">
-				<area shape="rect" coords="501,71,582,89" id="question" href="http://www.google.co.kr" title="사업자정보확인">
-				<area shape="rect" coords="519,157,579,174" id="road" href="http://www.google.co.kr" title="자세히보기">
-				<area shape="rect" coords="875,67,1075,105" id="road" href="http://www.google.co.kr" title="1:1 문의하기">
-				<area shape="rect" coords="979,116,1050,137" id="delivery" href="http://www.google.co.kr" title="통화전클릭">
+				<!-- <area shape="rect" coords="501,71,582,89" id="question" href="http://www.google.co.kr" title="사업자정보확인">
+				<area shape="rect" coords="519,157,579,174" id="road" href="http://www.google.co.kr" title="자세히보기"> -->
+				<area shape="rect" coords="875,67,1075,105" id="road" href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionWrite.jsp" title="1:1 문의하기">
+				<area shape="rect" coords="979,116,1050,137" id="delivery" href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenter.jsp" title="통화전클릭">
 			</map>
 		<br><br>
 	</div>

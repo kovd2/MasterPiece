@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
 	display: inline-block;
 	width: 370px;
 	height: 40px;
-	border: 2px solid #f43641;
+	border: 2px solid #c70000;
 	background-color: #fff;
 }
 
@@ -51,7 +51,7 @@ pageEncoding="UTF-8"%>
 
 .sch_smit {
 	position: absolute;
-	margin-left: 2px;
+	/* margin-left: 2px; */
 	overflow: visible;
 	width: 45px;
 	height: 45px;
@@ -208,28 +208,25 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</a>
 		</div>
 		<div id="search" class="search">
-			<span class="search_window"> <input id="query" name="query"
-				type="text" title="검색어 입력" maxlength="255" class="input_text"
-				tabindex="1" accesskey="s" style="ime-mode: active;"
-				autocomplete="off" onclick="document.getElementById('fbm').value=1;"
-				value="">
+			<span class="search_window">
+				<input id="query" name="query" type="text" title="검색어 입력" maxlength="255" class="input_text"
+					tabindex="1" accesskey="s" style="ime-mode: active;"
+					autocomplete="off" onclick="document.getElementById('fbm').value=1;" value="">
 			</span>
-			<button id="search_btn" type="submit" title="검색" tabindex="3"
-				class="sch_smit" onmouseover="this.className='sch_smit over'"
-				onmousedown="this.className='sch_smit down'"
-				onmouseout="this.className='sch_smit'"
+			<button id="search_btn" type="submit" title="검색" tabindex="3" class="sch_smit" onmouseover="this.className='sch_smit over'"
+				onmousedown="this.className='sch_smit down'" onmouseout="this.className='sch_smit'"
 				onclick="clickcr(this,'sch.action','','',event);">
 				<span class="blind">검색</span> <span class="ico_search_submit"></span>
 			</button>
-
 		</div>
+		
 		<div id="top_menu">
 			<% if(loginUser == null){ %>
 		 	 <!-- 로그인 전 메뉴(로그인,회원가입,고객센터,Q&A) -->
 			 <ul>
 				<li class="top_subMenuLogin" id="login_menu" type="button">
 					<a href="<%=request.getContextPath() %>/views/member/login.jsp" title="로그인">
-					<img src="views/../images/kimjaeyup/login_off.png"
+					<img src="<%=request.getContextPath() %>/images/kimjaeyup/login_off.png"
 					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_on.png'"
 					     onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/login_off.png'"
 					     border="0" style="width: 90px; height: 40px;">
@@ -243,14 +240,14 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						style="width: 90px; height: 40px;">
 					</a>
 				</li>
-				<li class="top_subMenuService"><a href="https://www.google.com/" title="고객센터">
+				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenter.jsp" title="고객센터">
 					<img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
 					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
 						    onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 				</a></li>
-				<li class="top_subMenuQnA"><a href="https://www.google.com/"
-					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
+				<li class="top_subMenuQnA"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionList.jsp" title="Q&A">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
 						style="width: 90px; height: 40px;">
@@ -262,30 +259,30 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
 			</div>
 			<ul>
-				<li class="top_subMenuLogin"><a href="<%=request.getContextPath() %>/views/mypage/member/myPage.jsp"
-					title="마이페이지"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
+				<li class="top_subMenuLogin"><a href="<%=request.getContextPath() %>/views/mypage/member/myPage.jsp" title="마이페이지" style="margin-left: -10px;">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png'" border="0"
-						style="width: 80px; height: 35px;">
+						style="width: 90px; height: 40px;">
 				</a></li>
 				<li class="top_subMenuMemberShip">
 				<a title="로그아읏" onclick="logout()">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png'" border="0"
-						style="width: 80px; height: 35px; cursor:pointer;" >
+						style="width: 90px; height: 40px; cursor:pointer;" >
 				</a></li>
-				<li class="top_subMenuService"><a href="https://www.google.com/"
-					title="고객센터"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
+				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenter.jsp" title="고객센터">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
-						style="width: 80px; height: 35px;">
+						style="width: 90px; height: 40px;">
 				</a></li>
-				<li class="top_subMenuQnA"><a href="https://www.google.com/"
-					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
+				<li class="top_subMenuQnA"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionList.jsp" title="Q&A">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
-						style="width: 80px; height: 35px;">
+						style="width: 90px; height: 40px;">
 				</a></li>
 			</ul>
 			<%} %>
@@ -354,39 +351,5 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
-
-
-
-
-		<%-- 
-			<!-- 로그인 후 메뉴(마이페이지, 로그아웃, 고객센터, Q&A) -->
-			<ul>
-				<li class="top_subMenuLogin"><a href="https://www.google.com/"
-					title="마이페이지"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
-						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_on.png'"
-						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png'" border="0"
-						style="width: 80px; height: 35px;">
-				</a></li>
-				<li class="top_subMenuMemberShip"><a
-					href="http://www.naver.com" title="로그아읏"> <img
-						src="<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png"
-						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_on.png'"
-						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png'" border="0"
-						style="width: 80px; height: 35px;">
-				</a></li>
-				<li class="top_subMenuService"><a href="https://www.google.com/"
-					title="고객센터"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
-						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
-						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
-						style="width: 80px; height: 35px;">
-				</a></li>
-				<li class="top_subMenuQnA"><a href="https://www.google.com/"
-					title="Q&A"> <img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
-						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
-						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
-						style="width: 80px; height: 35px;">
-				</a></li>
-			</ul> --%>
