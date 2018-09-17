@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -62,6 +61,7 @@
 {
 	font-size:small;
 	width:700px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -76,8 +76,8 @@
 }
 .FAQBoard-Btn
 {
-	width:118px;
-	height:40px;
+	width:115px;
+	height:30px;
 	float:left;
 	margin-left:-1px;
 	border:1px solid lightgray;
@@ -126,7 +126,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -157,26 +157,12 @@
 				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
 					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
-				<br>
-				<div style="width:700px; height:70px; border:1px solid lightgray;">
-					<form style="padding-left: 30px; margin-top:15px; display:inline-block;">
-					<div class="input-group col-xs-8 pull-left">
-						<input type="text" class="form-control" placeholder="Search" size="5">
-						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit" style="background: royalblue;color: white;">검색</button>
-						</div>
-					</div>
-					<div style="width:80px; height:34px; display:inline-block; margin-left:20px;">
-						<div id="oneOnOne-btn" style="text-align:center; width:120px; border:1px solid lightgray; height:34px; padding-top:7px; border-radius:4px;" onclick="location.href='serviceCenterQuestionWrite.jsp'">1:1 문의하기</div>
-					</div>
-					</form>
-				</div>
 				<br clear="both">
-				<label style="float:left">자주 묻는 질문</label>
-				<label class="moreBoard" style="float:right" onclick="location.href='serviceCenterMoreBoard.jsp'">더보기 ▶</label>
+				<label style="float:left; font-size:14px; font-weight:bold;">자주 묻는 질문</label>
+				<label class="moreBoard" style="float:right; font-size:14px;" onclick="location.href='serviceCenterMoreBoard.jsp'">더보기 ▶</label>
 				<br clear="both">
 				<div class="FAQBoard" style="width:700px; margin-top:10px;">
-					<div id="order-btn" style="width:115px; height:40px; float:left; border:1px solid lightgray;">주문결제
+					<div id="order-btn" style="width:115px; height:30px; float:left; border:1px solid lightgray;">주문결제
 					</div>
 					<div id="delivery-btn" class="FAQBoard-Btn">배송
 					</div>
@@ -458,8 +444,8 @@
 						$("#etc").css("display", "block");			
 					});
 				</script>
-				<label style="float:left">공지사항</label>
-				<label class="moreBoard Notice" style="float:right" onclick="location.href='serviceCenterNotice.jsp'">더보기 ▶</label>
+				<label style="float:left; font-size:14px; font-weight:bold;">공지사항</label>
+				<label class="moreBoard Notice" style="float:right; font-size:14px;" onclick="location.href='serviceCenterNotice.jsp'">더보기 ▶</label>
 				<br clear="both">
 				<table class="boardTable" style="margin-top:10px;">
 					<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
@@ -488,6 +474,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -40,24 +39,27 @@
 	color:white;
 	cursor:pointer;
 }
-.boardTable
-{
-	font-size:small;
-	width:600px;
-}
-.boardTable th, td
-{
-	text-align:center;
-	border-bottom:1px dashed #F5F5F5;
-	height:30px;
-}
-.boardTable th:nth-child(1), td:nth-child(1)
-{
-	background:#F5F5F5;
-}
 .boardHead th
 {
-	width:80px;
+	width:65px;
+}
+table
+{
+	border-spacing:0px;
+	border-collapse: collapse;
+}
+table th, td
+{
+	border:1px solid lightgray;
+}
+table th
+{
+	text-align:left;
+	padding-left:10px;
+}
+.btn:hover
+{
+	cursor:pointer;
 }
 </style>
 </head>
@@ -65,7 +67,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px; height:80px;">
@@ -78,51 +80,49 @@
 			</div>
 		</div>
 		<!-- 게시판 -->
-		<div class="container-inner inner board" style="margin-top:-20px;">
-			<div class="inb" id="board" style="width:600px;">
+		<div class="container-inner inner board" style="margin-top:-8px;">
+			<div class="inb" id="board" style="width:600px; margin-left:40px;">
 				<!-- 중앙 게시판 -->
 				<div>
 					<div>
-					<hr style="margin-bottom:7px;">
-					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px;">유저 견적 게시판</span>
+					<hr style="border-color:#f43641;">
+					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 					<br clear="both">
-					<hr style="margin-top:3px;">
-					<form action="" method="post" style="margin-top:-20px;">
-						<table class="table table-bordered">
-							<tbody class="boardHead">
-								<tr>
-									<th colspan="2">
-										<label style="width:80px;">작성자</label>
-										<label>King-Computer</label>
-										<label style="float:right; width:80px;">2018-09-08</label>
-										<label style="float:right; width:80px;">작성일자</label>
-									</th>
+					<hr style="margin-top:3px; border-color:#f43641;">
+					<form action="" method="post" style="margin-top:-8px;">
+						<table style="width:100%;">
+							<tbody class="boardHead" style="font-size:14px;">
+								<tr style="height:50px;">
+									<th style="border-right:none;">작성자</th>
+									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;">King-Computer</td>
+									<td style="border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
+									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle;">제목</th>
-									<td><input type="text" placeholder="제목을 입력하세요." name="subject" class="form-control" /></td>
+									<th style="vertical-align:middle; height:50px;">제목</th>
+									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="subject" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
-									<td class="boardContent">
-										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" class="form-control boardContent" style=" resize: none;"></textarea>
+									<td class="boardContent" colspan="3" style="text-align:center; height:300px;">
+										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
 									</td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle;">첨부파일</th>
-									<td><input type="file" placeholder="파일을 선택하세요." name="filename" class="form-control" /></td>
+									<th style="vertical-align:middle; height:50px;">첨부파일</th>
+									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="filename" style="margin-left:7px;"/></td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle;">비밀번호</th>
-									<td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control" /></td>
+									<th style="vertical-align:middle; height:50px;">비밀번호</th>
+									<td colspan="3" style="text-align:center"><input type="password" placeholder="비밀번호를 입력하세요"style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td colspan="4" style="text-align:center; height:50px;">
 										<div>
-											<button type="submit" class="btn btn-success" style="padding:2px 4px; float:right;">등록</button>
+											<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>
 										</div>
 										<div>
-											<button type="button" class="btn btn-primary" style="padding:2px 4px; float:left;" onclick="location.href='userEstimate.jsp'">목록</button>
+											<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='userEstimate.jsp'">목록</button>
 										</div>
 									</td>
 								</tr>
@@ -135,6 +135,7 @@
 		</div>
 		<br clear="both">
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

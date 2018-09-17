@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -54,6 +54,7 @@
 {
 	font-size:small;
 	width:600px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -74,13 +75,17 @@
 	background:lightgray;
 	cursor:pointer;
 }
+.btn:hover
+{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px; height:80px;">
@@ -93,33 +98,31 @@
 			</div>
 		</div>
 		<!-- 게시판 -->
-		<div class="container-inner inner board" style="margin-top:-20px;">
-			<div class="inb" id="board" style="width:600px;">
+		<div class="container-inner inner board" style="margin-top:-8px;">
+			<div class="inb" id="board" style="width:600px; margin-left:40px;">
 				<!-- 중앙 게시판 -->
 				<div>
 					<div>
-						<hr style="margin-bottom:7px;">
-						<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px;">견적 요청</span>
+						<hr style="border-color:#f43641;">
+						<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 						<br clear="both">
 						<form>
-						  <div class="input-group col-xs-5" style="float:right; margin-top:-27px;">
-						    <input type="text" class="form-control" placeholder="검색어를 입력하세요." size="5" style="height:26px; font-size:small">
-						    <div class="input-group-btn">
-						      <button class="btn btn-default" type="submit" style="height:26px; padding:3px 6px;">
-						        <i class="glyphicon glyphicon-search"></i>
-						      </button>
-						    </div>
+						  <div style="float:right; margin-top:-26px;">
+						    <input type="text" class="form-control" placeholder="검색어를 입력하세요." size="40" style="height:20px; font-size:small;">
+						  </div>
+						  <div style="float:right; margin-top:-26px;">
+						  	<button class="btn btn-default" type="submit" style="width:50px; height:26px; padding:3px 6px; font-size:small;">검색</button>
+						  </div>
+						  <div style="margin-top:-25px; float:right; margin-right:320px;">
+							  <select style="height:24px;">
+									<option value="title">제목</option>
+									<option value="writer">작성자</option>
+									<option value="content">내용</option>
+							  </select>
 						  </div>
 						</form>
-						<div>
-							<select style="margin-top: -26px;float:right;margin-right: 255px;height: 24px;">
-								<option value="title">제목</option>
-								<option value="writer">작성자</option>
-								<option value="content">내용</option>
-							</select>
-						</div>
-						<hr style="margin-top:3px;">
-						<table class="boardTable" style="margin-top:-19px;">
+						<hr style="margin-top:3px; border-color:#f43641;">
+						<table class="boardTable" style="margin-top:-8px;">
 							<thead>
 								<tr>
 									<th style="width:50px;">번호</th>
@@ -147,7 +150,7 @@
 				</div>
 				<br>
 				<div>
-					<button type="button" class="btn btn-danger" style="padding:2px 4px; float:right;" onclick="location.href='quoteContactWrite.jsp'">견적 요청</button>
+					<button class="btn" type="button" style="padding:2px 4px; float:right; height:28px; font-size:14px; border:1px solid white; border-radius:5px; color:white; background:#d9534f;" onclick="location.href='quoteContactWrite.jsp'">견적 요청</button>
 				</div>
 			</div>
 		</div>
@@ -156,7 +159,7 @@
 		<!-- 페이징 -->
 		<div>
 			<div>
-				<div class="list_n_menu">
+				<div class="list_n_menu" style="font-size:14px;">
 					<span class="disabled"><  이전</span>
 					<span class="current">1</span>
 					<a href="#?page=2">2</a>
@@ -170,6 +173,7 @@
 		    </div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

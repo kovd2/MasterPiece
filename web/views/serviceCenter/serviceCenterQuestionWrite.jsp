@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -58,21 +58,19 @@
 {
 	cursor:pointer;
 }
-.boardTable
+table
 {
-	font-size:small;
-	width:700px;
+	border-spacing:0px;
+	border-collapse:collapse;
 }
-.boardTable th, td
+table th, td
 {
-	text-align:center;
-	border-bottom:1px solid #D7D7D7;
-	height:30px;
+	border:1px solid lightgray;
 }
-.boardTable>tbody>tr:hover
+table th
 {
-	background:lightgray;
-	cursor:pointer;
+	text-align:left;
+	padding-left:10px;
 }
 .FAQBoard-Btn
 {
@@ -87,10 +85,6 @@
 	font-size:small;
 	text-align:center;
 	padding-top:11px;
-}
-.boardTable>tbody>tr:last-child
-{
-	border-bottom:2px solid darkgray;
 }
 .boardHead th
 {
@@ -114,13 +108,17 @@
 {
 	cursor:pointer;
 }
+.btn:hover
+{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -153,44 +151,44 @@
 				</div>
 				<br>
 				<div>
-					<label style="margin-left:5px;">1:1 문의하기</label>
+					<label style="margin-left:5px; font-size:14px; font-weight:bold;">1:1 문의하기</label>
 					<br>
 					<div>
 						<form action="" method="post" style="margin-top:10px;">
-							<table class="table table-bordered">
-								<tbody class="boardHead">
-									<tr>
-										<th colspan="2">
-											<label style="width:80px; margin-top:5px;">작성자</label>
-											<label>King-Computer</label>
-											<label style="float:right; width:80px; margin-top:5px;">2018-09-08</label>
-											<label style="float:right; width:80px; margin-top:5px;">작성일자</label>
-										</th>
-									</tr>
-									<tr>
-										<th style="vertical-align:middle;">제목</th>
-										<td><input type="text" placeholder="제목을 입력하세요." name="subject" class="form-control" /></td>
-									</tr>
-									<tr>
-										<th style="vertical-align:middle;">문의 유형</th>
-										<td>
-											<select style="float:left; width:200px;">
-												<option>----------</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align:middle;">내용</th>
-										<td class="boardContent">
-											<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" class="form-control boardContent" style=" resize: none;"></textarea>
-										</td>
-								</tbody>
-							</table>
+							<table style="width:693px;">
+							<tbody class="boardHead" style="font-size:14px;">
+								<tr style="height:50px;">
+									<th style="border-right:none;">작성자</th>
+									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;">King-Computer</td>
+									<td style="border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
+									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
+								</tr>
+								<tr>
+									<th style="vertical-align:middle; height:50px;">제목</th>
+									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="subject" style="width:550px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+								</tr>
+								<tr>
+									<th style="vertical-align:middle; height:50px;">문의 유형</th>
+									<td colspan="3">
+										<select style="float:left; width:200px; height:25px; margin-left:12px;">
+											<option>----------</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th style="vertical-align:middle;">내용</th>
+									<td class="boardContent" colspan="3" style="text-align:center; height:300px;">
+										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:545px; height:260px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
 							<div>
-								<button type="submit" class="btn btn-success" style="padding:2px 4px; float:right;">등록</button>
+								<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>
 							</div>
 							<div>
-								<button type="button" class="btn btn-primary" style="padding:2px 4px; float:left;" onclick="location.href='serviceCenterQuestionList.jsp'">목록</button>
+								<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='serviceCenterQuestionList.jsp'">목록</button>
 							</div>
 						</form>
 					</div>
@@ -199,6 +197,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
