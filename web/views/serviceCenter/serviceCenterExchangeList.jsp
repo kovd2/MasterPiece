@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -62,6 +62,7 @@
 {
 	font-size:small;
 	width:700px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -116,7 +117,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -155,16 +156,16 @@
 					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1주일</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-5px;">
+					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-5px;">
+					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">3개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-5px;">
+					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">6개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-5px;">
+					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1년</div>
 					</div>
 					<br>
@@ -177,14 +178,14 @@
 							<option>상품명</option>
 							<option>상품번호</option>
 						</select>
-						<input type="text" name="" id="" size="40">
+						<input type="text" name="" id="" size="40" style="height:19px;">
 						<input type="submit" value="조회" style="margin-left:10px;">
 					</form>
 					</div>
 				</div>
 				<br clear="both">
 				<div>
-					<label style="margin-left:5px;">교환, 반품, AS접수 조회</label>
+					<label style="margin-left:5px; font-size:14px; font-weight:bold;">교환, 반품, AS접수 조회</label>
 					<br>
 					<div>
 						<table class="boardTable" style="margin-top:10px;">
@@ -218,11 +219,11 @@
 				</div>
 				<br clear="both">
 				<div>
-					<button type="button" class="btn btn-danger" style="padding:2px 4px; float:right;">신청하기</button>
+					<button type="button" class="btn btn-danger" style="padding:2px 4px; height:28px; color:white; background:#d9534f; float:right; border:1px solid white; border-radius:5px;">신청하기</button>
 				</div>
 				<div>
 					<div>
-						<div class="list_n_menu">
+						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
 							<span class="current">1</span>
 							<a href="#?page=2">2</a>
@@ -238,6 +239,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

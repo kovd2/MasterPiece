@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -62,6 +62,7 @@
 {
 	font-size:small;
 	width:700px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -116,7 +117,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -149,7 +150,7 @@
 				</div>
 				<br>
 				<div>
-					<label style="margin-left:5px;">1:1 문의내역</label>
+					<label style="margin-left:5px; font-size:14px; font-weight:bold;">1:1 문의내역</label>
 					<br>
 					<div>
 						<table class="boardTable" style="margin-top:10px;">
@@ -183,11 +184,11 @@
 				</div>
 				<br clear="both">
 				<div>
-					<button type="button" class="btn btn-danger" style="padding:2px 4px; float:right;" onclick="location.href='serviceCenterQuestionWrite.jsp'">문의하기</button>
+					<button type="button" class="btn btn-danger" style="padding:2px 4px; color:white; background:#d9534f; height:28px; float:right; border:1px solid white; border-radius:5px; background:" onclick="location.href='serviceCenterQuestionWrite.jsp'">문의하기</button>
 				</div>
 				<div>
 					<div>
-						<div class="list_n_menu">
+						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
 							<span class="current">1</span>
 							<a href="#?page=2">2</a>
@@ -203,6 +204,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -62,6 +62,7 @@
 {
 	font-size:small;
 	width:700px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -76,8 +77,8 @@
 }
 .FAQBoard-Btn
 {
-	width:118px;
-	height:40px;
+	width:115px;
+	height:30px;
 	float:left;
 	margin-left:-1px;
 	border:1px solid lightgray;
@@ -120,7 +121,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -159,7 +160,7 @@
 				<br>
 				<div>
 					<div class="FAQBoard" style="width:700px; margin-top:-10px;">
-						<div id="order-btn" style="width:115px; height:40px; background:royalblue; color:white; float:left; border:1px solid lightgray; margin-left:0px;">주문결제
+						<div id="order-btn" style="width:115px; height:30px; float:left; border:1px solid lightgray;">주문결제
 						</div>
 						<div id="delivery-btn" class="FAQBoard-Btn">배송
 						</div>
@@ -339,7 +340,7 @@
 				<!-- 페이징 -->
 				<div>
 					<div>
-						<div class="list_n_menu">
+						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
 							<span class="current">1</span>
 							<a href="#?page=2">2</a>
@@ -355,113 +356,114 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
-					/* 자주묻는 질문 버튼 클릭시 해당 메뉴 불러오기 */
-					$("#order-btn").css({"background":"royalblue", "color":"white"});
-					
-					$("#order-btn").click(function()
-					{
-						$("#order-btn").css({"background":"royalblue", "color":"white"});
-						$("#delivery-btn").css({"background":"white", "color":"black"});
-						$("#afterService-btn").css({"background":"white", "color":"black"});
-						$("#point-btn").css({"background":"white", "color":"black"});
-						$("#aboutProduct-btn").css({"background":"white", "color":"black"});
-						$("#etc-btn").css({"background":"white", "color":"black"});
-						
-						$("#order").css("display","block");
-						$("#delivery").css("display", "none");
-						$("#afterService").css("display", "none");
-						$("#point").css("display", "none");
-						$("#aboutProduct").css("display", "none");
-						$("#etc").css("display", "none");
-					});
-
-					$("#delivery-btn").click(function()
-					{
-						$("#order-btn").css({"background":"white", "color":"black"});
-						$("#delivery-btn").css({"background":"royalblue", "color":"white"});
-						$("#afterService-btn").css({"background":"white", "color":"black"});
-						$("#point-btn").css({"background":"white", "color":"black"});
-						$("#aboutProduct-btn").css({"background":"white", "color":"black"});
-						$("#etc-btn").css({"background":"white", "color":"black"});
-
-						$("#order").css("display", "none");
-						$("#delivery").css("display", "block");
-						$("#afterService").css("display", "none");
-						$("#point").css("display", "none");
-						$("#aboutProduct").css("display", "none");
-						$("#etc").css("display", "none");
-					});
-
-					$("#afterService-btn").click(function()
-					{
-						$("#order-btn").css({"background":"white", "color":"black"});
-						$("#delivery-btn").css({"background":"white", "color":"black"});
-						$("#afterService-btn").css({"background":"royalblue", "color":"white"});
-						$("#point-btn").css({"background":"white", "color":"black"});
-						$("#aboutProduct-btn").css({"background":"white", "color":"black"});
-						$("#etc-btn").css({"background":"white", "color":"black"});
-						
-						$("#order").css("display", "none");
-						$("#delivery").css("display", "none");
-						$("#afterService").css("display", "block");
-						$("#point").css("display", "none");
-						$("#aboutProduct").css("display", "none");
-						$("#etc").css("display", "none");
-					});
-
-					$("#point-btn").click(function()
-					{
-						$("#order-btn").css({"background":"white", "color":"black"});
-						$("#delivery-btn").css({"background":"white", "color":"black"});
-						$("#afterService-btn").css({"background":"white", "color":"black"});
-						$("#point-btn").css({"background":"royalblue", "color":"white"});
-						$("#aboutProduct-btn").css({"background":"white", "color":"black"});
-						$("#etc-btn").css({"background":"white", "color":"black"});
-						
-						$("#order").css("display", "none");
-						$("#delivery").css("display", "none");
-						$("#afterService").css("display", "none");
-						$("#point").css("display", "block");
-						$("#aboutProduct").css("display", "none");
-						$("#etc").css("display", "none");
-					});
-
-					$("#aboutProduct-btn").click(function()
-					{
-						$("#order-btn").css({"background":"white", "color":"black"});
-						$("#delivery-btn").css({"background":"white", "color":"black"});
-						$("#afterService-btn").css({"background":"white", "color":"black"});
-						$("#point-btn").css({"background":"white", "color":"black"});
-						$("#aboutProduct-btn").css({"background":"royalblue", "color":"white"});
-						$("#etc-btn").css({"background":"white", "color":"black"});
-						
-						$("#order").css("display", "none");
-						$("#delivery").css("display", "none");
-						$("#afterService").css("display", "none");
-						$("#point").css("display", "none");
-						$("#aboutProduct").css("display", "block");
-						$("#etc").css("display", "none");
-					});
-
-					$("#etc-btn").click(function()
-					{
-						$("#order-btn").css({"background":"white", "color":"black"});
-						$("#delivery-btn").css({"background":"white", "color":"black"});
-						$("#afterService-btn").css({"background":"white", "color":"black"});
-						$("#point-btn").css({"background":"white", "color":"black"});
-						$("#aboutProduct-btn").css({"background":"white", "color":"black"});
-						$("#etc-btn").css({"background":"royalblue", "color":"white"});
-						
-						$("#order").css("display", "none");
-						$("#delivery").css("display", "none");
-						$("#afterService").css("display", "none");
-						$("#point").css("display", "none");
-						$("#aboutProduct").css("display", "none");
-						$("#etc").css("display", "block");
-					});
-				</script>
+	/* 자주묻는 질문 버튼 클릭시 해당 메뉴 불러오기 */
+		$("#order-btn").css({"background":"royalblue", "color":"white"});
+		
+		$("#order-btn").click(function()
+		{
+			$("#order-btn").css({"background":"royalblue", "color":"white"});
+			$("#delivery-btn").css({"background":"white", "color":"black"});
+			$("#afterService-btn").css({"background":"white", "color":"black"});
+			$("#point-btn").css({"background":"white", "color":"black"});
+			$("#aboutProduct-btn").css({"background":"white", "color":"black"});
+			$("#etc-btn").css({"background":"white", "color":"black"});
+			
+			$("#order").css("display","block");
+			$("#delivery").css("display", "none");
+			$("#afterService").css("display", "none");
+			$("#point").css("display", "none");
+			$("#aboutProduct").css("display", "none");
+			$("#etc").css("display", "none");
+		});
+	
+		$("#delivery-btn").click(function()
+		{
+			$("#order-btn").css({"background":"white", "color":"black"});
+			$("#delivery-btn").css({"background":"royalblue", "color":"white"});
+			$("#afterService-btn").css({"background":"white", "color":"black"});
+			$("#point-btn").css({"background":"white", "color":"black"});
+			$("#aboutProduct-btn").css({"background":"white", "color":"black"});
+			$("#etc-btn").css({"background":"white", "color":"black"});
+	
+			$("#order").css("display", "none");
+			$("#delivery").css("display", "block");
+			$("#afterService").css("display", "none");
+			$("#point").css("display", "none");
+			$("#aboutProduct").css("display", "none");
+			$("#etc").css("display", "none");
+		});
+	
+		$("#afterService-btn").click(function()
+		{
+			$("#order-btn").css({"background":"white", "color":"black"});
+			$("#delivery-btn").css({"background":"white", "color":"black"});
+			$("#afterService-btn").css({"background":"royalblue", "color":"white"});
+			$("#point-btn").css({"background":"white", "color":"black"});
+			$("#aboutProduct-btn").css({"background":"white", "color":"black"});
+			$("#etc-btn").css({"background":"white", "color":"black"});
+			
+			$("#order").css("display", "none");
+			$("#delivery").css("display", "none");
+			$("#afterService").css("display", "block");
+			$("#point").css("display", "none");
+			$("#aboutProduct").css("display", "none");
+			$("#etc").css("display", "none");
+		});
+	
+		$("#point-btn").click(function()
+		{
+			$("#order-btn").css({"background":"white", "color":"black"});
+			$("#delivery-btn").css({"background":"white", "color":"black"});
+			$("#afterService-btn").css({"background":"white", "color":"black"});
+			$("#point-btn").css({"background":"royalblue", "color":"white"});
+			$("#aboutProduct-btn").css({"background":"white", "color":"black"});
+			$("#etc-btn").css({"background":"white", "color":"black"});
+			
+			$("#order").css("display", "none");
+			$("#delivery").css("display", "none");
+			$("#afterService").css("display", "none");
+			$("#point").css("display", "block");
+			$("#aboutProduct").css("display", "none");
+			$("#etc").css("display", "none");
+		});
+	
+		$("#aboutProduct-btn").click(function()
+		{
+			$("#order-btn").css({"background":"white", "color":"black"});
+			$("#delivery-btn").css({"background":"white", "color":"black"});
+			$("#afterService-btn").css({"background":"white", "color":"black"});
+			$("#point-btn").css({"background":"white", "color":"black"});
+			$("#aboutProduct-btn").css({"background":"royalblue", "color":"white"});
+			$("#etc-btn").css({"background":"white", "color":"black"});
+			
+			$("#order").css("display", "none");
+			$("#delivery").css("display", "none");
+			$("#afterService").css("display", "none");
+			$("#point").css("display", "none");
+			$("#aboutProduct").css("display", "block");
+			$("#etc").css("display", "none");
+		});
+	
+		$("#etc-btn").click(function()
+		{
+			$("#order-btn").css({"background":"white", "color":"black"});
+			$("#delivery-btn").css({"background":"white", "color":"black"});
+			$("#afterService-btn").css({"background":"white", "color":"black"});
+			$("#point-btn").css({"background":"white", "color":"black"});
+			$("#aboutProduct-btn").css({"background":"white", "color":"black"});
+			$("#etc-btn").css({"background":"royalblue", "color":"white"});
+			
+			$("#order").css("display", "none");
+			$("#delivery").css("display", "none");
+			$("#afterService").css("display", "none");
+			$("#point").css("display", "none");
+			$("#aboutProduct").css("display", "none");
+			$("#etc").css("display", "block");
+		});
+	</script>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -58,25 +58,10 @@
 {
 	cursor:pointer;
 }
-.boardTable
+table
 {
-	font-size:small;
-	width:700px;
-}
-.boardTable th
-{
-	text-align:center;
-	border-bottom:1px solid #D7D7D7;
-	height:30px;
-}
-.boardTable>tbody>tr:last-child
-{
-	border-bottom:2px solid darkgray;
-}
-.boardTable>tbody>tr:hover
-{
-	background:lightgray;
-	cursor:pointer;
+	border-spacing:0px;
+	border-collapse:collapse;
 }
 .FAQBoard-Btn
 {
@@ -116,7 +101,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -201,6 +186,7 @@
 						<tbody>
 							<tr style="border:1px solid lightgray;">
 								<td colspan="2" style="border:1px solid lightgray; height:100px; text-align:left; padding-left:10px; font-size:small;">
+									<textarea style="width:98%; height:100px; resize:none;"></textarea>
 								</td>
 							</tr>
 						</tbody>
@@ -220,9 +206,9 @@
 									선택
 								</td>
 								<td style="padding-left:10px;">
-									<input type="radio" name="aboutExchange" id="self">&nbsp;
+									<input type="radio" name="aboutExchange" id="self">
 									<label for="self" style="font-size:small;">직접 발송</label>&nbsp;&nbsp;
-									<input type="radio" name="aboutExchange" id="apply">&nbsp;
+									<input type="radio" name="aboutExchange" id="apply">
 									<label for="apply" style="font-size:small;">택배 수거신청</label>&nbsp;&nbsp;
 									<input type="radio" name="aboutExchange" id="visit">
 									<label for="visit" style="font-size:small;">방문</label>
@@ -254,8 +240,8 @@
 									선택
 								</td>
 								<td style="padding-left:10px;">
-									<input type="radio" name="userAddressCheck" id="userAddressCheck">&nbsp;
-									<label for="userAddressCheck">주문자 정보와 동일</label>
+									<input type="radio" name="userAddressCheck" id="userAddressCheck">
+									<label for="userAddressCheck" style="font-size:14px;">주문자 정보와 동일</label>
 								</td>
 							</tr>
 							<tr>
@@ -352,6 +338,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

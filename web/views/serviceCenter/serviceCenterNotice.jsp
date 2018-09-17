@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -62,6 +62,7 @@
 {
 	font-size:small;
 	width:700px;
+	border-spacing:0px;
 }
 .boardTable th, td
 {
@@ -112,7 +113,7 @@
 	<%@ include file="../common/top.jsp" %>
 	
 	<!-- 전체 틀 -->
-	<div class="container">
+	<div class="container" style="margin:auto;">
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
@@ -145,7 +146,7 @@
 				</div>
 				<br>
 				<div>
-					<label style="float:left">공지사항</label>
+					<label style="float:left; font-size:14px; font-weight:bold;">공지사항</label>
 				</div>
 				<br clear="both">
 				<div id="order">
@@ -178,7 +179,7 @@
 				<!-- 페이징 -->
 				<div>
 					<div>
-						<div class="list_n_menu">
+						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
 							<span class="current">1</span>
 							<a href="#?page=2">2</a>
@@ -194,6 +195,7 @@
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
