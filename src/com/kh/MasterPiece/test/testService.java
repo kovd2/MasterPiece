@@ -6,6 +6,10 @@ import static com.kh.MasterPiece.common.JDBCTemplate.close;
 import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.kh.MasterPiece.board.modal.vo.Board;
 
 public class testService {
 	public int[] Count(){
@@ -16,5 +20,15 @@ public class testService {
 		close(con);
 		
 		return list;
+	}
+
+	public HashMap<String, ArrayList<Board>> selectList() {
+		Connection con = getConnection();
+		
+		HashMap<String, ArrayList<Board>> hmap = new testDao().selectList(con);
+		
+		close(con);
+		
+		return hmap;
 	}
 }

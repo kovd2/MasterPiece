@@ -3,9 +3,10 @@
 <%
 int depositWait = (int)request.getAttribute("0"); 
 int depositComplate = (int)request.getAttribute("1");
-int delivery = (int)request.getAttribute("2");
-int deliveryComplate = (int)request.getAttribute("3");
-
+int delivery = 4;
+int deliveryComplate = 5;
+int a = (int)request.getAttribute("2");
+int b = (int)request.getAttribute("3");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,10 @@ int deliveryComplate = (int)request.getAttribute("3");
 
 #mt{
 	margin-left: 30px;
+}
+h3{
+	margin-top : 5px;
+	margin-bottom : 0px;
 }
 
 </style>
@@ -30,16 +35,16 @@ int deliveryComplate = (int)request.getAttribute("3");
 				<td colspan="2"><h1>판매 현황</h1></td>
 			</tr>
 			<tr>
-				<td>판매 진행</td>
-				<td>발주</td>
+				<td style="width:400px;"><h3>판매 진행</h3></td>
+				<td><h3>발주</h3></td>
 			</tr>
 			<tr>
 				<td><table>
 						<tr>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
+							<td align="center"><img alt="" src="./images/sinwooyang/d.png"></td>
+							<td align="center"><img alt="" src="./images/sinwooyang/c.png"></td>
+							<td align="center"><img alt="" src="./images/sinwooyang/b.png"></td>
+							<td align="center"><img alt="" src="./images/sinwooyang/a.png"></td>
 						</tr>
 						<tr>
 							<td align="center"><%=depositWait%>건</td><!-- 입금대기 -->
@@ -51,28 +56,28 @@ int deliveryComplate = (int)request.getAttribute("3");
 				</td>
 				<td><table>
 						<tr>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
+							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/g.png"></td>
+							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/f.png"></td>
+							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/e.png"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td>판매 취소</td>
-				<td>고객 문의 현황</td>
+				<td><h3>판매 취소</h3></td>
+				<td><h3>고객 문의 현황</h3></td>
 			</tr>
 			<tr>
-				<td><table align="center">
+				<td><table>
 						<tr>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
-							<td align="center"><img alt="" src="./images/a.png"></td>
+							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/j.png"></td>
+							<td align="center" style="width:100px"><img alt="" src="./images/sinwooyang/i.png"></td>
+							<td align="center" style="width:100px"><img alt="" src="./images/sinwooyang/h.png"></td>
 						</tr>
 						<tr>
 							<td align="center">3건</td><!-- 주문 취소 요청 -->
-							<td align="center">3건</td><!-- 반품 요청 -->
-							<td align="center">3건</td><!-- 교환 요청 -->
+							<td align="center"><%=a %>건</td><!-- 반품 요청 -->
+							<td align="center"><%=b %>건</td><!-- 교환 요청 -->
 						</tr>
 					</table>
 				</td>
@@ -93,8 +98,8 @@ int deliveryComplate = (int)request.getAttribute("3");
 				</td>
 			</tr>
 			<tr>
-				<td>공지 사항</td>
-				<td>견적</td>
+				<td><h3>공지 사항</h3></td>
+				<td><h3>견적</h3></td>
 			</tr>
 			<tr>
 				<td><table>

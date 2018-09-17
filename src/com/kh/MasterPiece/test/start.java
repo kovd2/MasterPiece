@@ -3,6 +3,8 @@ package com.kh.MasterPiece.test;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.kh.MasterPiece.board.modal.vo.*;
 /**
  * Servlet implementation class start
  */
@@ -31,8 +33,9 @@ public class start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int result[] = new testService().Count();
-		
+		HashMap<String, ArrayList<Board>> hmap = new HashMap<String, ArrayList<Board>>();
 		for(int i = 0; i < result.length; i++){
+			System.out.println(result[i]);
 			request.setAttribute(""+i, result[i]);
 		}
 		
