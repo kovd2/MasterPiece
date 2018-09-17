@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <style>
 .wrap {
-	width: 1100px;
-	height: 700px;
+	width: 1300px;
 	margin: 0 auto;
 	align: center;
+	overflow:hidden;
 }
 
 .wrap .step {
@@ -18,17 +18,12 @@
 	height: 150px;
 	margin: auto;
 }
-.wrap .step img{
-	width: 880px;
-	height: 150px;
-}
-.wrap .complet_msg{
-	width:80%;
-	margin:auto;
+.wrap .empty_cart{
 	text-align:center;
-	font-size:35px;
-	color:#575f79;
-	font-weight:bold;
+	margin-top:100px;
+}
+.wrap .empty_cart #no_cart_item{
+	text-align:center;
 }
 .wrap .btnArea{
 	width:100px;
@@ -56,20 +51,27 @@
 <body>
 <%@ include file="../common/top.jsp"%>
 	<div class="wrap">
-		<!-- 결제완료 페이지 전체 div -->
 		<div class="step">
-			<img src="../../images/jinseok/icon/step_complet.png">
+			<img src="../..//images/jinseok/icon/step_cart.PNG">
 		</div>
-		<div class="complet_msg">결제가 성공적으로 완료 되었습니다.</div>
+		<div class="empty_cart">
+			<div id="no_cart_item" class="div_all_layer">장바구니에 상품이 존재하지 않습니다.</div>
+
+			<div class="div_all_layer" style="font-size: 12px; text-align: center; margin-bottom: 10px">
+				<span style="color: #f02857;">특정상품의 경우 (30인치 이상 모니터,업체배송제품,파손위험제품, 고가품, 부피가 큰제품) 택배사가 변경되어 발송될수 있습니다.</span>
+			</div>
+		</div>
 		<div class="btnArea">
 			<div class="goHome_btn" onclick="goHome();">홈으로</div>
 		</div>
+		
 	</div>
+	<br><br><br><br><br>
 	<%@include file = "../common/footer.jsp" %>
 	<script>
-	function goHome(){
-		location.href="../../index.jsp";
-	}
+		function goHome(){
+			location.href="../../index.jsp";
+		}
 	</script>
 </body>
 </html>

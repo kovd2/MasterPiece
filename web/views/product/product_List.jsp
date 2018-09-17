@@ -315,12 +315,15 @@
 			<div class="categorylist_box">
 				<ul class="categorylist">
 					<li class="category_menu"><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
-					<li class=""><a href="#">전체</a></li>
+					<li class=""><a href="#">CPU</a></li>
+					<li class=""><a href="#">메인보드</a></li>
+					<li class=""><a href="#">메모리카드</a></li>
+					<li class=""><a href="#">그래픽카드</a></li>
+					<li class=""><a href="#">HDD</a></li>
+					<li class=""><a href="#">SDD</a></li>
+					<li class=""><a href="#">파워</a></li>
+					<li class=""><a href="#">쿨러</a></li>
+					<li class=""><a href="#">케이스</a></li>
 				</ul>
 			</div>
 		</div>
