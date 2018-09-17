@@ -501,7 +501,6 @@ $(function() {
 						<option value='입금확인'>입금확인</option>
 						<option value='발송완료'>발송완료</option>
 						<option value='주문취소'>주문취소</option>
-						<option value='세금계산서'>세금계산서</option>
 						<option value='카드영수증'>카드영수증</option>
 						<option value='미발행'>미발행</option>
 
@@ -522,7 +521,6 @@ $(function() {
 					<span class='nth-child3'>상품정보</span> <span class='nth-child4'>결제금액</span>
 					<span class='nth-child5'>총수량</span> <span class='nth-child6'>결제수단</span>
 					<span class='nth-child7'>처리현황</span> <span class='nth-child8'>배송방법</span>
-					<span class='nth-child9'>발행내역</span>
 
 				</div>
 				<div class='contents no_data'>1주일 이내에 구매하신 내역이 없습니다.</div>

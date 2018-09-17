@@ -73,7 +73,7 @@
 		<div class="myMenu_left">
 
 			<br> <br>
-			<div class="text" onclick="location.href='myPage.jsp'">회원정보</div>
+			<div class="text" onclick="location.href='../member/myPage.jsp'">회원정보</div>
 			<br>
 			<div class="text"
 				onclick="location.href='../buyerHistory/myPage_buy.jsp'">구매내역</div>
