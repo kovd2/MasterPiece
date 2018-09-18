@@ -1,7 +1,6 @@
-package com.kh.MasterPiece.product.controller;
+package com.kh.MasterPiece.cart.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.product.model.service.ProductService;
-import com.kh.MasterPiece.product.model.vo.Product;
+import com.kh.MasterPiece.cart.model.service.CartService;
 
 /**
- * Servlet implementation class ShowCartListServlet
+ * Servlet implementation class InsertCartServlet
  */
-@WebServlet("/showCart.prd")
-public class ShowCartListServlet extends HttpServlet {
+@WebServlet("/insertList.cart")
+public class InsertCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowCartListServlet() {
+    public InsertCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +29,11 @@ public class ShowCartListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String prd_name = request.getParameter("prd_name");
+		int quty = Integer.parseInt(request.getParameter("quty"));
 		int price = Integer.parseInt(request.getParameter("price"));
+		String image = request.getParameter("image");
 		
-		ArrayList<Product> list = new ProductService().showCart();
-		
-		String page = "";
-		System.out.println(list);
-		if(list != null){
-			request.setAttribute("list", list);
-			page = "views/product/cart_page.jsp";
-		}else{
-			request.setAttribute("msg", "장바구니에 상품이 존재하지 않습니다.");
-			page = "views/product/emptyCart.jsp";
-		}
+		int result = new CartService().insertCart();
 	}
 
 	/**
