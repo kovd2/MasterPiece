@@ -11,13 +11,6 @@
 </jsp:include>
 <div id="main">
 	<h1 style="margin-left:50px">회원 정보</h1>
-	<table id="mt">
-	<tr><td><select name="">
-		<option>전체</option>
-		<option>전체</option>
-		<option>전체</option>
-	</select></td></tr>
-	</table>
 	<div>
 		<table id="mt">
 			<tr style="height: 50px">
@@ -37,7 +30,6 @@
 		<th style="width: 60px">번호</th>
 		<th style="width: 60px">구분</th>
 		<th style="width: 60px">회원ID</th>
-		<th style="width: 90px">등급</th>
 		<th style="width: 90px">성명</th>
 		<th style="width: 200px">주소</th>
 		<th style="width: 150px">연락처</th>

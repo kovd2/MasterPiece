@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -7,6 +8,11 @@ int delivery = 4;
 int deliveryComplate = 5;
 int a = (int)request.getAttribute("2");
 int b = (int)request.getAttribute("3");
+HashMap<String, String[]> hmap = (HashMap<String, String[]>)request.getAttribute("hmap"); 
+String[] str1 = hmap.get("a");
+String[] str2 = hmap.get("b");
+String[] str3 = hmap.get("c");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -64,8 +70,8 @@ h3{
 				</td>
 			</tr>
 			<tr>
-				<td><h3>판매 취소</h3></td>
-				<td><h3>고객 문의 현황</h3></td>
+				<td><h3 style="display: inline;">판매 취소</h3></td>
+				<td><h3 style="display: inline;">고객 문의 현황</h3><a style="margin-left:111px;" href="">더보기</a></td>
 			</tr>
 			<tr>
 				<td><table>
@@ -82,54 +88,33 @@ h3{
 					</table>
 				</td>
 				<td><table>
+				<%for(int i = 0; i < 4; i++){ %>
 						<tr>
-							<td align="center">문의 내용</td>
+							<td><%=str2[i] %></td>
 						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
+				<%} %>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td><h3>공지 사항</h3></td>
-				<td><h3>견적</h3></td>
+				<td><h3 style="display: inline;">공지 사항</h3><a style="margin-left:200px;" href="">더보기</a></td>
+				<td><h3 style="display: inline;">견적</h3><a style="margin-left:200px;" href="">더보기</a></td>
 			</tr>
 			<tr>
 				<td><table>
+				<%for(int i = 0; i < 4; i++){ %>
 						<tr>
-							<td align="center">문의 내용</td>
+							<td><%=str1[i] %></td>
 						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
+				<%} %>
 					</table>
 				</td>
 				<td><table>
+				<%for(int i = 0; i < 4; i++){ %>
 						<tr>
-							<td align="center">문의 내용</td>
+							<td><%=str3[i] %></td>
 						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
-						<tr>
-							<td align="center">문의 내용</td>
-						</tr>
+				<%} %>
 					</table>
 				</td>
 			</tr>

@@ -43,20 +43,16 @@ public class testDao {
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			System.out.println(query);
 			int i = 0;
 			while(rset.next()){
-				System.out.println(rset.getString(1) + " : " + rset.getInt(2));
 				result[i] = rset.getInt(2);
 				i++;
 			}
 			
 			query = prop.getProperty("selectCount2");
 			stmt2 = con.createStatement();
-			rset2 = stmt.executeQuery(query);
-			System.out.println(i);
+			rset2 = stmt2.executeQuery(query);
 			while(rset2.next()){
-				System.out.println(rset2.getString(1) + " : " + rset2.getInt(2));
 				result[i] = rset2.getInt(2);
 				i++;
 			}
@@ -67,26 +63,11 @@ public class testDao {
 		} finally {
 			close(stmt);
 			close(rset);
+			close(stmt2);
+			close(rset2);
 			
 		}
 		
-		/*PreparedStatement pstmt = null;
-		int[] result ={0};
-		
-		String query = prop.getProperty("insert");
-		System.out.println(query);
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
-			result[0] = pstmt.executeUpdate();
-			System.out.println(result);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}*/
 		
 		
 		return result;
@@ -94,21 +75,51 @@ public class testDao {
 	}
 
 
-	public HashMap<String, ArrayList<Board>> selectList(Connection con) {
+	public HashMap<String, String[]> selectList(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = prop.getProperty("selectList");
-		HashMap<String, ArrayList<Board>> hmap = new HashMap<String, ArrayList<Board>>();
-		ArrayList<Board> list = new ArrayList<Board>();
+		String query = prop.getProperty("selectList1");
+		HashMap<String, String[]> hmap = new HashMap<String, String[]>();
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
+			String[] str = new String[4];
+			int i = 0;
 			while(rset.next()){
-				Board b = new Board();
-				b.setBOARD_TITLE(rset.getString("BOARD_TITLE"));
-				
-				list.add(b);				
+				str[i] = rset.getString("BOARD_TITLE");
+				i++;	
+				if(i>3)break;
 			}
+			System.out.println(str[0]);
+			hmap.put("a", str);
+			close(stmt);
+			close(rset);
+			query = prop.getProperty("selectList2");
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			str = new String[4];
+			i = 0;
+			while(rset.next()){
+				str[i] = rset.getString("BOARD_TITLE");
+				i++;	
+				if(i>3)break;
+			}
+			System.out.println(str);
+			hmap.put("b", str);
+			close(stmt);
+			close(rset);
+			query = prop.getProperty("selectList3");
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			str = new String[4];
+			i = 0;
+			while(rset.next()){
+				str[i] = rset.getString("BOARD_TITLE");
+				i++;				
+				if(i>3)break;
+			}
+			System.out.println(str);
+			hmap.put("c", str);
 			//a 공지사항
 			//b 문의
 			//c 견적
@@ -120,24 +131,6 @@ public class testDao {
 			close(rset);
 			
 		}
-		
-		/*PreparedStatement pstmt = null;
-		int[] result ={0};
-		
-		String query = prop.getProperty("insert");
-		System.out.println(query);
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
-			result[0] = pstmt.executeUpdate();
-			System.out.println(result);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}*/
 		
 		
 		return hmap;
