@@ -344,7 +344,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 					게시판
 					<ul class="cate_menu">
 						<li onclick="location.href='https://www.google.com/'">공지사항</li>
-						<li onclick="location.href='https://www.google.com/'">견적 문의</li>
+						<li onclick="location.href='<%= request.getContextPath() %>/selectList.bo'">견적 문의</li>
 						<li onclick="location.href='https://www.google.com/'">회원 견적</li>
 					</ul>
 				</div>

@@ -111,6 +111,10 @@
 {
 	cursor:pointer;
 }
+.btn:hover
+{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -184,7 +188,7 @@
 				</div>
 				<br clear="both">
 				<div>
-					<button type="button" class="btn btn-danger" style="padding:2px 4px; color:white; background:#d9534f; height:28px; float:right; border:1px solid white; border-radius:5px; background:" onclick="location.href='serviceCenterQuestionWrite.jsp'">문의하기</button>
+					<button type="button" class="btn" style="padding:2px 4px; color:white; background:#d9534f; height:28px; float:right; border:1px solid white; border-radius:5px; background:" onclick="location.href='serviceCenterQuestionWrite.jsp'">문의하기</button>
 				</div>
 				<div>
 					<div>

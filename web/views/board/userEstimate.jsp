@@ -150,7 +150,7 @@
 				</div>
 				<br>
 				<div>
-					<button class="btn" type="button" style="padding:2px 4px; float:right; height:28px; font-size:14px; border:1px solid white; border-radius:5px; color:white; background:#d9534f;" onclick="location.href='quoteContactWrite.jsp'">글쓰기</button>
+					<button class="btn" type="button" style="padding:2px 4px; float:right; height:28px; font-size:14px; border:1px solid white; border-radius:5px; color:white; background:#d9534f;" onclick="location.href='userEstimateWrite.jsp'">글쓰기</button>
 				</div>
 			</div>
 		</div>

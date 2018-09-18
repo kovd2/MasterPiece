@@ -65,6 +65,10 @@ table th
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
+	<%
+		if(loginUser != null)
+		{
+	%>
 	
 	<!-- 전체 틀 -->
 	<div class="container" style="margin:auto;">
@@ -89,18 +93,18 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="" method="post" style="margin-top:-8px;">
+					<form action="<%= request.getContextPath() %>/insert.bo" method="post" encType="multipart/form-data" style="margin-top:-8px;">
 						<table style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
-									<th style="border-right:none;">작성자</th>
-									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;">King-Computer</td>
-									<td style="border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
-									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
+									<th style="width:150px; border-right:none;">작성자</th>
+									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
+									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
+									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
-									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="subject" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
@@ -109,12 +113,12 @@ table th
 									</td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle; height:50px;">첨부파일</th>
-									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="filename" style="margin-left:7px;"/></td>
+									<th style="vertical-align:middle; height:50px;">이미지</th>
+									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="fileImage" multiple="multiple" style="margin-left:7px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">비밀번호</th>
-									<td colspan="3" style="text-align:center"><input type="password" placeholder="비밀번호를 입력하세요"style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+									<td colspan="3" style="text-align:center"><input type="password" placeholder="비밀번호를 입력하세요" name="boardPassword" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align:center; height:50px;">
@@ -137,5 +141,13 @@ table th
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
+	<%
+		}
+		else
+		{
+			request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+			request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+		}
+	%>
 </body>
 </html>

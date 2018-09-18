@@ -113,10 +113,6 @@ table th
 									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="filename" style="margin-left:7px;"/></td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle; height:50px;">비밀번호</th>
-									<td colspan="3" style="text-align:center"><input type="password" placeholder="비밀번호를 입력하세요"style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
-								</tr>
-								<tr>
 									<td colspan="4" style="text-align:center; height:50px;">
 										<div>
 											<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>

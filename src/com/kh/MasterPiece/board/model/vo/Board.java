@@ -1,4 +1,4 @@
-package com.kh.MasterPiece.board.modal.vo;
+package com.kh.MasterPiece.board.model.vo;
 
 import java.sql.Date;
 
