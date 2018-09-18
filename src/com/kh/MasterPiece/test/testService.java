@@ -22,10 +22,10 @@ public class testService {
 		return list;
 	}
 
-	public HashMap<String, ArrayList<Board>> selectList() {
+	public HashMap<String, String[]> selectList() {
 		Connection con = getConnection();
 		
-		HashMap<String, ArrayList<Board>> hmap = new testDao().selectList(con);
+		HashMap<String, String[]> hmap = new testDao().selectList(con);
 		
 		close(con);
 		

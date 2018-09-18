@@ -33,12 +33,11 @@ public class start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int result[] = new testService().Count();
-		HashMap<String, ArrayList<Board>> hmap = new HashMap<String, ArrayList<Board>>();
+		HashMap<String, String[]> hmap = new testService().selectList();
 		for(int i = 0; i < result.length; i++){
-			System.out.println(result[i]);
 			request.setAttribute(""+i, result[i]);
 		}
-		
+		request.setAttribute("hmap", hmap);
 		
 		RequestDispatcher view = request.getRequestDispatcher("adminMain.jsp");
 		view.forward(request, response);

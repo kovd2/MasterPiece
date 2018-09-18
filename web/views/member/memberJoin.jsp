@@ -183,7 +183,7 @@
 				}
 					
 				function goMain(){
-					location.href="<%=request.getContextPath()%>/index.jsp";
+					location.href="<%=request.getContextPath()%>/main.jsp";
 				}
 				
 				function searchAdd() {

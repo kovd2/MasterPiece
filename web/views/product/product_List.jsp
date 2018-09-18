@@ -199,7 +199,7 @@
 .Prd_list_area .Prd_list .Prd_img{
 	width:25%;
 	height:100%;
-	border:1px solid #dee0e4;
+	border-right:1px solid #dee0e4;
 	margin:0 auto;
 }
 
@@ -239,11 +239,13 @@
 	margin:0px auto;
 	float:right;
 }
-
+.Prd_wrap .price_list .prd_count{
+	margin-top:90px;
+}
 .Prd_wrap .price_list .btnArea {
 	width:200px;
 	height:50px;
-	margin-top:140px;
+	margin-top:50px;
 	display:flex;
 }
 .Prd_wrap .price_list .btnArea .basketBtn {
@@ -252,7 +254,8 @@
 	text-align:center;
 	display:table-cell;
 	vertical-align:middle;
-	border:1px solid #dee0e4;
+	border:none;
+	background:white;
 	line-height: 30px;
 }
 .Prd_wrap .price_list .btnArea .basketBtn:hover{
@@ -265,7 +268,8 @@
 	text-align:center;
 	display:table-cell;
 	vertical-align:middle;
-	border:1px solid #dee0e4;
+	border:none;
+	background:white;
 	line-height: 30px;
 }
 .Prd_wrap .price_list .btnArea .buyBtn:hover{
@@ -419,6 +423,15 @@
 								<dd>478,000 원</dd>
 							</dl>
 						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
 								<img src="../../images/jinseok/icon/go_cart_btn.gif">
@@ -443,6 +456,15 @@
 								<dt>판매가격</dt>
 								<dd>478,000 원</dd>
 							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
@@ -469,6 +491,15 @@
 								<dd>478,000 원</dd>
 							</dl>
 						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
 								<img src="../../images/jinseok/icon/go_cart_btn.gif">
@@ -493,6 +524,15 @@
 								<dt>판매가격</dt>
 								<dd>478,000 원</dd>
 							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
@@ -519,6 +559,15 @@
 								<dd>478,000 원</dd>
 							</dl>
 						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
 								<img src="../../images/jinseok/icon/go_cart_btn.gif">
@@ -544,6 +593,15 @@
 								<dd>478,000 원</dd>
 							</dl>
 						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
 								<img src="../../images/jinseok/icon/go_cart_btn.gif">
@@ -568,6 +626,15 @@
 								<dt>판매가격</dt>
 								<dd>478,000 원</dd>
 							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
@@ -595,6 +662,7 @@
 		}
 		
 	</script>
+	
 	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>
