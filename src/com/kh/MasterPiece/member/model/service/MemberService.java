@@ -32,6 +32,7 @@ public class MemberService {
 	//로그인
 	public Member loginCheck(String userId, String userPwd) {
 		Connection con = getConnection();
+		
 		Member loginUser = new MemberDao().loginCheck(con, userId, userPwd);
 		
 		close(con);
@@ -56,6 +57,27 @@ public class MemberService {
 		Connection con = getConnection();
 		
 		int result = new MemberDao().emailCheck(con, email);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int passFind(String userId, String email) {
+		
+		Connection con = getConnection();
+		
+		int result = new MemberDao().passFind(con, userId, email);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int passFindResult(String userId, String email, String userPwd) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().passFindResult(con, userId, email, userPwd);
 		
 		close(con);
 		

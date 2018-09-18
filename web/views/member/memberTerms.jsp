@@ -54,7 +54,7 @@
 <body>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath()%>/index.jsp"><img class="image" src="<%=request.getContextPath()%>/images/logo.png" id="logo" align="center"></a>
 	<center>
   	<table width=960px align=center>
 		<tr>
@@ -308,7 +308,7 @@
             </tr>
             <tr>
               <td>
-                <input type="checkbox" style="margin-left:30px" name="check1" id="check1">이용약관에 동의합니다.<br><br><br><br>
+                <input type="checkbox" style="margin-left:30px" name="check1" id="check1"><label for="check1">이용약관에 동의합니다.</label><br><br><br><br>
               </td>
             </tr>
             <tr>
@@ -424,7 +424,7 @@ NICE신용평가정보㈜(이하 “대행사”)가 “대행사”에서 제�
 				            </tr>
 				            <tr>
 				              <td>
-				                <input type="checkbox"  style="margin-left:30px" name="check2" id="check2">개인정보 수집 및 이용에 대한 안내에 동의합니다.
+				                <input type="checkbox"  style="margin-left:30px" name="check2" id="check2"><label for="check2">개인정보 수집 및 이용에 대한 안내에 동의합니다.</label>
 				              </td>
 				            </tr>
 				          </table>
@@ -436,41 +436,7 @@ NICE신용평가정보㈜(이하 “대행사”)가 “대행사”에서 제�
 				  <button type = "button"  class="btn btn-default" style="margin:10px;" onclick="memberJoin()" id="joinBtn">다 음</button>
 				  <button type = "button"  class="btn btn-default" style="margin:10px;" onclick="canBtn()" id="canBtn">취 소</button>
 
-				    
-				       <!--풋터-->
-				       <br><br><br>
-				    <table width=960  align=center>
-				     <tr>
-				       <td align=center colspan=2><br><br>
-				         <font color="#a4a4a4" size=2>cell center </font>
-				         <font color="#f67001" size=2> 1599.1234 </font>
-				         <font color="#a4a4a4" size=2> wekdays am 10:00 ~ pm 6:00 </font>
-				         <font color="#f67001" size=2> lunch. pm 1:00 ~ pm 2:00 </font>
-				         <font color="#a4a4a4" size=2> sat, syn, holiday off.</font>
-				         <hr>
-				       </td>
-				     </tr>
-				
-				     <tr>
-				       <td align=center id="foot">
-				         <a href=#><font size=3>풋터메뉴1&nbsp;&nbsp;&nbsp;&nbsp;</font></a>
-				         <a href=#><font size=3>풋터메뉴2&nbsp;&nbsp;&nbsp;&nbsp;</font></a>
-				         <a href=#><font size=3>풋터메뉴3&nbsp;&nbsp;&nbsp;&nbsp;</font></a>
-				         <a href=#><font size=3>풋터메뉴4</font></a>
-				       </td>
-				       <td rowspan=2 width=70 align=right>
-				         풋터<br>로고<br>자리
-				       </td>
-				     </tr>
-				
-				     <tr>
-				       <td align=center id="foot">
-				         <font color="#a4a4a4" size=2>상호 / oooo &nbsp;&nbsp; 대표자 / ooo &nbsp;&nbsp; 개인정보책임자 / ooo &nbsp;&nbsp; 이메일 / oooooooo@gmail.com<br>
-				         사업자번호 / 123-12-12345 &nbsp;&nbsp; 통신판매업신고번호 / 제 2015-서울oo-000호<br>
-				         전화번호 / 1599-1234 &nbsp;&nbsp; 주소 / 서울특별시 oo구 oo동 oo-o oo빌딩
-				         </font>
-				       </td>
-				     </tr>
+				  <%@ include file="../common/footer.jsp"%>
     </table>
     </center>
 	</div>
