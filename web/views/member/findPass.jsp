@@ -96,7 +96,7 @@
 <%-- 	<%@ include file="../common/top.jsp" %> --%>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="../../index.jsp"><img class="image" src="../../images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
 	<table align="center" class="findd">
 		<tr>
 			<td colspan="3">

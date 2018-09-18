@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kh.MasterPiece.member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -77,8 +77,6 @@
 	a:hover{
 		color:black;
 	}
-	
-	
 
 </style>
 
@@ -86,7 +84,7 @@
 <body>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="../../index.jsp"><img class="image" src="../../images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
 	<% if(loginUser == null){ %>
 	<form id="loginForm" action="<%=request.getContextPath() %>/login.me" method="post">
 	<table align="center" class="log_tb">
@@ -113,17 +111,12 @@
 			<a href="findPass.jsp">비밀번호 찾기 │</a>
 			<a href="memberTerms.jsp">회원가입</a>
 		</div>
-	<% }else { %>
-		<div id="userInfo">
-				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
-				<div class="btns">
-					<div id="changeInfo">정보수정</div>
-					<div id="logoutBtn" onclick="logout()">로그아웃</div>
-				</div>
-			</div>
-	
-	<% } %>
+	<% }else{ %>
 		
+		<script>
+			location.href = "/MasterPiece/index.jsp";
+		</script>
+	<% } %>
 	</div>
 	<script>
 		function login(){
