@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*"%>
+<%
+	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -312,9 +317,9 @@ a{ text-decoration:none }
 					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'" >
 						<img src="./images/kimjaeyup/mp1.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! NO.001</span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrdName() %></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2">1,570,000원</span>
+						<span class="product_btm2"><%=list.get(0).getPrice() %>원</span>
 						<span class="product_event1" style="margin-right:10px;">경품</span>
 						<span class="product_event4">사은품</span>
 						<span class="product_event3">무료배송</span>
@@ -322,27 +327,27 @@ a{ text-decoration:none }
 					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/mp2.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! NO.002</span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(1).getPrdName() %></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2">1,320,000원</span>
+						<span class="product_btm2"><%=list.get(1).getPrice() %>원</span>
 						<span class="product_event4" style="margin-right:10px;">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/mp3.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! NO.003</span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(2).getPrdName() %></span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,230,000원 </span>
-						<span class="product_btm2">1,131,600원</span>
+						<span class="product_btm2"><%=list.get(2).getPrice() %>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/mp4.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span> <br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! NO.004</span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(3).getPrdName() %></span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,100,000원 </span>
-						<span class="product_btm2">999,800원</span>
+						<span class="product_btm2"><%=list.get(3).getPrice() %>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
