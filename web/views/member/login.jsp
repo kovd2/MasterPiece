@@ -107,9 +107,9 @@
 	</table>
 	</form>
 		<div class="findAndJoin">
-			<a href="findId.jsp">아이디 찾기 │</a>
-			<a href="findPass.jsp">비밀번호 찾기 │</a>
-			<a href="memberTerms.jsp">회원가입</a>
+			<a href="<%=request.getContextPath() %>/views/member/findId.jsp">아이디 찾기 │</a>
+			<a href="<%=request.getContextPath() %>/views/member/findPass.jsp">비밀번호 찾기 │</a>
+			<a href="<%=request.getContextPath() %>/views/member/memberTerms.jsp">회원가입</a>
 		</div>
 	<% }else{ %>
 		

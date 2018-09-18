@@ -14,7 +14,7 @@
 		height: 150px;
 	}
 	
-	#id {
+	#userId {
 		width:300px;
 		height:30px;
 		font-size:15px;
@@ -37,14 +37,14 @@
 		color:black;
 	}
 	
-	#email2 {
+	#email {
 		width:300px;
 		height:30px;
 		font-size:15px;
 		margin-right:12px;
 	}
 	
-	#conBtn {
+	#passFindBtn {
 		width:82px;
 		height:82px;
 		background-color: #f44336;
@@ -93,22 +93,22 @@
 </style>
 </head>
 <body>
-<%-- 	<%@ include file="../common/top.jsp" %> --%>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath()%>/index.jsp"><img class="image" src="<%=request.getContextPath()%>/images/logo.png" id="logo" align="center"></a>
+	<form id="passFindForm" action="<%=request.getContextPath()%>/passFind" method="post">
 	<table align="center" class="findd">
 		<tr>
 			<td colspan="3">
-			<input type="text" id="id" class="form-control" placeholder="아이디를 입력해주세요" style="font-size:13px;">
+			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디를 입력해주세요" style="font-size:13px;">
 			</td>
 			<td rowspan="2">
-			<input type="button" id="conBtn" style="padding:0px" onclick="conBtn()" value="확인">
+			<input type="button" id="passFindBtn" name="passFindBtn" style="padding:0px" value="확인">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
-			<input type="text" id="email2" class="form-control" placeholder="회원정보에 등록된 이메일을 입력해주세요" style="font-size:13px;">
+			<input type="text" id="email" name="email" class="form-control" placeholder="회원정보에 등록된 이메일을 입력해주세요" style="font-size:13px;">
 			</td>
 		</tr>
 		<tr>
@@ -124,14 +124,17 @@
 			</td>
 		</tr>
 	</table>
-	
+	</form>
 	</div>
+	<%@ include file="../common/footer.jsp"%>
 	<script>
-		function conBtn(){
-			
-			location.href = "findPassResult.jsp";
-			
-		}
+		$(function(){
+			  $("#passFindBtn").click(function(){
+				
+				  $("#passFindForm").submit();
+			  });
+			  
+		});
 	</script>
 
 </body>

@@ -163,4 +163,54 @@ public class MemberDao {
 		return result;
 	}
 
+	public int passFind(Connection con, String userId, String email) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("passFind");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, email);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int passFindResult(Connection con, String userId, String email, String userPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("passFindResult");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userPwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, email);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }
