@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
+	System.out.println("list : " + list);
+	System.out.println("listCount : " + listCount);
+	
+	System.out.println("currentPage" + currentPage);
+	System.out.println("maxPage" + maxPage);
+	System.out.println("startPage" + startPage);
+	System.out.println("endPage" + endPage);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +34,7 @@
     .list_n_menu A:hover {BORDER:#999 1px solid; COLOR: #666;}
     .list_n_menu A:active {BORDER:#999 1px solid; COLOR: #666;}
 	.list_n_menu .current {BORDER: #117bff 1px solid;padding: 1px 4px 0px 4px;FONT-WEIGHT: bold;MARGIN: 2px;COLOR: #036cb4;}
-    .list_n_menu .disabled {BORDER: #eee 1px solid;padding: 1px 4px 0px 4px;MARGIN: 2px;COLOR: #ddd;}
+    .list_n_menu .disabled {BORDER: #eee 1px solid;padding: 1px 4px 0px 4px;MARGIN: 2px;COLOR: #ddd; background:white;}
     
 .container-inner /* .inb 에 대한 인라인 블록 지정 */ {
 	/* width:90%; */
@@ -132,25 +150,27 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%
+									for(Board b : list)
+									{
+								%>
 								<tr>
-									<td align="center">1</td>
-									<td>[견적문의]견적 문의합니다.</td>
-									<td>임하룡</td>
-									<td>2018-08-31</td>
+									<input type="hidden" value="<%= b.getBOARD_ID() %>">
+									<td><%= b.getBOARD_NO() %></td>
+									<td><%= b.getBOARD_TITLE() %></td>
+									<td><%= b.getBOARD_WRITER() %></td>
+									<td><%= b.getBOARD_DATE() %></td>
 								</tr>
-								<tr>
-									<td align="center">John</td>
-									<td>Doe</td>
-									<td>john@example.com</td>
-									<td>2018-08-31</td>
-								</tr>
+								<%
+									}
+								%>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<br>
 				<div>
-					<button class="btn" type="button" style="padding:2px 4px; float:right; height:28px; font-size:14px; border:1px solid white; border-radius:5px; color:white; background:#d9534f;" onclick="location.href='quoteContactWrite.jsp'">견적 요청</button>
+					<button class="btn" type="button" style="padding:2px 4px; float:right; height:28px; font-size:14px; border:1px solid white; border-radius:5px; color:white; background:#d9534f;" onclick="location.href='/MasterPiece/views/board/quoteContactWrite.jsp'">견적 요청</button>
 				</div>
 			</div>
 		</div>
@@ -158,6 +178,55 @@
 		<br>
 		<!-- 페이징 -->
 		<div>
+			<div>
+				<div class="list_n_menu" style="font-size:14px;">
+				<%
+					if(currentPage <= 1)
+					{
+				%>
+				<button class="disabled"><  이전</button>
+				<%
+					}
+					else
+					{
+				%>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><  이전</button>
+				<%
+					}
+				%>
+				<%
+					for(int p=startPage; p<=endPage; p++)
+					{
+						if(p == currentPage)
+						{
+				%>
+				<button class="disabled"><%= p %></button>
+				<%
+						}
+						else
+						{
+				%>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<%
+						}
+					}
+					if(currentPage >= maxPage)
+					{
+				%>
+				<button class="disabled">다음  ></button>
+				<%
+					}
+					else
+					{
+				%>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">다음  ></button>
+				<%
+					}
+				%>
+				</div>
+		    </div>
+		</div>
+		<!-- <div>
 			<div>
 				<div class="list_n_menu" style="font-size:14px;">
 					<span class="disabled"><  이전</span>
@@ -171,7 +240,7 @@
 					<a href="#?page=2">다음  ></a>
 				</div>
 		    </div>
-		</div>
+		</div> -->
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>

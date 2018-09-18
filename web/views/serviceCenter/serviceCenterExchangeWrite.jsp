@@ -172,6 +172,16 @@ table
 									</div>
 								</td>
 							</tr>
+							<tr>
+								<td style="border:1px solid lightgray; width:100px; height:45px; font-size:small; padding-left:10px;">신청 사유</td>
+								<td>
+									<select style="height:25px; margin-left:15px;">
+										<option>교환</option>
+										<option>반품</option>
+										<option>AS</option>
+									</select>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
