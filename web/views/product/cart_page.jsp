@@ -304,6 +304,7 @@
 	
 	</div>
 	<%@include file = "../common/footer.jsp" %>
+	
 		<script>
 			function goList(){
 				location.href="./product_List.jsp";
