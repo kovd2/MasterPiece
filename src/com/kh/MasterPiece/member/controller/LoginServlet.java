@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(loginUser.getUserType());
 			if(loginUser.getUserType().equals("1")){
 				
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("main.jsp");
 				
 			}else{
 				

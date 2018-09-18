@@ -201,7 +201,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<!------------------------------- 로고  + 검색창 + 메뉴 (로그인, 회원가입, 고객센터, Q&A) ------------------------------->
 	<div class="main_layer">
 		<div id="top_logo" class="top_logo">
-			<a href="<%=request.getContextPath() %>/index.jsp" title="바로가기"> <img
+			<a href="<%=request.getContextPath() %>/main.jsp" title="바로가기"> <img
 				src="<%=request.getContextPath() %>/images/kimjaeyup/MasterPiece.png" alt="로고"
 				style="padding-top: 30px; padding-left: 1px;" title="로고"
 				width="200px" height="70px">
