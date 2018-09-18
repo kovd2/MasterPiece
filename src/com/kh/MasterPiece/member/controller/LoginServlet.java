@@ -1,6 +1,7 @@
 package com.kh.MasterPiece.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,9 +38,10 @@ public class LoginServlet extends HttpServlet {
 				
 			}else{
 				
-				request.getRequestDispatcher("/start").forward(request, response); //관리자 페이지로 이동되게.
+				request.getRequestDispatcher("/start").forward(request, response); 
 			}
 		}else{
+			
 			request.getRequestDispatcher("views/member/login.jsp").forward(request, response);
 		}
 	}
