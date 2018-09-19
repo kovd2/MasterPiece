@@ -340,7 +340,7 @@ $(function() {
 //			$("#datepicker2").datepicker( "option", "minDate", selectedDate );
 
 			if(calDateRange(selectedDate,$( "#datepicker2" ).val()) > 180){
-				/*
+				
 				s_date_array = selectedDate.split("-");
 				s_date_array[1] = (Number(s_date_array[1]) - 1) + "";
 
@@ -354,7 +354,7 @@ $(function() {
 				if(day < 10)day="0"+day;
 				alert("180일이 넘습니다.");
 				$("#datepicker2").val(year+"-"+month+"-"+day);
-				*/
+				
 			}else if(calDateRange(selectedDate,$( "#datepicker2" ).val()) < 0){
 				alert("시작일이 종료일보다 큽니다");
 				$("#datepicker2").val(selectedDate);
@@ -401,7 +401,7 @@ $(function() {
 		}
 	});
 
-	/*
+	
 	$("#t_datepicker1").click(function(){
 		$("#datepicker1").trigger( "focus" );
 		$(".section_header_table td").eq(5).click();
@@ -411,7 +411,7 @@ $(function() {
 		$("#datepicker2").trigger('focus');
 		$(".section_header_table td").eq(5).click();
 	});
-	*/
+	
 
 	$( "#datepicker1,#datepicker2" ).click(function(){
 		$("#date_num").val(10);
@@ -426,12 +426,12 @@ $(function() {
 
 		index=$(this).index();
 		switch(index){
-			case 0:$("#datepicker1").val(js_today(-1));$("#datepicker2").val(js_today(-1));break
-			case 1:$("#datepicker1").val(js_today(0));$("#datepicker2").val(js_today(0));break
-			case 2:$("#datepicker1").val(js_today(-7));$("#datepicker2").val(js_today(0));break
-			case 3:$("#datepicker1").val(js_today(-30));$("#datepicker2").val(js_today(0));break
-			case 4:$("#datepicker1").val(js_today(-180));$("#datepicker2").val(js_today(0));break
-			case 5:$("#datepicker1").val(js_today(-365));$("#datepicker2").val(js_today(0));break
+			case 0:$("#datepicker1").val(js_today(-1));$("#datepicker2").val(js_today(-1));break;
+			case 1:$("#datepicker1").val(js_today(0));$("#datepicker2").val(js_today(0));break;
+			case 2:$("#datepicker1").val(js_today(-7));$("#datepicker2").val(js_today(0));break;
+			case 3:$("#datepicker1").val(js_today(-30));$("#datepicker2").val(js_today(0));break;
+			case 4:$("#datepicker1").val(js_today(-180));$("#datepicker2").val(js_today(0));break;
+			case 5:$("#datepicker1").val(js_today(-365));$("#datepicker2").val(js_today(0));break;
 			case 10:break;
 		}
 	});
