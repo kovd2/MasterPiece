@@ -1,18 +1,23 @@
 package com.kh.MasterPiece.main.model.dao;
 
 
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.main.model.vo.MainTest;
-
-import static com.kh.MasterPiece.common.JDBCTemplate.*;
+import com.kh.MasterPiece.product.model.vo.Product;
 
 public class MainDao {
 private Properties prop = new Properties();
@@ -64,4 +69,174 @@ private Properties prop = new Properties();
 		return list;
 	}
 
+	public ArrayList<HashMap<String, Object>> selectGraphicList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ArrayList<HashMap<String, Object>> list = null;
+		HashMap<String, Object> hmap = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectGraphicMap");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			stmt = con.createStatement();
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()){
+				hmap.put("prdCode", rset.getString("PRD_CODE"));
+				hmap.put("manufacturer", rset.getString("MANUFACTURER"));
+				hmap.put("price", rset.getInt("PRICE"));
+				hmap.put("prdName", rset.getString("PRD_NAME"));
+				hmap.put("releaseDate", rset.getDate("RELEASE_DATE"));
+				hmap.put("category", rset.getString("CATEGORY"));
+				hmap.put("sellCount", rset.getInt("SELL_COUNT"));
+				hmap.put("stock", rset.getInt("STOCK"));
+				
+				list.add(hmap);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}		
+		
+		return list;
+	}
+
+	public int getListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("listCount");
+		
+		int listCount = 0;
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+
+	public ArrayList<Product> selectList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> list = null;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Product>();
+			
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("price"));
+				p.setPrd_name(rset.getString("prd_name"));
+				p.setCategory(rset.getString("category"));
+				
+				list.add(p);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		
+		return list;
+	}
+
+	public HashMap<String, Attachment> selectImageList(Connection con) {
+		PreparedStatement pstmt = null;
+		 HashMap<String, Attachment> list = null;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectImageList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new  HashMap<String, Attachment>();
+			
+			while(rset.next()){
+				Attachment a = new Attachment();
+				a.setChangeName(rset.getString("file_name"));
+				
+				list.put(rset.getString("prd_code"), a);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		
+		return list;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

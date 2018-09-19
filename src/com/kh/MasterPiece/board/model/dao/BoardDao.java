@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
@@ -220,3 +221,19 @@ public class BoardDao
 		return list;
 	}
 }
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

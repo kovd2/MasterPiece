@@ -255,11 +255,16 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</ul>
 			<%}else{ %>
 				<!-- 로그인 후 메뉴(마이페이지, 로그아웃, 고객센터, Q&A) -->
-			<div id="userInfo" style="margin-top: -20px; margin-left: 40px;">
+			<div id="userInfo" style="margin-top: -40px; margin-left: 40px;">
 				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
+				<li class="top_cart" style="list-style-type: none; display: inline-block;">
+				<a href="<%=request.getContextPath() %>/views/mypage/cart/cart_myPage.jsp" title="장바구니" style="color:black; font-size:12px; text-decoration:none">
+				<img src="<%=request.getContextPath() %>/images/kimjaeyup/cart.png" style="width:35px; height:35px;">
+				장바구니</a></li>
 			</div>
 			<ul>
-				<li class="top_subMenuLogin"><a href="<%=request.getContextPath() %>/views/mypage/member/myPage.jsp" title="마이페이지" style="margin-left: -10px;">
+				<li class="top_subMenuLogin">
+				<a href="<%=request.getContextPath() %>/views/mypage/member/myPage.jsp" title="마이페이지" style="margin-left: -10px;">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/mypage_off.png'" border="0"
