@@ -107,7 +107,7 @@
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px; height:80px;">
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='quoteContact.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='userEstimate.jsp'">
@@ -190,7 +190,7 @@
 					else
 					{
 				%>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage - 1 %>'"><  이전</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.qc?currentPage=<%= currentPage - 1 %>'"><  이전</button>
 				<%
 					}
 				%>
@@ -206,7 +206,7 @@
 						else
 						{
 				%>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.qc?currentPage=<%= p %>'"><%= p %></button>
 				<%
 						}
 					}
@@ -219,30 +219,29 @@
 					else
 					{
 				%>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= currentPage + 1 %>'">다음  ></button>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.qc?currentPage=<%= currentPage + 1 %>'">다음  ></button>
 				<%
 					}
 				%>
 				</div>
 		    </div>
 		</div>
-		<!-- <div>
-			<div>
-				<div class="list_n_menu" style="font-size:14px;">
-					<span class="disabled"><  이전</span>
-					<span class="current">1</span>
-					<a href="#?page=2">2</a>
-					<a href="#?page=3">3</a>
-					<a href="#?page=4">4</a>
-					<a href="#?page=5">5</a>
-					<a href="#?page=6">6</a>
-					<a href="#?page=7">7</a>...
-					<a href="#?page=2">다음  ></a>
-				</div>
-		    </div>
-		</div> -->
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
+	
+	<script>
+		$(function()
+		{
+			$(".boardTable td").click(function()
+			{
+				var num = $(this).parent().children("input").val();
+				
+				console.log(num);
+				
+				location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
+			});
+		});
+	</script>
 </body>
 </html>

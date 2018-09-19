@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
-	Date writeDate = new Date();
-	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	String today = dateFormat.format(writeDate);
+	Board b = (Board)request.getAttribute("b");
+	Attach a = (Attach)request.getAttribute("a");
 %>
 <!DOCTYPE html>
 <html>
@@ -67,6 +65,11 @@ table th
 {
 	cursor:pointer;
 }
+.img
+{
+	width:70%;
+	height:80%;
+}
 </style>
 </head>
 <body>
@@ -99,46 +102,44 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="<%= request.getContextPath() %>/insert.qc" method="post" encType="multipart/form-data" style="margin-top:-8px;">
 						<table style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="width:150px; border-right:none;">작성자</th>
 									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
 									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
-									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= today %></td>
+									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= b.getBOARD_DATE() %></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
-									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+									<!-- <td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td> -->
+									<td colspan="3"><span style="margin-left:20px;"/><%= b.getBOARD_TITLE() %></span></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
-									<td class="boardContent" colspan="3" style="text-align:center; height:300px;">
-										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<th style="vertical-align:middle; height:50px;">이미지</th>
-									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="fileImage" multiple="multiple" style="margin-left:7px;"/></td>
-								</tr>
-								<tr>
-									<th style="vertical-align:middle; height:50px;">비밀번호</th>
-									<td colspan="3" style="text-align:center"><input type="password" placeholder="비밀번호를 입력하세요" name="boardPassword" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
-								</tr>
-								<tr>
-									<td colspan="4" style="text-align:center; height:50px;">
-										<div>
-											<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>
-										</div>
-										<div>
-											<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">목록</button>
-										</div>
+									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
+										<!-- <textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea> -->
+										<%
+											if(a.getOriginName() != null)
+											{
+										%>
+										<img class="img" src="<%= request.getContextPath() %>/file_upload/<%= a.getChangeName() %>" style="margin-left:20px;">
+										<%
+											}
+										%>
+										<br><br>
+										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-					</form>
+						<br>
+						<div>
+							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_ID()+1 %>'">다음</button>
+						</div>
+						<div>
+							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_ID()-1 %>'">이전</button>
+						</div>
 					</div>
 				</div>
 			</div>

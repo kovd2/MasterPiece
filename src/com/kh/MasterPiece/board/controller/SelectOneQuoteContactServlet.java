@@ -1,7 +1,7 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
+import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
-import com.kh.MasterPiece.board.model.vo.PageInfo;
 
 /**
- * Servlet implementation class SelectBoardListServlet
+ * Servlet implementation class SelectOneBoardServlet
  */
-@WebServlet("/selectList.bo")
-public class SelectBoardListServlet extends HttpServlet {
+@WebServlet("/selectOne.qc")
+public class SelectOneQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectBoardListServlet() {
+    public SelectOneQuoteContactServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,48 +34,25 @@ public class SelectBoardListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int currentPage = 1;
-		int limit = 10;
-		int maxPage;
-		int startPage;
-		int endPage;
+		int num = Integer.parseInt(request.getParameter("num"));
 		
-		if(request.getParameter("currentPage") != null)
-		{
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+		//System.out.println(num);
 		
-		int listCount = new BoardService().getListCount();
-		
-		maxPage = (int)((double)listCount / limit + 0.9);
-		
-		startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-		
-		endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage)
-		{
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-		
-		ArrayList<Board> list = new BoardService().selectList(currentPage, limit);
-		
-		System.out.println("servlet List : " + list);
-		
+		Board b = new BoardService().selectOne(num);
+		Attach a = new BoardService().selectImage(num);
+				
 		String page = "";
 		
-		if(list != null)
+		if(b != null)
 		{
-			page = "views/board/quoteContact.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
+			page = "views/board/quoteContactDetail.jsp";
+			request.setAttribute("b", b);
+			request.setAttribute("a", a);
 		}
 		else
 		{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 조회 실패");
+			request.setAttribute("msg", "게시판 상세보기 실패");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
@@ -88,5 +65,4 @@ public class SelectBoardListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

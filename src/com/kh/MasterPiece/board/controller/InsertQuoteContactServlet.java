@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
@@ -23,15 +23,15 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class InsertBoardServlet
  */
-@WebServlet("/insert.bo")
-public class InsertBoardServlet extends HttpServlet
+@WebServlet("/insert.qc")
+public class InsertQuoteContactServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertBoardServlet() {
+    public InsertQuoteContactServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -88,12 +88,15 @@ public class InsertBoardServlet extends HttpServlet
 			b.setBOARD_WRITER(writer);
 			b.setBOARD_PWD(boardPassword);
 			
-			ArrayList<Attachment> fileList = new ArrayList<Attachment>();
+			//System.out.println(savePath);
+			
+			ArrayList<Attach> fileList = new ArrayList<Attach>();
 			
 			for(int i=originFiles.size()-1; i>=0; i--)
 			{
-				Attachment at = new Attachment();
-				at.setFilePath(savePath);
+				Attach at = new Attach();
+				
+				at.setSaveRoute(savePath);
 				at.setOriginName(originFiles.get(i));
 				at.setChangeName(saveFiles.get(i));
 				
@@ -102,11 +105,11 @@ public class InsertBoardServlet extends HttpServlet
 			
 			int result = new BoardService().insertBoard(b, fileList);
 			
-			System.out.println("result : " + result);
+			/*System.out.println("result : " + result);*/
 			
 			if(result > 0)
 			{
-				response.sendRedirect(request.getContextPath() + "/selectList.bo");
+				response.sendRedirect(request.getContextPath() + "/selectList.qc");
 			}
 			else
 			{
