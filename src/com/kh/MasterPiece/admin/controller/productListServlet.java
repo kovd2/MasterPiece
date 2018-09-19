@@ -1,6 +1,4 @@
-package com.kh.MasterPiece.test;
-
-
+package com.kh.MasterPiece.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,18 +10,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.kh.MasterPiece.board.modal.vo.*;
+
+import com.kh.MasterPiece.admin.model.service.testService;
+import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.product.model.vo.Product;
+
 /**
- * Servlet implementation class start
+ * Servlet implementation class productListServlet
  */
-@WebServlet("/start")
-public class start extends HttpServlet {
+@WebServlet("/productList")
+public class productListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public start() {
+    public productListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +34,21 @@ public class start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int result[] = new testService().Count();
-		HashMap<String, String[]> hmap = new testService().selectList();
-		for(int i = 0; i < result.length; i++){
-			request.setAttribute(""+i, result[i]);
+		ArrayList<Product> list = new testService().productList();
+		HashMap<String, Attachment> imgList = new testService().imgList();
+		System.out.println(imgList.get(list.get(0).getPrd_code()).getChangeName());
+		String page = "";
+		if(list != null){
+			page = "views/admin/product/adminProduct.jsp";
+			request.setAttribute("list", list);
+			request.setAttribute("imgList", imgList);
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "에러");
 		}
-		request.setAttribute("hmap", hmap);
 		
-		RequestDispatcher view = request.getRequestDispatcher("adminMain.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	/**

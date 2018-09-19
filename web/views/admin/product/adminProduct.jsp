@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*, com.kh.MasterPiece.board.model.vo.*"%>
+    
+ <%
+ ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+ HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+
+ 
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,7 +39,7 @@ background: lightblue;
 <div id="main">
 				<div style="display: inline-block; margin-left: 20px;"><h1>상품</h1></div>
 				<div style="display: inline-block; width: 300px;"></div>
-				<div style="background: lightblue; color:white;cursor: pointer;text-align: center; width: 113px; height: 40px; padding-top: 15px; display: inline-block;" onclick="location.href='./productAdd.jsp'">상품추가</div>
+				<div style="background: lightblue; color:white;cursor: pointer;text-align: center; width: 113px; height: 40px; padding-top: 15px; display: inline-block;" onclick="location.href='<%=request.getContextPath()%>/views/admin/product/productAdd.jsp'">상품추가</div>
 
 		<div style="margin-top: 20px">
 				<div id="menubar" onclick="location.href='./productAdd.jsp'" style="margin-left:20px">전체</div>
@@ -45,7 +52,7 @@ background: lightblue;
 				<div id="menubar" onclick="location.href='./productAdd.jsp'">케이스</div>
 		</div>
 		<div style="margin-top:20px;">
-			<table style="margin-left:20px;" id="list">
+			<table style="margin-left:20px" id="list">
 			<tr>
 					<th style="width:50px;"><input type="checkbox" name="all"></th>
 					<th style="width:100px;"><img alt="" src=""></th>
@@ -56,15 +63,16 @@ background: lightblue;
 					<th style="width:50px;">카테<br>고리</th>
 			</tr>
 			<tr>
+			<%for(int i = 0; i < list.size(); i++){%>
 			<td style="text-align: center"><input type="checkbox" name=""></td>
-					<td><img alt="" src=""></td>
-					<td></td><!-- 상품명 -->
-					<td></td><!-- 상품코드 -->
-					<td></td><!-- 재고 -->
-					<td style="text-align: right;">원</td><!-- 가격-->
-					<td style="text-align: center"></td><!-- 카테고리-->
-				<th></th>
+					<td><img alt="" src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="50px" height="50px"></td>
+					<td><%=list.get(i).getPrd_name() %></td><!-- 상품명 -->
+					<td><%=list.get(i).getPrd_code() %></td><!-- 상품코드 -->
+					<td><%=list.get(i).getStock() %></td><!-- 재고 -->
+					<td style="text-align: right;"><%=list.get(i).getPrice() %>원</td><!-- 가격-->
+					<td style="text-align: center"><%=list.get(i).getCategory() %></td><!-- 카테고리-->
 			</tr>
+			<%} %>
 			</table>
 		</div>
 	</div>

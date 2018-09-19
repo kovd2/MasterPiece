@@ -19,6 +19,7 @@ public class Attachment implements Serializable
 	private int fileLevel;
 	private int downloadCount;
 	private String status;
+	private String code;
 	
 	public Attachment(){}
 
@@ -106,6 +107,14 @@ public class Attachment implements Serializable
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	@Override
