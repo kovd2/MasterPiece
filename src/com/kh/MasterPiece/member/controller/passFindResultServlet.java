@@ -34,10 +34,10 @@ public class passFindResultServlet extends HttpServlet {
 		
 		if(result > 0){
 
-			page = "index.jsp";
+			page = "main.jsp";
 		}else{
 			
-			page = "index.jsp";
+			page = "main.jsp";
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

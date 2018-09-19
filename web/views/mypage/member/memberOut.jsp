@@ -278,29 +278,12 @@ input[type="radio" i], input[type="checkbox" i] {
 
 </head>
 <body>
-	<input type="hidden" id="userAddress" value="<%=loginUser.getAddress() %>"> <!-- 주소 불러오기용 -->
-	<input type="hidden" id="userPhone" value="<%=loginUser.getPhone() %>"> <!-- 연락처 불러오기용 -->
-	<input type="hidden" id="userEmail" value="<%=loginUser.getEmail() %>"> <!-- 이메일 불러오기용 -->
+
 	<form id="ModifyInfoForm" action="<%=request.getContextPath()%>/ModifyInfo.me" method="post">
 	<div class="centerWrapArea">
 		<div class="section">
 			<div class='figure'>
-				<div class="center_top_title" align="left">회원정보수정</div>
-				<div>
-					<div class='nth-child1'>회원아이디</div>
-					<div class='nth-child2'>
-						<input name="userId" class='info_input bg_f3f4f6'
-							 type='text' value="<%= loginUser.getUserId() %>" readonly/>
-					</div>
-				</div>
-
-				<div>
-					<div class='nth-child1'>이름</div>
-					<div class='nth-child2'>
-						<input name="userName" class='info_input bg_f3f4f6' type='text' value="<%= loginUser.getUserName() %>" readonly/>
-					</div>
-				</div>
-
+				<div class="center_top_title" align="left">회원 탈퇴</div>
 
 				<div>
 					<div class='nth-child1 '>비밀번호 입력</div>
