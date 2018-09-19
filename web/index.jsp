@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*"%>
 <%
-	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
+	 ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
+	/* ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list"); */
 
 %>
 
@@ -99,10 +100,10 @@ a{ text-decoration:none }
 .product_mp3{ width:260px; height:330px; /* border:1px solid black; */ margin-left:5px; text-align:center; padding-top: 5px; background:white;}
 .product_mp4{ width:260px; height:330px; /* border:1px solid black; */ margin-left:5px; text-align:center; padding-top: 5px; background:white;}
 .product_2{ padding-top:8px; display:inline-block; }
-.product_graphic1{ width:350px; height:300px; /* border:1px solid black; */ margin-left:5px;text-align:center; padding-top: 5px; background:white;}
-.product_graphic2{ width:350px; height:300px; /* border:1px solid black; */ margin-left:6px;text-align:center; padding-top: 5px; background:white;}
-.product_graphic3{ width:350px; height:300px; /* border:1px solid black; */ margin-left:6px;text-align:center; padding-top: 5px; background:white;}
-.product_3{ padding-top:8px; display: inline-block;}
+.product_graphic1{ width:350px; height:300px; /* border:1px solid black; */ margin-left:2px;text-align:center; padding-top: 5px; background:white;}
+.product_graphic2{ width:350px; height:300px; /* border:1px solid black; */ margin-left:2px;text-align:center; padding-top: 5px; background:white;}
+.product_graphic3{ width:350px; height:300px; /* border:1px solid black; */ margin-left:2px;text-align:center; padding-top: 5px; background:white;}
+.product_3{ padding-top:8px; display: inline-block; border: 1px solid red;}
 .product_monitor1{ width:350px; height:300px; /* border:1px solid black; */ margin-left:5px; text-align:center; padding-top: 5px; background:white;}
 .product_monitor2{ width:350px; height:300px; /* border:1px solid black; */ margin-left:6px;text-align:center; padding-top: 5px; background:white;}
 .product_monitor3{ width:350px; height:300px; /* border:1px solid black; */ margin-left:6px;text-align:center; padding-top: 5px; background:white;}
@@ -317,7 +318,7 @@ a{ text-decoration:none }
 					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'" >
 						<img src="./images/kimjaeyup/mp1.png" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrdName() %></span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrdName()%></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
 						<span class="product_btm2"><%=list.get(0).getPrice() %>원</span>
 						<span class="product_event1" style="margin-right:10px;">경품</span>
@@ -356,7 +357,7 @@ a{ text-decoration:none }
 			<div align="left">
 				<span class="product_subGh1">그래픽카드</span>
 				<span class="product_subMp2">이전과는 다르다. 더욱 더 강력해진 성능</span><br>
-				<div class="product_3">
+				<div class="product_3" style="height:360px;">
 					<div class="product_graphic1 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/graphic4.jpg" style="width: 200px; height: 200px;"><br>
 						<span class="product_gcomment"">ASUS ROG STRIX 지포스 GTX1080 A8G GAMING D5X 8GB</span><br>

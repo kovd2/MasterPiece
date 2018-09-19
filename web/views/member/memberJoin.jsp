@@ -85,7 +85,7 @@
 <body>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath() %>/main.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
 	<form id="joinForm" action="<%=request.getContextPath()%>/insertMember.me" method="post">
 			<table align="center">
 				<tr>
