@@ -85,7 +85,7 @@ a:HOVER {
 			<%if(view == 2){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>상품관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/product/adminProduct.jsp'"><h3>상품관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/productList'"><h3>상품관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
