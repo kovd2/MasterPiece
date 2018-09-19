@@ -89,8 +89,9 @@
 			<div class="text"
 				onclick="location.href='../review/review_myPage.jsp'">내가 쓴 게시물</div>
 			<br>
-			<div class="text" onclick="location.href='../faq/faq_myPage.jsp'">FAQ
-				자주하는 질문</div>
+			<div class="text" onclick="location.href='../faq/faq_myPage.jsp'">FAQ 자주하는 질문</div>
+			<br>
+			<div class="text" onclick="location.href='<%=request.getContextPath() %>/views/mypage/member/myPage2.jsp'">회원 탈퇴</div>
 
 			<br> <br> <br> <br>
 

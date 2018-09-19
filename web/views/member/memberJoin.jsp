@@ -142,11 +142,14 @@
 				<div id="joinBtn" style="font-size:13px" onclick="insertMember()" >가입하기</div>
 			</div>
 			<script>
+			var userName = document.getElementById("userName").value;
 			var checkValue = 0; //중복확인 버튼눌렀는지 확인용
 			var checkValue2 = 0;
-			var joinNameCheck = /^[가-힣]{2,4}$/; // 한글 이름 2~4자 이내
-		    var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-			
+			//var joinNameCheck = /^[가-힣]{2,4}$/; // 한글 이름 2~4자 이내
+		   var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		    
+		    var chk = /^[가-힣]+$/;
+
 				function insertMember(){
 				if(checkValue != 1){
 					
@@ -158,21 +161,20 @@
 				}else if(!regEmail.test($('#email').val())) {
 	                alert('이메일 주소가 유효하지 않습니다');
 	                $('#email').focus();
-	                return false;
-	            }else if(!joinNameCheck.test($('#userName'))){
-	            	
+	                
+	            }else if(!chk.test(userName)){ 
+	
 	            	alert("한글 이름을 입력해 주세요.");
 	            	
-	            	return false;
 	            	
-	            }else if($('#userId').length() > 6 || $('#userId').length() < 14){
+	            }/* else if($('#userId').length() > 6 || $('#userId').length() < 14){
 	            	
 	            	alert("6글자이상 14자이하로 입력해 주세요.");
 	            	
 	            	return false;
 	            	
-	            }else{
-					if($('#userName').val()!="" && $('#userId').val()!="" && $('#userPwd').val()!="" && $('#userPwd2').val() == $('#userPwd').val() && $('#phone').val()!="" && $('#address1').val()!="" && $('#address2').val()!="" && $('#address3').val()!="" && $('#email').val()!="" && $('#userName').val() != joinNameCheck){
+	            } */else{
+					if($('#userName').val()!="" && $('#userId').val()!="" && $('#userPwd').val()!="" && $('#userPwd2').val() == $('#userPwd').val() && $('#phone').val()!="" && $('#address1').val()!="" && $('#address2').val()!="" && $('#address3').val()!="" && $('#email').val()!="" && userName != chk){
 						
 						alert("MasterPiece 회원이 된 걸 환영합니다.");
 						$("#joinForm").submit();
@@ -224,10 +226,7 @@
 				        }).open();
 				    }
 				
-				
 
-				var pattern2 = /[a-zA-Z]/;                    //문자
-				var pattern3 = /[~!@#$%^&*()_+|<>?:{}]/;    //특수문자
 				$(function(){
 					  //id="btn" 클릭시
 					  $("#joinBtn").click(function(){

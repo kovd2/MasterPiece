@@ -84,4 +84,14 @@ public class MemberService {
 		return result;
 	}
 
+	public int ModifyInfo(String userId, String userPwd, String address, String phone, String email) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().ModifyInfo(con, userId, userPwd, address, phone, email);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

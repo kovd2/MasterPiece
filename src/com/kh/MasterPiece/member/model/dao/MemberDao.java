@@ -213,4 +213,34 @@ public class MemberDao {
 		return result;
 	}
 
+	public int ModifyInfo(Connection con, String userId, String userPwd, String address, String phone, String email) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("ModifyInfo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userPwd);
+			pstmt.setString(2, address);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, email);
+			pstmt.setString(5, userId);
+			
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }
