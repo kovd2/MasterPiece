@@ -1,21 +1,25 @@
 package com.kh.MasterPiece.board.model.service;
 
+import static com.kh.MasterPiece.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
-import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
-import static com.kh.MasterPiece.common.JDBCTemplate.*;
 
 public class BoardService {
 
-	public int insertBoard(Board b, ArrayList<Attachment> fileList)
+	public int insertBoard(Board b, ArrayList<Attach> fileList)
 	{
 		Connection conn = getConnection();
 		int result = 0;
 		
 		int result1 = new BoardDao().insertBoardContent(conn, b);
+		
+		System.out.println("result1 : " + result1);
 		
 		if(result1 > 0)
 		{
@@ -29,8 +33,7 @@ public class BoardService {
 		
 		int result2 = new BoardDao().insertAttachment(conn, fileList);
 		
-		/*System.out.println("result1 : " + result1);
-		System.out.println("result2 : " + result2);
+		/*System.out.println("result2 : " + result2);
 		
 		System.out.println("?? : " + (result1>0 && result2>0));*/
 		
@@ -73,5 +76,21 @@ public class BoardService {
 		close(conn);
 		
 		return list;
+	}
+	public Board selectOne(int num)
+	{
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectOne(conn, num);
+		
+		return b;
+	}
+	public Attach selectImage(int num)
+	{
+		Connection conn = getConnection();
+		
+		Attach a = new BoardDao().selectImage(conn, num);
+		
+		return a;
 	}
 }
