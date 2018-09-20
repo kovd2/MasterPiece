@@ -13,14 +13,9 @@ public class BuyerHistory implements Serializable{
 	private String orderCheck;
 	private int payPrice;
 	private int orderCount;
+	private String payType;
 	
 	public BuyerHistory(){}
-
-
-
-
-
-
 
 	public BuyerHistory(Date payDate, String prdName, int buyNo, String prdCode, String buyStatus,
 			String deliveryOption, String orderCheck, int payPrice, int orderCount) {
@@ -37,62 +32,29 @@ public class BuyerHistory implements Serializable{
 	}
 
 
-
-
-
-
-
 	public int getPayPrice() {
 		return payPrice;
 	}
-
-
-
-
-
-
 
 	public void setPayPrice(int payPrice) {
 		this.payPrice = payPrice;
 	}
 
-
-
-
-
-
-
 	public int getOrderCount() {
 		return orderCount;
 	}
-
-
-
-
-
-
 
 	public void setOrderCount(int orderCount) {
 		this.orderCount = orderCount;
 	}
 
-
-
-
-
-
-
 	public String getOrderCheck() {
 		return orderCheck;
 	}
 
-
-
 	public void setOrderCheck(String orderCheck) {
 		this.orderCheck = orderCheck;
 	}
-
-
 
 	public Date getPayDate() {
 		return payDate;
@@ -140,6 +102,14 @@ public class BuyerHistory implements Serializable{
 
 	public void setDeliveryOption(String deliveryOption) {
 		this.deliveryOption = deliveryOption;
+	}
+
+	public String getPayType() {
+		return payType;
+	}
+
+	public void setPayType(String payType) {
+		this.payType = payType;
 	}
 
 	@Override
