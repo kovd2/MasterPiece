@@ -4,30 +4,33 @@ import static com.kh.MasterPiece.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.product.model.dao.ProductDao;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 public class ProductService {
-	//장바구니 추가
-	public ArrayList<Product> selectAllCart() {
+
+	public ArrayList<Product> selectListAll() {
 		Connection con = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectAllCart(con);
+		ArrayList<Product> list = new ProductDao().selectListAll(con);
 		
 		close(con);
-		
 		
 		return list;
 	}
 
-	public ArrayList<Product> showCart() {
-		Connection con = getConnection();
-		ArrayList<Product> list = new ProductDao().showCart(con);
+	public HashMap<String, Attachment> imgList() {
+Connection con = getConnection();
+		
+		HashMap<String, Attachment> imgList = new ProductDao().imgList(con);
 		
 		close(con);
 		
-		return list;
+		return imgList;
 	}
+	
 
 }

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +12,7 @@
 <style>
 .wrap {
 	width: 1100px;
-	height: 2000px;
+	height: auto;
 	margin: 0 auto;
 	align:center;
 }
@@ -343,7 +347,7 @@
 				<ul class="bestPrd_list">
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/jinseok/cpu/i7_8700K.jpg">
+							<img src="/MasterPiece/images/jinseok/cpu/i7_8700K.jpg">
 							<div class="Prd_name">
 								[대리점정품]인텔 코어8세대 i7-8700K 커피레이크 (CPU/3.7GHz/12MB/LGA1151-V2)
 								<div class="Prd_price">569,000원</div>
@@ -352,7 +356,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/jinseok/cpu/i7_8700.jpg">
+							<img src="/MasterPiece/images/jinseok/cpu/i7_8700.jpg">
 							<div class="Prd_name">
 								[대리점정품]인텔 코어8세대 i7-8700 커피레이크 (CPU/3.2GHz/12MB/LGA1151-V2)
 								<div class="Prd_price">555,000원</div>
@@ -361,7 +365,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/jinseok/cpu/i7_7740X.jpg">
+							<img src="/MasterPiece/images/jinseok/cpu/i7_7740X.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -370,7 +374,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/jinseok/cpu/i5_8600K.jpg">
+							<img src="/MasterPiece/images/jinseok/cpu/i5_8600K.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -379,7 +383,7 @@
 					</li>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="../../images/jinseok/cpu/i5_8600.jpg">
+							<img src="/MasterPiece/images/jinseok/cpu/i5_8600.jpg">
 							<div class="Prd_name">
 								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
 								<div class="Prd_price">89,900원</div>
@@ -409,18 +413,20 @@
 						<li class="top_menu_list">높은가격순</li>
 					</ul>
 				</div>
+			
+			<%for(int i = 0; i < list.size(); i++){ %>
 				<div class="Prd_list">
 					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_7100.jpg">
+						 <img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="100px" height="100px">
 					</div>
 					<div class="Prd_Info">
-						
+						<%= list.get(i).getPrd_name()%>
 					</div>
 					<div class="price_list">
 						<div class="priceArea">
 							<dl class="Prd_price">
 								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
+								<dd><%=list.get(i).getPrice() %> 원</dd>
 							</dl>
 						</div>
 						<div class="prd_count">수량
@@ -434,219 +440,16 @@
 						</div>
 						<div class="btnArea">&nbsp;
 							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_7350K.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_8100.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i3_8350K.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7400.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7500.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="Prd_list">
-					<div class="Prd_img">
-						<img class="p_img"alt="" src="../../images/jinseok/cpu/i5_7600.jpg">
-					</div>
-					<div class="Prd_Info">
-					
-					</div>
-					<div class="price_list">
-						<div class="priceArea">
-							<dl class="Prd_price">
-								<dt>판매가격</dt>
-								<dd>478,000 원</dd>
-							</dl>
-						</div>
-						<div class="prd_count">수량
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
-								<img src="../../images/jinseok/icon/go_cart_btn.gif">
-							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
-								<img src="../../images/jinseok/icon/go_pay_btn.gif">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<% } %>
+			</div>	
 		</div>
 	</div>
 	<script>
