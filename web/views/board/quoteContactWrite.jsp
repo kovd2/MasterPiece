@@ -99,7 +99,7 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="<%= request.getContextPath() %>/insert.qc" method="post" encType="multipart/form-data" style="margin-top:-8px;">
+					<form action="<%= request.getContextPath() %>/insert.qc" method="post" style="margin-top:-8px;">
 						<table style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
@@ -117,10 +117,6 @@ table th
 									<td class="boardContent" colspan="3" style="text-align:center; height:300px;">
 										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
 									</td>
-								</tr>
-								<tr>
-									<th style="vertical-align:middle; height:50px;">이미지</th>
-									<td colspan="3"><input type="file" placeholder="파일을 선택하세요." name="fileImage" multiple="multiple" style="margin-left:7px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">비밀번호</th>
