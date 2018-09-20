@@ -76,7 +76,7 @@
 			<div class="text" onclick="location.href='../member/myPage.jsp'">회원정보</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../buyerHistory/myPage_buy.jsp'">구매내역</div>
+				onclick="location.href='<%= request.getContextPath() %>/view_history">구매내역</div>
 			<br>
 			<div class="text" onclick="location.href='../cart/cart_myPage.jsp'">장바구니</div>
 			<br>
