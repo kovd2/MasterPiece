@@ -5,12 +5,18 @@
  ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
  HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
 
- 
+ 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -74,7 +80,54 @@ background: lightblue;
 			</tr>
 			<%} %>
 			</table>
+			<div class="pagingArea" align="center">
+			<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=1'"><<</button>
+			<% if(currentPage <= 1){ %>
+				<button disabled><</button>
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=currentPage - 1 %>'"><</button>
+			<% } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+					if(p == currentPage){
+			%>
+						<button disabled><%= p %></button>
+			<%      }else{ %>
+						<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=p%>'"><%= p %></button>
+			<%      } %>
+			<% } %>			
+			
+			<% if(currentPage >= maxPage){ %>
+				<button disabled>></button>
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=maxPage%>'">>></button>
+			
+		</div>
 		</div>
 	</div>
 </body>
+<script>
+	$(function(){
+		//1번
+		$("#nameBtn").click(function(){
+			var name = $("#myName").val();
+			
+			$.ajax({
+				url:"test1.do",
+				data:{name:name},
+				type:"get",
+				success:function(data){
+					console.log("서버 전송 성공");
+				},
+				error:function(status, msg){
+					console.log("서버 전송 실패");
+				}
+			});
+		});
+		
+		
+</script>
 </html>
