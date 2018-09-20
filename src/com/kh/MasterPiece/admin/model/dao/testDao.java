@@ -269,5 +269,97 @@ public class testDao {
 		
 		return imgList;
 	}
+
+
+	public int getListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("listCount");
+		
+		int listCount = 0;
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+			
+		}
+		
+		
+		
+		return listCount;
+	}
+
+
+	public ArrayList<Product> selectList(Connection con, int currentPage, int limit) {
+PreparedStatement pstmt = null;
+		
+		
+		ResultSet rset = null;
+		ArrayList<Product> list = null;
+		
+		
+		String query = prop.getProperty("listpage");
+		
+		try {
+			//페이징 처리 전
+			//stmt = con.createStatement();
+			//rset = stmt.executeQuery(query);
+			
+			//페이징처리 후
+			pstmt = con.prepareStatement(query);
+			
+			//조회 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Product>();
+			
+			while(rset.next()){
+				Product b = new Product();
+				
+				b.setPrd_code(rset.getString("prd_code"));
+				b.setManufacturer(rset.getString("MANUFACTURER"));
+				b.setPrice(rset.getInt("PRICE"));
+				b.setPrd_name(rset.getString("PRD_NAME"));
+				b.setRelease_date(rset.getDate("RELEASE_DATE"));
+				b.setCategory(rset.getString("CATEGORY"));
+				b.setSell_count(rset.getInt("SELL_COUNT"));
+				b.setStock(rset.getInt("STOCK"));
+				
+				list.add(b);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//close(stmt);
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return list;
+	}
 	
 }

@@ -77,4 +77,24 @@ public class testService {
 		close(con);
 		return imgList;
 	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Product> selectList(int currentPage, int limit) {
+Connection con = getConnection();
+		
+		ArrayList<Product> list = new testDao().selectList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
 }
