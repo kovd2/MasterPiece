@@ -11,6 +11,7 @@ import com.kh.MasterPiece.product.model.vo.Product;
 
 import static com.kh.MasterPiece.common.JDBCTemplate.*;
 
+
 public class MainService {
 	
 	//메인 상품 DB 조회 메소드
@@ -56,5 +57,30 @@ public class MainService {
 		
 		return list;
 	}
+
+
+	public ArrayList<HashMap<String, Object>> selectImgList() {
+		Connection con = getConnection();
+		
+		ArrayList<HashMap<String, Object>> list = new MainDao().selectImgList(con);
+		
+		close(con);
+		
+		return list;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

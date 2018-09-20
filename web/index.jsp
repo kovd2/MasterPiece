@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*, com.kh.MasterPiece.product.model.vo.*"%>
 <%
-	 ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
+	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
 	/* ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list"); */
-
 %>
 
 <!DOCTYPE html>

@@ -31,10 +31,11 @@ public class SelectGhapicMainServlet extends HttpServlet {
 		int maxPage;		//전체 페이지에서 가장 마지막 페이지
 		int startPage;		//한 번에 표시될 페이지가 시작할 페이지
 		int endPage;		//한 번에 표시될 페이지가 끝나는 페이지
-		
+	
 		currentPage = 1;
 		
 		limit = 3;
+		
 		if(request.getParameter("currentPage") != null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
@@ -55,12 +56,14 @@ public class SelectGhapicMainServlet extends HttpServlet {
 		
 		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage, limit);
 		ArrayList<Product> list = new MainService().selectList(currentPage, limit);
-		HashMap<String, Attachment> imgList = new MainService().selectImageList();
 		
+		
+		HashMap<String, Attachment> imgList = new MainService().selectImageList();
 		String page = "";
 		
 		if(list != null){
-			page = "index.jsp";
+			//page = "index.jsp";
+			page = "mainTest.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("imgList", imgList);
 			request.setAttribute("pi", pi);

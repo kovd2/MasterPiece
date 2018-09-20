@@ -190,20 +190,19 @@ private Properties prop = new Properties();
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("selectImageList");
-		
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			
 			rset = pstmt.executeQuery();
 			
-			list = new  HashMap<String, Attachment>();
+			list = new HashMap<String, Attachment>();
 			
 			while(rset.next()){
 				Attachment a = new Attachment();
-				a.setChangeName(rset.getString("file_name"));
+				a.setChangeName(rset.getString("change_name"));
 				
 				list.put(rset.getString("prd_code"), a);
-				
 			}
 			
 		} catch (SQLException e) {
@@ -215,6 +214,11 @@ private Properties prop = new Properties();
 		}		
 		
 		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectImgList(Connection con) {
+		
+		return null;
 	}
 
 }
