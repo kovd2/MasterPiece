@@ -56,7 +56,12 @@ public class BuyerHistoryDao {
 				b.setPayDate(rset1.getDate("pay_date"));
 				b.setPrdCode(rset1.getString("prd_code"));
 				b.setPrdName(rset1.getString("prd_name"));
-				b.setOrderCheck(Integer.toString(rset1.getInt("order_check")));
+				b.setOrderCheck(rset1.getString("order_check"));
+				b.setPayPrice(rset1.getInt("pay_price"));
+				b.setOrderCount(rset1.getInt("order_count"));
+				b.setPayType(rset1.getString("pay_type"));
+				
+				list.add(b);
 			}
 					
 			

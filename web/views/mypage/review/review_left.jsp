@@ -91,8 +91,12 @@
 			<br>
 			<div class="text" onclick="location.href='../faq/faq_myPage.jsp'">FAQ
 				자주하는 질문</div>
+			<br>
+			<div class="text"
+				onclick="location.href='<%=request.getContextPath()%>/views/mypage/member/myPage2.jsp'">회원
+				탈퇴</div>
 
-			<br> <br> <br> <br>
+			<br> <br><br><br>
 
 			<div class='sub_text last-child'>
 				<div class='first-child'>

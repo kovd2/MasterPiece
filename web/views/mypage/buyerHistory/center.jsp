@@ -137,6 +137,15 @@ div {
 	border-bottom: 1px solid #ccc;
 }
 
+.data {
+	text-align: center;
+	line-height: 110px;
+	background-color: #e9ecef;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
 .main_list .contents {
 	width: 937px;
 	border-bottom: 1px solid #ccc;
@@ -251,7 +260,7 @@ div {
 							</div>
 							<span></span>
 						</div>
-						<script>
+						<!-- 	<script>
 							//기간조회
 							function period_views() {
 								location.href = "index.php?menu_type=&date_num="
@@ -437,7 +446,7 @@ $(function() {
 	});
 
 });
-</script>
+</script> -->
 						<!-- 선택조회 끝 -->
 
 
@@ -523,7 +532,34 @@ $(function() {
 					<span class='nth-child7'>처리현황</span> <span class='nth-child8'>배송방법</span>
 
 				</div>
+				<% if(list==null) {%>
 				<div class='contents no_data'>1주일 이내에 구매하신 내역이 없습니다.</div>
+				<%}else{ 
+				for(int i =0; i<list.size(); i++){%>
+
+				<div class='contents data'>
+					<span><input type="checkbox"></span>
+					<span class='contents data1'><%=list.get(i).getPayDate()%></span>
+					
+					<span class='contents data2'><%=list.get(i).getBuyNo()%></span>
+					
+					<span class='contents data3'><img alt=""
+						src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(i).getPrdCode()).getChangeName()%>"
+						width="50px" height="50px"></span>
+						
+					<span class='contents data4'><%=list.get(i).getPayPrice()%></span>
+					<span class='contents data5'><%=list.get(i).getOrderCount() %></span>
+					<span class='contents data6'><%=list.get(i).getBuyStatus()%></span>
+					<span class='contents data7'><%=list.get(i).getPayType() %></span>
+					<span class='contents data8'><%=list.get(i).getDeliveryOption() %></span>
+
+
+
+
+				</div>
+
+
+				<%}} %>
 			</div>
 
 

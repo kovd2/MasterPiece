@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.* , com.kh.MasterPiece.mypage.buyerhistory.model.vo.*, com.kh.MasterPiece.board.model.vo.*" %>    
+<% ArrayList<BuyerHistory> list = (ArrayList<BuyerHistory>)request.getAttribute("list");
+	HashMap<String, Attachment> map = (HashMap<String,Attachment>)request.getAttribute("imageList");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
