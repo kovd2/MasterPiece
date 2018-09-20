@@ -45,9 +45,9 @@ public class SelectQuoteContactListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = new BoardService().getListCount();
+		int listCount = new BoardService().getQuoteContactListCount();
 		
-		System.out.println("listcount : " + listCount);
+		/*System.out.println("listcount : " + listCount);*/
 		
 		maxPage = (int)((double)listCount / limit + 1.4);
 		
@@ -62,7 +62,7 @@ public class SelectQuoteContactListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<Board> list = new BoardService().selectList(currentPage, limit);
+		ArrayList<Board> list = new BoardService().selectQuoteContactList(currentPage, limit);
 		
 		System.out.println("servlet List : " + list);
 		
@@ -77,7 +77,7 @@ public class SelectQuoteContactListServlet extends HttpServlet {
 		else
 		{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 조회 실패");
+			request.setAttribute("msg", "견적 요청 게시판 조회 실패");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
