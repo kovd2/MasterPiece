@@ -17,7 +17,7 @@ import com.kh.MasterPiece.board.model.vo.Board;
 /**
  * Servlet implementation class SelectOneBoardServlet
  */
-@WebServlet("/selectOne.qc")
+@WebServlet("/selectOne.qc") 
 public class SelectOneQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
