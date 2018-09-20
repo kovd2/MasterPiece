@@ -94,4 +94,14 @@ public class MemberService {
 		return result;
 	}
 
+	public int MemberOut(String userId, String userPwd) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().MemberOut(con, userId, userPwd);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

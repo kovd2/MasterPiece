@@ -243,4 +243,30 @@ public class MemberDao {
 		return result;
 	}
 
+	public int MemberOut(Connection con, String userId, String userPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("MemberOut");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }

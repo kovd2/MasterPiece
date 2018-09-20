@@ -281,6 +281,7 @@ input[type="radio" i], input[type="checkbox" i] {
 	<input type="hidden" id="userAddress" value="<%=loginUser.getAddress() %>"> <!-- 주소 불러오기용 -->
 	<input type="hidden" id="userPhone" value="<%=loginUser.getPhone() %>"> <!-- 연락처 불러오기용 -->
 	<input type="hidden" id="userEmail" value="<%=loginUser.getEmail() %>"> <!-- 이메일 불러오기용 -->
+	
 	<form id="ModifyInfoForm" action="<%=request.getContextPath()%>/ModifyInfo.me" method="post">
 	<div class="centerWrapArea">
 		<div class="section">
@@ -303,7 +304,7 @@ input[type="radio" i], input[type="checkbox" i] {
 
 
 				<div>
-					<div class='nth-child1 '>비밀번호 입력</div>
+					<div class='nth-child1'>비밀번호 입력</div>
 					<div class='nth-child2'>
 						<input name="userPwd" id="userPwd" class='info_input red_focus'
 							type='password' maxlength="16" />
@@ -311,7 +312,7 @@ input[type="radio" i], input[type="checkbox" i] {
 				</div>
 
 				<div>
-					<div class='nth-child1 '>비밀번호 확인</div>
+					<div class='nth-child1'>비밀번호 확인</div>
 					<div class='nth-child2'>
 						<input name="userPwd2" id="userPwd2" class='info_input red_focus'
 							type='password' maxlength="16" />
@@ -339,50 +340,129 @@ input[type="radio" i], input[type="checkbox" i] {
 						<input type="text" maxlength="3" id="phone1" name="tel1" style="width:60px" class="info_input sub_input2">  
 						<input type="text" maxlength="4" id="phone2" name="tel2" style="width:60px" class="info_input sub_input2"> 
 						<input type="text" maxlength="4" id="phone3" name="tel3" style="width:60px" class="info_input sub_input2">
-
 					</div>
 				</div>
-
 				<div>
 					<div class='nth-child1'>이메일</div>
-					<div class='nth-child2' >
-
+					<div class='nth-child2'>
 						<div class='info_mail'>
-							<input type='text' id="email" name="email1" class='info_mail_1' /> @
-							<input type='text' id="email2" name="email2" class='info_mail_1' />
+							<input type='text' id="email" name="email" class='info_mail_1'>
 						</div>
-
-						<span class='btn_124_bg_blue ml10' id="id_email_overlap_btn">중복확인</span>
+						<span class='btn_124_bg_blue ml10' id="emailCheck2">중복확인</span>
 						<input type="hidden" name="id_overlab_chk_flag"
 							id="id_overlab_chk_flag">
 					</div>
 				</div>
-
-
-
 			</div>
-
 				<br><br>
 				<div class='btn_box'>
-
-					<a href="/"><span class='btn_140_red'>취소</span></a> <span
-						class='btn_140_bg_red' onclick="wSend();">변경</span>
-
+					<a href="/"><span class='btn_140_red'>취소</span></a>
+					<span id="wSend" class='btn_140_bg_red' onclick="wSend();">변경</span>
 				</div>
 
 			</div>
 
 		</div>
-	</div>
+
 	</form>
 	
 	<script>
-		function wSend(){
-			
-			alert("정보 수정이 완료되었습니다.");
-			$("#ModifyInfoForm").submit();
+		var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		var regPhone = /^[0-9]+$/;
+		function wSend(){	
+			if(!regPhone.test($('#phone1').val())){
+            	alert("숫자만 가능합니다.");
+            	$('#phone1').focus();
+            	return;
+            }
+			if(!regPhone.test($('#phone2').val())){
+            	alert("숫자만 가능합니다.");
+            	$('#phone2').focus();
+            	return;
+            }
+			if(!regPhone.test($('#phone3').val())){
+            	alert("숫자만 가능합니다.");
+            	$('#phone3').focus();
+            	return;
+            }
+
+			if(!regEmail.test($('#email').val())) {
+                alert("이메일 주소가 유효하지 않습니다");
+                $('#email').focus();            
+            }else{
+				if($('#userPwd').val()!="" && $('#userPwd2').val() == $('#userPwd').val() && $('#phone').val()!="" && $('#address3').val()!="" && $('#email').val()!=""){			
+					alert("정보 수정이 완료되었습니다.");
+					$("#ModifyInfoForm").submit();
+				}
+            }
 		}
 		
+		$(function(){
+			  $("#wSend").click(function(){
+	
+				   if($('#userPwd').val()==""){
+					    alert("비밀번호를 입력 해 주세요");
+					    $('#userPwd').focus();
+					    return;	
+				   }
+				   
+				   if($('#userPwd2').val() != $('#userPwd').val()){
+					    alert("입력하신 비밀번호를 확인 해 주세요");
+					    $('#userPwd2').focus();
+					    return;
+				   }
+				   
+				   if($('#address3').val()==""){
+					    alert("주소를 입력 해 주세요");
+					    $('#address3').focus();
+					    return;
+				   }
+				   
+				   if($('#phone').val()==""){
+					    alert("연락처를 입력 해 주세요");
+					    $('#phone').focus();
+					    return;
+				   }
+			   
+				   if($('#email').val()==""){
+					    alert("이메일을 입력 해 주세요");
+					    $('#email').focus();
+					    return;
+				   }
+				   
+			});
+		});
+		
+		$("#emailCheck2").click(function(){
+			
+			var email = $("#email").val();
+			
+			if(!regEmail.test(email)) {
+	               alert('사용할 수 없는 이메일입니다.');
+	               email.focus();
+	               return false;
+	           }
+			
+			$.ajax({
+				
+				url:"<%=request.getContextPath()%>/emailCheck.do",
+				data:{email:email},
+				type:"get",
+				success:function(data){
+					if(data == 0){
+						alert("사용 가능한 이메일입니다.");
+						checkValue2 = 1;
+					}else{
+						alert("사용 중인 이메일입니다.");
+					}
+				}
+			});
+		});
+	
+	</script>
+		
+		
+	<script>
 		function searchAdd() {
 			 new daum.Postcode({
 		            oncomplete: function(data) {
@@ -420,34 +500,31 @@ input[type="radio" i], input[type="checkbox" i] {
 		            }
 		        }).open();
 		    }
-	</script>
+		</script>
+		
 	
+		<script> 
+		
+		/* 이메일 정보 받아오기 */
+		var address = document.getElementById("userAddress").value; + "";
+		var addressArr = address.split('|', 3);
+		
+		$("#address1").val(addressArr[0]);
+		$("#address2").val(addressArr[1]);
+		$("#address3").val(addressArr[2]);
+		
+		/* 연락처 정보 받아오기 */
+		var phone = document.getElementById("userPhone").value; + "";
+		var phoneArr = phone.split('-', 3);
+		
+		$("#phone1").val(phoneArr[0]);
+		$("#phone2").val(phoneArr[1]);
+		$("#phone3").val(phoneArr[2]);
+		
+		/* 이메일 정보 받아오기 */
+		var email = document.getElementById("userEmail").value;
+		$("#email").val(email);
 
-	<script> 
-	
-	/* 이메일 정보 받아오기 */
-	var address = document.getElementById("userAddress").value; + "";
-	var addressArr = address.split('|', 3);
-	
-	$("#address1").val(addressArr[0]);
-	$("#address2").val(addressArr[1]);
-	$("#address3").val(addressArr[2]);
-	
-	/* 연락처 정보 받아오기 */
-	var phone = document.getElementById("userPhone").value; + "";
-	var phoneArr = phone.split('-', 3);
-	
-	$("#phone1").val(phoneArr[0]);
-	$("#phone2").val(phoneArr[1]);
-	$("#phone3").val(phoneArr[2]);
-	
-	/* 이메일 정보 받아오기 */
-	var email = document.getElementById("userEmail").value; + "";
-	var emailArr = email.split('@', 2);
-	
-	$("#email").val(emailArr[0]);
-	$("#email2").val(emailArr[1]);
-	
 	</script>
 
 </body>

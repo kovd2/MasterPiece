@@ -110,9 +110,11 @@
 				<tr>
 					<th height="40px">연락처</th>
 					<td>
-						<input type="text" maxlength="3" id="phone" name="tel1" style="width:60px" class="form-control2"> - 
-						<input type="text" maxlength="4" id="phone" name="tel2" style="width:60px" class="form-control2"> -
-						<input type="text" maxlength="4" id="phone" name="tel3" style="width:60px" class="form-control2">
+						<div id="phoneAll">
+							<input type="text" maxlength="3" id="phone1" name="tel1" style="width:60px" class="form-control2"> - 
+							<input type="text" maxlength="4" id="phone2" name="tel2" style="width:60px" class="form-control2"> -
+							<input type="text" maxlength="4" id="phone3" name="tel3" style="width:60px" class="form-control2">
+						</div>
 					</td>
 				</tr>
 				<tr>
@@ -142,45 +144,104 @@
 				<div id="joinBtn" style="font-size:13px" onclick="insertMember()" >가입하기</div>
 			</div>
 			<script>
-			var userName = document.getElementById("userName").value;
 			var checkValue = 0; //중복확인 버튼눌렀는지 확인용
 			var checkValue2 = 0;
-			//var joinNameCheck = /^[가-힣]{2,4}$/; // 한글 이름 2~4자 이내
-		   var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-		    
-		    var chk = /^[가-힣]+$/;
-
+			
+		   	var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		   	var regPhone = /^[0-9]+$/;
+		   	
 				function insertMember(){
-				if(checkValue != 1){
 					
-					alert("아이디 중복확인을 해주세요.")
-				}else if(checkValue2 != 1){
-					
-					alert("이메일 중복확인을 해주세요.");
-					
-				}else if(!regEmail.test($('#email').val())) {
-	                alert('이메일 주소가 유효하지 않습니다');
-	                $('#email').focus();
-	                
-	            }else if(!chk.test(userName)){ 
+				   if($('#userName').val()==""){
+					    alert("이름을 입력 해 주세요");
+					    $('#userName').focus();
+					    return;
+				   }
+			   
+				   if($('#userId').val()==""){
+					    alert("아이디를 입력 해 주세요");
+					    $('#userId').focus();
+					    return;
+				   }
+				   if($('#userPwd').val()==""){
+					    alert("비밀번호를 입력 해 주세요");
+					    $('#userPwd').focus();
+					    return;	
+				   }
+				   if($('#userPwd2').val() != $('#userPwd').val()){
+					    alert("입력하신 비밀번호를 확인 해 주세요");
+					    $('#userPwd2').focus();
+					    return;
+				   }
+				   if($('#phone').val()==""){
+					    alert("연락처를 입력 해 주세요");
+					    $('#phone').focus();
+					    return;
+				   }
+				   
+				   if(!regPhone.test($('#phone1').val())) {
+
+		                alert('숫자만 가능합니다.');
+		                $('#phone1').focus();
+		                return;
+		           }
+				   
+				   if(!regPhone.test($('#phone2').val())) {
+
+		                alert('숫자만 가능합니다.');
+		                $('#phone2').focus();
+		                return;
+		           }
+				   
+				   if(!regPhone.test($('#phone3').val())) {
+
+		                alert('숫자만 가능합니다.');
+		                $('#phone3').focus();
+		                return;
+		           }
+
+				   if($('#address1').val()==""){
+					    alert("주소를 입력 해 주세요");
+					    $('#address1').focus();
+					    return;
+				   }
+				   if($('#address2').val()==""){
+					    alert("주소를 입력 해 주세요");
+					    $('#address2').focus();
+					    return;
+				   }
+				   if($('#address3').val()==""){
+					    alert("주소를 입력 해 주세요");
+					    $('#address3').focus();
+					    return;
+				   }
+				   if($('#email').val()==""){
+					    alert("이메일을 입력 해 주세요");
+					    $('#email').focus();
+					    return;
+				   }
+				   
+				   
 	
-	            	alert("한글 이름을 입력해 주세요.");
-	            	
-	            	
-	            }/* else if($('#userId').length() > 6 || $('#userId').length() < 14){
-	            	
-	            	alert("6글자이상 14자이하로 입력해 주세요.");
-	            	
-	            	return false;
-	            	
-	            } */else{
-					if($('#userName').val()!="" && $('#userId').val()!="" && $('#userPwd').val()!="" && $('#userPwd2').val() == $('#userPwd').val() && $('#phone').val()!="" && $('#address1').val()!="" && $('#address2').val()!="" && $('#address3').val()!="" && $('#email').val()!="" && userName != chk){
+					if(checkValue != 1){
 						
-						alert("MasterPiece 회원이 된 걸 환영합니다.");
-						$("#joinForm").submit();
+						alert("아이디 중복확인을 해주세요.")
+					}else if(checkValue2 != 1){
+						
+						alert("이메일 중복확인을 해주세요.");
+						
+					}else if(!regEmail.test($('#email').val())) {
+		                alert('이메일 주소가 유효하지 않습니다');
+		                $('#email').focus();
+		                
+		            }else{
+						if($('#userName').val()!="" && $('#userId').val()!="" && $('#userPwd').val()!="" && $('#userPwd2').val() == $('#userPwd').val() && $('#phone').val()!="" && $('#address1').val()!="" && $('#address2').val()!="" && $('#address3').val()!="" && $('#email').val()!=""){
+							
+							alert("MasterPiece 회원이 된 걸 환영합니다.");
+							$("#joinForm").submit();
+						}
+						
 					}
-					
-				}
 					
 				}
 					
@@ -225,66 +286,7 @@
 				            }
 				        }).open();
 				    }
-				
-
-				$(function(){
-					  //id="btn" 클릭시
-					  $("#joinBtn").click(function(){
-					   //id="userName"이 공백일경우
-						   if($('#userName').val()==""){
-							    //얼럿으로처리
-							    alert("이름을 입력 해 주세요");
-							    //id="userName"인 곳으로 커서를 이동
-							    $('#userName').focus();
-							    return;
-						   }
-					   
-						   if($('#userId').val()==""){
-							    alert("아이디를 입력 해 주세요");
-							    $('#userId').focus();
-							    return;
-						   }
-						   if($('#userPwd').val()==""){
-							    alert("비밀번호를 입력 해 주세요");
-							    $('#userPwd').focus();
-							    return;	
-						   }
-						   if($('#userPwd2').val() != $('#userPwd').val()){
-							    alert("입력하신 비밀번호를 확인 해 주세요");
-							    $('#userPwd2').focus();
-							    return;
-						   }
-						   if($('#phone').val()==""){
-							    alert("연락처를 입력 해 주세요");
-							    $('#phone').focus();
-							    return;
-						   }
-						   if($('#address1').val()==""){
-							    alert("주소를 입력 해 주세요");
-							    $('#address1').focus();
-							    return;
-						   }
-						   if($('#address2').val()==""){
-							    alert("주소를 입력 해 주세요");
-							    $('#address2').focus();
-							    return;
-						   }
-						   if($('#address3').val()==""){
-							    alert("주소를 입력 해 주세요");
-							    $('#address3').focus();
-							    return;
-						   }
-						   if($('#email').val()==""){
-							    alert("이메일을 입력 해 주세요");
-							    $('#email').focus();
-							    return;
-						   }
-						   
-  
-					});
-				});
-				
-				
+	
 				$("#emailCheck").click(function(){
 					
 					var email = $("#email").val();
