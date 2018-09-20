@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 import static com.kh.MasterPiece.common.JDBCTemplate.*;
@@ -28,77 +30,67 @@ public class ProductDao {
 			e.printStackTrace();
 		}
 	}
-
-	public ArrayList<Product> selectAllCart(Connection con) {
-		Statement stmt = null; 
-		ResultSet rset = null;
-		ArrayList<Product> list = null;
-		
-		String query = prop.getProperty("selectAll");
-		
-		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
-			
-			list = new ArrayList<Product>();
-			
-			while(rset.next()){
-				Product p = new Product();
-				
-				p.setPrd_code(rset.getString("prd_code"));
-				p.setManufacturer(rset.getString("manufacturer"));
-				p.setPrice(rset.getInt("price"));
-				p.setPrd_name(rset.getString("prd_name"));
-				p.setCategory(rset.getString("category"));
-				p.setSell_count(rset.getInt("sell_count"));
-	
-				list.add(p);
-				
-
-			}
-					
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(stmt);
-		}
-
-		return list;
-	}
-
-	public ArrayList<Product> showCart(Connection con) {
+	public ArrayList<Product> selectListAll(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<Product> list = null;
 		
-		String query = prop.getProperty("showCart");
+		String query = prop.getProperty("selectListAll");
+		
+		ArrayList<Product> list = new ArrayList<Product>();
 		
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			list = new ArrayList<Product>();
 			
 			while(rset.next()){
 				Product p = new Product();
-				p.setPrd_name(rset.getString("prd_name"));
-				p.setPrice(rset.getInt("price"));
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setPrice(rset.getInt("PRICE"));
 				
 				list.add(p);
 			}
-					
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			close(rset);
+		} finally{
 			close(stmt);
+			close(rset);
 		}
 		
 		return list;
 	}
+	public HashMap<String, Attachment> imgList(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("prdImg");
+		
+		HashMap<String, Attachment> imgList = new HashMap<String, Attachment>();
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				Attachment a = new Attachment();
+				a.setChangeName(rset.getString("change_name"));
+				a.setOriginName(rset.getString("file_name"));
+				a.setUploadDate(rset.getDate("upload_date"));
+				a.setFilePath(rset.getString("save_route"));
+				
+				imgList.put(rset.getString("prd_code"), a);
+			}
+			
 
-
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);		
+		}
+		
+		
+		
+		return imgList;
+	}
 }
