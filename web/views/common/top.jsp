@@ -304,7 +304,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<div class="topContainer">
 		<div class="categoryBox">
 			<div class="categoryNav" id="categoryNav">
-				<div class="categoryBox_css" id="mp">
+				<div class="categoryBox_css" id="mp" onclick="location.href='<%=request.getContextPath()%>/views/product/product_List.jsp'">
 					MasterPiece
 					<ul class="mp_menu">
 						<li onclick="location.href='https://www.google.com/'">게임</li>
