@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+<%
+	Date writeDate = new Date();
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String today = dateFormat.format(writeDate);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +71,10 @@ table th
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
+	<%
+		if(loginUser != null)
+		{
+	%>
 	
 	<!-- 전체 틀 -->
 	<div class="container" style="margin:auto;">
@@ -74,7 +84,7 @@ table th
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='userEstimate.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="<%= request.getContextPath() %>/selectList.ue'">
 					<span style="float:left">유저 견적 게시판</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -89,18 +99,18 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="" method="post" style="margin-top:-8px;">
+					<form action="<%= request.getContextPath() %>/insert.ue" method="post" encType="multipart/form-data" style="margin-top:-8px;">
 						<table style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="border-right:none;">작성자</th>
-									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;">King-Computer</td>
+									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
 									<td style="border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
-									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
+									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= today %></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
-									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="subject" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
@@ -118,7 +128,7 @@ table th
 											<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>
 										</div>
 										<div>
-											<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='userEstimate.jsp'">목록</button>
+											<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">목록</button>
 										</div>
 									</td>
 								</tr>
@@ -133,5 +143,14 @@ table th
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
+	
+	<%
+		}
+		else
+		{
+			request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+			request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+		}
+	%>
 </body>
 </html>

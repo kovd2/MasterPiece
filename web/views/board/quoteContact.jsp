@@ -10,13 +10,13 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	
-	System.out.println("list : " + list);
+	/* System.out.println("list : " + list);
 	System.out.println("listCount : " + listCount);
 	
 	System.out.println("currentPage" + currentPage);
 	System.out.println("maxPage" + maxPage);
 	System.out.println("startPage" + startPage);
-	System.out.println("endPage" + endPage);
+	System.out.println("endPage" + endPage); */
 %>
 <!DOCTYPE html>
 <html>
@@ -110,7 +110,7 @@
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='userEstimate.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">
 					<span style="float:left">유저 견적 게시판</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -155,7 +155,7 @@
 									{
 								%>
 								<tr>
-									<input type="hidden" value="<%= b.getBOARD_ID() %>">
+									<input type="hidden" value="<%= b.getBOARD_NO() %>">
 									<td><%= b.getBOARD_NO() %></td>
 									<td><%= b.getBOARD_TITLE() %></td>
 									<td><%= b.getBOARD_WRITER() %></td>

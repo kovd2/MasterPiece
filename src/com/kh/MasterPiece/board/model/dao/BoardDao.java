@@ -33,12 +33,12 @@ public class BoardDao
 			e.printStackTrace();
 		}
 	}
-	public int insertBoardContent(Connection conn, Board b)
+	public int insertQuoteContactContent(Connection conn, Board b)
 	{
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = prop.getProperty("insertBoard");
+		String query = prop.getProperty("insertQuoteContact");
 		
 		try
 		{
@@ -121,12 +121,12 @@ public class BoardDao
 		
 		return result;
 	}
-	public int getListCount(Connection conn)
+	public int getQuoteContactListCount(Connection conn)
 	{
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = prop.getProperty("listCount");
+		String query = prop.getProperty("quoteContactListCount");
 		
 		int listCount = 0;
 		
@@ -152,13 +152,13 @@ public class BoardDao
 		
 		return listCount;
 	}
-	public ArrayList<Board> selectList(Connection conn, int currentPage, int limit)
+	public ArrayList<Board> selectQuoteContactList(Connection conn, int currentPage, int limit)
 	{
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> list = null;
 		
-		String query = prop.getProperty("selectList");
+		String query = prop.getProperty("selectQuoteContactList");
 		
 		try
 		{
@@ -208,14 +208,14 @@ public class BoardDao
 		
 		return list;
 	}
-	public Board selectOne(Connection conn, int num)
+	public Board selectQuoteContactOne(Connection conn, int num)
 	{
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		Board b = null;
 		
-		String query = prop.getProperty("selectOne");
+		String query = prop.getProperty("selectQuoteContactOne");
 		
 		try
 		{
@@ -294,5 +294,166 @@ public class BoardDao
 		}
 		
 		return a;
+	}
+	public int insertUserEstimateContent(Connection conn, Board b)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertUserEstimate");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBOARD_PWD());
+			pstmt.setString(2, b.getBOARD_TITLE());
+			pstmt.setString(3, b.getBOARD_CONTENT());
+			pstmt.setString(4, b.getBOARD_WRITER());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
+	}
+	public int getUserEstimateListCount(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("userEstimateListCount");
+		
+		int listCount = 0;
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next())
+			{
+				listCount = rset.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
+	public ArrayList<Board> selectUserEstimateList(Connection conn, int currentPage, int limit)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectUserEstimateList");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+			System.out.println("list : " + list);
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public Board selectUserEstimateOne(Connection conn, int num)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Board b = null;
+		
+		String query = prop.getProperty("selectUserEstimateOne");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
 	}
 }

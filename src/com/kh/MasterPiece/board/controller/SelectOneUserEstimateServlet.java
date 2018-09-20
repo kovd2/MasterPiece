@@ -1,7 +1,6 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneBoardServlet
+ * Servlet implementation class SelectOneUserEstimateServlet
  */
-@WebServlet("/selectOne.qc") 
-public class SelectOneQuoteContactServlet extends HttpServlet {
+@WebServlet("/selectOne.ue")
+public class SelectOneUserEstimateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneQuoteContactServlet() {
+    public SelectOneUserEstimateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,23 +35,21 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 	{
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		//System.out.println(num);
-		
-		Board b = new BoardService().selectQuoteContactOne(num);
+		Board b = new BoardService().selectUserEstimateOne(num);
 		Attach a = new BoardService().selectImage(num);
-				
+		
 		String page = "";
 		
 		if(b != null)
 		{
-			page = "views/board/quoteContactDetail.jsp";
+			page = "views/board/userEstimateDetail.jsp";
 			request.setAttribute("b", b);
 			request.setAttribute("a", a);
 		}
 		else
 		{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "견적 요청 게시판 상세보기 실패");
+			request.setAttribute("msg", "유저 견적 게시판 상세보기 실패");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
@@ -65,4 +62,5 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

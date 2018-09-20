@@ -123,7 +123,7 @@ table th
 											if(a.getOriginName() != null)
 											{
 										%>
-										<img class="img" src="<%= request.getContextPath() %>/quoteContact_file_upload/<%= a.getChangeName() %>" style="margin-left:20px;">
+										<img class="img" src="<%= request.getContextPath() %>/userEstimate_file_upload/<%= a.getChangeName() %>" style="margin-left:20px;">
 										<%
 											}
 										%>
@@ -135,16 +135,10 @@ table th
 						</table>
 						<br>
 						<div>
-							<button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/update.qc?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&image=<%= a.getChangeName() %>'">수정</button>
+							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.ue?num=<%= b.getBOARD_NO()+1 %>'">다음</button>
 						</div>
 						<div>
-							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc'">삭제</button>
-						</div>
-						<div>
-							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()+1 %>'">다음</button>
-						</div>
-						<div>
-							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()-1 %>'">이전</button>
+							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.ue?num=<%= b.getBOARD_NO()-1 %>'">이전</button>
 						</div>
 					</div>
 				</div>
