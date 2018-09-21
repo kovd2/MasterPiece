@@ -37,7 +37,7 @@ public class MemberOutServlet extends HttpServlet {
 			
 		}else{
 	
-			
+			page = "views/member/OutError2.jsp";
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

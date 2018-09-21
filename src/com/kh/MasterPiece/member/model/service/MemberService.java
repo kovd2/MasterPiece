@@ -4,7 +4,10 @@ import java.sql.Connection;
 
 import com.kh.MasterPiece.member.model.dao.MemberDao;
 import com.kh.MasterPiece.member.model.vo.Member;
+
+
 import static com.kh.MasterPiece.common.JDBCTemplate.*;
+
 
 public class MemberService {
 
@@ -39,7 +42,8 @@ public class MemberService {
 		
 		return loginUser;
 	}
-
+	
+	//아이디 중복체크
 	public int idCheck(String userId) {
 		
 		Connection con = getConnection();
@@ -103,5 +107,18 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public Member idFind(String userName, String email) {
+		
+		Connection con = getConnection();
+		
+		Member m = new MemberDao().idFind(con, userName, email);
+
+		close(con);
+		
+		return m;
+	}
+
+
 
 }

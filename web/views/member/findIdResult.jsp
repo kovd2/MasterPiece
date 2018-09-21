@@ -80,11 +80,11 @@
 <body>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath() %>/main.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
 	
 	<div class="Form">
 		<div class="inner">
-		
+			
 			<div class="Form2">아이디 찾기</div>
 			<hr style="border:0.5px solid #929292; margin-top:5px;">
 			<p style="font-weight:bold;">가입된 회원님의 아이디</p>
@@ -92,17 +92,21 @@
 			
 			<br>
 			<div class="sendIdArea">
-				<p style="margin-top:20px">요기에 일치하는 고객 아이디</p>
+				<br>
+				<p><%=request.getAttribute("userId")%></p>
+				<br>
 			</div>
 			<br>
 			<button class="button button4" onclick="canBtn()">확인</button>
 		</div>
 	</div>
 	</div>
+	<br><br><br><br>
+	<%@ include file="../common/footer.jsp"%>
 	<script>
 		function canBtn(){
 			
-			location.href = "findId.jsp";
+			location.href = "<%=request.getContextPath() %>/main.jsp";
 			
 		}
 	</script>

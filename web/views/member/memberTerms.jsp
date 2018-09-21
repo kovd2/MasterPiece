@@ -434,10 +434,10 @@ NICE신용평가정보㈜(이하 “대행사”)가 “대행사”에서 제�
 				      </td>
 				    </tr>
 				</table>
-				<br><br>
+				<br>
 				  <button type = "button"  class="btn btn-default" style="margin:10px;" onclick="memberJoin()" id="joinBtn">다 음</button>
 				  <button type = "button"  class="btn btn-default" style="margin:10px;" onclick="canBtn()" id="canBtn">취 소</button>
-
+					<br><br>
 				  <%@ include file="../common/footer.jsp"%>
     </table>
     </center>
