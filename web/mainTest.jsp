@@ -97,7 +97,7 @@
 				url: "graphic.tn",
 				type : "get",
 				data : {
-					
+				/* ds */	
 				}
 			});
 		});
