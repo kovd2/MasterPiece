@@ -82,6 +82,7 @@
 	font-weight: bold;
 	color: black;
 	text-decoration: underline;
+	cursor:pointer;
 }
 
 .bestPrd_area {
@@ -208,14 +209,14 @@
 	display: flex;
 }
 
-.Prd_list_area .Prd_list .Prd_img{
+.Prd_list_area .Prd_list #Prd_img{
 	width:25%;
 	height:100%;
 	border-right:1px solid #dee0e4;
 	margin:0 auto;
 }
 
-.Prd_list_area .Prd_list .Prd_img #Prd_img{
+.Prd_list_area .Prd_list #Prd_img .Prd_img{
 	width:75%;
 	height:75%;
 	margin:25px;
@@ -332,7 +333,7 @@
 			<div class="categorylist_box">
 				<ul class="categorylist">
 					<li class="category_menu"><a href="#">전체</a></li>
-					<li class=""><a href="#">CPU</a></li>
+					<li class=""><a onclick="location.href='<%=request.getContextPath()%>/prdPageList.js'">CPU</a></li>
 					<li class=""><a href="#">메인보드</a></li>
 					<li class=""><a href="#">메모리카드</a></li>
 					<li class=""><a href="#">그래픽카드</a></li>
@@ -425,9 +426,9 @@
 			
 			<%for(int i = 0; i < list.size(); i++){ %>
 				<div class="Prd_list">
-					<div class="Prd_img">
-						<input type="hidden" id="prdDetail" value="<%= list.get(i).getPrd_code()%>">
-						<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" id="Prd_img">
+					<div id="Prd_img" onclick="goDetail(<%= list.get(i).getPrd_code()%>)">
+						<input type="hidden" class="prdDetail" value="<%= list.get(i).getPrd_code()%>">
+						<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
 					</div>
 					<div class="Prd_Info" id="prd_info">
 						[<%=list.get(i).getPrd_code()%>]
@@ -461,11 +462,11 @@
 				</div>
 			<% } %>
 			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=1'"><<</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1'"><<</button>
 			<% if(currentPage <= 1){ %>
 				<button disabled><</button>
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=currentPage - 1 %>'"><</button>
+				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>'"><</button>
 			<% } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
@@ -473,32 +474,28 @@
 			%>
 						<button disabled><%= p %></button>
 			<%      }else{ %>
-						<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=p%>'"><%= p %></button>
+						<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>'"><%= p %></button>
 			<%      } %>
 			<% } %>			
 			
 			<% if(currentPage >= maxPage){ %>
 				<button disabled>></button>
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=currentPage + 1%>'">></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1%>'">></button>
 			<% } %>
 			
-			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=maxPage%>'">>></button>
 			
 		</div>
 			</div>	
 		</div>
 	</div>
 	<script>
-		$(function(){
+		function goDetail(No){
+			var code = No;
 			
-			$("#Prd_img").click(function(){
-				
-				var code = $(this).parent().children("input").val();
-					
-				location.href="<%= request.getContextPath() %>/prdDetail?code=" + code;
-			});
-		});
+			location.href="<%= request.getContextPath()%>/prdDetail?code=" + code;
+		}
 		
 		function goBuy(){
 			location.href="./delivery_page.jsp";

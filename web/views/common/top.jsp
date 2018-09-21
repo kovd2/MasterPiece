@@ -315,7 +315,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<div class="categoryBox_css" id="com">
 					컴퓨터 부품
 					<ul class="com_menu">
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList'">cpu</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js'">cpu</li>
 						<li onclick="location.href='https://www.google.com/'">메인보드</li>
 						<li onclick="location.href='https://www.google.com/'">메모리</li>
 						<li onclick="location.href='https://www.google.com/'">그래픽카드</li>

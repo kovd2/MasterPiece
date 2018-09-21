@@ -24,7 +24,7 @@ public class Attachment implements Serializable
 	public Attachment(){}
 
 	public Attachment(int fileId, int boardId, String originName, String changeName, String filePath, Date uploadDate,
-			int fileLevel, int downloadCount, String status) {
+			int fileLevel, int downloadCount, String status, String code) {
 		super();
 		this.fileId = fileId;
 		this.boardId = boardId;
@@ -35,6 +35,7 @@ public class Attachment implements Serializable
 		this.fileLevel = fileLevel;
 		this.downloadCount = downloadCount;
 		this.status = status;
+		this.code = code;
 	}
 
 	public int getFileId() {
@@ -117,10 +118,17 @@ public class Attachment implements Serializable
 		this.code = code;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "AttachMent [fileId=" + fileId + ", boardId=" + boardId + ", originName=" + originName + ", changeName="
+		return "Attachment [fileId=" + fileId + ", boardId=" + boardId + ", originName=" + originName + ", changeName="
 				+ changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", fileLevel=" + fileLevel
-				+ ", downloadCount=" + downloadCount + ", status=" + status + "]";
+				+ ", downloadCount=" + downloadCount + ", status=" + status + ", code=" + code + "]";
 	}
+
+	
+	
 }
