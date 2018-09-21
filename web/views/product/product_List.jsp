@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
-<%
+<%	
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 .wrap {
@@ -207,11 +215,12 @@
 	margin:0 auto;
 }
 
-.Prd_list_area .Prd_list .Prd_img .p_img{
+.Prd_list_area .Prd_list .Prd_img #Prd_img{
 	width:75%;
 	height:75%;
 	margin:25px;
-	margin-top:0px;
+	margin-top:25px;
+	cursor:pointer;
 }
 
 .Prd_list_area .Prd_list .Prd_Info{
@@ -417,10 +426,12 @@
 			<%for(int i = 0; i < list.size(); i++){ %>
 				<div class="Prd_list">
 					<div class="Prd_img">
-						 <img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="100px" height="100px">
+						<input type="hidden" id="prdDetail" value="<%= list.get(i).getPrd_code()%>">
+						<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" id="Prd_img">
 					</div>
-					<div class="Prd_Info">
-						<%= list.get(i).getPrd_name()%>
+					<div class="Prd_Info" id="prd_info">
+						[<%=list.get(i).getPrd_code()%>]
+						<%=list.get(i).getPrd_name()%> 							
 					</div>
 					<div class="price_list">
 						<div class="priceArea">
@@ -449,21 +460,58 @@
 					</div>
 				</div>
 			<% } %>
+			<div class="pagingArea" align="center">
+			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=1'"><<</button>
+			<% if(currentPage <= 1){ %>
+				<button disabled><</button>
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=currentPage - 1 %>'"><</button>
+			<% } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+					if(p == currentPage){
+			%>
+						<button disabled><%= p %></button>
+			<%      }else{ %>
+						<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=p%>'"><%= p %></button>
+			<%      } %>
+			<% } %>			
+			
+			<% if(currentPage >= maxPage){ %>
+				<button disabled>></button>
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList?currentPage=<%=maxPage%>'">>></button>
+			
+		</div>
 			</div>	
 		</div>
 	</div>
 	<script>
+		$(function(){
+			
+			$("#Prd_img").click(function(){
+				
+				var code = $(this).parent().children("input").val();
+					
+				location.href="<%= request.getContextPath() %>/prdDetail?code=" + code;
+			});
+		});
+		
 		function goBuy(){
 			location.href="./delivery_page.jsp";
-		}
+		};
+		
 		function addCart(){
 			if(confirm("장바구니에 추가 하시겠습니까?")== true){
 				location.href="./cart_page.jsp";
 			}else{
 				return false;
 			}
-		}
-		
+		};
+			
 	</script>
 	
 	<%@include file = "../common/footer.jsp" %>

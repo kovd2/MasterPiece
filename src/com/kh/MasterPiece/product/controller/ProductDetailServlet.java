@@ -2,7 +2,6 @@ package com.kh.MasterPiece.product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.admin.model.service.testService;
 import com.kh.MasterPiece.board.model.vo.Attachment;
-import com.kh.MasterPiece.board.model.vo.PageInfo;
 import com.kh.MasterPiece.product.model.service.ProductService;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 /**
- * Servlet implementation class ProductPageListServlet
+ * Servlet implementation class ProductDetailServlet
  */
-@WebServlet("/prdPageList")
-public class ProductPageListServlet extends HttpServlet {
+@WebServlet("/prdDetail")
+public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductPageListServlet() {
+    public ProductDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,54 +33,25 @@ public class ProductPageListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String code = request.getParameter("code");
 		
-		int currentPage;
-		int limit;
-		int maxPage; 
-		int startPage; 
-		int endPage; 
-
-		currentPage = 1;
-
-		limit = 10;
-
-		if (request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-
-		int listCount = new testService().getListCount();
+		System.out.println("code : " + code);
 		
-		maxPage = (int) ((double) listCount / limit + 0.9);
+		Product p = new ProductService().prdDetail(code);
+		Attachment a = new ProductService().detailImg(code);
 		
-		startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
-
-		endPage = startPage + limit - 1;
-		
-		if (maxPage < endPage) {
-			endPage = maxPage;
-		}
-
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-		
-		
-		//ArrayList<Product> list = new ProductService().selectListAll();
-		ArrayList<Product> list = new ProductService().selectListAll(currentPage, limit);
-		HashMap<String, Attachment> imgList = new ProductService().imgList();
 		String page = "";
 		
-		if(list != null){
-			page = "views/product/product_List.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("imgList", imgList);
-			request.setAttribute("pi", pi);
+		if(p != null){
+			page = "views/product/product_info.jsp";
+			request.setAttribute("p", p);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-
+		
 	}
 
 	/**
