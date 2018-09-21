@@ -20,7 +20,7 @@ import com.kh.MasterPiece.product.model.vo.Product;
 /**
  * Servlet implementation class productListServlet
  */
-@WebServlet("/productList")
+@WebServlet("/productList.swy")
 public class productListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -84,6 +84,7 @@ public class productListServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("imgList", imgList);
 			request.setAttribute("pi", pi);
+			request.setAttribute("cate", "전체");
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");
