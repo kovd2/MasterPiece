@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.MasterPiece.board.model.service.BoardService;
+
 /**
  * Servlet implementation class DeleteReplyQuoteContactServlet
  */
@@ -27,9 +29,23 @@ public class DeleteReplyQuoteContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		int replyBoardId = Integer.parseInt(request.getParameter("replyBoardId"));
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		System.out.println("ㅇㅎboardId : " + boardId);
+		System.out.println("ㅇㅎboardId : " + replyBoardId);
+		System.out.println("boardId : " + boardId);
+		
+		int result = new BoardService().deleteReplyQuoteContact(replyBoardId);
+		
+		if(result > 0)
+		{
+			response.sendRedirect(request.getContextPath() + "/selectOne.qc?num=" + boardId);
+		}
+		else
+		{
+			request.setAttribute("msg", "견적 요청 게시판 등록 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
+		}
 	}
 
 	/**

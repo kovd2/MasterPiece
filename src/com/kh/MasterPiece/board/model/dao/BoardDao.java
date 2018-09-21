@@ -674,4 +674,28 @@ public class BoardDao
 		
 		return list;
 	}
+	public int deleteReplyQuoteContact(Connection conn, int replyBoardId)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteReplyQuoteContact");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, replyBoardId);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -195,6 +195,7 @@
 			$.ajax(
 			{
 				url:"/MasterPiece/insertReply.qc",
+				context:this,
 				data:{writer:writer, replyContent:replyContent, boardId:boardId},
 				type:"post",
 				success:function(data)
@@ -209,10 +210,19 @@
 						var $tr = $("<tr>");
 						var $writerTd = $("<td>").text(data[key].BOARD_WRITER).css("width", "100px");
 						var $replyContentTd = $("<td>").text(data[key].BOARD_CONTENT).css("width", "440px");
+						var $td = $("<td>");
+						var $hiddenValue = $("<input type='text'>").val(data[key].BOARD_ID);
+						
+						var hiddenVal = $hiddenValue.val();
+						
+						/* alert(hiddenVal); */
+								
+						$td.append("<input type='button' value='X'>");
+						$td.append($hiddenValue);
 						
 						$tr.append($writerTd);
 						$tr.append($replyContentTd);
-						$tr.append("<td><button onclick='deleteReply();'>X</button></td>")
+						$tr.append($td);
 						$replyListTable.append($tr);
 					}
 				}
@@ -220,10 +230,14 @@
 		});
 	});
 	
-	function deleteReply()
+	$(document).on('click',"input[type='button']", function()
 	{
-		location.href="<%= request.getContextPath() %>/deleteReply.qc?boardId=<%= b.getBOARD_ID() %>";
-	}
+		var replyBoardId = $(this).parent().children("input[type='text']").val();
+		var boardId = <%= b.getBOARD_ID() %>;
+		
+		location.href="<%= request.getContextPath() %>/deleteReply.qc?replyBoardId=" + replyBoardId + "&boardId=" + boardId;
+	});
+	
 	</script>
 </body>
 </html>
