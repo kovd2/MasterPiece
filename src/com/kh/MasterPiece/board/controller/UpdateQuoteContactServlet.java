@@ -13,7 +13,7 @@ import com.kh.MasterPiece.board.model.vo.Board;
 /**
  * Servlet implementation class UpdateQuoteContactServlet
  */
-@WebServlet("/update.qc")
+@WebServlet("/update.qc1")
 public class UpdateQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

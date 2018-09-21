@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
-import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 public class ProductDao {
@@ -109,8 +108,60 @@ public class ProductDao {
 
 		return imgList;
 	}
+	public HashMap<String, Object> imgList(Connection con, String code) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hmap = null;
+		
+		Product p = null;
+		Attachment at = null;
+		ArrayList<Attachment> list = null;
+		
+		String query = prop.getProperty("imgDetail");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, code);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Attachment>();
+			
+			while(rset.next()){
+				p = new Product();
+				
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setRelease_date(rset.getDate("RELEASE_DATE"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				
+				at = new Attachment();
+				
+				at.setChangeName(rset.getString("change_name"));
+				at.setOriginName(rset.getString("file_name"));
+				at.setUploadDate(rset.getDate("upload_date"));
+				at.setFilePath(rset.getString("save_route"));
+				
+				list.add(at);
+			}
+			
+			hmap = new HashMap<String, Object>();
+			hmap.put("product", p);
+			hmap.put("attachment", list);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return hmap;
+	}
 	
-	public Product prdDetail(Connection con, String code) {
+	/*public Product prdDetail(Connection con, String code) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -147,44 +198,6 @@ public class ProductDao {
 		}
 		
 		return p;
-	}
+	}*/
 
-	public Attachment detailImg(Connection conn, String code) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		Attachment a = null;
-		
-		String query = prop.getProperty("detailImg");
-		
-		try
-		{
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, code);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next())
-			{
-				a = new Attachment();
-				
-				a.setChangeName(rset.getString("change_name"));
-				a.setOriginName(rset.getString("file_name"));
-				a.setFilePath(rset.getString("save_route"));
-				
-			}
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
-			close(rset);
-			close(pstmt);
-		}
-		
-		return a;
-	}
-	
 }

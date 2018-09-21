@@ -20,7 +20,7 @@ import com.kh.MasterPiece.product.model.vo.Product;
 /**
  * Servlet implementation class ProductPageListServlet
  */
-@WebServlet("/prdPageList")
+@WebServlet("/prdPageList.js")
 public class ProductPageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

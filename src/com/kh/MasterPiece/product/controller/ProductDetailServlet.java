@@ -2,6 +2,7 @@ package com.kh.MasterPiece.product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,16 +36,18 @@ public class ProductDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
 		
-		System.out.println("code : " + code);
+		/*Product p = new ProductService().prdDetail(code);*/
+		HashMap<String, Object> hmap = new ProductService().prdDetail(code);
 		
-		Product p = new ProductService().prdDetail(code);
-		Attachment a = new ProductService().detailImg(code);
+		Product p = (Product) hmap.get("product");
+		ArrayList<Attachment> imgList = (ArrayList<Attachment>)hmap.get("attachment");
 		
 		String page = "";
 		
 		if(p != null){
 			page = "views/product/product_info.jsp";
 			request.setAttribute("p", p);
+			request.setAttribute("imgList", imgList);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");

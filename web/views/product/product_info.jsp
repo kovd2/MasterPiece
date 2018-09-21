@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.MasterPiece.product.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*,com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%
 	Product p = (Product)request.getAttribute("p");
+	ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("imgList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

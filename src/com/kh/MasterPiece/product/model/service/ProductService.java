@@ -2,13 +2,14 @@ package com.kh.MasterPiece.product.model.service;
 
 import static com.kh.MasterPiece.common.JDBCTemplate.close;
 import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
+import static com.kh.MasterPiece.common.JDBCTemplate.commit;
+import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
-import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.product.model.dao.ProductDao;
 import com.kh.MasterPiece.product.model.vo.Product;
@@ -35,23 +36,23 @@ public class ProductService {
 		return imgList;
 	}
 
-	public Product prdDetail(String code) {
+	public HashMap<String, Object> prdDetail(String code) {
+		Connection con = getConnection();
+		HashMap<String, Object> hmap = null;
+		
+		hmap = new ProductDao().imgList(con, code);
+		
+		close(con);
+		
+		return hmap;
+	}
+
+	/*public Product prdDetail(String code) {
 		Connection con = getConnection();
 		
 		Product p = new ProductDao().prdDetail(con, code);
 		
 		return p;
-	}
-	
-
-	public Attachment detailImg(String code) {
-		Connection conn = getConnection();
-		
-		Attachment a = new ProductDao().detailImg(conn, code);
-		
-		return a;
-	}
-
-	
+	}*/
 
 }
