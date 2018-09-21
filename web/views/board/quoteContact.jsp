@@ -237,7 +237,7 @@
 		{
 			$(".boardTable td").click(function()
 			{
-				if("<%= loginUser.getUserId() %>" != "admin")
+				<%-- if("<%= loginUser.getUserId() %>" != "admin")
 				{
 					var password = prompt("비공개 게시글입니다. 비밀번호를 입력하세요.");
 	
@@ -266,7 +266,13 @@
 					console.log(num);
 				
 					location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
-				}
+				} --%>
+				
+				var num = $(this).parent().children("input").val();
+				
+				console.log(num);
+			
+				location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
 			});
 		});
 	</script>
