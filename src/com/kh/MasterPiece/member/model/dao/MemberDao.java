@@ -269,4 +269,38 @@ public class MemberDao {
 		return result;
 	}
 
+	public Member idFind(Connection con, String userName, String email) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		
+		String query = prop.getProperty("idFind");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+
+				m.setUserId(rset.getString("user_id"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return m;
+	}
+
+	
+
 }

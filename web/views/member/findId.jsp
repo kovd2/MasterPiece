@@ -14,7 +14,7 @@
 		height: 150px;
 	}
 	
-	#id {
+	#userName {
 		width:300px;
 		height:30px;
 		font-size:15px;
@@ -37,14 +37,14 @@
 		color:black;
 	}
 	
-	#email2 {
+	#email {
 		width:300px;
 		height:30px;
 		font-size:15px;
 		margin-right:12px;
 	}
 	
-	#conBtn {
+	#idFindBtn {
 		width:82px;
 		height:82px;
 		background-color: #f44336;
@@ -101,19 +101,20 @@
 <body>
 	<br><br><br>
 	<div class="loginForm">
-	<a href="<%=request.getContextPath() %>/index.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<a href="<%=request.getContextPath() %>/main.jsp"><img class="image" src="<%=request.getContextPath() %>/images/logo.png" id="logo" align="center"></a>
+	<form id="idFindForm" action="<%=request.getContextPath()%>/idFind" method="post">
 	<table align="center" class="findd">
 		<tr>
 			<td colspan="3">
-			<input type="text" id="id" class="form-control" placeholder="회원정보에 등록된 이름을 입력해주세요" style="font-size:13px;">
+			<input type="text" id="userName" name="userName" class="form-control" placeholder="회원정보에 등록된 이름을 입력해주세요" style="font-size:13px;">
 			</td>
 			<td rowspan="2">
-			<input type="button" id="conBtn" style="padding:0px" onclick="conBtn()" value="확인">
+			<input type="button" id="idFindBtn" style="padding:0px" value="확인">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
-			<input type="text" id="email2" class="form-control" placeholder="회원정보에 등록된 이메일을 입력해주세요" style="font-size:13px;">
+			<input type="text" id="email" name="email" class="form-control" placeholder="회원정보에 등록된 이메일을 입력해주세요" style="font-size:13px;">
 			</td>
 		</tr>
 		<tr>
@@ -129,15 +130,18 @@
 			</td>
 		</tr>
 	</table>
+	</form>
 	</div>
+	<br><br><br><br>
+	<%@ include file="../common/footer.jsp"%>
 	<script>
-
-		function conBtn(){
-			
-			location.href = "findIdResult.jsp";
-			
-		}
-		
+		$(function(){
+			  $("#idFindBtn").click(function(){
+				
+				  $("#idFindForm").submit();
+			  });
+			  
+		});
 	</script>
 
 </body>
