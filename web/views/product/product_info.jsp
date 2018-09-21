@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.product.model.vo.*"%>
+<%
+	Product p = (Product)request.getAttribute("p");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -297,19 +300,19 @@
 		<div class="info_layout">
 			<div class="item_info_layout">
 				<div class="item_img">
-					<img src="../../images/jinseok/cpu/i3_7100.jpg">
+					
 				</div>
 			</div>
 			<div class="item_spec">
 				<div class="item_spec_layout">
 					<div class="info-layout">
 						<ul>
-							<li>상품번호</li>
-							<li>121212</li>
+							<li>상품명</li>
+							<li><%=p.getPrd_name() %></li>
 						</ul>
 						<ul>
 							<li>판매가</li>
-							<li>5121212원</li>
+							<li><%=p.getPrice() %>원</li>
 						</ul>
 						<ul>
 							<li>수량</li>
@@ -325,11 +328,11 @@
 						</ul>
 						<ul>
 							<li>등록일</li>
-							<li>sysdate</li>
+							<li><%=p.getRelease_date() %></li>
 						</ul>
 						<ul>
 							<li>제조사</li>
-							<li>made in intel</li>
+							<li><%=p.getManufacturer() %></li>
 						</ul>
 						<ul>
 							<li>원산지</li>
@@ -356,7 +359,7 @@
 		</div>
 		<br>
 		<div class="detail_div">
-			<div class="before_buy" style="margin-left: 85px;">
+			<div class="before_buy">
 				<img src="../../images/jinseok/icon/before_buy.PNG">
 			</div>
 			<div class="cpu_division">
