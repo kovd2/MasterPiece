@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.product.model.vo.Product; 
 
 public class testService {
@@ -89,12 +90,91 @@ public class testService {
 	}
 
 	public ArrayList<Product> selectList(int currentPage, int limit) {
-Connection con = getConnection();
+		Connection con = getConnection();
 		
 		ArrayList<Product> list = new testDao().selectList(con, currentPage, limit);
 		
 		close(con);
 		
 		return list;
+	}
+
+	public int getCategoryListCount(String code) {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getCategoryListCount(con, code);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Product> selectCategoryList(int currentPage, int limit, String code) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> list = new testDao().selectCategoryList(con, currentPage, limit, code);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int getMemberListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getMemberListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Member> selectMemberList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Member> list = new testDao().selectMemberList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int deleteMember(int code) {
+		Connection con = getConnection();
+		
+		int result= new testDao().deleteMember(con, code);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+	
+		return result;
+	}
+
+	public ArrayList<Member> searchMemberList(String code, String val) {
+		Connection con = getConnection();
+		
+		ArrayList<Member> list = new testDao().searchMemberList(con, code, val);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int deleteProduct(String[] values) {
+		Connection con = getConnection();
+		
+		int result = new testDao().deleteProduct(con, values);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+	
+		return result;
 	}
 }

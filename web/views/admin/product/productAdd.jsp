@@ -11,7 +11,7 @@
 		<jsp:param name="name" value="2" />
 	</jsp:include>
 	<div id="main">
-		<form action="<%=request.getContextPath() %>/productInsert" method="post" encType="multipart/form-data">
+		<form action="<%=request.getContextPath() %>/productInsert.swy" method="post" encType="multipart/form-data">
 			<table align="center" id="mt">
 				<tr>
 					<td><h1>상품 등록</h1></td>

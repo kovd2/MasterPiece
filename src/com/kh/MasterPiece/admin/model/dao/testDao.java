@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 
@@ -24,24 +25,24 @@ public class testDao {
 
 	public testDao() {
 		String fileName = testDao.class.getResource("/sql/admin/admin-query.properties").getPath();
-	
+
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	public int[] Count(Connection con){
 		Statement stmt = null;
 		ResultSet rset = null;
 		Statement stmt2 = null;
 		ResultSet rset2 = null;		
 		String query = prop.getProperty("selectCount");
-		
+
 		int[] result = {0,0,0,0};
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -50,7 +51,7 @@ public class testDao {
 				result[i] = rset.getInt(2);
 				i++;
 			}
-			
+
 			query = prop.getProperty("selectCount2");
 			stmt2 = con.createStatement();
 			rset2 = stmt2.executeQuery(query);
@@ -58,8 +59,8 @@ public class testDao {
 				result[i] = rset2.getInt(2);
 				i++;
 			}
-			
-			
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -67,13 +68,13 @@ public class testDao {
 			close(rset);
 			close(stmt2);
 			close(rset2);
-			
+
 		}
-		
-		
-		
+
+
+
 		return result;
-		
+
 	}
 
 
@@ -125,16 +126,16 @@ public class testDao {
 			//a 공지사항
 			//b 문의
 			//c 견적
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(stmt);
 			close(rset);
-			
+
 		}
-		
-		
+
+
 		return hmap;
 	}
 
@@ -143,9 +144,9 @@ public class testDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("productList");
-		
+
 		ArrayList<Product> list = new ArrayList<Product>();
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -157,10 +158,10 @@ public class testDao {
 				p.setStock(rset.getInt("STOCK"));
 				p.setPrice(rset.getInt("PRICE"));
 				p.setCategory(rset.getString("CATEGORY"));
-				
+
 				list.add(p);
 			}
-			
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,9 +169,9 @@ public class testDao {
 			close(stmt);
 			close(rset);		
 		}
-		
-		
-		
+
+
+
 		return list;
 	}
 
@@ -178,32 +179,32 @@ public class testDao {
 	public int insertAttachment(Connection con, ArrayList<Attachment> fileList) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertAttachment");
-		
-			try {
-				for(int i = 0; i < fileList.size(); i++){
-					pstmt = con.prepareStatement(query);
-					pstmt.setString(1, fileList.get(i).getChangeName());
-					pstmt.setString(2, fileList.get(i).getOriginName());
-					pstmt.setString(3, fileList.get(i).getFilePath());
-					int level = 0;
-					if(i == 0) level = 0;
-					else level = 1;
-					pstmt.setInt(4, level);
-					pstmt.setString(5, fileList.get(i).getCode());
-					
-					result += pstmt.executeUpdate();
-					
-				}
-				
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally{
-				close(pstmt);
+
+		try {
+			for(int i = 0; i < fileList.size(); i++){
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getChangeName());
+				pstmt.setString(2, fileList.get(i).getOriginName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				int level = 0;
+				if(i == 0) level = 0;
+				else level = 1;
+				pstmt.setInt(4, level);
+				pstmt.setString(5, fileList.get(i).getCode());
+
+				result += pstmt.executeUpdate();
+
 			}
-		
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+
 		return result;
 	}
 
@@ -211,9 +212,9 @@ public class testDao {
 	public int insertProduct(Connection con, Product p) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertProduct");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, p.getPrd_code());
@@ -223,14 +224,14 @@ public class testDao {
 			pstmt.setString(5, p.getCategory());
 			pstmt.setInt(6, p.getStock());
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
-		
-		
+
+
 		return result;
 	}
 
@@ -239,9 +240,9 @@ public class testDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("imgList");
-		
+
 		HashMap<String, Attachment> imgList = new HashMap<String, Attachment>();
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -253,10 +254,10 @@ public class testDao {
 				a.setOriginName(rset.getString("file_name"));
 				a.setUploadDate(rset.getDate("upload_date"));
 				a.setFilePath(rset.getString("save_route"));
-				
+
 				imgList.put(rset.getString("prd_code"), a);
 			}
-			
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -264,9 +265,9 @@ public class testDao {
 			close(stmt);
 			close(rset);		
 		}
-		
-		
-		
+
+
+
 		return imgList;
 	}
 
@@ -274,67 +275,67 @@ public class testDao {
 	public int getListCount(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("listCount");
-		
+
 		int listCount = 0;
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			
+
 			if(rset.next()){
 				listCount = rset.getInt(1);
 			}
-			
-			
-			
+
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(stmt);
 			close(rset);
-			
+
 		}
-		
-		
-		
+
+
+
 		return listCount;
 	}
 
 
 	public ArrayList<Product> selectList(Connection con, int currentPage, int limit) {
-PreparedStatement pstmt = null;
-		
-		
+		PreparedStatement pstmt = null;
+
+
 		ResultSet rset = null;
 		ArrayList<Product> list = null;
-		
-		
+
+
 		String query = prop.getProperty("listpage");
-		
+
 		try {
 			//페이징 처리 전
 			//stmt = con.createStatement();
 			//rset = stmt.executeQuery(query);
-			
+
 			//페이징처리 후
 			pstmt = con.prepareStatement(query);
-			
+
 			//조회 시작할 행 번호와 마지막 행 번호 계산
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
+
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			list = new ArrayList<Product>();
-			
+
 			while(rset.next()){
 				Product b = new Product();
-				
+
 				b.setPrd_code(rset.getString("prd_code"));
 				b.setManufacturer(rset.getString("MANUFACTURER"));
 				b.setPrice(rset.getInt("PRICE"));
@@ -343,12 +344,12 @@ PreparedStatement pstmt = null;
 				b.setCategory(rset.getString("CATEGORY"));
 				b.setSell_count(rset.getInt("SELL_COUNT"));
 				b.setStock(rset.getInt("STOCK"));
-				
+
 				list.add(b);
 			}
-			
-			
-			
+
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -356,10 +357,304 @@ PreparedStatement pstmt = null;
 			close(pstmt);
 			close(rset);
 		}
-		
-		
-		
+
+
+
 		return list;
 	}
-	
+
+
+	public int getCategoryListCount(Connection con, String code) {
+		//Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("categoryListCount");
+
+		int listCount = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, code);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+
+		}
+
+
+
+		return listCount;
+	}
+
+
+	public ArrayList<Product> selectCategoryList(Connection con, int currentPage, int limit, String code) {
+		PreparedStatement pstmt = null;
+
+
+		ResultSet rset = null;
+		ArrayList<Product> list = null;
+
+
+		String query = prop.getProperty("categorylistpage");
+
+		try {
+			//페이징 처리 전
+			//stmt = con.createStatement();
+			//rset = stmt.executeQuery(query);
+
+			//페이징처리 후
+			pstmt = con.prepareStatement(query);
+
+			//조회 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, code);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product b = new Product();
+
+				b.setPrd_code(rset.getString("prd_code"));
+				b.setManufacturer(rset.getString("MANUFACTURER"));
+				b.setPrice(rset.getInt("PRICE"));
+				b.setPrd_name(rset.getString("PRD_NAME"));
+				b.setRelease_date(rset.getDate("RELEASE_DATE"));
+				b.setCategory(rset.getString("CATEGORY"));
+				b.setSell_count(rset.getInt("SELL_COUNT"));
+				b.setStock(rset.getInt("STOCK"));
+
+				list.add(b);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//close(stmt);
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int getMemberListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("memberlistCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+
+		}
+
+
+
+		return listCount;
+	}
+
+
+	public ArrayList<Member> selectMemberList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+
+		ResultSet rset = null;
+		ArrayList<Member> list = null;
+
+
+		String query = prop.getProperty("memberlistpage");
+
+		try {
+			//페이징 처리 전
+			//stmt = con.createStatement();
+			//rset = stmt.executeQuery(query);
+
+			//페이징처리 후
+			pstmt = con.prepareStatement(query);
+
+			//조회 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Member>();
+
+			while(rset.next()){
+				Member b = new Member();
+				b.setUserNo(rset.getInt("USER_NO"));
+				b.setUserType(rset.getString("USER_TYPE"));
+				b.setUserName(rset.getString("USER_NAME"));
+				b.setUserId(rset.getString("USER_ID"));
+				b.setUserPwd(rset.getString("USER_PWD"));
+				b.setPhone(rset.getString("PHONE"));
+				b.setAddress(rset.getString("ADDRESS"));
+				b.setEmail(rset.getString("EMAIL"));
+				b.setStatus(rset.getString("STATUS"));
+
+				list.add(b);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//close(stmt);
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int deleteMember(Connection con, int code) {
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("deleteMember");
+
+		int result = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, code);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+
+
+		return result;
+	}
+
+
+	public ArrayList<Member> searchMemberList(Connection con, String code, String val) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = null;
+
+
+		String query = null;
+		if(code.equals("회원ID")){
+			query = prop.getProperty("searchIdMember");
+		}else if(code.equals("성명")){
+			query = prop.getProperty("searchNameMember");
+		}else{
+			query = prop.getProperty("searchEmailMember");
+		}
+
+		try {
+			pstmt = con.prepareStatement(query);
+			System.out.println(query);
+			pstmt.setString(1, "%"+val+"%");
+			
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Member>();
+
+			while(rset.next()){
+				Member b = new Member();
+				b.setUserNo(rset.getInt("USER_NO"));
+				b.setUserType(rset.getString("USER_TYPE"));
+				b.setUserName(rset.getString("USER_NAME"));
+				b.setUserId(rset.getString("USER_ID"));
+				b.setUserPwd(rset.getString("USER_PWD"));
+				b.setPhone(rset.getString("PHONE"));
+				b.setAddress(rset.getString("ADDRESS"));
+				b.setEmail(rset.getString("EMAIL"));
+				b.setStatus(rset.getString("STATUS"));
+
+				list.add(b);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//close(stmt);
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int deleteProduct(Connection con, String[] values) {
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("deleteProduct");
+
+		int result = 0;
+
+		try {
+			for(int i = 0; i < values.length; i++){
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, values[i]);
+				result += pstmt.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+
+		return result;
+	}
+
 }
