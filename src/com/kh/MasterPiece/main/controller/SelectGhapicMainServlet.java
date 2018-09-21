@@ -19,64 +19,119 @@ import com.kh.MasterPiece.product.model.vo.Product;
 @WebServlet("/graphic.tn")
 public class SelectGhapicMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public SelectGhapicMainServlet() {
-        super();
-    }
+
+	public SelectGhapicMainServlet() {
+		super();
+	}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage;	//현재 페이지를 표시할 변수
-		int limit;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
-		int maxPage;		//전체 페이지에서 가장 마지막 페이지
-		int startPage;		//한 번에 표시될 페이지가 시작할 페이지
-		int endPage;		//한 번에 표시될 페이지가 끝나는 페이지
-	
-		currentPage = 1;
-		
-		limit = 3;
-		
-		if(request.getParameter("currentPage") != null){
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+
+
+		//-----------------------------------------------그래픽카드--------------------------------------------------------
+		int currentPage1;	//현재 페이지를 표시할 변수
+		int limit1;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
+		int maxPage1;		//전체 페이지에서 가장 마지막 페이지
+		int startPage1;		//한 번에 표시될 페이지가 시작할 페이지
+		int endPage1;		//한 번에 표시될 페이지가 끝나는 페이지
+
+		currentPage1 = 1;
+
+		limit1 = 3;
+
+		if(request.getParameter("currentPage1") != null){
+			currentPage1 = Integer.parseInt(request.getParameter("currentPage1"));
 		}
+
+		int listCount1 = new MainService().getlistCount1();
 		
-		int listCount = new MainService().getListCount();
-		
-		maxPage = (int)((double)listCount / limit + 0.9);
-		
-		startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-		
-		endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage){
-			endPage = maxPage;
+		maxPage1 = (int)((double)listCount1 / limit1 + 0.9);
+
+		startPage1 = (((int)((double)currentPage1 / limit1 + 0.9)) - 1) * limit1 + 1;
+
+		endPage1 = startPage1 + limit1 - 1;
+
+		if(maxPage1 < endPage1){
+			endPage1 = maxPage1;
 		}
+
+		MainPageInfo pi1 = new MainPageInfo(currentPage1, listCount1, limit1, maxPage1, startPage1, endPage1);
+
+		System.out.println(pi1);
+		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage1, limit1);
+		ArrayList<Product> list1 = new MainService().graphicList(currentPage1, limit1);
 		
-		MainPageInfo pi = new MainPageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage, limit);
-		ArrayList<Product> list = new MainService().selectList(currentPage, limit);
-		
-		
+		//-----------------------------------------------cpu--------------------------------------------------------
+		int currentPage2;	//현재 페이지를 표시할 변수
+		int limit2;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
+		int maxPage2;		//전체 페이지에서 가장 마지막 페이지
+		int startPage2;		//한 번에 표시될 페이지가 시작할 페이지
+		int endPage2;		//한 번에 표시될 페이지가 끝나는 페이지
+
+		currentPage2 = 1;
+
+		limit2 = 3;
+
+		if(request.getParameter("currentPage1") != null){
+			currentPage2 = Integer.parseInt(request.getParameter("currentPage1"));
+		}
+
+		int listCount2 = new MainService().getlistCount2();
+
+		maxPage2 = (int)((double)listCount2 / limit2 + 0.9);
+
+		startPage2 = (((int)((double)currentPage2 / limit2 + 0.9)) - 1) * limit2 + 1;
+
+		endPage2 = startPage2 + limit2 - 1;
+
+		if(maxPage2 < endPage2){
+			endPage2 = maxPage2;
+		}
+
+		MainPageInfo pi2 = new MainPageInfo(currentPage2, listCount2, limit2, maxPage2, startPage2, endPage2);
+
+		ArrayList<Product> list2 = new MainService().cpuList(currentPage2, limit2);
+		//----------------------------------------------------------------------
+
+
+
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
+
+
+
+
+
 		String page = "";
-		
-		if(list != null){
+
+		if(list1 != null){
 			//page = "index.jsp";
 			page = "mainTest.jsp";
-			request.setAttribute("list", list);
+			request.setAttribute("list1", list1);
 			request.setAttribute("imgList", imgList);
-			request.setAttribute("pi", pi);
-			
+			request.setAttribute("pi", pi1);
+
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "실패");
 		}
-		
-		
+
+		if(list2 != null){
+			//page = "index.jsp";
+			page = "mainTest.jsp";
+			request.setAttribute("list2", list2);
+			request.setAttribute("imgList", imgList);
+			request.setAttribute("pi", pi2);
+
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "실패");
+		}
+
+
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
+
 	}
 
 
