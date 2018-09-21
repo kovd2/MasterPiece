@@ -4,7 +4,7 @@
  <%
  ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
  HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
-
+ String cate = (String)request.getAttribute("cate");
  	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -28,9 +28,6 @@ background: lightblue;
     color: white;
     cursor: pointer;
     width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
     height: 30px;
     display: inline-block;
 }
@@ -47,20 +44,21 @@ background: lightblue;
 				<div style="display: inline-block; width: 300px;"></div>
 				<div style="background: lightblue; color:white;cursor: pointer;text-align: center; width: 113px; height: 40px; padding-top: 15px; display: inline-block;" onclick="location.href='<%=request.getContextPath()%>/views/admin/product/productAdd.jsp'">상품추가</div>
 
-		<div style="margin-top: 20px">
-				<div id="menubar" onclick="location.href='./productAdd.jsp'" style="margin-left:20px">전체</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">CPU</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">메인</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">그래픽카드</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">ODD</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">파워 서플라이</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">쿨러</div>
-				<div id="menubar" onclick="location.href='./productAdd.jsp'">케이스</div>
+		<div style="margin-top: 20px;margin-left: 20px">
+			<button id="menubar" class="btn"><input type="hidden" value="전체">전체</button>
+			<button id="menubar" class="btn"><input type="hidden" value="CPU">CPU</button>
+			<button id="menubar" class="btn"><input type="hidden" value="MAINBOARD">메인 보드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="GRAPHIC">그래픽카드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="ODD">ODD</button>
+			<button id="menubar" class="btn"><input type="hidden" value="POWER">파워 서플라이</button>
+			<button id="menubar" class="btn"><input type="hidden" value="COOL">쿨러</button>
+			<button id="menubar" class="btn"><input type="hidden" value="CASE">케이스</button>
+			<button style = "float: right; background:lightgray;" id="menubar" class="delete">삭제</button>
 		</div>
 		<div style="margin-top:20px;">
 			<table style="margin-left:20px" id="list">
 			<tr>
-					<th style="width:50px;"><input type="checkbox" name="all"></th>
+					<th style="width:50px;"><input type="checkbox" name="all" id="check"></th>
 					<th style="width:100px;"><img alt="" src=""></th>
 					<th style="width:200px;">상품명</th>
 					<th style="width:100px;">상품코드</th>
@@ -68,9 +66,9 @@ background: lightblue;
 					<th style="width:80px;">판매가격</th>
 					<th style="width:50px;">카테<br>고리</th>
 			</tr>
-			<tr>
 			<%for(int i = 0; i < list.size(); i++){%>
-			<td style="text-align: center"><input type="checkbox" name=""></td>
+			<tr>
+			<td style="text-align: center"><input type="checkbox" name="check" value=<%=list.get(i).getPrd_code() %> class="check"></td>
 					<td><img alt="" src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="50px" height="50px"></td>
 					<td><%=list.get(i).getPrd_name() %></td><!-- 상품명 -->
 					<td><%=list.get(i).getPrd_code() %></td><!-- 상품코드 -->
@@ -81,53 +79,99 @@ background: lightblue;
 			<%} %>
 			</table>
 			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=1'"><<</button>
+			<%if(cate.equals("전체")){ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=1'"><<</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=1'"><<</button>
+			<%} %>
 			<% if(currentPage <= 1){ %>
 				<button disabled><</button>
-			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=currentPage - 1 %>'"><</button>
+			<% }else{ 
+				if(cate.equals("전체")){%>
+				<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=<%=currentPage - 1 %>'"><</button>
+				<%}else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=currentPage - 1 %>'"><</button>
+				<%} %>	
 			<% } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 					if(p == currentPage){
 			%>
 						<button disabled><%= p %></button>
-			<%      }else{ %>
-						<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=p%>'"><%= p %></button>
+			<%      }else{ 
+						if(cate.equals("전체")){%>
+							<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=<%=p%>'"><%=p %></button>
+						<%}else{ %>
+							<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=p%>'"><%=p %></button>
+						<%} %>	
 			<%      } %>
 			<% } %>			
 			
 			<% if(currentPage >= maxPage){ %>
 				<button disabled>></button>
-			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=currentPage + 1%>'">></button>
+			<% }else{ 
+				if(cate.equals("전체")){%>
+				<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=<%=currentPage + 1 %>'">></button>
+				<%}else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=currentPage + 1 %>'">></button>
+				<%} %>	
 			<% } %>
+			<%if(cate.equals("전체")){ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=<%=maxPage%>'">>></button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=maxPage%>'">>></button>
+			<%} %>
 			
-			<button onclick="location.href='<%=request.getContextPath()%>/productList?currentPage=<%=maxPage%>'">>></button>
 			
 		</div>
 		</div>
 	</div>
 </body>
 <script>
+
+
 	$(function(){
-		//1번
-		$("#nameBtn").click(function(){
-			var name = $("#myName").val();
-			
-			$.ajax({
-				url:"test1.do",
-				data:{name:name},
-				type:"get",
-				success:function(data){
-					console.log("서버 전송 성공");
-				},
-				error:function(status, msg){
-					console.log("서버 전송 실패");
+		$(".btn").click(function(){
+			var code = $(this).children("input").val();
+			if(code == "전체"){
+				location.href="<%= request.getContextPath() %>/productList.swy";
+			}else{
+				location.href="<%= request.getContextPath() %>/productCategoryLists.swy?code=" + code;
+			}
+		});
+		$("#check").click(function(){
+			if($(this).prop("checked")){
+				$(".check").prop("checked", true);
+			}else{
+				$(".check").prop("checked", false);
+			}
+		});
+		$(".check").click(function(){
+			if($(this).prop("checked")){
+				$(this).prop("checked", true)
+			}else{
+				if($("#check").prop("checked")){
+					$("#check").prop("checked",false)
 				}
-			});
+				$(this).prop("checked", false)
+			}
+		});
+		$(".delete").click(function(){
+			var val = "";
+			var value = [];
+			$(".check:checked").each(function(index,item){
+				if(index!=0){
+					val += ",";
+				}
+				val += $(this).val();
+				value.push($(this).val());
+			})
+			if(val!=""){
+				location.href="<%= request.getContextPath() %>/deleteProduct.swy?code="+val;
+			}
+				
 		});
 		
-		
+	});
 </script>
 </html>

@@ -22,7 +22,7 @@ import com.oreilly.servlet.MultipartRequest;
 /**
  * Servlet implementation class productInsertServlet
  */
-@WebServlet("/productInsert")
+@WebServlet("/productInsert.swy")
 public class productInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -133,7 +133,7 @@ public class productInsertServlet extends HttpServlet {
 					System.out.println("결과 : " + result);
 					
 					if(result > 0){
-						response.sendRedirect(request.getContextPath() + "/productList");
+						response.sendRedirect(request.getContextPath() + "/productList.swy");
 					}else{
 						//실패시 저장된 파일 삭제
 						for(int i = 0; i < saveFiles.size(); i++){

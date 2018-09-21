@@ -20,32 +20,32 @@ import com.kh.MasterPiece.main.model.vo.MainTest;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 public class MainDao {
-private Properties prop = new Properties();
-	
+	private Properties prop = new Properties();
+
 	public MainDao(){
 		String fileName 
 		= MainDao.class.getResource("/sql/main/main-query.properties").getPath();
-		
+
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public ArrayList<MainTest> selectProduct(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		ArrayList<MainTest> list = new ArrayList<>();
-		
+
 		String query = prop.getProperty("selectProduct");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next()){
 				MainTest product = new MainTest();
 				product.setPrdCode(rset.getString("PRD_CODE"));
@@ -56,7 +56,7 @@ private Properties prop = new Properties();
 				product.setCategory(rset.getString("CATEGORY"));
 				product.setSellCount(rset.getInt("SELL_COUNT"));
 				product.setStock(rset.getInt("STOCK"));
-				
+
 				list.add(product);
 			}			
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ private Properties prop = new Properties();
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return list;
 	}
 
@@ -75,23 +75,23 @@ private Properties prop = new Properties();
 		ArrayList<HashMap<String, Object>> list = null;
 		HashMap<String, Object> hmap = null;
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("selectGraphicMap");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			stmt = con.createStatement();
-			
+
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
+
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
+
 			rset = stmt.executeQuery(query);
-			
+
 			list = new ArrayList<HashMap<String, Object>>();
-			
+
 			while(rset.next()){
 				hmap.put("prdCode", rset.getString("PRD_CODE"));
 				hmap.put("manufacturer", rset.getString("MANUFACTURER"));
@@ -101,125 +101,207 @@ private Properties prop = new Properties();
 				hmap.put("category", rset.getString("CATEGORY"));
 				hmap.put("sellCount", rset.getInt("SELL_COUNT"));
 				hmap.put("stock", rset.getInt("STOCK"));
-				
+
 				list.add(hmap);
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		} finally{
 			close(stmt);
 			close(rset);
 		}		
-		
+
 		return list;
 	}
 
-	public int getListCount(Connection con) {
-		Statement stmt = null;
+	//GRAPHIC
+	public int getListCount1(Connection con) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("listCount");
-		
+
 		int listCount = 0;
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "GRAPHIC");
+			
+			rset = pstmt.executeQuery();
+			
 			
 			if(rset.next()){
 				listCount = rset.getInt(1);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
-		
+
 		return listCount;
 	}
 
-	public ArrayList<Product> selectList(Connection con, int currentPage, int limit) {
+	//GRAPHIC
+	public ArrayList<Product> graphicList(Connection con, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ArrayList<Product> list = null;
-		
+
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("selectList");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			
+
+			pstmt.setString(1, "GRAPHIC");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
 			rset = pstmt.executeQuery();
-			
+
 			list = new ArrayList<Product>();
-			
+
 			while(rset.next()){
 				Product p = new Product();
 				p.setPrd_code(rset.getString("PRD_CODE"));
 				p.setPrice(rset.getInt("price"));
 				p.setPrd_name(rset.getString("prd_name"));
 				p.setCategory(rset.getString("category"));
-				
+
 				list.add(p);
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
 			close(rset);
 		}		
-		
+
 		return list;
 	}
 
+	//CPU
+	public int getListCount2(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount");
+
+		int listCount = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "CPU");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
+	}
+	
+	//CPU
+	public ArrayList<Product> cpuList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> list = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, "CPU");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("price"));
+				p.setPrd_name(rset.getString("prd_name"));
+				p.setCategory(rset.getString("category"));
+
+				list.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return list;
+	}
+
+
 	public HashMap<String, Attachment> selectImageList(Connection con) {
 		PreparedStatement pstmt = null;
-		 HashMap<String, Attachment> list = null;
-		
+		HashMap<String, Attachment> list = null;
+
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("selectImageList");
 		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			list = new HashMap<String, Attachment>();
-			
+
 			while(rset.next()){
 				Attachment a = new Attachment();
 				a.setChangeName(rset.getString("change_name"));
-				
+
 				list.put(rset.getString("prd_code"), a);
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
 			close(rset);
 		}		
-		
+
 		return list;
 	}
 
 	public ArrayList<HashMap<String, Object>> selectImgList(Connection con) {
-		
+
 		return null;
 	}
+
 
 }
 

@@ -90,7 +90,7 @@ a:hover {
 	<br>
 	<br>
 	<div class="loginForm">
-		<a href="<%=request.getContextPath()%>/index.jsp"><img
+		<a href="<%=request.getContextPath()%>/main.jsp"><img
 			class="image" src="<%=request.getContextPath()%>/images/logo.png"
 			id="logo" align="center"></a>
 
@@ -128,6 +128,7 @@ a:hover {
 			</div>
 		</form>
 	</div>
+	<br><br><br><br>
 	<%@ include file="../common/footer.jsp"%>
 	<script>
 		$(function(){

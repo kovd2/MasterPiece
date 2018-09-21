@@ -26,27 +26,46 @@ public class MainService {
 		return list;
 	}
 	
-
-	public int getListCount() {
+	//GRAPHIC
+	public int getlistCount1() {
 		Connection con = getConnection();
 		
-		int listCount = new MainDao().getListCount(con);
+		int listCount = new MainDao().getListCount1(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+	//CPU
+	public int getlistCount2() {
+		Connection con = getConnection();
+		
+		int listCount = new MainDao().getListCount2(con);
 		
 		close(con);
 		
 		return listCount;
 	}
 
-	public ArrayList<Product> selectList(int currentPage, int limit) {
+	public ArrayList<Product> graphicList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
-		ArrayList<Product> list = new MainDao().selectList(con, currentPage, limit);
+		ArrayList<Product> list = new MainDao().graphicList(con, currentPage, limit);
 		
 		close(con);
 		
 		return list;
 	}
 
+	public ArrayList<Product> cpuList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> list = new MainDao().cpuList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
 
 	public HashMap<String, Attachment> selectImageList() {
 		Connection con = getConnection();
@@ -68,6 +87,8 @@ public class MainService {
 		
 		return list;
 	}
+
+
 	
 }
 
