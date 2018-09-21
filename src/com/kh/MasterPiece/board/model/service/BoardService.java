@@ -217,4 +217,14 @@ public class BoardService {
 		
 		return result;
 	}
+
+	public ArrayList<Board> selectReplyQuoteContact(int boardId)
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> replyList = new BoardDao().selectReplyQuoteContact(conn, boardId);
+		
+		close(conn);
+		
+		return replyList;
+	}
 }
