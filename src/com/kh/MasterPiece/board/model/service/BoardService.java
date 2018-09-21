@@ -7,46 +7,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
-import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 public class BoardService {
 
-	public int insertQuoteContact(Board b, ArrayList<Attach> fileList)
+	public int insertQuoteContact(Board b)
 	{
 		Connection conn = getConnection();
-		int result = 0;
 		
-		int result1 = new BoardDao().insertQuoteContactContent(conn, b);
+		int result = new BoardDao().insertQuoteContactContent(conn, b);
 		
-		System.out.println("result1 : " + result1);
-		
-		if(result1 > 0)
-		{
-			int boardId = new BoardDao().selectCurrval(conn);
-			
-			for(int i=0; i<fileList.size(); i++)
-			{
-				fileList.get(i).setBoardId(boardId);
-			}
-		}
-		
-		int result2 = new BoardDao().insertAttachment(conn, fileList);
-		
-		/*System.out.println("result2 : " + result2);
-		
-		System.out.println("?? : " + (result1>0 && result2>0));*/
-		
-		if(result1 > 0 && result2 > 0)
+		if(result > 0)
 		{
 			commit(conn);
-			result = 1;
 		}
 		else
 		{
 			rollback(conn);
 		}
-		/*System.out.println("result : " + result);*/
 		close(conn);
 		
 		return result;
@@ -80,43 +58,15 @@ public class BoardService {
 		
 		return b;
 	}
-	public Attach selectImage(int num)
+	public int insertUserEstimate(Board b)
 	{
 		Connection conn = getConnection();
 		
-		Attach a = new BoardDao().selectImage(conn, num);
+		int result = new BoardDao().insertUserEstimateContent(conn, b);
 		
-		return a;
-	}
-	public int insertUserEstimate(Board b, ArrayList<Attach> fileList)
-	{
-		Connection conn = getConnection();
-		int result = 0;
-		
-		int result1 = new BoardDao().insertUserEstimateContent(conn, b);
-		
-		System.out.println("result1 : " + result1);
-		
-		if(result1 > 0)
-		{
-			int boardId = new BoardDao().selectCurrval(conn);
-			
-			for(int i=0; i<fileList.size(); i++)
-			{
-				fileList.get(i).setBoardId(boardId);
-			}
-		}
-		
-		int result2 = new BoardDao().insertAttachment(conn, fileList);
-		
-		/*System.out.println("result2 : " + result2);
-		
-		System.out.println("?? : " + (result1>0 && result2>0));*/
-		
-		if(result1 > 0 && result2 > 0)
+		if(result > 0)
 		{
 			commit(conn);
-			result = 1;
 		}
 		else
 		{
@@ -155,5 +105,97 @@ public class BoardService {
 		Board b = new BoardDao().selectUserEstimateOne(conn, num);
 		
 		return b;
+	}
+
+	public int updateQuoteContact(Board b)
+	{
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().updateQuoteContact(conn, b);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Board> insertQuoteContactReply(Board b)
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> replyList = null;
+		
+		int result = new BoardDao().insertQuoteContactReply(conn, b);
+		
+		if(result > 0)
+		{
+			commit(conn);
+			
+			replyList = new BoardDao().quoteContactReplyList(conn, b.getBOARD_ID());
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return replyList;
+	}
+
+	public int deleteOneQuoteContact(int boardId)
+	{
+		Connection conn = getConnection();
+		int result = new BoardDao().deleteOneQuoteContact(conn, boardId);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Board> searchTitle(String title, int currentPage, int limit)
+	{
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchTitle(conn, title, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> searchWriter(String writer, int currentPage, int limit)
+	{
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchWriter(conn, writer, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> searchContent(String content, int currentPage, int limit)
+	{
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchContent(conn, content, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
 	}
 }

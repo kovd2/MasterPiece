@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
-	Attach a = (Attach)request.getAttribute("a");
 %>
 <!DOCTYPE html>
 <html>
@@ -118,16 +117,6 @@ table th
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
 									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
-										<!-- <textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea> -->
-										<%
-											if(a.getOriginName() != null)
-											{
-										%>
-										<img class="img" src="<%= request.getContextPath() %>/userEstimate_file_upload/<%= a.getChangeName() %>" style="margin-left:20px;">
-										<%
-											}
-										%>
-										<br><br>
 										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
 									</td>
 								</tr>

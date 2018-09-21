@@ -1,29 +1,25 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneBoardServlet
+ * Servlet implementation class UpdateQuoteContactServlet
  */
-@WebServlet("/selectOne.qc") 
-public class SelectOneQuoteContactServlet extends HttpServlet {
+@WebServlet("/gotoupdate.qc")
+public class GotoUpdateQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneQuoteContactServlet() {
+    public GotoUpdateQuoteContactServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +29,19 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int num = Integer.parseInt(request.getParameter("num"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String boardId = request.getParameter("boardId");
 		
-		//System.out.println(num);
+		/*System.out.println("1 : " + title);
+		System.out.println("2 : " + content);
+		System.out.println("3 : " + boardId);*/
 		
-		Board b = new BoardService().selectQuoteContactOne(num);
-				
-		String page = "";
+		request.setAttribute("title", title);
+		request.setAttribute("content", content);
+		request.setAttribute("boardId", boardId);
 		
-		if(b != null)
-		{
-			page = "views/board/quoteContactDetail.jsp";
-			request.setAttribute("b", b);
-		}
-		else
-		{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "견적 요청 게시판 상세보기 실패");
-		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		request.getRequestDispatcher("views/board/quoteContactUpdate.jsp").forward(request, response);
 	}
 
 	/**
@@ -62,4 +51,5 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

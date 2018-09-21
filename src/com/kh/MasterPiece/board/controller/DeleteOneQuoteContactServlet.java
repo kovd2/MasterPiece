@@ -1,9 +1,6 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneBoardServlet
+ * Servlet implementation class DeleteQuoteContactServlet
  */
-@WebServlet("/selectOne.qc") 
-public class SelectOneQuoteContactServlet extends HttpServlet {
+@WebServlet("/deleteOne.qc")
+public class DeleteOneQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneQuoteContactServlet() {
+    public DeleteOneQuoteContactServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +29,21 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int num = Integer.parseInt(request.getParameter("num"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		//System.out.println(num);
+		/*System.out.println("boardId : " + boardId);*/
 		
-		Board b = new BoardService().selectQuoteContactOne(num);
-				
-		String page = "";
+		int result = new BoardService().deleteOneQuoteContact(boardId);
 		
-		if(b != null)
+		if(result > 0)
 		{
-			page = "views/board/quoteContactDetail.jsp";
-			request.setAttribute("b", b);
+			response.sendRedirect(request.getContextPath() + "/selectList.qc");
 		}
 		else
 		{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "견적 요청 게시판 상세보기 실패");
+			request.setAttribute("msg", "견적 요청 게시판 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**
@@ -62,4 +53,5 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

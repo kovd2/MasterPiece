@@ -1,37 +1,30 @@
 package com.kh.MasterPiece.board.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
 import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
-import com.kh.MasterPiece.member.model.vo.Member;
-import com.oreilly.servlet.MultipartRequest;
+import com.kh.MasterPiece.member.model.service.MemberService;
 
 /**
- * Servlet implementation class InsertUserEstimateServlet
+ * Servlet implementation class RunUpdateQuoteContactServlet
  */
-@WebServlet("/insert.ue")
-public class InsertUserEstimateServlet extends HttpServlet {
+@WebServlet("/update.qc")
+public class RunUpdateQuoteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public InsertUserEstimateServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RunUpdateQuoteContactServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,29 +33,30 @@ public class InsertUserEstimateServlet extends HttpServlet {
 	{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String writer = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserId());
-
-		System.out.println("title : " + title);
-		System.out.println("content : " + content);
-		System.out.println("writer : " + writer);
-
+		String boardPassword = request.getParameter("boardPassword");
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		
+		System.out.println("updateTitle : " + title);
+		System.out.println("updateContent : " + content);
+		System.out.println("updatePassword : " + boardPassword);
+		System.out.println("updateBoradID : " + boardId);
+		
 		Board b = new Board();
-
+		
 		b.setBOARD_TITLE(title);
 		b.setBOARD_CONTENT(content);
-		b.setBOARD_WRITER(writer);
-
-		int result = new BoardService().insertUserEstimate(b);
-
-		System.out.println("result : " + result);
-
+		b.setBOARD_PWD(boardPassword);
+		b.setBOARD_ID(boardId);
+		
+		int result = new BoardService().updateQuoteContact(b);
+		
 		if(result > 0)
 		{
-			response.sendRedirect(request.getContextPath() + "/selectList.ue");
+			response.sendRedirect(request.getContextPath() + "/selectList.qc");
 		}
 		else
 		{
-			request.setAttribute("msg", "유저 견적 게시판 등록 실패");
+			request.setAttribute("msg", "견적 요청 게시판 수정 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
 	}

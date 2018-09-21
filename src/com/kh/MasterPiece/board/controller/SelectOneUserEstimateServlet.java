@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Attach;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
@@ -36,7 +35,6 @@ public class SelectOneUserEstimateServlet extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		Board b = new BoardService().selectUserEstimateOne(num);
-		Attach a = new BoardService().selectImage(num);
 		
 		String page = "";
 		
@@ -44,7 +42,6 @@ public class SelectOneUserEstimateServlet extends HttpServlet {
 		{
 			page = "views/board/userEstimateDetail.jsp";
 			request.setAttribute("b", b);
-			request.setAttribute("a", a);
 		}
 		else
 		{

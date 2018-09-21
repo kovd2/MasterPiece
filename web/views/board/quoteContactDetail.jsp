@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
-	Attach a = (Attach)request.getAttribute("a");
 %>
 <!DOCTYPE html>
 <html>
@@ -47,16 +46,16 @@
 {
 	width:65px;
 }
-table
+#detailTable
 {
 	border-spacing:0px;
 	border-collapse: collapse;
 }
-table th, td
+#detailTable>tbody>tr>th, #detailTable>tbody>tr>td
 {
 	border:1px solid lightgray;
 }
-table th
+#detailTable>tbody>tr>th
 {
 	text-align:left;
 	padding-left:10px;
@@ -69,6 +68,23 @@ table th
 {
 	width:70%;
 	height:80%;
+}
+#replyTable
+{
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+#replyTable>tr>td
+{
+	border:none;
+}
+.pointer
+{
+	cursor:pointer;
+}
+#replyListTable>tr>td
+{
+	font-size:14px;
 }
 </style>
 </head>
@@ -102,7 +118,7 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-						<table style="width:100%;">
+						<table id="detailTable" style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="width:150px; border-right:none;">작성자</th>
@@ -118,16 +134,6 @@ table th
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
 									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
-										<!-- <textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea> -->
-										<%
-											if(a.getOriginName() != null)
-											{
-										%>
-										<img class="img" src="<%= request.getContextPath() %>/quoteContact_file_upload/<%= a.getChangeName() %>" style="margin-left:20px;">
-										<%
-											}
-										%>
-										<br><br>
 										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
 									</td>
 								</tr>
@@ -135,16 +141,30 @@ table th
 						</table>
 						<br>
 						<div>
-							<button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/update.qc?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&image=<%= a.getChangeName() %>'">수정</button>
+							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/gotoupdate.qc?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&boardId=<%= b.getBOARD_ID() %>'">수정</button>
 						</div>
 						<div>
-							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc'">삭제</button>
+							<button type="button" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
 						</div>
 						<div>
 							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()+1 %>'">다음</button>
 						</div>
 						<div>
 							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()-1 %>'">이전</button>
+						</div>
+						<br><br>
+						<!-- 댓글 -->
+						<div id="replyArea">
+							<table id="replyListTable" align="center"></table>
+						</div>
+						<div class="container" style="margin:auto; border:1px solid lightgray; width:600px; height:100px;">
+							<table id="replyTable" style="margin-top:20px;">
+								<tr>
+									<td style="width:100px; text-align:center; font-size:14px;"><%= loginUser.getUserId() %></td>
+									<td style="width:440px;"><textarea id="replyContent" rows="3" cols="55" style="resize:none; margin-top:4px;"></textarea></td>
+									<td><button id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -162,5 +182,48 @@ table th
 			request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
 		}
 	%>
+	
+	<script>
+	$(function()
+	{
+		$("#addReply").click(function()
+		{
+			var writer = "<%= loginUser.getUserId() %>";
+			var boardId = <%= b.getBOARD_ID() %>;
+			var replyContent = $("#replyContent").val();
+			
+			$.ajax(
+			{
+				url:"/MasterPiece/insertReply.qc",
+				data:{writer:writer, replyContent:replyContent, boardId:boardId},
+				type:"post",
+				success:function(data)
+				{
+					console.log(data);
+					
+					var $replyListTable = $("#replyListTable");
+					$replyListTable.html('');
+					
+					for(var key in data)
+					{
+						var $tr = $("<tr>");
+						var $writerTd = $("<td>").text(data[key].BOARD_WRITER).css("width", "100px");
+						var $replyContentTd = $("<td>").text(data[key].BOARD_CONTENT).css("width", "440px");
+						
+						$tr.append($writerTd);
+						$tr.append($replyContentTd);
+						$tr.append("<td><button onclick='deleteReply();'>X</button></td>")
+						$replyListTable.append($tr);
+					}
+				}
+			});
+		});
+	});
+	
+	function deleteReply()
+	{
+		location.href="<%= request.getContextPath() %>/deleteReply.qc?boardId=<%= b.getBOARD_ID() %>";
+	}
+	</script>
 </body>
 </html>
