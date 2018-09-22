@@ -161,7 +161,8 @@
 									<td><%= b.getBOARD_NO() %></td>
 									<td><%= b.getBOARD_TITLE() %></td>
 									<td><%= b.getBOARD_WRITER() %></td>
-									<td><%= b.getBOARD_DATE() %></td>
+									<td colspan="2"><%= b.getBOARD_DATE() %></td>
+									<th style="display:disabled;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 								</tr>
 								<%
 									}
@@ -268,11 +269,13 @@
 					location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
 				} --%>
 				
-				var num = $(this).parent().children("input").val();
+				var boardNo = $(this).parent().children("input").val();
+				var boardId = $(this).parent().children().children("input").val();
 				
-				console.log(num);
+				console.log("boardNo : " + boardNo);
+				console.log("boardId : " + boardId);
 			
-				location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
+				location.href="<%= request.getContextPath() %>/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId;
 			});
 		});
 	</script>

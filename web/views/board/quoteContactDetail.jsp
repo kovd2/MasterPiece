@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
+	ArrayList<Board> replyList = (ArrayList<Board>)request.getAttribute("replyList");
 %>
 <!DOCTYPE html>
 <html>
@@ -155,7 +156,21 @@
 						<br><br>
 						<!-- 댓글 -->
 						<div id="replyArea">
-							<table id="replyListTable" align="center"></table>
+							<table id="replyListTable" align="center">
+								<%
+									for(Board replyBoard : replyList)
+									{
+								%>
+								<tr>
+									<td style="width:100px; font-size:14px;"><%= replyBoard.getBOARD_WRITER() %></td>
+									<td style="width:440px; font-size:14px;"><%= replyBoard.getBOARD_CONTENT() %></td>
+									<td style="font-size:14px;"><input type="button" value="X"><input type="hidden" value="<%= replyBoard.getBOARD_ID() %>"></td>
+								</tr>
+								<!-- #replyListTable>tr>td { font-size:14px; } -->
+								<%
+									}
+								%>
+							</table>
 						</div>
 						<div class="container" style="margin:auto; border:1px solid lightgray; width:600px; height:100px;">
 							<table id="replyTable" style="margin-top:20px;">
@@ -211,7 +226,7 @@
 						var $writerTd = $("<td>").text(data[key].BOARD_WRITER).css("width", "100px");
 						var $replyContentTd = $("<td>").text(data[key].BOARD_CONTENT).css("width", "440px");
 						var $td = $("<td>");
-						var $hiddenValue = $("<input type='text'>").val(data[key].BOARD_ID);
+						var $hiddenValue = $("<input type='hidden'>").val(data[key].BOARD_ID);
 						
 						var hiddenVal = $hiddenValue.val();
 						
@@ -232,10 +247,11 @@
 	
 	$(document).on('click',"input[type='button']", function()
 	{
-		var replyBoardId = $(this).parent().children("input[type='text']").val();
+		var replyBoardId = $(this).parent().children("input[type='hidden']").val();
 		var boardId = <%= b.getBOARD_ID() %>;
+		var boardNo = <%= b.getBOARD_NO() %>;
 		
-		location.href="<%= request.getContextPath() %>/deleteReply.qc?replyBoardId=" + replyBoardId + "&boardId=" + boardId;
+		location.href="<%= request.getContextPath() %>/deleteReply.qc?replyBoardId=" + replyBoardId + "&boardId=" + boardId + "&boardNo=" + boardNo;
 	});
 	
 	</script>

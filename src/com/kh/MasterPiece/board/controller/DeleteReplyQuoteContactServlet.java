@@ -31,15 +31,16 @@ public class DeleteReplyQuoteContactServlet extends HttpServlet {
 	{
 		int replyBoardId = Integer.parseInt(request.getParameter("replyBoardId"));
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
-		System.out.println("ㅇㅎboardId : " + replyBoardId);
-		System.out.println("boardId : " + boardId);
+		/*System.out.println("ㅇㅎboardId : " + replyBoardId);
+		System.out.println("boardId : " + boardId);*/
 		
 		int result = new BoardService().deleteReplyQuoteContact(replyBoardId);
 		
 		if(result > 0)
 		{
-			response.sendRedirect(request.getContextPath() + "/selectOne.qc?num=" + boardId);
+			response.sendRedirect(request.getContextPath() + "/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId);
 		}
 		else
 		{

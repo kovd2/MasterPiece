@@ -1,6 +1,7 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -33,11 +34,16 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int num = Integer.parseInt(request.getParameter("num"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		//System.out.println(num);
+		System.out.println(boardNo);
+		System.out.println(boardId);
 		
-		Board b = new BoardService().selectQuoteContactOne(num);
+		Board b = new BoardService().selectQuoteContactOne(boardNo);
+		ArrayList<Board> replyList = new BoardService().selectReplyQuoteContact(boardId);
+		
+		System.out.println("댓글이다! : " + replyList);
 				
 		String page = "";
 		
@@ -45,12 +51,13 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		{
 			page = "views/board/quoteContactDetail.jsp";
 			request.setAttribute("b", b);
+			request.setAttribute("replyList", replyList);
 		}
-		else
+		/*else
 		{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "견적 요청 게시판 상세보기 실패");
-		}
+		}*/
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
