@@ -1,5 +1,5 @@
-
 package com.kh.MasterPiece.member.controller;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,33 +11,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.member.model.service.MemberService;
 
-@WebServlet("/passFindResult.me")
-public class passFindResultServlet extends HttpServlet {
+
+
+@WebServlet("/passFind2")
+public class passFind2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public passFindResultServlet() {
+    public passFind2Servlet() {
         super();
-
+       
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+
 		String userId = request.getParameter("userId");
 		String email = request.getParameter("email");
-		String userPwd = request.getParameter("userPwd");
 		
-
-		int result = new MemberService().passFindResult(userId, email, userPwd);
+		int result = new MemberService().passFind(userId, email);
 
 		String page = "";
 		
 		if(result > 0){
+			
+			page = "views/member/findPassResult.jsp";
+			
 
-			page = "main.jsp";
+			request.setAttribute("userId", userId);
+			request.setAttribute("email", email);
 		}else{
 			
-			page = "main.jsp";
+			
+			page = "views/member/passFindError.jsp";
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
@@ -45,7 +50,7 @@ public class passFindResultServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		doGet(request, response);
 	}
 

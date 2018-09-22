@@ -104,6 +104,7 @@
 			</td>
 			<td rowspan="2">
 			<input type="button" id="passFindBtn" name="passFindBtn" style="padding:0px" value="확인">
+			<input type="hidden" name="code_check" id="code_check" value="<%=getRandom() %>" readonly>
 			</td>
 		</tr>
 		<tr>
@@ -137,6 +138,16 @@
 			  
 		});
 	</script>
+	
+	<%! public int getRandom(){
+		int random = 0;
+		
+		random = (int)Math.floor((Math.random()*(99999-10000+1)))+100;
+		
+		return random;
+	}
+	%>
+	
 
 </body>
 </html>
