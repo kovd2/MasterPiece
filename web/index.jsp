@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*, com.kh.MasterPiece.product.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*, com.kh.MasterPiece.product.model.vo.*,
+								com.kh.MasterPiece.product.model.vo.*,
+    							com.kh.MasterPiece.board.model.vo.*,
+    							com.kh.MasterPiece.main.model.vo.*"%>
 <%
 	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
 	/* ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list"); */
+	
+	/* graphic */
+	ArrayList<Product> list1 = (ArrayList<Product>)request.getAttribute("list1");
+	HashMap<String, Attachment> imgList =
+					(HashMap<String, Attachment>)request.getAttribute("imgList");
+	MainPageInfo pi1 = (MainPageInfo)request.getAttribute("pi");
+	int listCount1 = pi1.getListCount();
+	int currentPage1 = pi1.getCurrentPage();
+	int maxPage1 = pi1.getMaxPage();
+	int startPage1 = pi1.getStartPage();
+	int endPage1 = pi1.getEndPage(); 
 %>
 
 <!DOCTYPE html>
@@ -122,6 +136,13 @@ a{ text-decoration:none }
 .product_gbtm1{font-size:13px; font-weight:bold; letter-spacing: -2px; padding-right: 5px}
 .product_gbtm2{font-size:17px; font-weight:bold; color: #ee2929; letter-spacing: -2px;}
 
+
+.imageArea { height:360px; display: inline-block; border: 1px solid red; }
+.imageList{ border:1px solid black; display: inline-block; margin: 4.5px; }
+
+
+
+
 /* 1경품 2리뷰 3무료배송 4사은품  5이용후기 6특가 */
 .product_event1{background-image:url('./images/kimjaeyup/경품.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
 .product_event2{background-image:url('./images/kimjaeyup/리뷰.png'); width:28px; height:28px; text-indent:-10000px; float:right; margin-right: 1px; }
@@ -197,6 +218,7 @@ a{ text-decoration:none }
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<%@ include file="./views/common/top.jsp"%>
 	
 	<!--------------------------------------- 메인 배너  --------------------------------------->
@@ -356,35 +378,34 @@ a{ text-decoration:none }
 			<div align="left">
 				<span class="product_subGh1">그래픽카드</span>
 				<span class="product_subMp2">이전과는 다르다. 더욱 더 강력해진 성능</span><br>
-				<div class="product_3" style="height:360px;">
-					<div class="product_graphic1 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/graphic4.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_gcomment"">ASUS ROG STRIX 지포스 GTX1080 A8G GAMING D5X 8GB</span><br>
-						<span class="product_gname">GEFORCE GTX 1080</span><br><hr class="product_hr">
-						<span class="product_gbtm1" style="text-decoration: line-through;">809,440원 </span>
-						<span class="product_gbtm2">710,700원</span>
-						<span class="product_event6" style="margin-right:10px;">특가</span>
-						<span class="product_event3">무료배송</span>
-					</div>
-					<div class="product_graphic2 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/graphic5.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_gcomment"">이엠텍 XENON 지포스 GTX1070 </span><br>
-						<span class="product_gname">Super JETSTREAM D5 8GB</span><br><hr class="product_hr">
-						<span class="product_gbtm1" style="text-decoration: line-through;">703,670원 </span>
-						<span class="product_gbtm2">598,120원</span>
-						<span class="product_event6" style="margin-right:10px;">특가</span>
-						<span class="product_event5">이용후기</span>
-					</div>
-					<div class="product_graphic3 product_3" style="cursor: pointer;" title="그래픽카드" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/graphic6.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_gcomment"">이엠텍 XENON GTX1060</span><br>
-						<span class="product_gname">STORM X Dual D5 6GB</span><br><hr class="product_hr">
-						<span class="product_gbtm1" style="text-decoration: line-through;">1,230,000원 </span>
-						<span class="product_gbtm2">1,131,600원</span>
-						<span class="product_event2" style="margin-right:10px;">리뷰</span>
-						<span class="product_event6">특가</span>
-					</div>
-				</div>
+				<div class="imageArea">
+				<% for(int i = 0; i < list1.size(); i++){
+						Product pro = list1.get(i);
+						String key = pro.getPrd_code();
+						Attachment ath = imgList.get(key);
+				%>
+		
+			 	<div class="imageList" align="center">
+			 		<div style="width:340px; height:300px; margin-left: 2px;">
+			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
+			 						width="200px" height="200px"><br>
+		 				<span><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
+		 				<span>판매가격</span>
+		 				<span><%=list1.get(i).getPrice() %>원</span>
+		 			</div>
+			 	</div>
+			 <%} %>
+		</div>
+	<div>
+		 <div class="pageArea" align="center">
+		 
+		 <% for(int p = startPage1; p <= maxPage1; p++){ %>
+		 			
+		 				<button class="thisBtn" value=<%=p %>><%= p %></button>
+		 <% 	} %>
+		 
+		 </div>
+	</div>
 			</div><br><br><br>
 			<div align="left">
 				<span class="product_subMo1">모니터</span>
@@ -465,6 +486,40 @@ a{ text-decoration:none }
 		</div>
 	</div>
 	<script>
+	$(".thisBtn").click(function(){
+		var cp = $(this).val();
+
+		 $.ajax({
+			url: "selectMain.tn",
+			data : {cp:cp},
+			type : "get",
+			success:function(data){
+				var path = "images/product";
+				
+				$(".imageArea").children("div.imageList").remove();
+				for(var i = 0; i < data.list.length; i++){
+					$div = $("<div class='imageList'align='center'style='width: 350px; height:300px; border:1px solid black; display: inline-block;'>");
+					$(".imageArea").append($div);
+					
+					$div2 = $("<div style='width:340px; height:300px; margin-left: 2px;'>");						
+					$div.append($div2);
+					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px'>"); 
+					$span1 = $("<br><span style='font-weight:13px;'>");
+					$span2 = $("<br><span style='font-color:red;'><hr>");
+					$span1.append(data.list[i].prd_name)
+					$span2.append("판매가격 " + data.list[i].price + "원")
+					$div2.append($span1);
+					$div2.append($span2);
+					
+					console.log(data);
+					console.log(data.list[i].price);
+					console.log(data.imgList[data.list[i].prd_code].changeName);
+				}
+				
+				console.log(path);	
+			}
+		}); 
+	});
 		 $(document).ready(function() {
 			$("#popupDiv").css({"top" : "100px","width" : "100%","position" : "fixed"
 			//팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정

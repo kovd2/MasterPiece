@@ -1,35 +1,45 @@
 package com.kh.MasterPiece.main.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.synth.SynthStyle;
 
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.main.model.service.MainService;
+import com.kh.MasterPiece.main.model.vo.Box;
 import com.kh.MasterPiece.main.model.vo.MainPageInfo;
-import com.kh.MasterPiece.main.model.vo.MainTest;
 import com.kh.MasterPiece.product.model.vo.Product;
 
-
-@WebServlet("/main.tn")
-public class SelectMainServlet extends HttpServlet {
+/**
+ * Servlet implementation class SelectAjaxServlet
+ */
+@WebServlet("/selectMain.tn")
+public class SelectAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SelectAjaxServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public SelectMainServlet() {
-		super();
-	}
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<MainTest> list = new MainService().selectProduct();
-
 		//-----------------------------------------------그래픽카드--------------------------------------------------------
 		int currentPage1;	//현재 페이지를 표시할 변수
 		int limit1;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
@@ -41,12 +51,12 @@ public class SelectMainServlet extends HttpServlet {
 
 		limit1 = 3;
 
-		if(request.getParameter("currentPage1") != null){
-			currentPage1 = Integer.parseInt(request.getParameter("currentPage1"));
+		if(request.getParameter("cp") != null){
+			currentPage1 = Integer.parseInt(request.getParameter("cp"));
 		}
 
 		int listCount1 = new MainService().getlistCount1();
-
+		
 		maxPage1 = (int)((double)listCount1 / limit1 + 0.9);
 
 		startPage1 = (((int)((double)currentPage1 / limit1 + 0.9)) - 1) * limit1 + 1;
@@ -62,8 +72,8 @@ public class SelectMainServlet extends HttpServlet {
 		System.out.println(pi1);
 		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage1, limit1);
 		ArrayList<Product> list1 = new MainService().graphicList(currentPage1, limit1);
-
-
+		
+		
 		//-----------------------------------------------cpu--------------------------------------------------------
 		int currentPage2;	//현재 페이지를 표시할 변수
 		int limit2;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
@@ -95,31 +105,25 @@ public class SelectMainServlet extends HttpServlet {
 
 		ArrayList<Product> list2 = new MainService().cpuList(currentPage2, limit2);
 		//----------------------------------------------------------------------
-
-
-
+		
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
-
-		String page = null;
-		if(list != null){
-			page = "index.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("list1", list1);
-			request.setAttribute("imgList", imgList);
-			request.setAttribute("pi", pi1);
-		}else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "실패");
-		}
-
-
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
-
+		
+		Box mainBox = new Box();
+		
+		mainBox.setPi(pi1);
+		mainBox.setList(list1);
+		mainBox.setImgList(imgList);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(mainBox, response.getWriter());
 	}
 
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
