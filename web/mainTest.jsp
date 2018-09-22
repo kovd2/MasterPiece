@@ -23,6 +23,7 @@
 	int maxPage2 = pi1.getMaxPage();
 	int startPage2 = pi1.getStartPage();
 	int endPage2 = pi1.getEndPage(); 
+
 %>
 <html>
 <head>
@@ -65,80 +66,52 @@
 	<div>
 		 <div class="pageArea" align="center">
 		 
-		 <button id="leftLastBtn"><<</button>
-			<% if(currentPage1 <= 1){ %>
-		 		<button disabled><</button>
-		 	<% }else{ %>
-		 		<button id="leftBtn"><</button>
-		 	<% } %>
-		 <% for(int p = startPage1; p <= endPage1; p++){ 
-		 			if(p == currentPage1){
-		 %>
-		 				<button disabled><%= p %></button>
-		 <% 		}else{ %>
+		 <% for(int p = startPage1; p <= maxPage1; p++){ %>
+		 			
 		 				<button class="thisBtn" value=<%=p %>><%= p %></button>
-		 <%			} %>
 		 <% 	} %>
 		 
-		 <% if(currentPage1 >= maxPage1){ %>
-		 	<button disabled>></button>
-		 <% }else{ %>
-		 	<button id="rightBtn">></button>
-		 <% } %>
-		 <button id="rightLastBtn">>></button>
 		 </div>
 	</div>
-	
-			 <%-- <%=request.getContextPath()%>/graphic.tn?currentPage1=<%=p%> --%>
-	
+
 	<script>
-		$("#leftLastBtn").click(function(){
-			$.ajax({
-				url: "graphic.tn",
-				type : "get",
-				data : {
-				/* ds */	
-				}
-			});
-		});
-		
 		$(".thisBtn").click(function(){
 			var cp = $(this).val();
 
 			 $.ajax({
-				url: "graphic.tn",
+				url: "selectMain.tn",
 				data : {cp:cp},
 				type : "get",
 				success:function(data){
+					var path = "images/product";
+					
 					$(".imageArea").children("div.imageList").remove();
-					for(i = 0; i <= list1.size(); i++){
-						Product pro = list1.get(i);
-						String key = pro.getPrd_code();
-						Attachment ath = imgList.get(key);
-							
-						var $div = $("<div class='imageList' align='center'>");
-						var $div2 = $("<div css.("width":"350px", "height":"300px", "margin-left" : "2px");">")
-						var $img = $("<img src=>")
+					for(var i = 0; i < data.list.length; i++){
+						$div = $("<div class='imageList'align='center'style='width: 350px; height:300px; border:1px solid black; display: inline-block;'>");
+						$(".imageArea").append($div);
 						
-							 	<div class="imageList" align="center">
-							 		<div style="width:350px; height:300px; margin-left: 2px;">
-							 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
-							 						width="200px" height="200px"><br>
-							 			<span><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
-							 			<span>판매가격</span>
-							 			<span><%=list1.get(i).getPrice() %>원</span>
-							 		</div>
-							 	</div>
-
-							
+						$div2 = $("<div style='width:350px; height:300px; margin-left: 2px;'>");						
+						$div.append($div2);
+						$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px'>"); 
+						$span1 = $("<br><span style='font-weight:13px;'>");
+						$span2 = $("<br><span style='font-color:red;'><hr>");
+						$span1.append(data.list[i].prd_name)
+						$span2.append("판매가격 " + data.list[i].price + "원")
+						$div2.append($span1);
+						$div2.append($span2);
 						
+						console.log(data);
+						console.log(data.list[i].price);
+						console.log(data.imgList[data.list[i].prd_code].changeName);
 					}
+					
+					console.log(path);	
 				}
 			}); 
-			
 		});
+		
 	</script>
-	
+
 	<br><br><br><br>
 	<%-- 
 	<!-- cpu -->

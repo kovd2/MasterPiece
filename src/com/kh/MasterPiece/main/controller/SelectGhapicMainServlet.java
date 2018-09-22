@@ -94,12 +94,7 @@ public class SelectGhapicMainServlet extends HttpServlet {
 		ArrayList<Product> list2 = new MainService().cpuList(currentPage2, limit2);
 		//----------------------------------------------------------------------
 
-
-
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
-
-
-
 
 
 		String page = "";
@@ -128,7 +123,7 @@ public class SelectGhapicMainServlet extends HttpServlet {
 			request.setAttribute("msg", "실패");
 		}
 
-
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 
