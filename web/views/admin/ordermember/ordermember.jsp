@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import="java.util.*, com.kh.MasterPiece.member.model.vo.*, com.kh.MasterPiece.board.model.vo.*"%>
+<%
+	ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list");
+	String cate = (String) request.getAttribute("cate");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = 0;
+	int currentPage = 0;
+	int maxPage =0;
+	int startPage = 0;
+	int endPage = 0;
+	if(cate.equals("전체")){
+	 listCount = pi.getListCount();
+	 currentPage = pi.getCurrentPage();
+	 maxPage = pi.getMaxPage();
+	 startPage = pi.getStartPage();
+	 endPage = pi.getEndPage();
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,20 +29,9 @@
     <jsp:param name="name" value="4"/>
 </jsp:include>
 <div id="main">
-	<div>
-		<table id="mt" style="margin-top: 80px">
-			<tr style="height: 50px">
-			<td><select name="">
-				<option>주문번호</option>
-				<option> </option>
-				<option> </option>
-			</select></td>
-			<td><input type="text" size="30"></td>
-			<td><input type="button" value = "검색"></td>
-			<td><input type="button" value = "주문확인" style="margin-left: 100px"></td>
-			<td><input type="button" value = "배송준비"></td>
-			</tr>
-		</table>
+	<div style="margin-left:20px; margin-top:20px;margin-bottom:20px;">
+		<button>결제 전</button>
+		<button>결제 후</button>
 	</div>
 	<div>
 		<table id="mt" border="1">
@@ -42,6 +49,60 @@
 		</tr>
 		</table>
 	</div>
+	<%
+				if (cate.equals("전체")) {
+			%>
+			<div class="pagingArea" align="center">
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/orderList.swy?currentPage=1'"><<</button>
+
+				<%
+					if (currentPage <= 1) {
+				%>
+				<button disabled><</button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/orderList.swy?currentPage=<%=currentPage - 1%>'"><</button>
+				
+				<%
+					}
+				%>
+
+				<%
+					for (int p = startPage; p <= endPage; p++) {
+							if (p == currentPage) {
+				%>
+				<button disabled><%=p%></button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/orderList.swy?currentPage=<%=p%>'"><%=p%></button>
+				<%
+					}
+				%>
+				<%
+					}
+				%>
+
+				<%
+					if (currentPage >= maxPage) {
+				%>
+				<button disabled>></button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/orderList.swy?currentPage=<%=currentPage + 1%>'">></button>
+				
+				<%
+					}
+				%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/orderList.swy?currentPage=<%=maxPage%>'">>></button>
+			</div>
+			<%
+				}
+			%>
 	</div>
 </body>
 </html>

@@ -99,14 +99,7 @@ a:HOVER {
 			<%if(view == 4){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>주문관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/ordermember/ordermember.jsp'"><h3>주문관리</h3></td>
-			<%} %>
-			</tr>
-			<tr>
-			<%if(view == 5){ %>
-				<td align="center" class="menu2" style="background: black; color:white;"><h3>발주관리</h3></td>
-			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/order/order.jsp'"><h3>발주관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/orderList.swy'"><h3>주문관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
