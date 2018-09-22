@@ -94,11 +94,10 @@ a:hover {
 			class="image" src="<%=request.getContextPath()%>/images/logo.png"
 			id="logo" align="center"></a>
 
-		<form id="passForm"
-			action="<%=request.getContextPath()%>/passFindResult.me" method="post">
+		<form id="successForm" action="<%=request.getContextPath()%>/passFind2" method="post">
 			<div class="Form">
 				<div class="inner">
-					<div class="Form2">새 비밀번호 설정</div>
+					<div class="Form2">인증번호 확인</div>
 					<hr style="border: 0.5px solid #929292; margin-top: 5px;">
 					<p style="font-weight: bold;">사용하실 새 비밀번호 입력</p>
 					<p style="color: gray;">패스워드는 최소 8자리 이상 입력해야 합니다.</p>
@@ -106,44 +105,55 @@ a:hover {
 					<br>
 					<div class="sendPassArea">
 					<table align="center">
+							<input type="hidden" name="code_check" id="code_check" value="<%=request.getAttribute("code")%>">
 							<tr>
-								<th>새 비밀번호</th>
-								<td><input type="password" id="userPwd" name="userPwd"></td>
+								<th>인증번호</th>
+								<td><input type="text" name="code" id="code" onkeyup="checkCode();" placeholder="인증번호를 입력하세요."></td>
 							</tr>
 							<tr>
-								<th>새 비밀번호 확인&nbsp;&nbsp;</th>
-								<td><input type="password" id="userPwd2" name="userPwd2"></td>
-							</tr>
-							<tr><td>
-							<input type="hidden" name="userId" value="<%=request.getAttribute("userId") %>">
-							<input type="hidden" name="email" value="<%=request.getAttribute("email") %>">
-							</td>
+								<td>
+								<input type="hidden" name="userId" value="<%=request.getAttribute("userId") %>">
+								<input type="hidden" name="email" value="<%=request.getAttribute("email") %>">
+								</td>
 							</tr>
 						</table>
 					</div>
-					<br> <input type="submit" id="passBtn" name="passBtn"
+					<br> <input type="hidden" id="successBtn" name="successBtn"
 						class="btn btn-default" value="확인">
 				</div>
-
 			</div>
 		</form>
 	</div>
 	<br><br><br><br>
 	<%@ include file="../common/footer.jsp"%>
 	<script type="text/javascript">
-		$(function(){
-			  $("#passBtn").click(function(){
-				  if($('#userPwd').val() == $('#userPwd2').val()){
-					  alert("비밀번호가 변경되었습니다.")
-					  $("#passForm").submit();  
-				  }else{
-					  
-					  alert("입력하신 비밀번호를 확인해 주세요.");
-				  }
-			  });
-			  
-		});
+	function checkCode(){
 		
+		var v1 = successForm.code_check.value;
+		var v2 = successForm.code.value;
+	
+		if(v1 != v2){ //같지않은경우
+			makeNull();
+		}else{
+			makeReal();
+		}
+		
+		function makeReal(){
+			
+			var successBtn = document.getElementById("successBtn")
+			
+			successBtn.type = "submit";
+		}
+		
+		function makeNull(){
+			
+			var successBtn = document.getElementById("successBtn")
+			
+			successBtn.type = "hidden";
+		}
+		
+
+	}
 	</script>
 
 
