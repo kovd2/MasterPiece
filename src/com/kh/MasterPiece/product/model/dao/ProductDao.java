@@ -63,6 +63,8 @@ public class ProductDao {
 				p.setPrd_code(rset.getString("PRD_CODE"));
 				p.setPrd_name(rset.getString("PRD_NAME"));
 				p.setPrice(rset.getInt("PRICE"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
 				
 				list.add(p);
 			}
@@ -135,6 +137,7 @@ public class ProductDao {
 				p.setRelease_date(rset.getDate("RELEASE_DATE"));
 				p.setManufacturer(rset.getString("MANUFACTURER"));
 				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setCategory(rset.getString("CATEGORY"));
 				
 				at = new Attachment();
 				

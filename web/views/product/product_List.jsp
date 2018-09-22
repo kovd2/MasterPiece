@@ -25,66 +25,6 @@
 	align:center;
 }
 
-.categorylist_area {
-	width: 1000px;
-	margin: 0 auto;
-	border: 5px solid #efefef;
-}
-
-.categorylist_box {
-	width: 950px;
-	height: 100px;
-	margin: 0 auto;
-	padding: 0px;
-}
-
-.categorylist {
-	width: 990px;
-	margin-left: 1px;
-	overflow: hidden;
-	padding-left: 0px;
-	padding-top: 10px;
-	display: inline-block;
-}
-
-.categorylist li {
-	width: 195px;
-	height: 25px;
-	line-height: 25px;
-	text-align: left;
-	display: inline-block;
-	float: left;
-	border-right: 1px solid #eaeaea;
-	margin-right: -1px;
-}
-
-.categorylist li a {
-	width: 100%;
-	line-height: 25px;
-	color: #727275;
-	font-size: 12.5px;
-	margin-left: 20px;
-	display: inline-block;
-	text-decoration:none;
-}
-
-.categorylist .category_menu a {
-	width: 100%;
-	color: #727275;
-	font-size: 13px;
-	line-height: 25px;
-	margin-left: 20px;
-	display: inline-block;
-}
-
-.categorylist li a:hover {
-	font-size: 15px;
-	font-weight: bold;
-	color: black;
-	text-decoration: underline;
-	cursor:pointer;
-}
-
 .bestPrd_area {
 	width: 1000px;
 	margin: 0 auto;
@@ -329,22 +269,6 @@
 	<%@ include file="../common/top.jsp"%>
 	<!-- 카테고리 div -->
 	<div class="wrap">
-		<div class="categorylist_area">
-			<div class="categorylist_box">
-				<ul class="categorylist">
-					<li class="category_menu"><a href="#">전체</a></li>
-					<li class=""><a onclick="location.href='<%=request.getContextPath()%>/prdPageList.js'">CPU</a></li>
-					<li class=""><a href="#">메인보드</a></li>
-					<li class=""><a href="#">메모리카드</a></li>
-					<li class=""><a href="#">그래픽카드</a></li>
-					<li class=""><a href="#">HDD</a></li>
-					<li class=""><a href="#">SDD</a></li>
-					<li class=""><a href="#">파워</a></li>
-					<li class=""><a href="#">쿨러</a></li>
-					<li class=""><a href="#">케이스</a></li>
-				</ul>
-			</div>
-		</div>
 		<!-- 추천상품 div -->
 		<div class="bestPrd_area">
 			<div class="sec_tit"
@@ -425,10 +349,10 @@
 				</div>
 			
 			<%for(int i = 0; i < list.size(); i++){ %>
-				<div class="Prd_list">
-					<div id="Prd_img" onclick="goDetail(<%= list.get(i).getPrd_code()%>)">
-						<input type="hidden" class="prdDetail" value="<%= list.get(i).getPrd_code()%>">
-						<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= list.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= list.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
 					</div>
 					<div class="Prd_Info" id="prd_info">
 						[<%=list.get(i).getPrd_code()%>]
@@ -443,15 +367,15 @@
 						</div>
 						<div class="prd_count">수량
 							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart();">
+							<div class="basketBtn"onclick="addCart('<%= list.get(i).getPrd_code()%>');">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
@@ -461,6 +385,7 @@
 					</div>
 				</div>
 			<% } %>
+			<!-- 페이징 처리 -->
 			<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1'"><<</button>
 			<% if(currentPage <= 1){ %>
@@ -501,9 +426,11 @@
 			location.href="./delivery_page.jsp";
 		};
 		
-		function addCart(){
+		function addCart(No){
+			var code = No;
+			
 			if(confirm("장바구니에 추가 하시겠습니까?")== true){
-				location.href="./cart_page.jsp";
+				location.href="<%=request.getContextPath()%>/addCart?code=" + code;
 			}else{
 				return false;
 			}
