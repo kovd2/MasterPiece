@@ -3,6 +3,12 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("imgList");
+	String beforeBuyIntelCpu = (String)request.getAttribute("beforeBuyIntelCpu");
+	String intelCpuDevision = (String)request.getAttribute("intelCpuDevision");
+	String beforeBuyAMDCpu = (String)request.getAttribute("beforeBuyAMDCpu");
+	String i3_8100InfoImage = (String)request.getAttribute("i3_8100InfoImage");
+	String R5_1500X_info = (String)request.getAttribute("R5_1500X_info");
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -301,7 +307,7 @@
 		<div class="info_layout">
 			<div class="item_info_layout">
 				<div class="item_img">
-					
+					<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(0).getChangeName()%>">
 				</div>
 			</div>
 			<div class="item_spec">
@@ -319,7 +325,13 @@
 							<li>수량</li>
 							<li>
 								<div>
-									<input type="number" value="1" style="width: 50px">
+									<select>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
 								</div>
 							</li>
 						</ul>
@@ -361,13 +373,26 @@
 		<br>
 		<div class="detail_div">
 			<div class="before_buy">
-				<img src="../../images/jinseok/icon/before_buy.PNG">
+			<%if(beforeBuyIntelCpu != null){ %>
+				<img src="<%=request.getContextPath()%>/images/jinseok/icon/<%=beforeBuyIntelCpu%>">
+			<%} %>
+			<%if(beforeBuyAMDCpu != null){ %>
+				<img src="<%=request.getContextPath()%>/images/jinseok/icon/<%=beforeBuyAMDCpu%>" style="margin-left:150px;">
+			<%} %>
+				
 			</div>
 			<div class="cpu_division">
-				<img src="../../images/jinseok/icon/intel_cpu_division.PNG">
+				<%if(intelCpuDevision != null){ %>
+					<img src="<%=request.getContextPath()%>/images/jinseok/icon/<%=intelCpuDevision%>">
+				<%} %>
 			</div>
 			<div class="detail_info">
-				<p align="center"><img src="../../images/jinseok/cpu/8_i3_8100_info.jpg"></p>
+				<%if(i3_8100InfoImage != null){ %>
+					<p align="center"><img src="<%=request.getContextPath()%>/images/jinseok/cpu/<%=i3_8100InfoImage%>"></p>
+				<%} %>
+				<%if(R5_1500X_info != null){ %>
+					<p align="center"><img src="<%=request.getContextPath()%>/images/jinseok/cpu/<%=R5_1500X_info%>"></p>
+				<%} %>
 			</div>
 		</div>
 		<br>
