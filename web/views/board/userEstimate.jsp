@@ -3,6 +3,7 @@
 <%
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String searchCondition = (String)request.getAttribute("searchCondition");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -10,13 +11,13 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	
-	System.out.println("list : " + list);
+	/* System.out.println("list : " + list);
 	System.out.println("listCount : " + listCount);
 	
 	System.out.println("currentPage" + currentPage);
 	System.out.println("maxPage" + maxPage);
 	System.out.println("startPage" + startPage);
-	System.out.println("endPage" + endPage);
+	System.out.println("endPage" + endPage); */
 %>
 <!DOCTYPE html>
 <html>
@@ -124,7 +125,7 @@
 						<hr style="border-color:#f43641;">
 						<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 						<br clear="both">
-						<form>
+						<form action="<%= request.getContextPath() %>/search.ue">
 						  <div style="float:right; margin-top:-26px;">
 						    <input type="text" class="form-control" placeholder="검색어를 입력하세요." size="40" style="height:20px; font-size:small;">
 						  </div>
@@ -159,7 +160,8 @@
 									<td><%= b.getBOARD_NO() %></td>
 									<td><%= b.getBOARD_TITLE() %></td>
 									<td><%= b.getBOARD_WRITER() %></td>
-									<td><%= b.getBOARD_DATE() %></td>
+									<td colspan="2"><%= b.getBOARD_DATE() %></td>
+									<th style="display:disabled;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 								</tr>
 								<%
 									}
@@ -235,11 +237,13 @@
 		{
 			$(".boardTable td").click(function()
 			{
-				var num = $(this).parent().children("input").val();
+				var boardNo = $(this).parent().children("input").val();
+				var boardId = $(this).parent().children().children("input").val();
 				
-				console.log(num);
+				console.log("boardNo : " + boardNo);
+				console.log("boardId : " + boardId);
 				
-				location.href="<%= request.getContextPath() %>/selectOne.ue?num=" + num;
+				location.href="<%= request.getContextPath() %>/selectOne.ue?boardNo=" + boardNo + "&boardId=" + boardId;
 			});
 		});
 	</script>

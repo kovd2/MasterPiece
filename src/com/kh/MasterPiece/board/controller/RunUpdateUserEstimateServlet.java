@@ -1,9 +1,6 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +11,16 @@ import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneUserEstimateServlet
+ * Servlet implementation class RunUpdateUserEstimateServlet
  */
-@WebServlet("/selectOne.ue")
-public class SelectOneUserEstimateServlet extends HttpServlet {
+@WebServlet("/update.ue")
+public class RunUpdateUserEstimateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneUserEstimateServlet() {
+    public RunUpdateUserEstimateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +30,34 @@ public class SelectOneUserEstimateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String boardPassword = request.getParameter("boardPassword");
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		Board b = new BoardService().selectUserEstimateOne(boardNo);
-		ArrayList<Board> replyList = new BoardService().selectReplyUserEstimate(boardId);
+		System.out.println("updateTitle : " + title);
+		System.out.println("updateContent : " + content);
+		System.out.println("updatePassword : " + boardPassword);
+		System.out.println("updateBoradID : " + boardId);
 		
-		System.out.println("유저 견적 댓글! : " + replyList);
+		Board b = new Board();
 		
-		String page = "";
+		b.setBOARD_TITLE(title);
+		b.setBOARD_CONTENT(content);
+		b.setBOARD_PWD(boardPassword);
+		b.setBOARD_ID(boardId);
 		
-		if(b != null)
+		int result = new BoardService().updateUserEstimate(b);
+		
+		if(result > 0)
 		{
-			page = "views/board/userEstimateDetail.jsp";
-			request.setAttribute("b", b);
-			request.setAttribute("replyList", replyList);
+			response.sendRedirect(request.getContextPath() + "/selectList.ue");
 		}
 		else
 		{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "유저 견적 게시판 상세보기 실패");
+			request.setAttribute("msg", "견적 요청 게시판 수정 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

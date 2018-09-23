@@ -1,9 +1,6 @@
 package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneUserEstimateServlet
+ * Servlet implementation class DeleteOneUserEstimateServlet
  */
-@WebServlet("/selectOne.ue")
-public class SelectOneUserEstimateServlet extends HttpServlet {
+@WebServlet("/deleteOne.ue")
+public class DeleteOneUserEstimateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneUserEstimateServlet() {
+    public DeleteOneUserEstimateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +29,21 @@ public class SelectOneUserEstimateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		Board b = new BoardService().selectUserEstimateOne(boardNo);
-		ArrayList<Board> replyList = new BoardService().selectReplyUserEstimate(boardId);
+		/*System.out.println("boardId : " + boardId);*/
 		
-		System.out.println("유저 견적 댓글! : " + replyList);
+		int result = new BoardService().deleteOneUserEstimate(boardId);
 		
-		String page = "";
-		
-		if(b != null)
+		if(result > 0)
 		{
-			page = "views/board/userEstimateDetail.jsp";
-			request.setAttribute("b", b);
-			request.setAttribute("replyList", replyList);
+			response.sendRedirect(request.getContextPath() + "/selectList.ue");
 		}
 		else
 		{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "유저 견적 게시판 상세보기 실패");
+			request.setAttribute("msg", "견적 요청 게시판 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

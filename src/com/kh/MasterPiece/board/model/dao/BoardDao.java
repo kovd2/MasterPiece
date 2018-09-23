@@ -743,4 +743,187 @@ public class BoardDao
 		
 		return replyList;
 	}
+	public ArrayList<Board> selectReplyUserEstimate(Connection conn, int boardId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Board> replyList = null;
+		
+		String query = prop.getProperty("userEstimateReplyList");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardId);
+			
+			rset = pstmt.executeQuery();
+			
+			replyList = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				
+				replyList.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return replyList;
+	}
+	public int updateUserEstimate(Connection conn, Board b)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateUserEstimate");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBOARD_TITLE());
+			pstmt.setString(2, b.getBOARD_CONTENT());
+			pstmt.setString(3, b.getBOARD_PWD());
+			pstmt.setInt(4, b.getBOARD_ID());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int insertUserEstimateReply(Connection conn, Board b)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertUserEstimateReply");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBOARD_CONTENT());
+			pstmt.setString(2, b.getBOARD_WRITER());
+			pstmt.setInt(3, b.getBOARD_ID());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public ArrayList<Board> UserEstimateReplyList(Connection conn, int board_ID)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("userEstimateReplyList");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, board_ID);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				
+				list.add(b);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public int deleteOneUserEstimate(Connection conn, int boardId)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteOneUserEstimate");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardId);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int deleteReplyUserEstimate(Connection conn, int replyBoardId)
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteReplyUserEstimate");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, replyBoardId);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
+	}
 }

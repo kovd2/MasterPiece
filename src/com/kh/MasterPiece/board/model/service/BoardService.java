@@ -227,4 +227,92 @@ public class BoardService {
 		
 		return replyList;
 	}
+
+	public ArrayList<Board> selectReplyUserEstimate(int boardId)
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> replyList = new BoardDao().selectReplyUserEstimate(conn, boardId);
+		
+		close(conn);
+		
+		return replyList;
+	}
+
+	public int updateUserEstimate(Board b)
+	{
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().updateUserEstimate(conn, b);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+	}
+
+	public ArrayList<Board> insertUserEstimateReply(Board b)
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> replyList = null;
+		
+		int result = new BoardDao().insertUserEstimateReply(conn, b);
+		
+		if(result > 0)
+		{
+			commit(conn);
+			
+			replyList = new BoardDao().UserEstimateReplyList(conn, b.getBOARD_ID());
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return replyList;
+	}
+
+	public int deleteOneUserEstimate(int boardId)
+	{
+		Connection conn = getConnection();
+		int result = new BoardDao().deleteOneUserEstimate(conn, boardId);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteReplyUserEstimate(int replyBoardId)
+	{
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().deleteReplyUserEstimate(conn, replyBoardId);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 }

@@ -84,7 +84,7 @@ table th
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="<%= request.getContextPath() %>/selectList.ue'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">
 					<span style="float:left">유저 견적 게시판</span><span style="float: right;">></span>
 				</div>
 			</div>

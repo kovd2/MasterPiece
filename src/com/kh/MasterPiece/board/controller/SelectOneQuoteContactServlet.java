@@ -43,7 +43,7 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		Board b = new BoardService().selectQuoteContactOne(boardNo);
 		ArrayList<Board> replyList = new BoardService().selectReplyQuoteContact(boardId);
 		
-		System.out.println("댓글이다! : " + replyList);
+		/*System.out.println("댓글이다! : " + replyList);*/
 				
 		String page = "";
 		
@@ -53,11 +53,11 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 			request.setAttribute("b", b);
 			request.setAttribute("replyList", replyList);
 		}
-		/*else
+		else
 		{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "견적 요청 게시판 상세보기 실패");
-		}*/
+		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
