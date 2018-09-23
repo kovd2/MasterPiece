@@ -34,12 +34,12 @@ a:hover {
 	color: black;
 }
 
-.sendPassArea {
+.sendPassArea2 {
 	margin: 0 auto;
 	width: 600px;
 	height: 80px;
 	background: #f0e1e1;
-	padding-top: 10px;
+	padding-top: 25px;
 }
 
 .sendBtn {
@@ -99,22 +99,22 @@ a:hover {
 				<div class="inner">
 					<div class="Form2">인증번호 확인</div>
 					<hr style="border: 0.5px solid #929292; margin-top: 5px;">
-					<p style="font-weight: bold;">사용하실 새 비밀번호 입력</p>
-					<p style="color: gray;">패스워드는 최소 8자리 이상 입력해야 합니다.</p>
+					<p style="font-weight: bold;">이메일에 전송된 인증번호 입력</p>
+					<p style="color: gray;">인증번호 확인 후 비밀번호 변경 페이지로 이동합니다.</p>
 
 					<br>
-					<div class="sendPassArea">
+					<div class="sendPassArea2">
 					<table align="center">
 							<input type="hidden" name="code_check" id="code_check" value="<%=request.getAttribute("code")%>">
-							<tr>
-								<th>인증번호</th>
-								<td><input type="text" name="code" id="code" onkeyup="checkCode();" placeholder="인증번호를 입력하세요."></td>
-							</tr>
 							<tr>
 								<td>
 								<input type="hidden" name="userId" value="<%=request.getAttribute("userId") %>">
 								<input type="hidden" name="email" value="<%=request.getAttribute("email") %>">
 								</td>
+							</tr>
+							<tr>
+								<th>인증번호&nbsp;&nbsp;</th>
+								<td><input type="text" name="code" id="code" onkeyup="checkCode();" placeholder="인증번호를 입력하세요."></td>
 							</tr>
 						</table>
 					</div>
