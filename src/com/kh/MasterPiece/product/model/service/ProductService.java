@@ -47,12 +47,15 @@ public class ProductService {
 		return hmap;
 	}
 
-	/*public Product prdDetail(String code) {
+	public HashMap<String, Object> cartList(String code) {
 		Connection con = getConnection();
+		HashMap<String, Object> hmap = null;
 		
-		Product p = new ProductDao().prdDetail(con, code);
+		hmap = new ProductDao().cartList(con, code);
 		
-		return p;
-	}*/
-
+		close(con);
+		
+		return hmap;
+	}
+	
 }

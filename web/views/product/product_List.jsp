@@ -266,9 +266,36 @@
 </style>
 </head>
 <body>
+
 	<%@ include file="../common/top.jsp"%>
+
 	<!-- 카테고리 div -->
 	<div class="wrap">
+		<div class="prdNaviLayer" style="display: inline-flex;">
+			<div class="mainLayer" style="width:200px;">
+				<ul class="mainNavi">
+					<li>컴퓨터 부품</li>
+					<ul class="mainTitle">
+						<li>CPU</li>
+						<li>메인보드</li>
+						<li>메모리</li>
+						<li>그래픽카드</li>
+						<li>저장장치</li>
+						<li>ODD</li>
+						<li>파워</li>
+						<li>쿨러</li>
+						<li>케이스</li>
+					</ul>
+				</ul>
+			</div>
+			<div class="subLayer" style="width:200px;">
+				<ul class="subNavi">
+					<li>-------</li>
+					<li>Intel</li>
+					<li>AMD</li>
+				</ul>
+			</div>
+		</div>
 		<!-- 추천상품 div -->
 		<div class="bestPrd_area">
 			<div class="sec_tit"
@@ -367,7 +394,7 @@
 						</div>
 						<div class="prd_count">수량
 							<select>
-								<option value="1">1</option>
+								<option value="1" selected>1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -375,7 +402,7 @@
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart('<%= list.get(i).getPrd_code()%>');">
+							<div class="basketBtn"onclick="addCart('<%=list.get(i).getPrd_code()%>')">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
@@ -435,9 +462,8 @@
 				return false;
 			}
 		};
-			
 	</script>
-	
+
 	<%@include file = "../common/footer.jsp" %>
 </body>
 </html>

@@ -66,7 +66,6 @@ public class ProductPageListServlet extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		
 		//ArrayList<Product> list = new ProductService().selectListAll();
 		ArrayList<Product> list = new ProductService().selectListAll(currentPage, limit);
 		HashMap<String, Attachment> imgList = new ProductService().imgList();
