@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 public class ProductDao {
@@ -163,44 +164,67 @@ public class ProductDao {
 		
 		return hmap;
 	}
-	
-	/*public Product prdDetail(Connection con, String code) {
+	public HashMap<String, Object> cartList(Connection con, String code) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		HashMap<String, Object> hmap = null;
 		
 		Product p = null;
+		Member m = null;
+		Attachment at = null;
+		ArrayList<Attachment> list = null;
 		
-		String query = prop.getProperty("prdDetail");
+		String query = prop.getProperty("insertOrder");
 		
-		try
-		{
+		try {
 			pstmt = con.prepareStatement(query);
+			
 			pstmt.setString(1, code);
+			pstmt.setString(2, "1234");
+			pstmt.setInt(3, 10);
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next())
-			{
+			list = new ArrayList<Attachment>();
+			
+			while(rset.next()){
 				p = new Product();
+				m = new Member();
+				
+				m.setUserId(rset.getString("USER_ID"));
 				
 				p.setPrd_name(rset.getString("PRD_NAME"));
 				p.setPrice(rset.getInt("PRICE"));
 				p.setRelease_date(rset.getDate("RELEASE_DATE"));
 				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setCategory(rset.getString("CATEGORY"));
 				
+				at = new Attachment();
+				
+				at.setChangeName(rset.getString("change_name"));
+				at.setOriginName(rset.getString("file_name"));
+				at.setUploadDate(rset.getDate("upload_date"));
+				at.setFilePath(rset.getString("save_route"));
+				
+				list.add(at);
 			}
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
+			hmap = new HashMap<String, Object>();
+			hmap.put("product", p);
+			hmap.put("member", m);
+			hmap.put("attachment", list);
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		finally
-		{
+		} finally{
 			close(rset);
 			close(pstmt);
 		}
 		
-		return p;
-	}*/
+		
+		return hmap;
+	}
+	
 
 }
