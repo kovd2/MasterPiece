@@ -119,7 +119,7 @@ a:HOVER {
 			<%if(view == 7){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>게시판 관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/board/board.jsp'"><h3>게시판 관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/selectBoard.swy'"><h3>게시판 관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
