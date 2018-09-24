@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.admin.model.service.testService;
 import com.kh.MasterPiece.board.model.vo.PageInfo;
-import com.kh.MasterPiece.member.model.vo.Member;
+import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 
 /**
  * Servlet implementation class orderListServlet
@@ -52,7 +52,7 @@ public class orderListServlet extends HttpServlet {
 		}
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = new testService().getMemberListCount();
+		int listCount = new testService().getOrderListCount();
 		System.out.println("listCount : " + listCount);
 		//총 페이지수 계산
 		//예) 목록 수가 123개이면 페이지가 13개가 필요함
@@ -72,7 +72,7 @@ public class orderListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 		//ArrayList<Product> list = new testService().productList();
-		ArrayList<Member> list = new testService().selectMemberList(currentPage, limit);
+		ArrayList<BuyerHistory> list = new testService().selectOrderList(currentPage, limit);
 		String page = "";
 		if(list != null){
 			page = "views/admin/ordermember/ordermember.jsp";

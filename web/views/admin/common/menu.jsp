@@ -71,6 +71,12 @@ a:HOVER {
 	<div id="top">
 		<img alt="" src="<%=request.getContextPath()%>/images/logo.png" id="logo"> 
 		<img alt=""	src="<%=request.getContextPath()%>/images/MasterPiece.png" id="title">
+		<button style="height: 50px; margin-left: 50px" onclick = "logout()">로그 아웃</button>
+		<script>
+	function logout(){
+		location.href="/MasterPiece/logout.me";
+	}
+	</script>
 	</div>
 	<div id="menu">
 		<table align="center" id="tm">
@@ -106,7 +112,7 @@ a:HOVER {
 			<%if(view == 6){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>문의관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/question/question.jsp'"><h3>문의관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/question.swy'"><h3>문의관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>

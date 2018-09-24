@@ -36,11 +36,10 @@
 	<div>
 		<table id="mt" border="1">
 		<tr align="center" style="background: lightgray;">
-		<th style="width: 50px">번호</th>
-		<th>주문일자/주문번호</th>
+		<th style="width: 100px">주문일자</th>
+		<th style="width: 100px">주문번호</th>
 		<th style="width: 100px">상품정보</th>
 		<th style="width: 90px">주문자</th>
-		<th style="width: 90px">주문금액</th>
 		<th style="width: 200px">결제금액</th>
 		<th>결제방법</th>
 		<th>결제상태</th>

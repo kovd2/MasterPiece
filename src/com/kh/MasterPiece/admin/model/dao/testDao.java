@@ -15,8 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.member.model.vo.Member;
+import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 
@@ -646,6 +650,269 @@ public class testDao {
 				pstmt.setString(1, values[i]);
 				result += pstmt.executeUpdate();
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+
+		return result;
+	}
+
+
+	public int getOrderListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("OrderListCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+
+		}
+
+
+
+		return listCount;
+	}
+
+
+	public ArrayList<BuyerHistory> selectOrderList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+
+		ResultSet rset = null;
+		ArrayList<BuyerHistory> list = null;
+
+
+		String query = prop.getProperty("selectOrderList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<BuyerHistory>();
+
+			while(rset.next()){
+				BuyerHistory b = new BuyerHistory();
+
+				list.add(b);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int getQuestionListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("QuestionListCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+
+		}
+
+
+
+		return listCount;
+	}
+
+
+	public ArrayList<Board> selectQuestionList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+
+
+		String query = prop.getProperty("selectQuestionList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Board>();
+
+			while(rset.next()){
+				Board b = new Board();
+				b.setBOARD_ID(rset.getInt("BOARD_ID"));
+				b.setBOARD_TITLE(rset.getString("BOARD_TITLE"));
+				b.setBOARD_WRITER(rset.getString("BOARD_WRITER"));
+				list.add(b);
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public Board questionDetail(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+
+		String query = prop.getProperty("questionDetail");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rset = pstmt.executeQuery();
+	
+			if(rset.next()){
+				b = new Board();
+				b.setBOARD_ID(rset.getInt("BOARD_ID"));
+				b.setBOARD_TITLE(rset.getString("BOARD_TITLE"));
+				b.setBOARD_WRITER(rset.getString("BOARD_WRITER"));
+				b.setBOARD_TYPE(3);
+				b.setBOARD_CONTENT(rset.getString("BOARD_CONTENT"));
+				b.setBOARD_LEVEL(1);
+				b.setBOARD_STATUS(rset.getString("BOARD_STATUS"));
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return b;
+	}
+
+
+
+	public Member getep(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+
+		String query = prop.getProperty("getep");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rset = pstmt.executeQuery();
+	
+			if(rset.next()){
+				m = new Member();
+				m.setEmail(rset.getString("EMAIL"));
+				m.setPhone(rset.getString("PHONE"));
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return m;
+	}
+
+
+	public int answer(Connection con, int id, String content) {
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String query = prop.getProperty("answerInsert");
+		String query2 = prop.getProperty("questionUpdate");
+
+		int result = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, id);
+			
+			result = pstmt.executeUpdate();
+			if(result>0){
+				pstmt2 = con.prepareStatement(query2);
+				pstmt2.setInt(1, id);
+				
+				result += pstmt2.executeUpdate();
+			}
+			
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
