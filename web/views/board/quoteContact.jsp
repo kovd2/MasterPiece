@@ -157,12 +157,13 @@
 								%>
 								<tr>
 									<input type="hidden" value="<%= b.getBOARD_NO() %>">
-									<input id="boardPassword" type="hidden" value="<%= b.getBOARD_PWD() %>">
 									<td><%= b.getBOARD_NO() %></td>
 									<td><%= b.getBOARD_TITLE() %></td>
 									<td><%= b.getBOARD_WRITER() %></td>
 									<td colspan="2"><%= b.getBOARD_DATE() %></td>
-									<th style="display:disabled;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
+									<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
+									<td style="display:none;"><input type="text" value="<%= b.getBOARD_PWD() %>"></td>
+									<td style="display:none;"><input type="tel" value="<%= b.getBOARD_WRITER() %>"></td>
 								</tr>
 								<%
 									}
@@ -238,26 +239,42 @@
 		{
 			$(".boardTable td").click(function()
 			{
-				<%-- if("<%= loginUser.getUserId() %>" != "admin")
+				var boardPassword = $(this).parent().children().children("input[type='text']").val();
+				/* alert(boardPassword); */
+				
+				var boardNo = $(this).parent().children("input").val();
+				var boardId = $(this).parent().children().children("input").val();
+				var boardWriter = $(this).parent().children().children("input[type='tel']").val();
+				/* alert(boardWriter); */
+				
+				if("<%= loginUser.getUserId() %>" != "admin")
 				{
-					var password = prompt("비공개 게시글입니다. 비밀번호를 입력하세요.");
-	
-					var boardPassword = $("#boardPassword").val();
-					console.log(boardPassword);
-					
-					if(password == boardPassword)
+					if(boardWriter != "<%= loginUser.getUserId() %>")
 					{
-						var num = $(this).parent().children("input").val();
-					
-						console.log(num);
-					
-						location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
+						var password = prompt("비공개 게시글입니다. 비밀번호를 입력하세요.");
+						
+						if(password == boardPassword)
+						{
+							var num = $(this).parent().children("input").val();
+						
+							console.log(num);
+						
+							location.href="<%= request.getContextPath() %>/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId;
+						}
+						else
+						{
+							alert("비밀번호가 맞지 않습니다.");
+							
+							location.href="<%= request.getContextPath() %>/selectList.qc";
+						}
 					}
 					else
 					{
-						alert("비밀번호가 맞지 않습니다.");
+						var num = $(this).parent().children("input").val();
 						
-						location.href="<%= request.getContextPath() %>/selectList.qc";
+						console.log(num);
+					
+						location.href="<%= request.getContextPath() %>/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId;
 					}
 				}
 				else
@@ -266,16 +283,8 @@
 					
 					console.log(num);
 				
-					location.href="<%= request.getContextPath() %>/selectOne.qc?num=" + num;
-				} --%>
-				
-				var boardNo = $(this).parent().children("input").val();
-				var boardId = $(this).parent().children().children("input").val();
-				
-				console.log("boardNo : " + boardNo);
-				console.log("boardId : " + boardId);
-			
-				location.href="<%= request.getContextPath() %>/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId;
+					location.href="<%= request.getContextPath() %>/selectOne.qc?boardNo=" + boardNo + "&boardId=" + boardId;
+				}
 			});
 		});
 	</script>

@@ -3,27 +3,27 @@ package com.kh.MasterPiece.board.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectOneUserEstimateServlet
+ * Servlet implementation class InsertUserEstimateReplyServlet
  */
-@WebServlet("/selectOne.ue")
-public class SelectOneUserEstimateServlet extends HttpServlet {
+@WebServlet("/insertReply.ue")
+public class InsertUserEstimateReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectOneUserEstimateServlet() {
+    public InsertUserEstimateReplyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +33,23 @@ public class SelectOneUserEstimateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String writer = request.getParameter("writer");
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		String replyContent = request.getParameter("replyContent");
 		
-		Board b = new BoardService().selectUserEstimateOne(boardNo);
-		ArrayList<Board> replyList = new BoardService().selectReplyUserEstimate(boardId);
+		Board b = new Board();
 		
-		System.out.println("유저 견적 댓글! : " + replyList);
+		b.setBOARD_ID(boardId);
+		b.setBOARD_WRITER(writer);
+		b.setBOARD_CONTENT(replyContent);
 		
-		String page = "";
+		ArrayList<Board> replyList = new BoardService().insertUserEstimateReply(b);
 		
-		if(b != null)
-		{
-			page = "views/board/userEstimateDetail.jsp";
-			request.setAttribute("b", b);
-			request.setAttribute("replyList", replyList);
-		}
-		else
-		{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "유저 견적 게시판 상세보기 실패");
-		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		System.out.println("replyList : " + replyList);
+		
+		response.setContentType("application/json");
+		
+		new Gson().toJson(replyList, response.getWriter());
 	}
 
 	/**

@@ -350,7 +350,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 					<ul class="cate_menu">
 						<li onclick="location.href='https://www.google.com/'">공지사항</li>
 						<li onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">견적 문의</li>
-						<li onclick="location.href='https://www.google.com/'">회원 견적</li>
+						<li onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">회원 견적</li>
 					</ul>
 				</div>
 			</div>

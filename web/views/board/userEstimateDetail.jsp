@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
+	ArrayList<Board> replyList = (ArrayList<Board>)request.getAttribute("replyList");
 %>
 <!DOCTYPE html>
 <html>
@@ -46,16 +47,16 @@
 {
 	width:65px;
 }
-table
+#detailTable
 {
 	border-spacing:0px;
 	border-collapse: collapse;
 }
-table th, td
+#detailTable>tbody>tr>th, #detailTable>tbody>tr>td
 {
 	border:1px solid lightgray;
 }
-table th
+#detailTable>tbody>tr>th
 {
 	text-align:left;
 	padding-left:10px;
@@ -68,6 +69,23 @@ table th
 {
 	width:70%;
 	height:80%;
+}
+#replyTable
+{
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+#replyTable>tr>td
+{
+	border:none;
+}
+.pointer
+{
+	cursor:pointer;
+}
+#replyListTable>tr>td
+{
+	font-size:14px;
 }
 </style>
 </head>
@@ -86,7 +104,7 @@ table th
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='userEstimate.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">
 					<span style="float:left">유저 견적 게시판</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -98,10 +116,10 @@ table th
 				<div>
 					<div>
 					<hr style="border-color:#f43641;">
-					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
+					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-						<table style="width:100%;">
+						<table id="detailTable" style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="width:150px; border-right:none;">작성자</th>
@@ -123,12 +141,47 @@ table th
 							</tbody>
 						</table>
 						<br>
+						<%
+							if(b.getBOARD_WRITER().equals(loginUser.getUserId()))
+							{
+						%>
 						<div>
-							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.ue?num=<%= b.getBOARD_NO()+1 %>'">다음</button>
+							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/gotoupdate.ue?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&boardId=<%= b.getBOARD_ID() %>'">수정</button>
 						</div>
 						<div>
-							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.ue?num=<%= b.getBOARD_NO()-1 %>'">이전</button>
+							<button type="button" class="btn" style="background:orangered; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.ue?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
 						</div>
+						<%
+							}
+						%>
+					</div>
+					<br><br>
+					<!-- 댓글 -->
+					<div id="replyArea">
+						<table id="replyListTable" align="center">
+							<%
+								for(Board replyBoard : replyList)
+								{
+							%>
+							<tr>
+								<td style="width:100px; font-size:14px;"><%= replyBoard.getBOARD_WRITER() %></td>
+								<td style="width:440px; font-size:14px;"><%= replyBoard.getBOARD_CONTENT() %></td>
+								<td style="font-size:14px;"><input type="button" value="X"><input type="hidden" value="<%= replyBoard.getBOARD_ID() %>"></td>
+							</tr>
+							<!-- #replyListTable>tr>td { font-size:14px; } -->
+							<%
+								}
+							%>
+						</table>
+					</div>
+					<div class="container" style="margin:auto; border:1px solid lightgray; width:600px; height:100px;">
+						<table id="replyTable" style="margin-top:20px;">
+							<tr>
+								<td style="width:100px; text-align:center; font-size:14px;"><%= loginUser.getUserId() %></td>
+								<td style="width:440px;"><textarea id="replyContent" rows="3" cols="55" style="resize:none; margin-top:4px;"></textarea></td>
+								<td><button id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -145,5 +198,60 @@ table th
 			request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
 		}
 	%>
+	
+	<script>
+	$(function()
+	{
+		$("#addReply").click(function()
+		{
+			var writer = "<%= loginUser.getUserId() %>";
+			var boardId = <%= b.getBOARD_ID() %>;
+			var replyContent = $("#replyContent").val();
+			
+			$.ajax(
+			{
+				url:"/MasterPiece/insertReply.ue",
+				context:this,
+				data:{writer:writer, replyContent:replyContent, boardId:boardId},
+				type:"post",
+				success:function(data)
+				{
+					var $replyListTable = $("#replyListTable");
+					$replyListTable.html('');
+					
+					for(var key in data)
+					{
+						var $tr = $("<tr>");
+						var $writerTd = $("<td>").text(data[key].BOARD_WRITER).css("width", "100px");
+						var $replyContentTd = $("<td>").text(data[key].BOARD_CONTENT).css("width", "440px");
+						var $td = $("<td>");
+						var $hiddenValue = $("<input type='hidden'>").val(data[key].BOARD_ID);
+						
+						var hiddenVal = $hiddenValue.val();
+						
+						/* alert(hiddenVal); */
+								
+						$td.append("<input type='button' value='X'>");
+						$td.append($hiddenValue);
+						
+						$tr.append($writerTd);
+						$tr.append($replyContentTd);
+						$tr.append($td);
+						$replyListTable.append($tr);
+					}
+				}
+			});
+		});
+	});
+	
+	$(document).on('click',"input[type='button']", function()
+	{
+		var replyBoardId = $(this).parent().children("input[type='hidden']").val();
+		var boardId = <%= b.getBOARD_ID() %>;
+		var boardNo = <%= b.getBOARD_NO() %>;
+		
+		location.href="<%= request.getContextPath() %>/deleteReply.ue?replyBoardId=" + replyBoardId + "&boardId=" + boardId + "&boardNo=" + boardNo;
+	});
+	</script>
 </body>
 </html>

@@ -104,7 +104,7 @@
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">
 					<span style="float:left">견적 요청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='userEstimate.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">
 					<span style="float:left">유저 견적 게시판</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -141,17 +141,19 @@
 							</tbody>
 						</table>
 						<br>
+						<%
+							if(b.getBOARD_WRITER().equals(loginUser.getUserId()))
+							{
+						%>
 						<div>
 							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/gotoupdate.qc?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&boardId=<%= b.getBOARD_ID() %>'">수정</button>
 						</div>
 						<div>
-							<button type="button" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
+							<button type="button" class="btn" style="background:orangered; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
 						</div>
-						<div>
-							<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()+1 %>'">다음</button>
-						</div>
-						<div>
-							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectOne.qc?num=<%= b.getBOARD_NO()-1 %>'">이전</button>
+						<%
+							}
+						%>
 						</div>
 						<br><br>
 						<!-- 댓글 -->
