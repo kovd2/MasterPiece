@@ -9,7 +9,9 @@ import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.member.model.vo.Member;
+import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.product.model.vo.Product; 
 
 public class testService {
@@ -175,6 +177,81 @@ public class testService {
 		}
 		close(con);
 	
+		return result;
+	}
+
+	public int getOrderListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getOrderListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<BuyerHistory> selectOrderList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<BuyerHistory> list = new testDao().selectOrderList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int getQuestionListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getQuestionListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Board> selectQuestionList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = new testDao().selectQuestionList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public Board questionDetail(String id) {
+		Connection con = getConnection();
+		
+		Board b = new testDao().questionDetail(con, id);
+		
+		close(con);
+		
+		return b;
+	}
+
+
+	public Member getep(String id) {
+		Connection con = getConnection();
+		
+		Member m = new testDao().getep(con, id);
+		
+		close(con);
+		
+		return m;
+	}
+
+	public int answer(String content, int id) {
+		Connection con = getConnection();
+		
+		int result = new testDao().answer(con, id, content);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
 		return result;
 	}
 }

@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class BuyerHistory implements Serializable{
-	private Date payDate;
-	private String prdName;
-	private int buyNo;
-	private String prdCode;
-	private String buyStatus;
-	private String deliveryOption;
-	private String orderCheck;
-	private int payPrice;
-	private int orderCount;
-	private String payType;
+	private Date payDate;	//주문일자
+	private String prdName;	//상품정보
+	private int buyNo;		//주문번호
+	private String prdCode;	//상품코드
+	private String buyStatus;//결제상태
+	private String deliveryOption;//배송옵션
+	private String orderCheck;	//주문확인번호
+	private int payPrice;		//주문금액
+	private int orderCount;		//결제수량
+	private String payType;		//결제방법
 	
 	public BuyerHistory(){}
 
