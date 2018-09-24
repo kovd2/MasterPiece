@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,18 +189,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("주문결제"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>1</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -213,18 +220,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("배송"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>환불.반품.교환.AS</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -240,18 +251,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("환불.반품.교환.AS"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>주문결제</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -267,17 +282,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("적립금.포인트"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>4</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
+							<%
+									}
+								}
+							%>
 							</tr>
 						</tbody>
 					</table>
@@ -294,18 +314,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("상품"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>5</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -321,24 +345,28 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list)
+								{
+									if(b.getBOARD_CATEGORY().equals("기타"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>6</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
 				</div>
 				<!-- 페이징 -->
-				<div>
+				<!-- <div>
 					<div>
 						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
@@ -352,7 +380,7 @@
 							<a href="#?page=2">다음  ></a>
 						</div>
 				    </div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

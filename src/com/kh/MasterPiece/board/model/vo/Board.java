@@ -14,7 +14,7 @@ public class Board {
     //6.공지사항
     private String BOARD_PWD;                           //게시판 비밀번호
     private int BOARD_NO;                               //각 게시판 번호 (시퀀스)
-    private int BOARD_CATEGORY;                         //카테고리 번호
+    private String BOARD_CATEGORY;                         //카테고리 번호
     private String BOARD_TITLE;                 //게시판 글 제목
     private String BOARD_CONTENT;              //게시판 글 내용
     private String BOARD_WRITER;               //게시판 작성자(유저 ID)
@@ -26,7 +26,7 @@ public class Board {
     
     public Board() {}
     
-	public Board(int bOARD_ID, int bOARD_TYPE, String bOARD_PWD, int bOARD_NO, int bOARD_CATEGORY, String bOARD_TITLE,
+	public Board(int bOARD_ID, int bOARD_TYPE, String bOARD_PWD, int bOARD_NO, String bOARD_CATEGORY, String bOARD_TITLE,
 			String bOARD_CONTENT, String bOARD_WRITER, int rEF_BOARD_ID, int bOARD_LEVEL, Date bOARD_DATE,
 			String bOARD_STATUS, String qUE_STATUS) {
 		super();
@@ -77,11 +77,11 @@ public class Board {
 		BOARD_NO = bOARD_NO;
 	}
 
-	public int getBOARD_CATEGORY() {
+	public String getBOARD_CATEGORY() {
 		return BOARD_CATEGORY;
 	}
 
-	public void setBOARD_CATEGORY(int bOARD_CATEGORY) {
+	public void setBOARD_CATEGORY(String bOARD_CATEGORY) {
 		BOARD_CATEGORY = bOARD_CATEGORY;
 	}
 

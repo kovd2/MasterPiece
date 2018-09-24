@@ -315,4 +315,45 @@ public class BoardService {
 		
 		return result;
 	}
+
+	public ArrayList<Board> selectServiceCenterList()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectServiceCenterNoticeList()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterNoticeList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectServiceCenterMoreList()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterMoreList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectServiceCenterQuestionList()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterQuestionList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 }

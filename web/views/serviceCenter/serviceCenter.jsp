@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Board> list1 = (ArrayList<Board>)request.getAttribute("list1");
+	ArrayList<Board> list2 = (ArrayList<Board>)request.getAttribute("list2");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +13,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
     /*서브(리스트)_페이지넘버*/
-    .list_number{padding-top:25px; text-align:center;}
-    .list_n_menu {padding:3px; MARGIN:3px; TEXT-ALIGN: center}
-	.list_n_menu A {padding: 1px 4px 0px 4px;MARGIN: 2px;/* BORDER: #ccc 1px solid; */COLOR: #999;TEXT-DECORATION: none;}
-    .list_n_menu A:hover {BORDER:#999 1px solid; COLOR: #666;}
-    .list_n_menu A:active {BORDER:#999 1px solid; COLOR: #666;}
-	.list_n_menu .current {BORDER: #117bff 1px solid;padding: 1px 4px 0px 4px;FONT-WEIGHT: bold;MARGIN: 2px;COLOR: #036cb4;}
-    .list_n_menu .disabled {BORDER: #eee 1px solid;padding: 1px 4px 0px 4px;MARGIN: 2px;COLOR: #ddd;}
+    .list1_number{padding-top:25px; text-align:center;}
+    .list1_n_menu {padding:3px; MARGIN:3px; TEXT-ALIGN: center}
+	.list1_n_menu A {padding: 1px 4px 0px 4px;MARGIN: 2px;/* BORDER: #ccc 1px solid; */COLOR: #999;TEXT-DECORATION: none;}
+    .list1_n_menu A:hover {BORDER:#999 1px solid; COLOR: #666;}
+    .list1_n_menu A:active {BORDER:#999 1px solid; COLOR: #666;}
+	.list1_n_menu .current {BORDER: #117bff 1px solid;padding: 1px 4px 0px 4px;FONT-WEIGHT: bold;MARGIN: 2px;COLOR: #036cb4;}
+    .list1_n_menu .disabled {BORDER: #eee 1px solid;padding: 1px 4px 0px 4px;MARGIN: 2px;COLOR: #ddd;}
     
 .container-inner /* .inb 에 대한 인라인 블록 지정 */ {
 	/* width:90%; */
@@ -130,7 +134,7 @@
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterQuestionList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectQuestionList.sc'">
 					<span style="float:left">1:1 문의</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterMoreBoard.jsp'">
@@ -139,7 +143,7 @@
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;">
@@ -159,7 +163,7 @@
 				</div>
 				<br clear="both">
 				<label style="float:left; font-size:14px; font-weight:bold;">자주 묻는 질문</label>
-				<label class="moreBoard" style="float:right; font-size:14px;" onclick="location.href='serviceCenterMoreBoard.jsp'">더보기 ▶</label>
+				<label class="moreBoard" style="float:right; font-size:14px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">더보기 ▶</label>
 				<br clear="both">
 				<div class="FAQBoard" style="width:700px; margin-top:10px;">
 					<div id="order-btn" style="width:115px; height:30px; float:left; border:1px solid lightgray;">주문결제
@@ -187,18 +191,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("주문결제"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>Order</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -214,18 +222,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("배송"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>Delivery</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -241,18 +253,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("환불.반품.교환.AS"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>AfterService</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -268,18 +284,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("적립금.포인트"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>point</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -295,18 +315,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("상품"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>aboutProduct</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -322,18 +346,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list1)
+								{
+									if(b.getBOARD_CATEGORY().equals("기타"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>etc</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 					</table>
 					<br><br clear="both">
@@ -445,7 +473,7 @@
 					});
 				</script>
 				<label style="float:left; font-size:14px; font-weight:bold;">공지사항</label>
-				<label class="moreBoard Notice" style="float:right; font-size:14px;" onclick="location.href='serviceCenterNotice.jsp'">더보기 ▶</label>
+				<label class="moreBoard Notice" style="float:right; font-size:14px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">더보기 ▶</label>
 				<br clear="both">
 				<table class="boardTable" style="margin-top:10px;">
 					<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
@@ -457,18 +485,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+								for(Board b : list2)
+								{
+									if(b.getBOARD_CATEGORY().equals("공지사항"))
+									{
+							%>
 							<tr>
-								<td align="center">1</td>
-								<td>Order</td>
-								<td>임하룡</td>
-								<td>2018-08-31</td>
+								<td><%= b.getBOARD_NO() %></td>
+								<td><%= b.getBOARD_CATEGORY() %></td>
+								<td><%= b.getBOARD_TITLE() %></td>
+								<td><%= b.getBOARD_DATE() %></td>
 							</tr>
-							<tr>
-								<td align="center">John</td>
-								<td>Doe</td>
-								<td>john@example.com</td>
-								<td>2018-08-31</td>
-							</tr>
+							<%
+									}
+								}
+							%>
 						</tbody>
 				</table>
 			</div>
