@@ -53,18 +53,14 @@ public class questionServlet extends HttpServlet {
 
 				//전체 목록 갯수를 리턴받음
 				int listCount = new testService().getQuestionListCount();
-				System.out.println("listCount : " + listCount);
 				//총 페이지수 계산
 				//예) 목록 수가 123개이면 페이지가 13개가 필요함
 				maxPage = (int)((double)listCount / limit + 0.9);
-				System.out.println("maxPage : " + maxPage);
 				//시작페이지 계산
 				//11, 21, 31
 				startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-				System.out.println("startPage : " + startPage);
 				//목록 아래쪽에 보여질 마지막 페이지 수
 				endPage = startPage + limit - 1;
-				System.out.println("endPage : " + endPage);
 				if(maxPage < endPage){
 					endPage = maxPage;
 				}

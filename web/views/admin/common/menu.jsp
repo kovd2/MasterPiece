@@ -129,6 +129,13 @@ a:HOVER {
 				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/views/admin/promotion/pro.jsp'"><h3>프로모션</h3></td>
 			<%} %>
 			</tr>
+			<tr>
+			<%if(view == 5){ %>
+				<td align="center" class="menu2" style="background: black; color:white;"><h3>통계</h3></td>
+			<%}else{ %>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/StatisticsMain.swy'"><h3>통계</h3></td>
+			<%} %>
+			</tr>
 		</table>
 	</div>
 </body>

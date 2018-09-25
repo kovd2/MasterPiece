@@ -12,10 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
-
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
@@ -97,7 +96,6 @@ public class testDao {
 				i++;	
 				if(i>3)break;
 			}
-			System.out.println(str[0]);
 			hmap.put("a", str);
 			close(stmt);
 			close(rset);
@@ -111,7 +109,6 @@ public class testDao {
 				i++;	
 				if(i>3)break;
 			}
-			System.out.println(str);
 			hmap.put("b", str);
 			close(stmt);
 			close(rset);
@@ -125,7 +122,6 @@ public class testDao {
 				i++;				
 				if(i>3)break;
 			}
-			System.out.println(str);
 			hmap.put("c", str);
 			//a 공지사항
 			//b 문의
@@ -598,7 +594,6 @@ public class testDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			System.out.println(query);
 			pstmt.setString(1, "%"+val+"%");
 			
 			
@@ -1080,6 +1075,132 @@ public class testDao {
 
 
 
+		return list;
+	}
+
+
+	public int boardInsert(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("boardInsert");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, b.getBOARD_TITLE());
+			pstmt.setString(2, b.getBOARD_CONTENT());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public Board boardDetail(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+
+		String query = prop.getProperty("questionDetail");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rset = pstmt.executeQuery();
+	
+			if(rset.next()){
+				b = new Board();
+				b.setBOARD_ID(rset.getInt("BOARD_ID"));
+				b.setBOARD_TITLE(rset.getString("BOARD_TITLE"));
+				b.setBOARD_WRITER(rset.getString("BOARD_WRITER"));
+				b.setBOARD_TYPE(3);
+				b.setBOARD_CONTENT(rset.getString("BOARD_CONTENT"));
+				b.setBOARD_LEVEL(1);
+				b.setBOARD_STATUS(rset.getString("BOARD_STATUS"));
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return b;
+	}
+
+
+	public int modifyBoard(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("modifyBoard");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, b.getBOARD_TITLE());
+			pstmt.setString(2, b.getBOARD_CONTENT());
+			pstmt.setInt(3, b.getBOARD_ID());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public ArrayList<Integer> monthSales(Connection con) {
+		Calendar today = Calendar.getInstance();
+		int month = (today.get(Calendar.MONTH)+1);
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		String query = prop.getProperty("monthSales");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			if(month<7){
+				pstmt.setInt(1, 1);
+				pstmt.setInt(2, 6);
+			}else{
+				pstmt.setInt(1, 7);
+				pstmt.setInt(2, 12);
+			}
+			rset = pstmt.executeQuery();
+			int i = 0;
+			while(rset.next()){
+				int result = rset.getInt(2);
+				list.add(result);
+				i++;
+			}
+			for(; i < 6;i++){
+				list.add(0);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 

@@ -294,4 +294,56 @@ public class testService {
 		
 		return list;
 	}
+
+	public int boardInsert(Board b) {
+		Connection con = getConnection();
+		
+		int result = new testDao().boardInsert(con, b);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public Board boardDetail(String id) {
+		Connection con = getConnection();
+		
+		Board b = new testDao().boardDetail(con, id);
+		
+		close(con);
+		
+		return b;
+	}
+
+	public int modifyBoard(Board b) {
+		Connection con = getConnection();
+		
+		int result = new testDao().modifyBoard(con, b);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Integer> monthSales() {
+		Connection con = getConnection();
+		
+		ArrayList<Integer> list = new testDao().monthSales(con);
+		
+		close(con);
+		
+		return list;
+	}
 }
