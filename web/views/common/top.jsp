@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
 pageEncoding="UTF-8"%>
-<%@ page import="com.kh.MasterPiece.member.model.vo.Member" %>
+<%@ page import="com.kh.MasterPiece.member.model.vo.Member, com.kh.MasterPiece.product.model.vo.*" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
@@ -316,9 +316,9 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<div class="categoryBox_css" id="com">
 					컴퓨터 부품
 					<ul class="com_menu">
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js'">cpu</li>
-						<li onclick="location.href='https://www.google.com/'">메인보드</li>
-						<li onclick="location.href='https://www.google.com/'">메모리</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=cpu'">CPU</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=mainboard'">메인보드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=memory'">메모리</li>
 						<li onclick="location.href='https://www.google.com/'">그래픽카드</li>
 						<li onclick="location.href='https://www.google.com/'">저장 장치</li>
 						<li onclick="location.href='https://www.google.com/'">ODD</li>
@@ -357,5 +357,6 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
