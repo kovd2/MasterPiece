@@ -57,7 +57,7 @@ public class SelectGhapicMainServlet extends HttpServlet {
 
 		MainPageInfo pi1 = new MainPageInfo(currentPage1, listCount1, limit1, maxPage1, startPage1, endPage1);
 
-		System.out.println(pi1);
+		System.out.println("graphics" + pi1);
 		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage1, limit1);
 		ArrayList<Product> list1 = new MainService().graphicList(currentPage1, limit1);
 		
@@ -90,8 +90,10 @@ public class SelectGhapicMainServlet extends HttpServlet {
 		}
 
 		MainPageInfo pi2 = new MainPageInfo(currentPage2, listCount2, limit2, maxPage2, startPage2, endPage2);
-
 		ArrayList<Product> list2 = new MainService().cpuList(currentPage2, limit2);
+		System.out.println(list2);
+		System.out.println(list1);
+		System.out.println("cpu : "+ pi2);
 		//----------------------------------------------------------------------
 
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();

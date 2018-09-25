@@ -85,8 +85,8 @@ public class SelectAjaxServlet extends HttpServlet {
 
 		limit2 = 3;
 
-		if(request.getParameter("currentPage1") != null){
-			currentPage2 = Integer.parseInt(request.getParameter("currentPage1"));
+		if(request.getParameter("currentPage2") != null){
+			currentPage2 = Integer.parseInt(request.getParameter("currentPage2"));
 		}
 
 		int listCount2 = new MainService().getlistCount2();
@@ -111,7 +111,7 @@ public class SelectAjaxServlet extends HttpServlet {
 		Box mainBox = new Box();
 		
 		mainBox.setPi(pi1);
-		mainBox.setList(list1);
+		mainBox.setList(list1);	
 		mainBox.setImgList(imgList);
 		
 		response.setContentType("application/json");

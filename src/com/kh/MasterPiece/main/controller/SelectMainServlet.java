@@ -29,7 +29,8 @@ public class SelectMainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<MainTest> list = new MainService().selectProduct();
-
+		ArrayList<Product> list3 = new MainService().allList();
+		
 		//-----------------------------------------------그래픽카드--------------------------------------------------------
 		int currentPage1;	//현재 페이지를 표시할 변수
 		int limit1;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
@@ -96,8 +97,6 @@ public class SelectMainServlet extends HttpServlet {
 		ArrayList<Product> list2 = new MainService().cpuList(currentPage2, limit2);
 		//----------------------------------------------------------------------
 
-
-
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
 
 		String page = null;
@@ -105,6 +104,8 @@ public class SelectMainServlet extends HttpServlet {
 			page = "index.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("list1", list1);
+			request.setAttribute("list2", list2);
+			request.setAttribute("list3", list3);
 			request.setAttribute("imgList", imgList);
 			request.setAttribute("pi", pi1);
 		}else{
