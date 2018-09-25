@@ -369,6 +369,8 @@ input[type="radio" i], input[type="checkbox" i] {
 	<script>
 		var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		var regPhone = /^[0-9]+$/;
+		var regPwd = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+		
 		function wSend(){	
 			if(!regPhone.test($('#phone1').val())){
             	alert("숫자만 가능합니다.");
@@ -386,6 +388,12 @@ input[type="radio" i], input[type="checkbox" i] {
             	return;
             }
 
+			if(!regPwd.test($('#userPwd').val())){
+			   alert('영문+숫자  조합으로 6-12자를 입력해 주세요.');
+			   $('#userPwd').focus();
+			   return;
+			}
+			
 			if(!regEmail.test($('#email').val())) {
                 alert("이메일 주소가 유효하지 않습니다");
                 $('#email').focus();            
@@ -395,6 +403,7 @@ input[type="radio" i], input[type="checkbox" i] {
 					$("#ModifyInfoForm").submit();
 				}
             }
+			
 		}
 		
 		$(function(){

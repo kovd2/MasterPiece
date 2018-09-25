@@ -94,17 +94,17 @@
 				</tr>
 				<tr>
 					<th width="100px" height="40px">아이디</th>
-					<td><input type="text" maxlength="13" name="userId" id="userId" class="form-control" placeholder="띄어쓰기 없이  6-13자"></td>
+					<td><input type="text" maxlength="13" name="userId" id="userId" class="form-control" placeholder="띄어쓰기 없이  6-12자"></td>
 					<td width="100px" style="padding-left:10px"><div id="idCheck" name="idCheck" style="display: table-cell; vertical-align: middle;" onchange="reCheck();">중복확인</div></td>
 				</tr>
 				<tr>
 					<th height="40px">비밀번호</th>
-					<td><input type="password" maxlength="13" name="userPwd" class="form-control" placeholder="영문+숫자포함 8자리이상"></td>
+					<td><input type="password" maxlength="13" id="userPwd" name="userPwd" class="form-control" placeholder="영문+숫자  조합으로 6-12자 "></td>
 					<td></td>
 				</tr>
 				<tr>
 					<th height="40px">비밀번호 확인</th>
-					<td><input type="password" maxlength="13" name="userPwd2" class="form-control"></td>
+					<td><input type="password" maxlength="13" id="userPwd2" name="userPwd2" class="form-control"></td>
 					<td><label id="pwdResult"></label></td>
 				</tr>
 				<tr>
@@ -149,7 +149,10 @@
 			
 		   	var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		   	var regPhone = /^[0-9]+$/;
-		   	
+		   	var regName = /^[가-힝]{2,}$/;
+		   	var regId = /^[a-zA-Z0-9]{6,12}$/;
+		   	var regPwd = /^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,12}$/;
+
 				function insertMember(){
 					
 				   if($('#userName').val()==""){
@@ -177,6 +180,26 @@
 					    alert("연락처를 입력 해 주세요");
 					    $('#phone').focus();
 					    return;
+				   }
+				   
+				   if(!regName.test($('#userName').val())){
+					   
+					   alert('올바른 이름을 입력해 주세요.');
+					   $('#userName').focus();
+					   return;
+				   }
+				   
+				   if(!regId.test($('#userId').val())){
+					   
+					   alert('띄어쓰기 없이 6~12자 영문, 숫자를 입력해 주세요.');
+					   $('#userId').focus();
+					   return;
+				   }
+				   
+				   if(!regPwd.test($('#userPwd').val())){
+					   alert('영문+숫자  조합으로 6-12자를 입력해 주세요.');
+					   $('#userPwd').focus();
+					   return;
 				   }
 				   
 				   if(!regPhone.test($('#phone1').val())) {
@@ -316,6 +339,13 @@
 				$("#idCheck").click(function(){
 					
 					var userId = $("#userId").val();
+					
+					if(!regId.test($('#userId').val())){
+						   
+						   alert('사용할 수 없는 아이디입니다.');
+						   $('#userId').focus();
+						   return;
+					   }
 					
 					$.ajax({
 						
