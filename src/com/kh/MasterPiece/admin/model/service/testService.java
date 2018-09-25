@@ -274,4 +274,24 @@ public class testService {
 		
 		return list;
 	}
+
+	public int getSelectBoardListCount(int type) {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getSelectBoardListCount(con, type);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Board> selectBoardList2(int currentPage, int limit, int type) {
+		Connection con = getConnection();
+		
+		ArrayList<Board> list = new testDao().selectBoardList2(con, currentPage, limit, type);
+		
+		close(con);
+		
+		return list;
+	}
 }
