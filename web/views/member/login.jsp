@@ -20,9 +20,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="1050781009985-vd4v3pr7992k54e05i2eossginbbvut1.apps.googleusercontent.com">
+  
 <title>MasterPiece, Login</title>
 <style>
 	.image {
@@ -106,7 +108,10 @@
 			<td colspan="3"><input style="width:300px; height:30px; text-align:center;" type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호를 입력하세요"></td>
 		</tr>
 		<tr>
-			<td colspan="3"><input style="width:300px; height:30px; font-size:15px; font-weight:bold;" type="button" id="naverlogin" value="NAVER 로그인" class="btn btn-success"></td>
+			<td colspan="3">
+			<!-- <input style="width:300px; height:30px; font-size:15px; font-weight:bold;" type="button" id="naverlogin" value="NAVER 로그인" class="btn btn-success"> -->
+			<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			</td>
 		</tr>
 		<tr>
 			<td style="font-size:13px; height:50px; display:table-cell; vertical-align:middle; text-align:left;">
@@ -126,11 +131,20 @@
 	<% }else{ %>
 		
 		<script>
-			location.href = "/MasterPiece/index.jsp";
+			location.href = "/MasterPiece/main.jsp";
 		</script>
 	<% } %>
 	</div>
 	<script>
+		function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		}
+	
+	
 		function login(){
 			$("#loginForm").submit();
 		}

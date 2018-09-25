@@ -28,10 +28,12 @@ public class LoginServlet extends HttpServlet {
 		String userPwd = request.getParameter("userPwd");
 		String checkBtn = request.getParameter("checkBtn"); //아이디 저장 체크유무
 		
+		String page = "";
+		
 		Member loginUser = new MemberService().loginCheck(userId, userPwd);
 
 		
-		if(loginUser != null){
+		if(loginUser != null && loginUser.getStatus().equals("Y")){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
@@ -55,10 +57,15 @@ public class LoginServlet extends HttpServlet {
 				
 				request.getRequestDispatcher("/start").forward(request, response); 
 			}
+		}else if(loginUser != null && loginUser.getStatus().equals("N")){
+				request.getRequestDispatcher("views/member/goodByeMember.jsp").forward(request, response);
+			
 		}else{
 			
-			request.getRequestDispatcher("views/member/login.jsp").forward(request, response);
+			request.getRequestDispatcher("views/member/loginError.jsp").forward(request, response);
 		}
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
