@@ -307,7 +307,7 @@
 		<div class="info_layout">
 			<div class="item_info_layout">
 				<div class="item_img">
-					<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(0).getChangeName()%>">
+					<img id="prdImage" src="<%=request.getContextPath()%>/images/product/<%=imgList.get(0).getChangeName()%>">
 				</div>
 			</div>
 			<div class="item_spec">
@@ -325,7 +325,7 @@
 							<li>수량</li>
 							<li>
 								<div>
-									<select>
+									<select id="prd_count">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -531,9 +531,17 @@
 	</div>
 	</div>
 		<script>
-			function goCart(){
-				location.href="./cart_page.jsp";
+		function goCart(){
+			var code1 = Code1;
+			var price = price1;
+			var count = $("#prd_count option:selected").val();
+			
+			if(confirm("장바구니에 추가 하시겠습니까?") == true){
+				location.href="<%= request.getContextPath()%>/insertCart?code=" + code1 + "&price=" + price + "&count=" + count;
+			}else{
+				return false;
 			}
+		};
 			function goBuy(){
 				location.href="./delivery_page.jsp";
 			}
