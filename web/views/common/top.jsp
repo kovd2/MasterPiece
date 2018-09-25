@@ -241,7 +241,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						style="width: 90px; height: 40px;">
 					</a>
 				</li>
-				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenter.jsp" title="고객센터">
+				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/selectList.sc" title="고객센터">
 					<img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
 					     onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
 						    onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
@@ -278,7 +278,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/logout_off.png'" border="0"
 						style="width: 90px; height: 40px; cursor:pointer;" >
 				</a></li>
-				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenter.jsp" title="고객센터">
+				<li class="top_subMenuService"><a href="<%=request.getContextPath() %>/selectList.sc" title="고객센터">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/service_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"

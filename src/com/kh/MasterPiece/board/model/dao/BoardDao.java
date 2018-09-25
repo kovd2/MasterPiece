@@ -150,7 +150,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -200,7 +200,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -311,7 +311,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -361,7 +361,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -537,7 +537,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -593,7 +593,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -649,7 +649,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getInt("board_category"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -724,7 +724,7 @@ public class BoardDao
 				/*b.setBOARD_TYPE(rset.getInt("board_type"));*/
 				/*b.setBOARD_PWD(rset.getString("board_pwd"));*/
 				/*b.setBOARD_NO(rset.getInt("board_no"));*/
-				/*b.setBOARD_CATEGORY(rset.getInt("board_category"));*/
+				/*b.setBOARD_CATEGORY(rset.getString("category_name"));*/
 				/*b.setBOARD_TITLE(rset.getString("board_title"));*/
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -925,5 +925,201 @@ public class BoardDao
 			close(pstmt);
 		}
 		return result;
+	}
+	public ArrayList<Board> selectServiceCenterList(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectServiceCenterList");
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+			/*System.out.println("list : " + list);*/
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> selectServiceCenterNoticeList(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectServiceCenterNoticeList");
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+			/*System.out.println("list : " + list);*/
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> selectServiceCenterMoreList(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectServiceCenterList");
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+			/*System.out.println("list : " + list);*/
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> selectServiceCenterQuestionList(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("selectServiceCenterQuestionList");
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+			/*System.out.println("list : " + list);*/
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
 	}
 }

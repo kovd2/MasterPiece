@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	System.out.println(list);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,20 +172,35 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%
+									for(Board b : list)
+									{
+								%>
 								<tr>
-									<td align="center">1</td>
-									<td>주문/결제</td>
-									<td>[견적문의]견적 문의합니다.</td>
-									<td>2018-08-31</td>
-									<td>답변완료</td>
+									<td><%=b.getBOARD_NO()%></td>
+									<td><%=b.getBOARD_CATEGORY()%></td>
+									<td><%=b.getBOARD_TITLE()%></td>
+									<td><%=b.getBOARD_DATE()%></td>
+										<%
+											if(b.getQUE_STATUS().equals("N"))
+											{
+												b.setQUE_STATUS("처리중");
+										%>
+										<td><%=b.getQUE_STATUS() %></td>
+										<%
+											}
+											else if(b.getQUE_STATUS().equals("Y"))
+											{
+												b.setQUE_STATUS("답변완료");
+										%>
+										<td><%=b.getQUE_STATUS() %></td>
+										<%
+											}
+										%>
 								</tr>
-								<tr>
-									<td align="center">John</td>
-									<td>교환/반품</td>
-									<td>Doe</td>
-									<td>john@example.com</td>
-									<td>2018-08-31</td>
-								</tr>
+								<%
+									}
+								%>
 							</tbody>
 						</table>
 					</div>
@@ -190,7 +209,7 @@
 				<div>
 					<button type="button" class="btn" style="padding:2px 4px; color:white; background:#d9534f; height:28px; float:right; border:1px solid white; border-radius:5px; background:" onclick="location.href='serviceCenterQuestionWrite.jsp'">문의하기</button>
 				</div>
-				<div>
+				<!-- <div>
 					<div>
 						<div class="list_n_menu" style="font-size:14px;">
 							<span class="disabled"><  이전</span>
@@ -204,7 +223,7 @@
 							<a href="#?page=2">다음  ></a>
 						</div>
 				    </div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
