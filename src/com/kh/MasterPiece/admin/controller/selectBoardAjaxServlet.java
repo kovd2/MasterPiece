@@ -17,16 +17,16 @@ import com.kh.MasterPiece.board.model.vo.PageInfo;
 import com.kh.MasterPiece.main.model.vo.Box;
 
 /**
- * Servlet implementation class selectBoardServlet
+ * Servlet implementation class selectBoardAjaxServlet
  */
-@WebServlet("/selectBoard.swy")
-public class selectBoardServlet extends HttpServlet {
+@WebServlet("/selectBoardAjax.swy")
+public class selectBoardAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selectBoardServlet() {
+    public selectBoardAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,14 +52,14 @@ public class selectBoardServlet extends HttpServlet {
 			= Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		
+			int type = Integer.parseInt(request.getParameter("type"));
 			//전체 목록 갯수를 리턴받음
-			int listCount = new testService().getBoardListCount();
-			System.out.println("listCount : " + listCount);
+			int listCount = new testService().getSelectBoardListCount(type);
+			System.out.println(type+"listCount : " + listCount);
 			//총 페이지수 계산
 			//예) 목록 수가 123개이면 페이지가 13개가 필요함
 			maxPage = (int)((double)listCount / limit + 0.9);
-			System.out.println("maxPage : " + maxPage);
+			System.out.println(type+"maxPage : " + maxPage);
 			//시작페이지 계산
 			//11, 21, 31
 			startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
@@ -74,21 +74,24 @@ public class selectBoardServlet extends HttpServlet {
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			//ArrayList<Product> list = new testService().productList();
-			ArrayList<Board> list = new testService().getBoardListCount(currentPage, limit);
+			ArrayList<Board> list = new testService().selectBoardList2(currentPage, limit, type);
 			String page = "";
 			if(list != null){
-				page = "views/admin/board/board.jsp";
-				request.setAttribute("list", list);
-				request.setAttribute("pi", pi);
-				request.setAttribute("cate", "전체");
+				Box mainBox = new Box();
 				
+				mainBox.setBpi(pi);
+				mainBox.setBoardList(list);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				new Gson().toJson(mainBox, response.getWriter());
 			}else{
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "에러");
+				RequestDispatcher view = request.getRequestDispatcher(page);
+				view.forward(request, response);
 			}
-			RequestDispatcher view = request.getRequestDispatcher(page);
-			view.forward(request, response);
-		}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

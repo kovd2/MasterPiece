@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
-import com.kh.MasterPiece.main.model.service.MainService;
+import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.board.model.vo.PageInfo;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 public class Box {
 	private MainPageInfo pi = null;
 	private ArrayList<Product> list = null;
 	private HashMap<String, Attachment> imgList = null;
-	
-	
+	private ArrayList<Board> boardList = null;
+	private PageInfo bpi = null;
 	
 	public Box() {
 		super();
@@ -61,6 +62,30 @@ public class Box {
 
 	public void setImgList(HashMap<String, Attachment> imgList) {
 		this.imgList = imgList;
+	}
+
+
+
+	public ArrayList<Board> getBoardList() {
+		return boardList;
+	}
+
+
+
+	public void setBoardList(ArrayList<Board> boardList) {
+		this.boardList = boardList;
+	}
+
+
+
+	public PageInfo getBpi() {
+		return bpi;
+	}
+
+
+
+	public void setBpi(PageInfo bpi) {
+		this.bpi = bpi;
 	}
 
 
