@@ -7,6 +7,9 @@
 	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
 	/* ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list"); */
 	
+	/* 모든 상품 */
+	ArrayList<Product> list3 = (ArrayList<Product>)request.getAttribute("list3");
+	
 	/* graphic */
 	ArrayList<Product> list1 = (ArrayList<Product>)request.getAttribute("list1");
 	HashMap<String, Attachment> imgList =
@@ -17,6 +20,15 @@
 	int maxPage1 = pi1.getMaxPage();
 	int startPage1 = pi1.getStartPage();
 	int endPage1 = pi1.getEndPage(); 
+	
+	/* cpu */
+	ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("list2");
+	MainPageInfo pi2 = (MainPageInfo)request.getAttribute("pi");
+	int listCount2 = pi2.getListCount();
+	int currentPage2 = pi2.getCurrentPage();
+	int maxPage2 = pi2.getMaxPage();
+	int startPage2 = pi2.getStartPage();
+	int endPage2 = pi2.getEndPage(); 
 %>
 
 <!DOCTYPE html>
@@ -138,10 +150,13 @@ a{ text-decoration:none }
 .product_gbtm2{font-size:17px; font-weight:bold; color: #ee2929; letter-spacing: -2px;}
 
 
-.imageArea { height:360px; display: inline-block; border: 1px solid red; }
-.imageList{ border:1px solid black; display: inline-block; margin: 4.5px; }
-
-
+/* 상품 리스트 */
+.imageArea {display: inline-block;}
+.imageList{ display: inline-block; margin: 4.5px; background:white;}
+.imageList:hover{ box-shadow: 3px 3px 10px #b5b5b5; }
+.imageArea2 {display: inline-block;}
+.imageList2{ display: inline-block; margin: 4.5px; background:white;}
+.imageList2:hover{ box-shadow: 3px 3px 10px #b5b5b5; }
 
 
 /* 1경품 2리뷰 3무료배송 4사은품  5이용후기 6특가 */
@@ -210,7 +225,6 @@ a{ text-decoration:none }
 .view-show:hover .productName {	transform: translate(0px, 0px); transition-delay: 0.3s; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); -webkit-transition-delay: 0.3s; -moz-transition-delay: 0.3s; -o-transition-delay: 0.3s;}
 .view-show:hover .viewContent {	text-align:center;width:400px;transform: translate(0px, 0px); transition-delay: 0.4s; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); -webkit-transition-delay: 0.4s; -moz-transition-delay: 0.4s; -o-transition-delay: 0.4s;}
 .view-show:hover a.info {	transform: translate(0px, 0px); transition-delay: 0.5s; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); -webkit-transition-delay: 0.5s; -moz-transition-delay: 0.5s; -o-transition-delay: 0.5s;}
-
 .left_banner{width:105px; left:30px; top:140px; position: absolute;}
 .right_banner{width: 105px; top:151px; left:1341px; position: absolute;}
 
@@ -376,6 +390,8 @@ a{ text-decoration:none }
 					</div>
 				</div>
 			</div><br><br><br>
+			
+			<!------------------------------- 그래픽카드 ------------------------------->
 			<div align="left">
 				<span class="product_subGh1">그래픽카드</span>
 				<span class="product_subMp2">이전과는 다르다. 더욱 더 강력해진 성능</span><br>
@@ -384,33 +400,69 @@ a{ text-decoration:none }
 						Product pro = list1.get(i);
 						String key = pro.getPrd_code();
 						Attachment ath = imgList.get(key);
+
 				%>
 		
 			 	<div class="imageList" align="center">
-			 		<div style="width:340px; height:300px; margin-left: 2px;">
+			 		<div style="width:345px; height:300px;">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
-			 						width="200px" height="200px"><br>
+			 						width="200px" height="200px" style="margin-top:15px;"><br>
 		 				<span><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
 		 				<span>판매가격</span>
 		 				<span><%=list1.get(i).getPrice() %>원</span>
 		 			</div>
 			 	</div>
-			 <%} %>
-		</div>
-	<div>
-		 <div class="pageArea" align="center">
+				<%} %>
+				</div>
+				<div>
+					 <div class="pageArea" align="center">
 		 
-		 <% for(int p = startPage1; p <= maxPage1; p++){ %>
+						 <% for(int p = startPage1; p <= maxPage1; p++){ %>
 		 			
-		 				<button class="thisBtn" value=<%=p %>><%= p %></button>
-		 <% 	} %>
+		 						<button class="thisBtn1" value=<%=p %>><%= p %></button>
+						 <% 	} %>
 		 
-		 </div>
-	</div>
+					 </div>
+				</div>
 			</div><br><br><br>
+			
+			<!------------------------------- CPU ------------------------------->
 			<div align="left">
-				<span class="product_subMo1">모니터</span>
-				<span class="product_subMp2">선명함의 깊이를 발견하다.</span><br>
+				<span class="product_subGh1">CPU</span>
+				<span class="product_subMp2">기존 제품의 성능을 뛰어 넘는 강력함!</span><br>
+				<div class="imageArea2">
+				<% for(int i = 0; i < list2.size(); i++){
+						Product pro = list2.get(i);
+						String key = pro.getPrd_code();
+						Attachment ath = imgList.get(key);
+				%>
+		
+			 	<div class="imageList2" align="center">
+			 		<div style="width:345px; height:300px;">
+			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
+			 						width="200px" height="200px" style="margin-top:15px;"><br>
+		 				<span><%=list2.get(i).getPrd_name()%></span><br><hr class="product_hr">
+		 				<span>판매가격</span>
+		 				<span><%=list2.get(i).getPrice() %>원</span>
+		 			</div>
+			 	</div>
+				<%} %>
+				</div>
+				<div>
+					 <div class="pageArea" align="center">
+		 
+						 <% for(int p = startPage2; p <= maxPage2; p++){ %>
+		 			
+		 						<button class="thisBtn2" value=<%=p %>><%= p %></button>
+						 <% 	} %>
+		 
+					 </div>
+				</div>
+			
+			
+			<!-- <div align="left">
+				<span class="product_subMo1">CPU</span>
+				<span class="product_subMp2">기존 제품의 성능을 뛰어 넘는 강력함!</span><br>
 				<div class="product_4">
 					<div class="product_monitor1 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
 						<img src="./images/kimjaeyup/monitor4.jpg" style="width: 200px; height: 200px;"><br>
@@ -439,7 +491,7 @@ a{ text-decoration:none }
 						<span class="product_event6">특가</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 		
@@ -487,7 +539,7 @@ a{ text-decoration:none }
 		</div>
 	</div>
 	<script>
-	$(".thisBtn").click(function(){
+	$(".thisBtn1").click(function(){
 		var cp = $(this).val();
 
 		 $.ajax({
@@ -499,14 +551,49 @@ a{ text-decoration:none }
 				
 				$(".imageArea").children("div.imageList").remove();
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList'align='center'style='width: 350px; height:300px; border:1px solid black; display: inline-block;'>");
+					$div = $("<div class='imageList'align='center'style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
 					$(".imageArea").append($div);
 					
-					$div2 = $("<div style='width:340px; height:300px; margin-left: 2px;'>");						
+					$div2 = $("<div style='width:350px; height:300px;'>");						
 					$div.append($div2);
-					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px'>"); 
+					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
 					$span1 = $("<br><span style='font-weight:13px;'>");
-					$span2 = $("<br><span style='font-color:red;'><hr>");
+					$span2 = $("<br><span style='font-color:red;'><hr class='product_hr'>");
+					$span1.append(data.list[i].prd_name)
+					$span2.append("판매가격 " + data.list[i].price + "원")
+					$div2.append($span1);
+					$div2.append($span2);
+					
+					console.log(data);
+					console.log(data.list[i].price);
+					console.log(data.imgList[data.list[i].prd_code].changeName);
+				}
+				
+				console.log(path);	
+			}
+		}); 
+	});
+
+	$(".thisBtn2").click(function(){
+		var cp = $(this).val();
+
+		 $.ajax({
+			url: "selectMain2.tn",
+			data : {cp:cp},
+			type : "get",
+			success:function(data){
+				var path = "images/product";
+				
+				$(".imageArea2").children("div.imageList2").remove();
+				for(var i = 0; i < data.list.length; i++){
+					$div = $("<div class='imageList2'align='center'style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
+					$(".imageArea2").append($div);
+					
+					$div2 = $("<div style='width:350px; height:300px;'>");						
+					$div.append($div2);
+					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
+					$span1 = $("<br><span style='font-weight:13px;'>");
+					$span2 = $("<br><span style='font-color:red;'><hr class='product_hr'>");
 					$span1.append(data.list[i].prd_name)
 					$span2.append("판매가격 " + data.list[i].price + "원")
 					$div2.append($span1);

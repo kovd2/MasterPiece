@@ -302,6 +302,38 @@ public class MainDao {
 		return null;
 	}
 
+	public ArrayList<Product> allList(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<Product> list = new ArrayList<>();
+
+		String query = prop.getProperty("allList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()){
+				Product allList = new Product();
+				
+				allList.setPrd_code(rset.getString("PRD_CODE"));
+				allList.setPrice(rset.getInt("PRICE"));
+				allList.setPrd_name(rset.getString("prd_name"));
+				allList.setCategory(rset.getString("category"));
+				
+				list.add(allList);
+				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return list;
+	}
 
 }
 

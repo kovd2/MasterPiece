@@ -66,6 +66,16 @@ public class MainService {
 		
 		return list;
 	}
+	
+	public ArrayList<Product> allList() {
+		Connection con = getConnection();
+		
+		ArrayList<Product> list = new MainDao().allList(con);
+		
+		close(con);
+		
+		return list;
+	}
 
 	public HashMap<String, Attachment> selectImageList() {
 		Connection con = getConnection();
