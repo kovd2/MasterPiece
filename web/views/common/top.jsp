@@ -319,12 +319,12 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=cpu'">CPU</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=mainboard'">메인보드</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=memory'">메모리</li>
-						<li onclick="location.href='https://www.google.com/'">그래픽카드</li>
-						<li onclick="location.href='https://www.google.com/'">저장 장치</li>
-						<li onclick="location.href='https://www.google.com/'">ODD</li>
-						<li onclick="location.href='https://www.google.com/'">파워</li>
-						<li onclick="location.href='https://www.google.com/'">쿨러</li>
-						<li onclick="location.href='https://www.google.com/'">케이스</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=graphic'">그래픽카드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=hdd'">저장 장치</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=odd'">ODD</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=power'">파워</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=cool'">쿨러</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=case'">케이스</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="mo">

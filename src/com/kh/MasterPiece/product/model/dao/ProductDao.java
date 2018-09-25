@@ -242,6 +242,311 @@ public class ProductDao {
 		return mainBoardList;
 	}
 	
+	public ArrayList<Product> memoryList(Connection con, int currentPage2, int limit2) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> memoryList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("memoryImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage2 - 1) * limit2 + 1;
+			int endRow = startRow + limit2 - 1;
+
+			pstmt.setString(1, "MEMORY");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			memoryList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				memoryList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return memoryList;
+	}
+	
+	public ArrayList<Product> graphicList(Connection con, int currentPage3, int limit3) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> graphicList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("graphicImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage3 - 1) * limit3 + 1;
+			int endRow = startRow + limit3 - 1;
+
+			pstmt.setString(1, "GRAPHIC");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			graphicList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				graphicList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return graphicList;
+	}
+	public ArrayList<Product> hddList(Connection con, int currentPage4, int limit4) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> hddList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("hddImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage4 - 1) * limit4 + 1;
+			int endRow = startRow + limit4 - 1;
+
+			pstmt.setString(1, "HDD");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			hddList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				hddList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return hddList;
+	}
+	public ArrayList<Product> oddList(Connection con, int currentPage5, int limit5) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> oddList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("oddImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage5 - 1) * limit5 + 1;
+			int endRow = startRow + limit5 - 1;
+
+			pstmt.setString(1, "ODD");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			oddList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				oddList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return oddList;
+	}
+	public ArrayList<Product> powerList(Connection con, int currentPage6, int limit6) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> powerList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("powerImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage6 - 1) * limit6 + 1;
+			int endRow = startRow + limit6 - 1;
+
+			pstmt.setString(1, "POWER");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			powerList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				powerList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return powerList;
+	}
+	public ArrayList<Product> coolList(Connection con, int currentPage7, int limit7) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> coolList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("collerImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage7 - 1) * limit7 + 1;
+			int endRow = startRow + limit7 - 1;
+
+			pstmt.setString(1, "COOL");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			coolList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				coolList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return coolList;
+	}
+	public ArrayList<Product> caseList(Connection con, int currentPage8, int limit8) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> caseList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("caseImg");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage8 - 1) * limit8 + 1;
+			int endRow = startRow + limit8 - 1;
+
+			pstmt.setString(1, "CASE");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			caseList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+
+				caseList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return caseList;
+	}
+	
+	//------------------------------------페이징----------------------------------------------------
+	
 	public int getListCount(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -280,7 +585,7 @@ public class ProductDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "CPU");
+			pstmt.setString(1, "MAINBOARD");
 
 			rset = pstmt.executeQuery();
 			
@@ -296,6 +601,201 @@ public class ProductDao {
 		}
 
 		return listCount1;
+	}
+	public int getlistCount2(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount2");
+
+		int listCount2 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "MEMORY");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount2 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount2;
+	}
+	
+	public int getlistCount3(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount3");
+
+		int listCount3 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "GRAPHIC");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount3 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount3;
+	}
+	
+	public int getlistCount4(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount4");
+
+		int listCount4 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "HDD");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount4 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount4;
+	}
+	
+	public int getlistCount5(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount5");
+
+		int listCount5 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "ODD");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount5 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount5;
+	}
+	
+	public int getlistCount6(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount6");
+
+		int listCount6 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "POWER");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount6 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount6;
+	}
+	
+	public int getlistCount7(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount7");
+
+		int listCount7 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "COOL");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount7 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount7;
+	}
+	
+	public int getlistCount8(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount8");
+
+		int listCount8 = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "CASE");
+
+			rset = pstmt.executeQuery();
+			
+
+			if(rset.next()){
+				listCount8 = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount8;
 	}
 	
 }

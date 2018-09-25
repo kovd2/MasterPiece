@@ -9,6 +9,7 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 .wrap {
@@ -164,7 +165,7 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 					<td style="width: 120px; height: 31px;">관리</td>
 				</tr>
 			</table>
-			<%-- <%for(int i = 0; i < list.size(); i++){ %> --%>
+			<%for(int i = 0; i < list.size(); i++){ %>
 			<div class="cart_list">
 				<table>
 					<tr>
@@ -173,13 +174,12 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 						<td style="width: 400px; height: 31px;"><%p.getPrd_name();%></td>
 						<td style="width: 120px; height: 31px;">가격 : <%p.getPrice();%> 원</td>
 						<td style="width: 120px; height: 31px;">
-							<select>
-								<option>----</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+							<select id="prd_count">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 							</select>
 						</td>
 						<td style="width: 120px; height: 31px;"><%p.getPrice();%> 원</td>
@@ -187,7 +187,7 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 					</tr>
 				</table>
 			</div>
-			<%-- <%} %> --%>
+			<%} %>
 			<br><br><br><br><br>
 		<div class="price_area">
 			<div class="priceArea">

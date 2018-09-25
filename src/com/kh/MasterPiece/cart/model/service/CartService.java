@@ -1,24 +1,18 @@
 package com.kh.MasterPiece.cart.model.service;
 
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+import static com.kh.MasterPiece.common.JDBCTemplate.commit;
 import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
+import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 import com.kh.MasterPiece.cart.model.dao.CartDao;
-import com.kh.MasterPiece.cart.model.vo.Cart;
-import com.kh.MasterPiece.member.model.vo.Member;
-import com.kh.MasterPiece.product.model.vo.Product;
+import com.kh.MasterPiece.product.model.dao.ProductDao;
+
 
 public class CartService {
-	Member m = new Member();
-	Cart c = new Cart();
-	Product p = new Product();
-	public int insertCart() {
-		Connection con = getConnection();
-		
-		int result = new CartDao().insertCart(con, m, c, p);
-		
-		return 0;
-	}
+
 	
 }

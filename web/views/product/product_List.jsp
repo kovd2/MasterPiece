@@ -3,15 +3,25 @@
 <%	
 	ArrayList<Product> cpuList = (ArrayList<Product>)request.getAttribute("cpuList");
 	ArrayList<Product> mainBoardList = (ArrayList<Product>)request.getAttribute("mainBoardList"); 
+	ArrayList<Product> memoryList = (ArrayList<Product>)request.getAttribute("memoryList");
+	ArrayList<Product> graphicList = (ArrayList<Product>)request.getAttribute("graphicList");
+	ArrayList<Product> hddList = (ArrayList<Product>)request.getAttribute("hddList");
+	ArrayList<Product> oddList = (ArrayList<Product>)request.getAttribute("oddList");
+	ArrayList<Product> powerList = (ArrayList<Product>)request.getAttribute("powerList");
+	ArrayList<Product> coolList = (ArrayList<Product>)request.getAttribute("coolList");
+	ArrayList<Product> caseList = (ArrayList<Product>)request.getAttribute("caseList");
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+	
 	String category = (String)request.getAttribute("category");
 	
+		
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	int endPage = pi.getEndPage();	
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -105,7 +115,7 @@
 }
 
 .wrap .Prd_wrap .Prd_list_area .top_menu li {
-	width: 155px;
+	width: 158.5px;
 	height: 44px;
 	border-top:1px solid black;
 	border-right: 1px solid #dee0e4;
@@ -270,7 +280,7 @@
 <body>
 
 	<%@ include file="../common/top.jsp"%>
-
+	
 	<!-- 카테고리 div -->
 	<div class="wrap">
 		<!-- <div class="prdNaviLayer" style="display: inline-flex;">
@@ -398,7 +408,7 @@
 							</dl>
 						</div>
 						<div class="prd_count">수량
-							<select>
+							<select id="prd_count">
 								<option value="1" selected>1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -407,7 +417,7 @@
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart('<%=cpuList.get(i).getPrd_code()%>')">
+							<div class="basketBtn"onclick="addCart('<%=cpuList.get(i).getPrd_code()%>','<%=cpuList.get(i).getPrice() %>')">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
@@ -459,39 +469,324 @@
 					</div>
 				</div>
 			<% } %> 
-			<%}else{
-				
-				System.out.println("dfdf");
-			} %>
+			<%}else if(category.equals("memory")){ %>
 			
+			
+			<!-- MEMORY IMAGE -->
+			 <%for(int i = 0; i < memoryList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= memoryList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= memoryList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(memoryList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=memoryList.get(i).getPrd_code()%>]
+						<%=memoryList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=memoryList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=memoryList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%}else if(category.equals("graphic")){ %>
+			
+			
+			<!-- GRAPHIC IMAGE -->
+			 <%for(int i = 0; i < graphicList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= graphicList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= graphicList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(graphicList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=graphicList.get(i).getPrd_code()%>]
+						<%=graphicList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=graphicList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=graphicList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %>
+			<%}else if(category.equals("hdd")){ %>
+			
+			
+			<!-- HDD IMAGE -->
+			 <%for(int i = 0; i < hddList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= hddList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= hddList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(hddList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=hddList.get(i).getPrd_code()%>]
+						<%=hddList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=hddList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=hddList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			 <%}else if(category.equals("odd")){ %>
+			
+			
+			<!-- ODD IMAGE -->
+			 <%for(int i = 0; i < oddList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= oddList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= oddList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(oddList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=oddList.get(i).getPrd_code()%>]
+						<%=oddList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=oddList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=oddList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%}else if(category.equals("power")){ %>
+			
+			
+			<!-- POWER IMAGE -->
+			 <%for(int i = 0; i < powerList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= powerList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= powerList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(powerList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=powerList.get(i).getPrd_code()%>]
+						<%=powerList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=powerList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=powerList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%}else if(category.equals("cool")){ %>
+			
+			
+			<!-- COOLLER IMAGE -->
+			 <%for(int i = 0; i < coolList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= coolList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= coolList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(coolList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=coolList.get(i).getPrd_code()%>]
+						<%=coolList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=coolList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=coolList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%}else if(category.equals("case")){ %>
+			
+			
+			<!-- CASE IMAGE -->
+			 <%for(int i = 0; i < caseList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= caseList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= caseList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(caseList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=caseList.get(i).getPrd_code()%>]
+						<%=caseList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=caseList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn" onclick="addCart('<%=caseList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%} %>
 			
 			<!-- 페이징 처리 -->
-			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1'"><<</button>
-			<% if(currentPage <= 1){ %>
-				<button disabled><</button>
-			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage= <%=currentPage - 1 %>'"><</button>
-			<% } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){ 
-					if(p == currentPage){
-			%>
-						<button disabled><%= p %></button>
-			<%      }else{ %>
-						<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>'"><%= p %></button>
-			<%      } %>
-			<% } %>			
-			
-			<% if(currentPage >= maxPage){ %>
-				<button disabled>></button>
-			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1%>'">></button>
-			<% } %>
-			
-			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=maxPage%>'">>></button>
-			
-		</div>
+
+				<div class="pagingArea" align="center">
+					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'"><<</button>
+					<% if (currentPage <= 1) { %>
+					<button disabled><</button>
+					<% } else { %>
+					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage= <%=currentPage - 1%>&category=<%=category%>'"><</button>
+					<% } %>
+
+					<% for (int p = startPage; p <= endPage; p++) {
+							if (p == currentPage) {
+					%>
+					<button disabled><%=p%></button>
+					<% } else { %>
+					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>&category=<%=category%>'"><%=p%></button>
+					<% } %>
+					
+					<% } %>
+
+					<% if (currentPage >= maxPage) { %>
+					<button disabled>></button>
+					<% } else { %>
+					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1%>&category=<%=category%>'">></button>
+					<% } %>
+
+					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=maxPage%>&category=<%=category%>'">>></button>
+
+				</div>
 			</div>	
 		</div>
 	</div>
@@ -506,11 +801,13 @@
 			location.href="./delivery_page.jsp";
 		};
 		
-		function addCart(No){
-			var code = No;
+		function addCart(Code1, price1){
+			var code1 = Code1;
+			var price = price1;
+			var count = $("#prd_count option:selected").val();
 			
-			if(confirm("장바구니에 추가 하시겠습니까?")== true){
-				location.href="<%=request.getContextPath()%>/addCart?code=" + code;
+			if(confirm("장바구니에 추가 하시겠습니까?") == true){
+				location.href="<%= request.getContextPath()%>/insertCart?code=" + code1 + "&price=" + price + "&count=" + count;
 			}else{
 				return false;
 			}
