@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%	
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	ArrayList<Product> cpuList = (ArrayList<Product>)request.getAttribute("cpuList");
+	ArrayList<Product> mainBoardList = (ArrayList<Product>)request.getAttribute("mainBoardList"); 
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+	String category = (String)request.getAttribute("category");
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -271,7 +273,7 @@
 
 	<!-- 카테고리 div -->
 	<div class="wrap">
-		<div class="prdNaviLayer" style="display: inline-flex;">
+		<!-- <div class="prdNaviLayer" style="display: inline-flex;">
 			<div class="mainLayer" style="width:200px;">
 				<ul class="mainNavi">
 					<li>컴퓨터 부품</li>
@@ -295,7 +297,7 @@
 					<li>AMD</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 		<!-- 추천상품 div -->
 		<div class="bestPrd_area">
 			<div class="sec_tit"
@@ -374,22 +376,25 @@
 						<li class="top_menu_list">높은가격순</li>
 					</ul>
 				</div>
-			
-			<%for(int i = 0; i < list.size(); i++){ %>
+				
+				
+				<!-- CPU IMAGE -->
+				<%if(category.equals("cpu")){ %>
+				<%for(int i = 0; i < cpuList.size(); i++){ %>
 				<div class="Prd_list">			
-					<div id="Prd_img" onclick="goDetail('<%= list.get(i).getPrd_code()%>')">
-							<input type="hidden" class="prdDetail" value="<%= list.get(i).getPrd_code()%>">
-							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					<div id="Prd_img" onclick="goDetail('<%= cpuList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= cpuList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(cpuList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
 					</div>
 					<div class="Prd_Info" id="prd_info">
-						[<%=list.get(i).getPrd_code()%>]
-						<%=list.get(i).getPrd_name()%> 							
+						[<%=cpuList.get(i).getPrd_code()%>]
+						<%=cpuList.get(i).getPrd_name()%> 							
 					</div>
 					<div class="price_list">
 						<div class="priceArea">
 							<dl class="Prd_price">
 								<dt>판매가격</dt>
-								<dd><%=list.get(i).getPrice() %> 원</dd>
+								<dd><%=cpuList.get(i).getPrice() %> 원</dd>
 							</dl>
 						</div>
 						<div class="prd_count">수량
@@ -402,7 +407,7 @@
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="basketBtn"onclick="addCart('<%=list.get(i).getPrd_code()%>')">
+							<div class="basketBtn"onclick="addCart('<%=cpuList.get(i).getPrd_code()%>')">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy();">
@@ -411,14 +416,62 @@
 						</div>
 					</div>
 				</div>
+				
 			<% } %>
+			<%}else if(category.equals("mainboard")){ %>
+			
+			
+			<!-- MAIMBOARD IMAGE -->
+			 <%for(int i = 0; i < mainBoardList.size(); i++){ %>
+				<div class="Prd_list">			
+					<div id="Prd_img" onclick="goDetail('<%= mainBoardList.get(i).getPrd_code()%>')">
+							<input type="hidden" class="prdDetail" value="<%= mainBoardList.get(i).getPrd_code()%>">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(mainBoardList.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
+					</div>
+					<div class="Prd_Info" id="prd_info">
+						[<%=mainBoardList.get(i).getPrd_code()%>]
+						<%=mainBoardList.get(i).getPrd_name()%> 							
+					</div>
+					<div class="price_list">
+						<div class="priceArea">
+							<dl class="Prd_price">
+								<dt>판매가격</dt>
+								<dd><%=mainBoardList.get(i).getPrice() %> 원</dd>
+							</dl>
+						</div>
+						<div class="prd_count">수량
+							<select>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="btnArea">&nbsp;
+							<div class="basketBtn"onclick="addCart('<%=mainBoardList.get(i).getPrd_code()%>')">
+								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
+							</div>&nbsp;&nbsp;
+							<div class="buyBtn" onclick="goBuy();">
+								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %> 
+			<%}else{
+				
+				System.out.println("dfdf");
+			} %>
+			
+			
 			<!-- 페이징 처리 -->
 			<div class="pagingArea" align="center">
 			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1'"><<</button>
 			<% if(currentPage <= 1){ %>
 				<button disabled><</button>
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>'"><</button>
+				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage= <%=currentPage - 1 %>'"><</button>
 			<% } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
