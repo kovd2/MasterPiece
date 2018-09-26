@@ -275,6 +275,9 @@
     float: left;   
 }
 
+.ebtn{ cursor: pointer; background-color: white; border:#eaeaea 1px solid;font-size: 13px; padding: 5px 10px; margin:2px;}
+.ebtn:hover{border:#727272 1px solid;}
+
 </style>
 </head>
 <body>
@@ -760,31 +763,31 @@
 			
 			<!-- 페이징 처리 -->
 
-				<div class="pagingArea" align="center">
-					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'"><<</button>
+				<div class="pagingArea" align="center" style="margin-top: 15px; margin-bottom: 30px;">
+					<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'">처음</button>
 					<% if (currentPage <= 1) { %>
-					<button disabled><</button>
+					<button class="ebtn" disabled>< 이전</button>
 					<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage= <%=currentPage - 1%>&category=<%=category%>'"><</button>
+					<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage= <%=currentPage - 1%>&category=<%=category%>'">< 이전</button>
 					<% } %>
 
 					<% for (int p = startPage; p <= endPage; p++) {
 							if (p == currentPage) {
 					%>
-					<button disabled><%=p%></button>
+					<button class="ebtn" disabled><%=p%></button>
 					<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>&category=<%=category%>'"><%=p%></button>
+					<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>&category=<%=category%>'"><%=p%></button>
 					<% } %>
 					
 					<% } %>
 
 					<% if (currentPage >= maxPage) { %>
-					<button disabled>></button>
+					<button class="ebtn" disabled>다음 ></button>
 					<% } else { %>
-					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1%>&category=<%=category%>'">></button>
+					<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1%>&category=<%=category%>'">다음 ></button>
 					<% } %>
 
-					<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=maxPage%>&category=<%=category%>'">>></button>
+					<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=maxPage%>&category=<%=category%>'">맨끝</button>
 
 				</div>
 			</div>	

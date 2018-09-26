@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.synth.SynthStyle;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.service.MainService;
 import com.kh.MasterPiece.main.model.vo.MainPageInfo;
 import com.kh.MasterPiece.main.model.vo.MainTest;
@@ -28,8 +29,7 @@ public class SelectMainServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<MainTest> list = new MainService().selectProduct();
-		ArrayList<Product> list3 = new MainService().allList();
+		ArrayList<Product> list = new MainService().allList();
 		
 		//-----------------------------------------------그래픽카드--------------------------------------------------------
 		int currentPage1;	//현재 페이지를 표시할 변수
@@ -98,16 +98,18 @@ public class SelectMainServlet extends HttpServlet {
 		//----------------------------------------------------------------------
 
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
-
+		
+		ArrayList<Board> banner = new MainService().mainBanner();
+		
 		String page = null;
 		if(list != null){
 			page = "index.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("list1", list1);
 			request.setAttribute("list2", list2);
-			request.setAttribute("list3", list3);
 			request.setAttribute("imgList", imgList);
 			request.setAttribute("pi", pi1);
+			request.setAttribute("banner", banner);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "실패");

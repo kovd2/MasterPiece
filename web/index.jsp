@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.main.model.vo.*, com.kh.MasterPiece.product.model.vo.*,
+	pageEncoding="UTF-8" import="java.util.*,
 								com.kh.MasterPiece.product.model.vo.*,
     							com.kh.MasterPiece.board.model.vo.*,
     							com.kh.MasterPiece.main.model.vo.*"%>
 <%
-	ArrayList<MainTest> list = (ArrayList<MainTest>)request.getAttribute("list");
-	/* ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list"); */
-	
 	/* 모든 상품 */
-	ArrayList<Product> list3 = (ArrayList<Product>)request.getAttribute("list3");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	
 	/* graphic */
 	ArrayList<Product> list1 = (ArrayList<Product>)request.getAttribute("list1");
@@ -228,6 +225,10 @@ a{ text-decoration:none }
 .left_banner{width:105px; left:30px; top:140px; position: absolute;}
 .right_banner{width: 105px; top:151px; left:1341px; position: absolute;}
 
+/* 메인 상품 페이징 버튼 CSS */
+.thisBtn1, .thisBtn2{background-color:#d9534f; color:white; cursor: pointer; border: none; font-size: 15px; padding: 5px 10px; margin:2px;}
+.thisBtn1:hover, .thisBtn2:hover{ background-color: #d2322d; color: white;}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -324,22 +325,22 @@ a{ text-decoration:none }
 			<div class="product_1">
 				<!-- <link rel="stylesheet" type="text/css" href="/main/css/index_renew_addmask.css?t=godo150414" media="all"> -->
 				<div class="view view-show" style="margin-right:140px;">
-					<img src="./images/kimjaeyup/best.jpg" width="466" height="287" >
+					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(0).getPrd_code()).getChangeName()%> width="466" height="287" >
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName">기가바이트 Z370 AORUS Ultra Gaming 2.0 제이씨현 [일반/LGA1151v2/DDR4]</p>
-						<p class="viewContent">229,000 원</p>
+						<p class="productName"><%=list.get(0).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(0).getPrice() %> 원</p>
 						<p class="viewDetail">
 							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
 						</p>
 					</div>
 				</div>
 				<div class="view view-show">
-					<img src="./images/kimjaeyup/sale.jpg" width="466" height="287">
+					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(1).getPrd_code()).getChangeName()%> width="466" height="287">
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName">AORUS ROG STRIX 3D프린팅 친화적인 설계, <br>Aura RGB 조명</p>
-						<p class="viewContent">375,000 원</p>
+						<p class="productName"><%=list.get(0).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(0).getPrice() %>원</p>
 						<p class="viewDetail">
 							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
 						</p>
@@ -352,39 +353,40 @@ a{ text-decoration:none }
 				<span class="product_subMp2">당사에서 제작한 걸작을 만나보실 수 있습니다.</span><br>
 				<div class="product_2">
 					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'" >
-						<img src="./images/kimjaeyup/mp1.png" style="width: 200px; height: 220px;"> <br>
+						<img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(0).getPrd_code()).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrdName()%></span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2"><%=list.get(0).getPrice() %>원</span>
+						<span class="product_btm2"><%=list.get(0).getPrice()%>원</span>
 						<span class="product_event1" style="margin-right:10px;">경품</span>
 						<span class="product_event4">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/mp2.png" style="width: 200px; height: 220px;"> <br>
+						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(1).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(1).getPrdName() %></span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(1).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2"><%=list.get(1).getPrice() %>원</span>
+						<span class="product_btm2"><%=list.get(1).getPrice()%>원</span>
 						<span class="product_event4" style="margin-right:10px;">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/mp3.png" style="width: 200px; height: 220px;"> <br>
+						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(2).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(2).getPrdName() %></span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(2).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,230,000원 </span>
-						<span class="product_btm2"><%=list.get(2).getPrice() %>원</span>
+						<span class="product_btm2"><%=list.get(2).getPrice()%>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
 					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/mp4.png" style="width: 200px; height: 220px;"> <br>
+						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(3).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span> <br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(3).getPrdName() %></span><br><hr class="product_hr">
+						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(3).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1" style="text-decoration: line-through;">1,100,000원 </span>
-						<span class="product_btm2"><%=list.get(3).getPrice() %>원</span>
+						<%-- <span class="product_btm2"><%=list.get(3).getPrice() %>원</span> --%>
+						<span class="product_btm2"><%=list.get(3).getPrice()%>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
@@ -400,7 +402,6 @@ a{ text-decoration:none }
 						Product pro = list1.get(i);
 						String key = pro.getPrd_code();
 						Attachment ath = imgList.get(key);
-
 				%>
 		
 			 	<div class="imageList" align="center">
@@ -415,13 +416,10 @@ a{ text-decoration:none }
 				<%} %>
 				</div>
 				<div>
-					 <div class="pageArea" align="center">
-		 
+					 <div class="pageArea" align="center" style="margin-top: 7px;">
 						 <% for(int p = startPage1; p <= maxPage1; p++){ %>
-		 			
 		 						<button class="thisBtn1" value=<%=p %>><%= p %></button>
 						 <% 	} %>
-		 
 					 </div>
 				</div>
 			</div><br><br><br>
@@ -438,7 +436,7 @@ a{ text-decoration:none }
 				%>
 		
 			 	<div class="imageList2" align="center">
-			 		<div style="width:345px; height:300px;">
+			 		<div style="width:345px; height:300px;" onclick="goDetail('<%= list2.get(i).getPrd_code()%>')">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
 			 						width="200px" height="200px" style="margin-top:15px;"><br>
 		 				<span><%=list2.get(i).getPrd_name()%></span><br><hr class="product_hr">
@@ -449,50 +447,17 @@ a{ text-decoration:none }
 				<%} %>
 				</div>
 				<div>
-					 <div class="pageArea" align="center">
+					 <div class="pageArea" align="center" style="margin-top: 7px;">
 		 
 						 <% for(int p = startPage2; p <= maxPage2; p++){ %>
-		 			
+		
 		 						<button class="thisBtn2" value=<%=p %>><%= p %></button>
 						 <% 	} %>
-		 
+						 
 					 </div>
 				</div>
-			
-			
-			<!-- <div align="left">
-				<span class="product_subMo1">CPU</span>
-				<span class="product_subMp2">기존 제품의 성능을 뛰어 넘는 강력함!</span><br>
-				<div class="product_4">
-					<div class="product_monitor1 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/monitor4.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_comment"">[LG전자] LG모니터 32MP58HQ</span> <br>
-						<span class="product_name">32형(80cm) LED LCD(와이드) / IPS패널 / 1920*1080 / 1,200:1 </span><br><hr class="product_hr">
-						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2">277,000원</span>
-						<span class="product_event3" style="margin-right:10px;">무료배송</span>	
-					</div>
-					<div class="product_monitor2 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-						<img src="./images/kimjaeyup/monitor5.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_comment"">[삼성전자] 삼성모니터 LS27F350F[무결점]</span> <br>
-						<span class="product_name">27형(68.6cm) LED(와이드) / PLS패널 / 1920*1080 / 1,000:1 </span><br><hr class="product_hr">
-						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2">199,000</span>
-						<span class="product_event3" style="margin-right:10px;">무료배송</span>
-						<span class="product_event4">사은품</span>
-					</div>
-					<div class="product_monitor3 product_4" style="cursor: pointer;" title="모니터" onclick="location.href='http://www.google.co.kr'">
-							<img src="./images/kimjaeyup/monitor6.jpg" style="width: 200px; height: 200px;"><br>
-						<span class="product_gcomment"">[한성컴퓨터] ULTRON 2757C 커브드 144HZ [무결점]</span><br>
-						<span class="product_gname">27형(68.6cm) LED LCD(와이드) / PVA패널 / 1920*1080</span><br><hr class="product_hr">
-						<span class="product_gbtm1" style="text-decoration: line-through;">279,000 </span>
-						<span class="product_gbtm2">259,000원</span>
-						<span class="product_event2" style="margin-right:10px;">리뷰</span>
-						<span class="product_event6">특가</span>
-					</div>
-				</div>
-			</div> -->
 		</div>
+	</div>
 	</div>
 		
 		<br>
@@ -586,7 +551,7 @@ a{ text-decoration:none }
 				
 				$(".imageArea2").children("div.imageList2").remove();
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList2'align='center'style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
+					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
 					$(".imageArea2").append($div);
 					
 					$div2 = $("<div style='width:350px; height:300px;'>");						
@@ -602,6 +567,8 @@ a{ text-decoration:none }
 					console.log(data);
 					console.log(data.list[i].price);
 					console.log(data.imgList[data.list[i].prd_code].changeName);
+					
+					$
 				}
 				
 				console.log(path);	
@@ -624,6 +591,12 @@ a{ text-decoration:none }
 				/* $("body").css("overflow", "auto"); //body 스크롤바 생성 */
 			});
 		});
+		 
+	function goDetail(No){
+		var code = No;
+				
+		location.href="<%= request.getContextPath()%>/prdDetail?code=" + code;
+	}
 	</script>
 	
 	<!-- 오늘 하루 팝업 안보기 -->
