@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.vo.MainTest;
 import com.kh.MasterPiece.product.model.vo.Product;
 
@@ -34,89 +35,7 @@ public class MainDao {
 
 	}
 
-	public ArrayList<MainTest> selectProduct(Connection con) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-
-		ArrayList<MainTest> list = new ArrayList<>();
-
-		String query = prop.getProperty("selectProduct");
-
-		try {
-			pstmt = con.prepareStatement(query);
-			rset = pstmt.executeQuery();
-
-			while(rset.next()){
-				MainTest product = new MainTest();
-				product.setPrdCode(rset.getString("PRD_CODE"));
-				product.setManufacturer(rset.getString("MANUFACTURER"));
-				product.setPrice(rset.getInt("PRICE"));
-				product.setPrdName(rset.getString("PRD_NAME"));
-				product.setReleaseDate(rset.getDate("RELEASE_DATE"));
-				product.setCategory(rset.getString("CATEGORY"));
-				product.setSellCount(rset.getInt("SELL_COUNT"));
-				product.setStock(rset.getInt("STOCK"));
-
-				list.add(product);
-			}			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-
-		return list;
-	}
-
-	public ArrayList<HashMap<String, Object>> selectGraphicList(Connection con, int currentPage, int limit) {
-		PreparedStatement pstmt = null;
-		Statement stmt = null;
-		ArrayList<HashMap<String, Object>> list = null;
-		HashMap<String, Object> hmap = null;
-		ResultSet rset = null;
-
-		String query = prop.getProperty("selectGraphicMap");
-
-		try {
-			pstmt = con.prepareStatement(query);
-			stmt = con.createStatement();
-
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
-			rset = stmt.executeQuery(query);
-
-			list = new ArrayList<HashMap<String, Object>>();
-
-			while(rset.next()){
-				hmap.put("prdCode", rset.getString("PRD_CODE"));
-				hmap.put("manufacturer", rset.getString("MANUFACTURER"));
-				hmap.put("price", rset.getInt("PRICE"));
-				hmap.put("prdName", rset.getString("PRD_NAME"));
-				hmap.put("releaseDate", rset.getDate("RELEASE_DATE"));
-				hmap.put("category", rset.getString("CATEGORY"));
-				hmap.put("sellCount", rset.getInt("SELL_COUNT"));
-				hmap.put("stock", rset.getInt("STOCK"));
-
-				list.add(hmap);
-			}
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally{
-			close(stmt);
-			close(rset);
-		}		
-
-		return list;
-	}
-
-	//GRAPHIC
+	//그래픽 페이징 처리 메소드
 	public int getListCount1(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -146,7 +65,7 @@ public class MainDao {
 		return listCount;
 	}
 
-	//GRAPHIC
+	//그래픽 리스트 불러오는 메소드
 	public ArrayList<Product> graphicList(Connection con, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ArrayList<Product> list = null;
@@ -190,7 +109,7 @@ public class MainDao {
 		return list;
 	}
 
-	//CPU
+	//CPU 페이징 처리 메소드
 	public int getListCount2(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -219,7 +138,7 @@ public class MainDao {
 		return listCount;
 	}
 	
-	//CPU
+	//CPU 리스트 불러오는 메소드
 	public ArrayList<Product> cpuList(Connection con, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ArrayList<Product> list = null;
@@ -263,7 +182,7 @@ public class MainDao {
 		return list;
 	}
 
-
+	//이미지 불러오는 메소드
 	public HashMap<String, Attachment> selectImageList(Connection con) {
 		PreparedStatement pstmt = null;
 		HashMap<String, Attachment> list = null;
@@ -301,19 +220,20 @@ public class MainDao {
 
 		return null;
 	}
-
+	
+	//모든 상품 불러오는 메소드
 	public ArrayList<Product> allList(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
+		
 		ArrayList<Product> list = new ArrayList<>();
-
+		
 		String query = prop.getProperty("allList");
-
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			rset = pstmt.executeQuery();
-
+			
 			while(rset.next()){
 				Product allList = new Product();
 				
@@ -334,7 +254,111 @@ public class MainDao {
 
 		return list;
 	}
+	
+	//메인 배너
+	public ArrayList<Board> mainBanner(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
+		ArrayList<Board> banner= new ArrayList<>();
+
+		String query = prop.getProperty("mainBanner");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()){
+				Board b = new Board();
+				
+				b.setBOARD_CATEGORY(rset.getString("category"));
+				
+				
+				banner.add(b);
+				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return banner;
+	}
+	
+	//검색한 상품
+	public ArrayList<Product> searchList(Connection con, String search, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> searchList = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("searchList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, search);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			searchList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("prd_name"));
+				p.setCategory(rset.getString("category"));
+
+				searchList.add(p);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return searchList;
+	}
+	
+	//검색한 상품 페이징 처리
+	public int searchCount(Connection con, String search) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("searchCount");
+
+		int listCount = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, search);
+	
+			rset = pstmt.executeQuery();				
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
+	}
 }
 
 

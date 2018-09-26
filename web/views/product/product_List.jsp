@@ -266,6 +266,9 @@
     float: left;   
 }
 
+.ebtn{ cursor: pointer; background-color: white; border:#eaeaea 1px solid;font-size: 13px; padding: 5px 10px; margin:2px;}
+.ebtn:hover{border:#727272 1px solid;}
+
 </style>
 </head>
 <body>
@@ -431,6 +434,7 @@
 			<%      } %>
 			<% } %>			
 			
+
 			<% if(currentPage >= maxPage){ %>
 				<button disabled>></button>
 			<% }else{ %>

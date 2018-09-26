@@ -209,16 +209,16 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			</a>
 		</div>
 		<div id="search" class="search">
+		<form action="serch.tn">
 			<span class="search_window">
 				<input id="query" name="query" type="text" title="검색어 입력" maxlength="255" class="input_text"
 					tabindex="1" accesskey="s" style="ime-mode: active;"
-					autocomplete="off" onclick="document.getElementById('fbm').value=1;" value="">
+					autocomplete="off" value="">
 			</span>
-			<button id="search_btn" type="submit" title="검색" tabindex="3" class="sch_smit" onmouseover="this.className='sch_smit over'"
-				onmousedown="this.className='sch_smit down'" onmouseout="this.className='sch_smit'"
-				onclick="clickcr(this,'sch.action','','',event);">
+			<button id="search_btn" type="submit" title="검색" tabindex="3" class="sch_smit">
 				<span class="blind">검색</span> <span class="ico_search_submit"></span>
 			</button>
+		</form>
 		</div>
 		
 		<div id="top_menu">
