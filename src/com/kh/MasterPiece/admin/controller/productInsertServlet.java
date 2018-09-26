@@ -53,7 +53,6 @@ public class productInsertServlet extends HttpServlet {
 					//웹 서버 컨테이너 경로 추출함
 					String root = request.getSession().getServletContext().getRealPath("/");
 					
-					System.out.println(root);
 					
 					//파일 저장 경로 설정
 					String savePath = root + "images/product";
@@ -89,8 +88,6 @@ public class productInsertServlet extends HttpServlet {
 						saveFiles.add(multiRequest.getFilesystemName(name));
 						originFiles.add(multiRequest.getOriginalFileName(name));
 						
-						System.out.println("fileSystem name : " + multiRequest.getFilesystemName(name));
-						System.out.println("originFile : " + multiRequest.getOriginalFileName(name));
 					}
 					
 					//multipartRequest 객체에서 파일 이외의 값을 가져올 수 도 있다.
@@ -100,12 +97,6 @@ public class productInsertServlet extends HttpServlet {
 					String multiCategory = multiRequest.getParameter("category");
 					String multiManufacturer = multiRequest.getParameter("MANUFACTURER");
 					int multiStock = Integer.parseInt(multiRequest.getParameter("stock"));
-					System.out.println(multiName);
-					System.out.println(multiCode);
-					System.out.println(multiPrice);
-					System.out.println(multiCategory);
-					System.out.println(multiManufacturer);
-					System.out.println(multiStock);
 					
 					Product p = new Product();
 					p.setPrd_name(multiName);
@@ -121,7 +112,6 @@ public class productInsertServlet extends HttpServlet {
 						Attachment at = new Attachment();
 						at.setFilePath(savePath);
 						at.setOriginName(originFiles.get(i));
-						System.out.println(originFiles.get(i));
 						at.setChangeName(saveFiles.get(i));
 						
 						fileList.add(at);
@@ -130,7 +120,6 @@ public class productInsertServlet extends HttpServlet {
 					//service 전송
 					int result = new testService().insertProduct(p, fileList);
 					
-					System.out.println("결과 : " + result);
 					
 					if(result > 0){
 						response.sendRedirect(request.getContextPath() + "/productList.swy");

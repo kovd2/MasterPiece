@@ -38,7 +38,7 @@
 				<option value="6">공지사항</option>
 				<option value="1">견적게시판</option>
 			</select>
-			<button style="margin-left:30px;" id="add">공지사항 추가</button>
+			<button style="margin-left:30px;" id="add" onclick="location.href='./views/admin/board/boardAdd.jsp'">공지사항 추가</button>
 		</div>
 		<div>
 			<table id="maintable" border="1"
@@ -53,8 +53,7 @@
 				%>
 				<tr class="content">
 					<td><%=list.get(i).getBOARD_ID()%></td>
-					<td><a
-						href="<%=request.getContextPath()%>/questionDetail.swy?id=<%=list.get(i).getBOARD_ID()%>"><%=list.get(i).getBOARD_TITLE()%></a></td>
+					<td><a href="<%=request.getContextPath()%>/boardDetail.swy?id=<%=list.get(i).getBOARD_ID()%>"><%=list.get(i).getBOARD_TITLE()%></a></td>
 					<td><%=list.get(i).getBOARD_WRITER()%></td>
 				</tr>
 				<%
@@ -121,7 +120,9 @@
 							$td.append(data.boardList[i].BOARD_ID);
 							$td2 = $("<td>");
 							if(type == 6){
-								$td2.append(data.boardList[i].BOARD_TITLE);	
+								$a = $("<a href='./boardnDetail.swy?id="+data.boardList[i].BOARD_ID+"'>")
+								$a.append(data.boardList[i].BOARD_TITLE);
+								$td2.append($a);	
 							}else{
 								$td2.append(data.boardList[i].BOARD_TITLE);
 							}
@@ -188,7 +189,9 @@
 						$td.append(data.boardList[i].BOARD_ID);
 						$td2 = $("<td>");
 						if(type == 6){
-							$td2.append(data.boardList[i].BOARD_TITLE);	
+							$a = $("<a href='./boardDetail.swy?id="+data.boardList[i].BOARD_ID+"'>")
+							$a.append(data.boardList[i].BOARD_TITLE);
+							$td2.append($a);	
 						}else{
 							$td2.append(data.boardList[i].BOARD_TITLE);
 						}
