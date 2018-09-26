@@ -247,7 +247,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						    onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 				</a></li>
-				<li class="top_subMenuQnA"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionList.jsp" title="Q&A">
+				<li class="top_subMenuQnA"><a href="<%= request.getContextPath() %>/selectMoreList.sc" title="Q&A">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"
@@ -284,7 +284,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/service_off.png'" border="0"
 						style="width: 90px; height: 40px;">
 				</a></li>
-				<li class="top_subMenuQnA"><a href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionList.jsp" title="Q&A">
+				<li class="top_subMenuQnA"><a href="<%= request.getContextPath() %>/selectMoreList.sc" title="Q&A">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png"
 						onmouseover="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_on.png'"
 						onmouseout="this.src='<%=request.getContextPath() %>/images/kimjaeyup/qna_off.png'" border="0"

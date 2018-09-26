@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat"%>
+<%
+	Date writeDate = new Date();
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String today = dateFormat.format(writeDate);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,22 +128,19 @@ table th
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterQuestionList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectQuestionList.sc'">
 					<span style="float:left">1:1 문의</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterMoreBoard.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">
 					<span style="float:left">자주 묻는 질문</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;">
-					<span style="float:left">운송료 조회</span><span style="float: right;">></span>
-				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterNotice.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">
 					<span style="float:left">공지사항</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -146,7 +149,7 @@ table th
 		<div class="container-inner inner board">
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
-				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
+				<div id="serviceMainImg" onclick="location.href='<%= request.getContextPath() %>/selectList.sc'">
 					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
@@ -154,24 +157,28 @@ table th
 					<label style="margin-left:5px; font-size:14px; font-weight:bold;">1:1 문의하기</label>
 					<br>
 					<div>
-						<form action="" method="post" style="margin-top:10px;">
+						<form action="<%= request.getContextPath() %>/insertQuestion.sc" method="post" style="margin-top:10px;">
 							<table style="width:693px;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="border-right:none;">작성자</th>
-									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;">King-Computer</td>
+									<td style="border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
 									<td style="border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
-									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;">2018-09-17</td>
+									<td style="border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= today %></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
-									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="subject" style="width:550px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
+									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:550px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">문의 유형</th>
 									<td colspan="3">
-										<select style="float:left; width:200px; height:25px; margin-left:12px;">
-											<option>----------</option>
+										<select name="category" style="float:left; width:200px; height:25px; margin-left:12px;">
+											<option value="10">상품문의</option>
+											<option value="20">배송문의</option>
+											<option value="30">주문/결제</option>
+											<option value="40">반품/교환</option>
+											<option value="50">기타</option>
 										</select>
 									</td>
 								</tr>
@@ -188,7 +195,7 @@ table th
 								<button type="submit" class="btn" style="background:dodgerblue; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;">등록</button>
 							</div>
 							<div>
-								<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='serviceCenterQuestionList.jsp'">목록</button>
+								<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left; margin-left:5px;" onclick="location.href='<%= request.getContextPath() %>/selectQuestionList.sc'">목록</button>
 							</div>
 						</form>
 					</div>

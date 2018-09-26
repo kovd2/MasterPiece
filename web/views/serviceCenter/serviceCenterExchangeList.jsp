@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.serviceCenter.model.vo.*, java.util.*, java.util.Date, java.text.SimpleDateFormat"%>
+<%
+	ArrayList<AfterService> list = (ArrayList<AfterService>)request.getAttribute("list");
+
+	Date writeDate = new Date();
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String today = dateFormat.format(writeDate);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +119,10 @@
 {
 	cursor:pointer;
 }
+.pointer:hover
+{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -121,22 +133,19 @@
 		<!-- 사이드 메뉴 -->
 		<div class="container-inner inner sideMenu">
 			<div class="inb" id="sideMenu" style="width: 200px;">
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterQuestionList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectQuestionList.sc'">
 					<span style="float:left">1:1 문의</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterMoreBoard.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">
 					<span style="float:left">자주 묻는 질문</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeList.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;">
-					<span style="float:left">운송료 조회</span><span style="float: right;">></span>
-				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterNotice.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">
 					<span style="float:left">공지사항</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -145,7 +154,7 @@
 		<div class="container-inner inner board">
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
-				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
+				<div id="serviceMainImg" onclick="location.href='<%= request.getContextPath() %>/selectList.sc'">
 					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br>
@@ -153,19 +162,19 @@
 					<div style="display:inline-block; width:80px; height:30px; margin-left:10px; margin-top:20px;">
 						<div style="font-size:small; text-align:center; font-weight:bold;">조회기간</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
+					<div class="timebtn1" style="display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1주일</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<div class="timebtn2" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
+					<div class="timebtn3" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">3개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<div class="timebtn4" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">6개월</div>
 					</div>
-					<div style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<div class="timebtn5" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
 						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1년</div>
 					</div>
 					<br>
@@ -191,7 +200,7 @@
 						<table class="boardTable" style="margin-top:10px;">
 							<thead style="border-top:2px solid darkgray; border-left:2px solid darkgray; border-right:2px solid darkgray; background:#DFDFDF;">
 								<tr>
-									<th>접수일/접수번호</th>
+									<th>접수번호</th>
 									<th>상품정보</th>
 									<th>분류</th>
 									<th>처리현황</th>
@@ -199,47 +208,63 @@
 								</tr>
 							</thead>
 							<tbody style="border-left:2px solid darkgray; border-right:2px solid darkgray; background:white;">
+								<%
+									for(AfterService as : list)
+									{
+								%>
 								<tr>
-									<td align="center">1</td>
-									<td>[견적문의]견적 문의합니다.</td>
-									<td>임하룡</td>
-									<td>2018-08-31</td>
-									<td align="center">23</td>
+								<input type="hidden" value=<%= as.getServiceNo() %>>
+									<td><%= as.getServiceNo() %></td>
+									<td><%= as.getPrdCode() %></td>
+									<td><%= as.getReason() %></td>
+									<%
+										if(as.getBoardStatus().equals("N"))
+										{
+											as.setBoardStatus("처리중");
+									%>
+									<td><%= as.getBoardStatus() %></td>
+									<%
+										}
+										else if(as.getBoardStatus().equals("Y"))
+										{
+											as.setBoardStatus("처리완료");
+									%>
+									<td><%= as.getBoardStatus() %></td>
+									<%
+										}
+									%>
+									<td><%= as.getHowToRegister() %></td>
 								</tr>
-								<tr>
-									<td align="center">John</td>
-									<td>Doe</td>
-									<td>john@example.com</td>
-									<td>2018-08-31</td>
-									<td align="center">2</td>
-								</tr>
+								<%
+									}
+								%>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<br clear="both">
 				<div>
-					<button type="button" class="btn btn-danger" style="padding:2px 4px; height:28px; color:white; background:#d9534f; float:right; border:1px solid white; border-radius:5px;">신청하기</button>
-				</div>
-				<div>
-					<div>
-						<div class="list_n_menu" style="font-size:14px;">
-							<span class="disabled"><  이전</span>
-							<span class="current">1</span>
-							<a href="#?page=2">2</a>
-							<a href="#?page=3">3</a>
-							<a href="#?page=4">4</a>
-							<a href="#?page=5">5</a>
-							<a href="#?page=6">6</a>
-							<a href="#?page=7">7</a>...
-							<a href="#?page=2">다음  ></a>
-						</div>
-				    </div>
+					<button type="button" class="btn btn-danger pointer" style="padding:2px 4px; height:28px; color:white; background:#d9534f; float:right; border:1px solid white; border-radius:5px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">신청하기</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
+	
+	<script>
+		$(function()
+		{
+			$(".boardTable td").click(function()
+			{
+				var serviceNo = $(this).parent().children("input").val();
+				var userId = "<%= loginUser.getUserId() %>";
+				
+				alert("serviceNo : " + serviceNo);
+				
+				location.href="<%= request.getContextPath() %>/selectOneExchange.af?serviceNo=" + serviceNo + "&userId=" + userId;
+			});
+		});
+	</script>
 </body>
 </html>
