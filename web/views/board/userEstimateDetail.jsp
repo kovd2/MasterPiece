@@ -166,7 +166,14 @@
 							<tr>
 								<td style="width:100px; font-size:14px;"><%= replyBoard.getBOARD_WRITER() %></td>
 								<td style="width:440px; font-size:14px;"><%= replyBoard.getBOARD_CONTENT() %></td>
+								<%
+									if(replyBoard.getBOARD_WRITER().equals(loginUser.getUserId()))
+									{
+								%>
 								<td style="font-size:14px;"><input type="button" value="X"><input type="hidden" value="<%= replyBoard.getBOARD_ID() %>"></td>
+								<%
+									}
+								%>
 							</tr>
 							<!-- #replyListTable>tr>td { font-size:14px; } -->
 							<%
@@ -231,13 +238,15 @@
 						
 						/* alert(hiddenVal); */
 								
-						$td.append("<input type='button' value='X'>");
+						/* $td.append("<input type='button' value='X'>"); */
 						$td.append($hiddenValue);
 						
 						$tr.append($writerTd);
 						$tr.append($replyContentTd);
 						$tr.append($td);
 						$replyListTable.append($tr);
+						
+						location.href="<%= request.getContextPath() %>/selectOne.ue?boardNo=" + <%= b.getBOARD_NO() %> + "&boardId=" + <%= b.getBOARD_ID() %>;
 					}
 				}
 			});

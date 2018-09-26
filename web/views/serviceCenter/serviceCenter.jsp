@@ -124,6 +124,27 @@
 {
 	cursor:pointer;
 }
+.boardTableNotice
+{
+	font-size:small;
+	width:700px;
+	border-spacing:0px;
+}
+.boardTableNotice th, td
+{
+	text-align:center;
+	border-bottom:1px solid #D7D7D7;
+	height:30px;
+}
+.boardTableNotice>tbody>tr:hover
+{
+	background:lightgray;
+	cursor:pointer;
+}
+.boardTableNotice>tbody>tr:last-child
+{
+	border-bottom:2px solid darkgray;
+}
 </style>
 </head>
 <body>
@@ -137,19 +158,16 @@
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectQuestionList.sc'">
 					<span style="float:left">1:1 문의</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterMoreBoard.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">
 					<span style="float:left">자주 묻는 질문</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectExchange.af'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;">
-					<span style="float:left">운송료 조회</span><span style="float: right;">></span>
-				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterNotice.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">
 					<span style="float:left">공지사항</span><span style="float: right;">></span>
 				</div>
 			</div>
@@ -158,7 +176,7 @@
 		<div class="container-inner inner board">
 			<div class="inb" id="board" style="width:700px;">
 				<!-- 중앙 게시판 -->
-				<div id="serviceMainImg" onclick="location.href='serviceCenter.jsp'">
+				<div id="serviceMainImg" onclick="location.href='<%= request.getContextPath() %>/selectList.sc'">
 					<img src="/MasterPiece/images/cus_intro_pic.jpg">
 				</div>
 				<br clear="both">
@@ -198,10 +216,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -229,10 +249,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -260,10 +282,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -291,10 +315,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -322,10 +348,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -353,10 +381,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -475,7 +505,7 @@
 				<label style="float:left; font-size:14px; font-weight:bold;">공지사항</label>
 				<label class="moreBoard Notice" style="float:right; font-size:14px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">더보기 ▶</label>
 				<br clear="both">
-				<table class="boardTable" style="margin-top:10px;">
+				<table class="boardTableNotice" style="margin-top:10px;">
 					<thead style="border-top:2px solid darkgray; background:#DFDFDF;">
 							<tr>
 								<th style="width:50px;">번호</th>
@@ -492,10 +522,12 @@
 									{
 							%>
 							<tr>
+								<input type="hidden" value="<%= b.getBOARD_NO() %>">
 								<td><%= b.getBOARD_NO() %></td>
 								<td><%= b.getBOARD_CATEGORY() %></td>
 								<td><%= b.getBOARD_TITLE() %></td>
 								<td><%= b.getBOARD_DATE() %></td>
+								<th style="display:none;"><input type="hidden" value="<%= b.getBOARD_ID() %>"></th>
 							</tr>
 							<%
 									}
@@ -508,5 +540,35 @@
 	</div>
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
+	
+	<script>
+		$(function()
+		{
+			$(".boardTable td").click(function()
+			{
+				var boardNo = $(this).parent().children("input").val();
+				var boardId = $(this).parent().children().children("input").val();
+				
+				console.log("boardNo : " + boardNo);
+				console.log("boardId : " + boardId);
+				
+				location.href="<%= request.getContextPath() %>/selectOneMoreBoard.sc?boardNo=" + boardNo + "&boardId=" + boardId;
+			});
+		});
+		
+		$(function()
+		{
+			$(".boardTableNotice td").click(function()
+			{
+				var boardNo = $(this).parent().children("input").val();
+				var boardId = $(this).parent().children().children("input").val();
+				
+				console.log("boardNo : " + boardNo);
+				console.log("boardId : " + boardId);
+				
+				location.href="<%= request.getContextPath() %>/selectOneNotice.sc?boardNo=" + boardNo + "&boardId=" + boardId;
+			});
+		});
+	</script>
 </body>
 </html>

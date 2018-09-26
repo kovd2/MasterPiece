@@ -355,5 +355,71 @@ public class BoardService {
 		
 		return list;
 	}
-	
+
+	public int insertServiceCenterQuestion(Board b)
+	{
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertServiceCenterQuestion(conn, b);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		/*System.out.println("result : " + result);*/
+		close(conn);
+		
+		return result;
+	}
+
+	public Board selectServiceCenterQuestionOne(int boardNo)
+	{
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectServiceCenterQuestionOne(conn, boardNo);
+		
+		return b;
+	}
+
+	public Board selectServiceCenterNoticeOne(int boardNo)
+	{
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectServiceCenterNoticeOne(conn, boardNo);
+		
+		return b;
+	}
+
+	public Board selectServiceCenterMoreBoardOne(int boardNo)
+	{
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectServiceCenterMoreBoardOne(conn, boardNo);
+		
+		return b;
+	}
+
+	public ArrayList<Board> selectServiceCenterListMain()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterListMain(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectServiceCenterNoticeListMain()
+	{
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectServiceCenterNoticeListMain(conn);
+		
+		close(conn);
+		
+		return list;
+	}	
 }

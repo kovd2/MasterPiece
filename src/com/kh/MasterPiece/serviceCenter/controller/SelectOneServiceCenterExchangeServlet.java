@@ -12,18 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.prdOrder.model.service.PrdOrderService;
+import com.kh.MasterPiece.prdOrder.model.vo.PrdOrder;
+import com.kh.MasterPiece.serviceCenter.model.service.AfterServiceService;
+import com.kh.MasterPiece.serviceCenter.model.vo.AfterService;
 
 /**
- * Servlet implementation class SelectServiceCenterServlet
+ * Servlet implementation class SelectOneServiceCenterExchangeServlet
  */
-@WebServlet("/selectList.sc")
-public class SelectServiceCenterServlet extends HttpServlet {
+@WebServlet("/selectOneExchange.af")
+public class SelectOneServiceCenterExchangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServiceCenterServlet() {
+    public SelectOneServiceCenterExchangeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +37,36 @@ public class SelectServiceCenterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		ArrayList<Board> list1 = new BoardService().selectServiceCenterListMain();
-		ArrayList<Board> list2 = new BoardService().selectServiceCenterNoticeListMain();
+		int serviceNo = Integer.parseInt(request.getParameter("serviceNo"));
+		String userId = request.getParameter("userId");
 		
-		/*System.out.println("serviceCenterList : " + list);*/
+		System.out.println("userId : " + userId);
+		
+		AfterService as = new AfterServiceService().selectServiceCenterExchangeOne(serviceNo);
+		ArrayList<PrdOrder> list = new PrdOrderService().selectPrdOrder(userId);
+		
+		System.out.println(as);
+		System.out.println(list);
 		
 		String page = "";
-
-		if(list1 != null)
+		
+		if(as != null)
 		{
-			page = "views/serviceCenter/serviceCenter.jsp";
-			request.setAttribute("list1", list1);
+			if(list != null)
+			{
+				page = "views/serviceCenter/serviceCenterExchangeDetail.jsp";
+				request.setAttribute("as", as);
+				request.setAttribute("list", list);
+			}
 		}
-		if(list2 != null)
+		else
 		{
-			request.setAttribute("list2", list2);
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "교환.반품.AS 상세보기 실패");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-	} 
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

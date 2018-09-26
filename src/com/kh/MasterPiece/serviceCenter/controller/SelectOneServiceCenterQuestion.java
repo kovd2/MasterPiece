@@ -14,16 +14,16 @@ import com.kh.MasterPiece.board.model.service.BoardService;
 import com.kh.MasterPiece.board.model.vo.Board;
 
 /**
- * Servlet implementation class SelectServiceCenterServlet
+ * Servlet implementation class SelectOneServiceCenterQuestion
  */
-@WebServlet("/selectList.sc")
-public class SelectServiceCenterServlet extends HttpServlet {
+@WebServlet("/selectOneQuestion.sc")
+public class SelectOneServiceCenterQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServiceCenterServlet() {
+    public SelectOneServiceCenterQuestion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +33,26 @@ public class SelectServiceCenterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		ArrayList<Board> list1 = new BoardService().selectServiceCenterListMain();
-		ArrayList<Board> list2 = new BoardService().selectServiceCenterNoticeListMain();
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		/*System.out.println("serviceCenterList : " + list);*/
+		Board b = new BoardService().selectServiceCenterQuestionOne(boardNo);
 		
 		String page = "";
-
-		if(list1 != null)
+		
+		if(b != null)
 		{
-			page = "views/serviceCenter/serviceCenter.jsp";
-			request.setAttribute("list1", list1);
+			page = "views/serviceCenter/serviceCenterQuestionDetail.jsp";
+			request.setAttribute("b", b);
 		}
-		if(list2 != null)
+		else
 		{
-			request.setAttribute("list2", list2);
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "유저 견적 게시판 상세보기 실패");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-	} 
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

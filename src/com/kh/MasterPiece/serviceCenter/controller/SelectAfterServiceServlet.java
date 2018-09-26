@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.serviceCenter.model.service.AfterServiceService;
+import com.kh.MasterPiece.serviceCenter.model.vo.AfterService;
 
 /**
- * Servlet implementation class SelectServiceCenterServlet
+ * Servlet implementation class SelectAfterServiceServlet
  */
-@WebServlet("/selectList.sc")
-public class SelectServiceCenterServlet extends HttpServlet {
+@WebServlet("/selectExchange.af")
+public class SelectAfterServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServiceCenterServlet() {
+    public SelectAfterServiceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +33,20 @@ public class SelectServiceCenterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		ArrayList<Board> list1 = new BoardService().selectServiceCenterListMain();
-		ArrayList<Board> list2 = new BoardService().selectServiceCenterNoticeListMain();
+		ArrayList<AfterService> list = new AfterServiceService().selectAfterServiceList();
 		
-		/*System.out.println("serviceCenterList : " + list);*/
+		System.out.println("as list : " + list);
 		
 		String page = "";
-
-		if(list1 != null)
+		
+		if(list != null)
 		{
-			page = "views/serviceCenter/serviceCenter.jsp";
-			request.setAttribute("list1", list1);
-		}
-		if(list2 != null)
-		{
-			request.setAttribute("list2", list2);
+			page = "views/serviceCenter/serviceCenterExchangeList.jsp";
+			request.setAttribute("list", list);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-	} 
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

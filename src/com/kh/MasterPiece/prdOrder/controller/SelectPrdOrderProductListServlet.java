@@ -1,29 +1,29 @@
-package com.kh.MasterPiece.serviceCenter.controller;
+package com.kh.MasterPiece.prdOrder.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
+import com.google.gson.Gson;
+import com.kh.MasterPiece.prdOrder.model.service.PrdOrderService;
+import com.kh.MasterPiece.prdOrder.model.vo.PrdOrder;
 
 /**
- * Servlet implementation class SelectServiceCenterServlet
+ * Servlet implementation class SelectPrdOrderProductListServlet
  */
-@WebServlet("/selectList.sc")
-public class SelectServiceCenterServlet extends HttpServlet {
+@WebServlet("/selectProduct.af")
+public class SelectPrdOrderProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServiceCenterServlet() {
+    public SelectPrdOrderProductListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +33,21 @@ public class SelectServiceCenterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		ArrayList<Board> list1 = new BoardService().selectServiceCenterListMain();
-		ArrayList<Board> list2 = new BoardService().selectServiceCenterNoticeListMain();
+		String userId = request.getParameter("userId");
 		
-		/*System.out.println("serviceCenterList : " + list);*/
+		/*System.out.println("product userId : " + userId);*/
 		
-		String page = "";
-
-		if(list1 != null)
+		ArrayList<PrdOrder> list = new PrdOrderService().selectPrdOrder(userId);
+		
+		System.out.println(list);
+		
+		if(list != null)
 		{
-			page = "views/serviceCenter/serviceCenter.jsp";
-			request.setAttribute("list1", list1);
+			response.setContentType("application/json");
+			
+			new Gson().toJson(list, response.getWriter());
 		}
-		if(list2 != null)
-		{
-			request.setAttribute("list2", list2);
-		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
-	} 
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
