@@ -316,15 +316,15 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<div class="categoryBox_css" id="com">
 					컴퓨터 부품
 					<ul class="com_menu">
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=cpu'">CPU</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=mainboard'">메인보드</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=memory'">메모리</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=graphic'">그래픽카드</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=hdd'">저장 장치</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=odd'">ODD</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=power'">파워</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=cool'">쿨러</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=case'">케이스</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=CPU'">CPU</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MAINBOARD'">메인보드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MEMORY'">메모리</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GRAPHIC'">그래픽카드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=HDD'">저장 장치</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=ODD'">ODD</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=POWER'">파워</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=COOL'">쿨러</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=CASE'">케이스</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="mo">

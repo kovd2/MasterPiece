@@ -108,12 +108,6 @@
 			<td colspan="3"><input style="width:300px; height:30px; text-align:center;" type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호를 입력하세요"></td>
 		</tr>
 		<tr>
-			<td colspan="3">
-			<!-- <input style="width:300px; height:30px; font-size:15px; font-weight:bold;" type="button" id="naverlogin" value="NAVER 로그인" class="btn btn-success"> -->
-			<div class="g-signin2" data-onsuccess="onSignIn"></div>
-			</td>
-		</tr>
-		<tr>
 			<td style="font-size:13px; height:50px; display:table-cell; vertical-align:middle; text-align:left;">
 			<input style="width:20px; height:20px; float:left;margin-top:5px; margin:10px;" type="checkbox" id="checkBtn" name="checkBtn" <% if(userId.length() > 1) out.println("checked"); %>>
 				<span style="font-size:12px; padding-top: 8px; display: block; margin-top:5px;">아이디 저장</span>

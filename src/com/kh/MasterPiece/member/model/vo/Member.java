@@ -11,11 +11,12 @@ public class Member implements java.io.Serializable {
 	private String address;			//주소	
 	private String email;	 		//이메일
 	private String status;			//회원상태(가입Y,탈퇴N)
+	private String orderCheck;
 	
 	public Member(){}
 
 	public Member(int userNo, String userType, String userName, String userId, String userPwd, String phone,
-			String address, String email, String status) {
+			String address, String email, String status, String orderCheck) {
 		super();
 		this.userNo = userNo;
 		this.userType = userType;
@@ -26,6 +27,16 @@ public class Member implements java.io.Serializable {
 		this.address = address;
 		this.email = email;
 		this.status = status;
+		this.orderCheck = orderCheck;
+	}
+	
+	
+	public String getOrderCheck() {
+		return orderCheck;
+	}
+
+	public void setOrderCheck(String orderCheck) {
+		this.orderCheck = orderCheck;
 	}
 
 	public int getUserNo() {

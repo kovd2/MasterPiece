@@ -1,15 +1,17 @@
 package com.kh.MasterPiece.member.model.dao;
 
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Properties;
-import com.kh.MasterPiece.member.model.vo.Member;
 
-import static com.kh.MasterPiece.common.JDBCTemplate.*;
+import com.kh.MasterPiece.member.model.vo.Member;
 
 public class MemberDao {
 	
@@ -71,7 +73,7 @@ public class MemberDao {
 			pstmt.setString(2, userPwd);
 			
 			rset = pstmt.executeQuery();
-			
+			Calendar cal = Calendar.getInstance();
 			if(rset.next()){
 				
 				loginUser = new Member();
@@ -85,6 +87,7 @@ public class MemberDao {
 				loginUser.setAddress(rset.getString("address"));
 				loginUser.setEmail(rset.getString("email"));
 				loginUser.setStatus(rset.getString("status"));
+				
 				
 			}
 		} catch (SQLException e) {
