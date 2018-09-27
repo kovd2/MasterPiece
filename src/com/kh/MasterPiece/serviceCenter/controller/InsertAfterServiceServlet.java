@@ -36,6 +36,7 @@ public class InsertAfterServiceServlet extends HttpServlet
 		String reason = request.getParameter("reason");
 		String boardContent = request.getParameter("boardContent");
 		String howToRegister = request.getParameter("howToRegister");
+		String trackingNumber = request.getParameter("trackingNumber");
 		String bank = request.getParameter("bank");
 		String bankNum = request.getParameter("bankNum");
 		String bankUserName = request.getParameter("bankUserName");
@@ -45,6 +46,7 @@ public class InsertAfterServiceServlet extends HttpServlet
 		System.out.println("reason : " + reason);
 		System.out.println("boardContent : " + boardContent);
 		System.out.println("howToRegister : " + howToRegister);
+		System.out.println("trackingNumber : " + trackingNumber);
 		System.out.println("bank : " + bank);
 		System.out.println("bankNum : " + bankNum);
 		System.out.println("bankUserName : " + bankUserName);
@@ -56,6 +58,7 @@ public class InsertAfterServiceServlet extends HttpServlet
 		as.setReason(reason);
 		as.setBoardContent(boardContent);
 		as.setHowToRegister(howToRegister);
+		as.setTrackingNumber(trackingNumber);
 		as.setBank(bank);
 		as.setBankNum(bankNum);
 		as.setBankUserName(bankUserName);
@@ -66,6 +69,7 @@ public class InsertAfterServiceServlet extends HttpServlet
 		System.out.println("reason : " + as.getReason());
 		System.out.println("boardContent : " + as.getBoardContent());
 		System.out.println("howToRegister : " + as.getHowToRegister());
+		System.out.println("trackingNumber : " + as.getTrackingNumber());
 		System.out.println("bank : " + as.getBank());
 		System.out.println("bankNum : " + as.getBankNum());
 		System.out.println("bankUserName : " + as.getBankUserName());

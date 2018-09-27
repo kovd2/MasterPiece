@@ -1,4 +1,4 @@
-package com.kh.MasterPiece.board.controller;
+package com.kh.MasterPiece.serviceCenter.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
-import com.kh.MasterPiece.board.model.vo.PageInfo;
+import com.kh.MasterPiece.serviceCenter.model.service.AfterServiceService;
+import com.kh.MasterPiece.serviceCenter.model.vo.AfterService;
 
 /**
- * Servlet implementation class SearchUserEstimateServlet
+ * Servlet implementation class SearchAfterServiceServlet
  */
-@WebServlet("/search.ue")
-public class SearchUserEstimateServlet extends HttpServlet
-{
+@WebServlet("/search.af")
+public class SearchAfterServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUserEstimateServlet() {
+    public SearchAfterServiceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,63 +34,23 @@ public class SearchUserEstimateServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String searchCondition = request.getParameter("searchCondition");
-		
-		ArrayList<Board> list = null;
-		
-		int currentPage = 1;
-		int limit = 15;
-		int maxPage;
-		int startPage;
-		int endPage;
-		
-		if(request.getParameter("currentPage") != null)
-		{
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		int listCount = new BoardService().getUserEstimateListCount();
-		
-		maxPage = (int)((double)listCount / limit + 1.4);
-		
-		startPage = (((int)((double)currentPage / limit + 1.4)) - 1) * limit + 1;
-		
-		endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage)
-		{
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		ArrayList<AfterService> list = null;
 		
 		if(searchCondition.equals("title"))
 		{
 			String title = request.getParameter("searchValue");
 			
-			list = new BoardService().searchUserEstimateTitle(title, currentPage, limit);
+			list = new AfterServiceService().searchAfterServiceTitle(title);
 		}
-		else if(searchCondition.equals("writer"))
-		{
-			String writer = request.getParameter("searchValue");
-			
-			list = new BoardService().searchUserEstimateWriter(writer, currentPage, limit);
-		}
-		else
-		{
-			String content = request.getParameter("searchValue");
-			
-			list = new BoardService().searchUserEstimateContent(content, currentPage, limit);
-		}
-
+		
 		String page = "";
 		
 		if(list != null)
 		{
-			page = "views/board/userEstimate.jsp";
+			page = "views/serviceCenter/serviceCenterExchangeList.jsp";
 			
 			request.setAttribute("list", list);
 			request.setAttribute("searchCondition", searchCondition);
-			request.setAttribute("pi", pi);
 		}
 		else
 		{

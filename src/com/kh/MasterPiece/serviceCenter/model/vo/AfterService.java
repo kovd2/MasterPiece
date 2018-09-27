@@ -16,6 +16,7 @@ public class AfterService implements Serializable
 	private String reason;
 	private String boardContent;
 	private String howToRegister;
+	private String trackingNumber;
 	private String bank;
 	private String bankNum;
 	private String bankUserName;
@@ -25,8 +26,8 @@ public class AfterService implements Serializable
 	public AfterService(){}
 
 	public AfterService(int serviceNo, String userId, String prdCode, String reason, String boardContent,
-			String howToRegister, String bank, String bankNum, String bankUserName, Date boardDate,
-			String boardStatus) {
+			String howToRegister, String trackingNumber, String bank, String bankNum, String bankUserName,
+			Date boardDate, String boardStatus) {
 		super();
 		this.serviceNo = serviceNo;
 		this.userId = userId;
@@ -34,6 +35,7 @@ public class AfterService implements Serializable
 		this.reason = reason;
 		this.boardContent = boardContent;
 		this.howToRegister = howToRegister;
+		this.trackingNumber = trackingNumber;
 		this.bank = bank;
 		this.bankNum = bankNum;
 		this.bankUserName = bankUserName;
@@ -89,6 +91,14 @@ public class AfterService implements Serializable
 		this.howToRegister = howToRegister;
 	}
 
+	public String getTrackingNumber() {
+		return trackingNumber;
+	}
+
+	public void setTrackingNumber(String trackingNumber) {
+		this.trackingNumber = trackingNumber;
+	}
+
 	public String getBank() {
 		return bank;
 	}
@@ -136,8 +146,8 @@ public class AfterService implements Serializable
 	@Override
 	public String toString() {
 		return "AfterService [serviceNo=" + serviceNo + ", userId=" + userId + ", prdCode=" + prdCode + ", reason="
-				+ reason + ", boardContent=" + boardContent + ", howToRegister=" + howToRegister + ", bank=" + bank
-				+ ", bankNum=" + bankNum + ", bankUserName=" + bankUserName + ", boardDate=" + boardDate
-				+ ", boardStatus=" + boardStatus + "]";
+				+ reason + ", boardContent=" + boardContent + ", howToRegister=" + howToRegister + ", trackingNumber="
+				+ trackingNumber + ", bank=" + bank + ", bankNum=" + bankNum + ", bankUserName=" + bankUserName
+				+ ", boardDate=" + boardDate + ", boardStatus=" + boardStatus + "]";
 	}
 }

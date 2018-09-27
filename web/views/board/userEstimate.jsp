@@ -127,13 +127,13 @@
 						<br clear="both">
 						<form action="<%= request.getContextPath() %>/search.ue">
 						  <div style="float:right; margin-top:-26px;">
-						    <input type="text" class="form-control" placeholder="검색어를 입력하세요." size="40" style="height:20px; font-size:small;">
+						    <input type="text" class="form-control" name="searchValue" placeholder="검색어를 입력하세요." size="40" style="height:20px; font-size:small;">
 						  </div>
 						  <div style="float:right; margin-top:-26px;">
 						  	<button class="btn btn-default" type="submit" style="width:50px; height:26px; padding:3px 6px; font-size:small;">검색</button>
 						  </div>
 						  <div style="margin-top:-25px; float:right; margin-right:320px;">
-							  <select style="height:24px;">
+							  <select name="searchCondition" style="height:24px;">
 									<option value="title">제목</option>
 									<option value="writer">작성자</option>
 									<option value="content">내용</option>

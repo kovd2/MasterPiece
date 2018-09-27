@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.serviceCenter.model.vo.AfterService;
 
 public class AfterServiceDao
@@ -50,9 +51,10 @@ public class AfterServiceDao
 			pstmt.setString(3, as.getReason());
 			pstmt.setString(4, as.getBoardContent());
 			pstmt.setString(5, as.getHowToRegister());
-			pstmt.setString(6, as.getBank());
-			pstmt.setString(7, as.getBankNum());
-			pstmt.setString(8, as.getBankUserName());
+			pstmt.setString(6, as.getTrackingNumber());
+			pstmt.setString(7, as.getBank());
+			pstmt.setString(8, as.getBankNum());
+			pstmt.setString(9, as.getBankUserName());
 			
 			result = pstmt.executeUpdate();
 		}
@@ -92,6 +94,7 @@ public class AfterServiceDao
 				as.setReason(rset.getString("category_name"));
 				as.setBoardContent(rset.getString("board_content"));
 				as.setHowToRegister(rset.getString("how_to_register"));
+				as.setTrackingNumber(rset.getString("tracking_number"));
 				as.setBank(rset.getString("bank"));
 				as.setBankNum(rset.getString("bank_num"));
 				as.setBankUserName(rset.getString("bank_user_name"));
@@ -139,6 +142,7 @@ public class AfterServiceDao
 				af.setReason(rset.getString("category_name"));
 				af.setBoardContent(rset.getString("board_content"));
 				af.setHowToRegister(rset.getString("how_to_register"));
+				af.setTrackingNumber(rset.getString("tracking_number"));
 				af.setBank(rset.getString("bank"));
 				af.setBankNum(rset.getString("bank_num"));
 				af.setBankUserName(rset.getString("bank_user_name"));
@@ -157,5 +161,104 @@ public class AfterServiceDao
 		}
 		
 		return af;
+	}
+
+	public ArrayList<AfterService> selectAfterServiceBetweenTimeList(Connection conn, int betweenTime)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AfterService> list = null;
+		
+		String query = prop.getProperty("selectAfterServiceBetweenTimeList");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, betweenTime);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AfterService>();
+			
+			while(rset.next())
+			{
+				AfterService as = new AfterService();
+				
+				as.setServiceNo(rset.getInt("service_no"));
+				as.setUserId(rset.getString("user_id"));
+				as.setPrdCode(rset.getString("prd_name"));
+				as.setReason(rset.getString("category_name"));
+				as.setBoardContent(rset.getString("board_content"));
+				as.setHowToRegister(rset.getString("how_to_register"));
+				as.setTrackingNumber(rset.getString("tracking_number"));
+				as.setBank(rset.getString("bank"));
+				as.setBankNum(rset.getString("bank_num"));
+				as.setBankUserName(rset.getString("bank_user_name"));
+				as.setBoardDate(rset.getDate("board_date"));
+				as.setBoardStatus(rset.getString("board_status"));
+				
+				list.add(as);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<AfterService> searchAfterServiceTitle(Connection conn, String title)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AfterService> list = null;
+		
+		String query = prop.getProperty("searchAfterServiceTitle");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+title+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<AfterService>();
+			
+			while(rset.next())
+			{
+				AfterService as = new AfterService();
+				
+				as.setServiceNo(rset.getInt("service_no"));
+				as.setUserId(rset.getString("user_id"));
+				as.setPrdCode(rset.getString("prd_name"));
+				as.setReason(rset.getString("category_name"));
+				as.setBoardContent(rset.getString("board_content"));
+				as.setHowToRegister(rset.getString("how_to_register"));
+				as.setTrackingNumber(rset.getString("tracking_number"));
+				as.setBank(rset.getString("bank"));
+				as.setBankNum(rset.getString("bank_num"));
+				as.setBankUserName(rset.getString("bank_user_name"));
+				as.setBoardDate(rset.getDate("board_date"));
+				as.setBoardStatus(rset.getString("board_status"));
+				
+				list.add(as);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }

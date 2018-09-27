@@ -421,5 +421,38 @@ public class BoardService {
 		close(conn);
 		
 		return list;
+	}
+
+	public ArrayList<Board> searchUserEstimateTitle(String title, int currentPage, int limit)
+	{
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchUserEstimateTitle(conn, title, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> searchUserEstimateWriter(String writer, int currentPage, int limit)
+	{
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchUserEstimateWriter(conn, writer, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<Board> searchUserEstimateContent(String content, int currentPage, int limit)
+	{
+Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().searchUserEstimateContent(conn, content, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
 	}	
 }

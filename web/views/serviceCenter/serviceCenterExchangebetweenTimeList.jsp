@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.serviceCenter.model.vo.*, java.util.*, java.util.Date, java.text.SimpleDateFormat"%>
 <%
 	ArrayList<AfterService> list = (ArrayList<AfterService>)request.getAttribute("list");
+	Integer betweenTime = (Integer)request.getAttribute("betweenTime");
+	
+	System.out.println("bt : " + betweenTime);
 
 	Date writeDate = new Date();
 
@@ -162,25 +165,76 @@
 					<div style="display:inline-block; width:80px; height:30px; margin-left:10px; margin-top:20px;">
 						<div style="font-size:small; text-align:center; font-weight:bold;">조회기간</div>
 					</div>
-					<!-- <div class="timebtn1" style="display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
-						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1주일</div>
-					</div>
-					<div class="timebtn2" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
-						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1개월</div>
-					</div>
-					<div class="timebtn3" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
-						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">3개월</div>
-					</div>
-					<div class="timebtn4" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
-						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">6개월</div>
-					</div>
-					<div class="timebtn5" style="display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
-						<div style="font-size:small; text-align:center; font-weight:bold; margin-top:6px;">1년</div> -->
+					<%
+						if(betweenTime == 7)
+						{
+					%>
+					<input type="button" class="timebtn1 pointer" id="one-weeks" name="one-weeks" value="1주일" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
+					<%
+						}
+						else
+						{
+					%>
 					<input type="button" class="timebtn1 pointer" id="one-weeks" name="one-weeks" value="1주일" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px;">
+					<%
+						}
+					%>
+					<%
+						if(betweenTime == 30)
+						{
+					%>
+					<input type="button" class="timebtn2 pointer" id="one-months" name="one-months" value="1개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+						else
+						{
+					%>
 					<input type="button" class="timebtn2 pointer" id="one-months" name="one-months" value="1개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+					%>
+					<%
+						if(betweenTime == 90)
+						{
+					%>
+					<input type="button" class="timebtn3 pointer" id="three-months" name="three-months" value="3개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
+					<%
+						}
+						else
+						{
+					%>
 					<input type="button" class="timebtn3 pointer" id="three-months" name="three-months" value="3개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-6px;">
+					<%
+						}
+					%>
+					<%
+						if(betweenTime == 180)
+						{
+					%>
+					<input type="button" class="timebtn4 pointer" id="six-months" name="six-months" value="6개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+						else
+						{
+					%>
 					<input type="button" class="timebtn4 pointer" id="six-months" name="six-months" value="6개월" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+					%>
+					<%
+						if(betweenTime == 365)
+						{
+					%>
+					<input type="button" class="timebtn5 pointer" id="one-years" name="one-years" value="1년" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:royalblue; color:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+						else
+						{
+					%>
 					<input type="button" class="timebtn5 pointer" id="one-years" name="one-years" value="1년" style="font-size:small; font-weight:bold; display:inline-block; width:65px; height:30px; background:white; border:1px solid darkgray; font-size:small; text-align:center; margin-top:10px; margin-left:-7px;">
+					<%
+						}
+					%>
 					<br>
 					<div style="display:inline-block; padding-top:10px; padding-left:23px;">
 						<div style="font-size:small; font-weight:bold;">상품검색</div>
@@ -193,6 +247,7 @@
 						<input type="text" name="searchValue" id="searchValue" size="40" style="height:19px;">
 						<input type="submit" value="조회" style="margin-left:10px;">
 					</form>
+					</div>
 					</div>
 				</div>
 				<br clear="both">
