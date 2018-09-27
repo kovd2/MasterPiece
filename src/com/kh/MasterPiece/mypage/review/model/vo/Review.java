@@ -9,6 +9,7 @@ public class Review implements Serializable{
 	private String boardCategory;		//글 유형(게시글위치)
 	private String boardTitle;		//글제목제목
 	private Date boardDate;			//글 작성날짜
+	private int boardId;
 	
 	
 	
@@ -20,6 +21,16 @@ public class Review implements Serializable{
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardDate = boardDate;
+	}
+	
+	
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 	public int getBoardNo() {

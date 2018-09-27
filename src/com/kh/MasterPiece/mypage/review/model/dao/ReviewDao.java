@@ -2,6 +2,7 @@ package com.kh.MasterPiece.mypage.review.model.dao;
 
 import static com.kh.MasterPiece.common.JDBCTemplate.close;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.mypage.buyerhistory.model.dao.BuyerHistoryDao;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.mypage.review.model.vo.Review;
@@ -38,7 +40,7 @@ public class ReviewDao {
 		ResultSet rset = null;
 		ArrayList<Review> list = new ArrayList<Review>();
 		
-		String query = prop.getProperty("selectReview");
+		String query = prop.getProperty("selectList");
 
 		
 		try {
@@ -60,6 +62,7 @@ public class ReviewDao {
 				r.setBoardCategory(rset.getInt("board_type"));
 				r.setBoardTitle(rset.getString("board_title"));
 				r.setBoardDate(rset.getDate("board_date"));
+				r.setBoardId(rset.getInt("board_id"));
 				
 				list.add(r);
 			}
@@ -76,8 +79,8 @@ public class ReviewDao {
 	}
 
 
-	public int getListCount(Connection con) {
-		Statement stmt = null;
+	public int getListCount(String writer, Connection con) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("listCount");
@@ -85,9 +88,9 @@ public class ReviewDao {
 		int listCount = 0;
 		
 		try {
-			stmt =  con.createStatement();
-			
-			rset = stmt.executeQuery(query);
+			pstmt =  con.prepareStatement(query);
+			pstmt.setString(1, writer);
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
 				listCount = rset.getInt(1);
@@ -95,11 +98,76 @@ public class ReviewDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		
 		return listCount;
+	}
+
+
+	public Board selectOne(Connection con, int num) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				b = new Board();
+			
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+
+		return b;
+	}
+
+
+	public int updateContact(Connection con, Board b) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateContact");
+		
+		try
+		{
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, b.getBOARD_TITLE());
+			pstmt.setString(2, b.getBOARD_CONTENT());
+			pstmt.setInt(3, b.getBOARD_ID());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

@@ -87,7 +87,7 @@
 				조회하기</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../review/review_myPage.jsp'">내가 쓴 게시물</div>
+				onclick="location.href='<%=request.getContextPath()%>/ReviewServlet'">내가 쓴 게시물</div>
 			<br>
 			<div class="text" onclick="location.href='../faq/faq_myPage.jsp'">FAQ
 				자주하는 질문</div>

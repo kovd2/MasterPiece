@@ -100,19 +100,18 @@ div {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	width: 935px;
-	
 }
 
 .faq_figure .faq_caption {
 	background-color: #f3f4f6;
 	padding: 15px;
-	
-	margin-top:50px;
+	margin-top: 50px;
 }
 
-.faq_figure .faq_caption >div, .centerWrapArea .faq_figure .faq_text >div {
-    float: left;
-    text-align: center;
+.faq_figure .faq_caption>div, .centerWrapArea .faq_figure .faq_text>div
+	{
+	float: left;
+	text-align: center;
 }
 
 .faq_figure>div .nth-child1 {
@@ -140,75 +139,88 @@ div {
 }
 
 .text-red {
-    color: #e31738;
-}
-.text-bold {
-    font-weight: bold;
-}
-.m_top10 {
-    margin-top: 10px;
+	color: #e31738;
 }
 
-.middle_article > div > select {
-    padding: 5px 10px;
-    width: 280px;
-    border: 1px solid #ccc;
-    /* vertical-align: top; */
+.text-bold {
+	font-weight: bold;
+}
+
+.m_top10 {
+	margin-top: 10px;
+}
+
+.middle_article>div>select {
+	padding: 5px 10px;
+	width: 280px;
+	border: 1px solid #ccc;
+	/* vertical-align: top; */
 }
 
 .float_left {
-    float: left;
+	float: left;
 }
+
 .float_right {
-    float: right;
+	float: right;
 }
 
 select {
-    padding-left: 10px !important;
+	padding-left: 10px !important;
 }
 
 .faq_figure {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    width: 935px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	width: 935px;
 }
 
 .page_box {
-    text-align: center;
-    margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .contents {
 	width: 937px;
 	box-sizing: border-box;
 	padding: 9px 0px;
-	text-align:left;
-	background-color:#f3f4f6;
-	
+	text-align: left;
+	background-color: #f3f4f6;
 }
 
-.board_data1{
+.board_data1 {
 	width: 120px !important;
 	text-align: center;
 	display: inline-block;
-	margin-bottom:5px;
+	margin-bottom: 5px;
 }
-.board_data2{
+
+.board_data2 {
 	width: 105px !important;
 	text-align: center;
 	display: inline-block;
 }
-.board_data3{
-	width:500px;
-	display: inline-block;
-	
-}
-.board_data4{
-	text-align:center;
-	width:100px;
+
+.board_data3 {
+	width: 500px;
 	display: inline-block;
 }
 
+.board_data3:hover{
+	cursor:pointer;
+	font-weight: bold;
+	color: #c70000;
+}
+
+.board_data4 {
+	text-align: center;
+	width: 100px;
+	display: inline-block;
+}
+
+.no_data {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -290,12 +302,12 @@ select {
 					</div>
 
 					<div style='clear: both;'></div>
-					
-					</div>
+
+				</div>
 
 
 
-					<!-- <div class='article middle_article'>
+				<!-- <div class='article middle_article'>
 
 						<div class='float_left'>
 							<div>
@@ -335,33 +347,85 @@ select {
 						<div class='nth-child4'>작성일자</div>
 						<div class='clear'></div>
 					</div>
-					
-					<div>
-						<div class="contents data"> 
-						<%
-							if (list == null) {
-						%>
-						<div class='contents no_data'>작성하신 글이 없습니다.</div>
-						<%
-							} else {
-								for (int i = 0; i < list.size(); i++) {
-						%>
-							<div 
-								class="board_data1"><%=list.get(i).getBoardNo()%></div> 
-							<div
-								class="board_data2"><%=list.get(i).getBoardCategory()%></div> 
-							<div
-								class="board_data3"><%=list.get(i).getBoardTitle()%></div> 
-							<div
-								class="board_data4"><%=list.get(i).getBoardDate()%></div>
 
-						<%
-							}
-							}
-						%>
-						
+					<div>
+						<div class="contents data">
+							<%
+								if (list == null) {
+							%>
+							<div class='contents no_data'>작성하신 글이 없습니다.</div>
+							<%
+								} else {
+									for (int i = 0; i < list.size(); i++) {
+							%>
+							<div class="board_data1"><%=list.get(i).getBoardNo()%></div>
+							<div class="board_data2"><%=list.get(i).getBoardCategory()%></div>
+							<div class="board_data3">
+								<span onclick="selectone(<%=list.get(i).getBoardId()%>)"><%=list.get(i).getBoardTitle()%></span>
+							</div>
+							<div class="board_data4"><%=list.get(i).getBoardDate()%></div>
+							<%
+									}
+								}
+							%>
+							<script>
+								function selectone(no){
+									var no = no;
+									<%-- location.href = "<%=request.getContextPath()%>/ReviewSelectOne?num="+no; --%>
+									window.open("<%=request.getContextPath()%>/ReviewSelectOne?num="+no+"&userId=<%=loginUser.getUserId()%>",'게시글팝업','top=100px, left=100px, height=600px, width=800px');
+								}
+							</script>
 						</div>
 
+						<%-- 페이징 처리 --%>
+						<div class="pagingArea" align="center">
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=1'"><<</button>
+							<%
+								if (currentPage <= 1) {
+							%>
+							<button disabled><</button>
+							<%
+								} else {
+							%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage - 1%>'"><</button>
+							<%
+								}
+							%>
+
+							<%
+								for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {
+							%>
+							<button disabled><%=p%></button>
+							<%
+								} else {
+							%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=p%>'"><%=p%></button>
+							<%
+								}
+							%>
+
+							<%
+								}
+							%>
+							<%
+								if (currentPage >= maxPage) {
+							%>
+							<button disabled>></button>
+							<%
+								} else {
+							%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage + 1%>'">></button>
+							<%
+								}
+							%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=maxPage%>'">>></button>
+						</div>
 					</div>
 				</div>
 				<div class='m_top20'></div>
@@ -369,11 +433,6 @@ select {
 			</div>
 			<div class='clear'></div>
 			<div class='m_top20'></div>
-
-
-
-
-
 		</div>
 	</div>
 
