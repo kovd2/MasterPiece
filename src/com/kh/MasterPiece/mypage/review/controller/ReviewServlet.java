@@ -54,7 +54,7 @@ public class ReviewServlet extends HttpServlet {
 		}
 
 		//전체 목록 개수
-		int listCount = new ReviewService().getListCount();
+		int listCount = new ReviewService().getListCount(writer);
 
 		//총 페이지 수 계산식
 		maxPage = (int)((double)listCount / limit + 0.9);
