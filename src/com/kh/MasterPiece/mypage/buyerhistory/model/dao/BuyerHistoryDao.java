@@ -49,14 +49,13 @@ public class BuyerHistoryDao {
 						
 			while(rset1.next()){
 				BuyerHistory b = new BuyerHistory();
-				
-				b.setBuyNo(rset1.getInt("buy_no"));
+
+				b.setOrderCheck(rset1.getString("order_check"));
 				b.setBuyStatus(rset1.getString("buy_status"));
 				b.setDeliveryOption(rset1.getString("delivery_option"));
 				b.setPayDate(rset1.getDate("pay_date"));
 				b.setPrdCode(rset1.getString("prd_code"));
 				b.setPrdName(rset1.getString("prd_name"));
-				b.setOrderCheck(rset1.getString("order_check"));
 				b.setPayPrice(rset1.getInt("pay_price"));
 				b.setOrderCount(rset1.getInt("order_count"));
 				b.setPayType(rset1.getString("pay_type"));
