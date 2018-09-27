@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-			if(checkBtn != null && checkBtn.trim().equals("on")){
+			if(checkBtn != null && checkBtn.trim().equals("on") && loginUser.getUserType().equals("1")){
 				
 				cookie = new Cookie("userId", java.net.URLEncoder.encode(userId));
 				cookie.setMaxAge(24 * 60 * 60);

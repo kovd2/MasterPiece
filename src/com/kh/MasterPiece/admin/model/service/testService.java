@@ -346,4 +346,22 @@ public class testService {
 		
 		return list;
 	}
+
+	public int insertPromotion(String proTitle, String proUrl, ArrayList<Attachment> fileList) {
+		Connection con = getConnection();
+		int result = new testDao().insertPromotion(con, proTitle, proUrl);
+
+		int result2 = new testDao().insertAttachmentPromotion(con, fileList);
+		
+		if(result2 > 0){
+			commit(con);
+			result = 1;
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
 }
