@@ -120,7 +120,6 @@ public class ProductDao {
 	public ArrayList<Product> prdList(Connection con, int currentPage, int limit, String category) {
 		PreparedStatement pstmt = null;
 		ArrayList<Product> prdList = null;
-
 		ResultSet rset = null;
 
 		String query = prop.getProperty("prdList");

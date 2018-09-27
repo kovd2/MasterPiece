@@ -1,7 +1,7 @@
 package com.kh.MasterPiece.cart.model.vo;
 
 public class Cart {
-	private String order_no;
+	private int order_no;
 	private String order_check;
 	private String prd_code;
 	private String prd_name;
@@ -10,7 +10,7 @@ public class Cart {
 	
 	public Cart(){}
 
-	public Cart(String order_no, String order_check, String prd_code, String prd_name, int price, int order_count) {
+	public Cart(int order_no, String order_check, String prd_code, String prd_name, int price, int order_count) {
 		super();
 		this.order_no = order_no;
 		this.order_check = order_check;
@@ -20,11 +20,11 @@ public class Cart {
 		this.order_count = order_count;
 	}
 
-	public String getOrder_no() {
+	public int getOrder_no() {
 		return order_no;
 	}
 
-	public void setOrder_no(String order_no) {
+	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
 	}
 
@@ -74,4 +74,5 @@ public class Cart {
 				+ prd_name + ", price=" + price + ", order_count=" + order_count + "]";
 	}
 
+	
 }

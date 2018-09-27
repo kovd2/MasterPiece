@@ -9,9 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.dao.MemberDao;
 
@@ -108,25 +110,67 @@ public class CartDao {
 		}
 		return result;
 	}
-	public HashMap<String, Object> selectCart(Connection con, String code, String id, int count, String orderCheck) {
-		Statement stmt = null;
+	public ArrayList<Cart> selectCart(Connection con, String code, String id, int count, String orderCheck, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Cart> cartList = null;
 		ResultSet rset = null;
+		
 		String query = prop.getProperty("cartList");
 		
-		HashMap<String, Object> cartList = new HashMap<String, Object>();
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+			
+			cartList = new ArrayList<Cart>();
+			
+			while(rset.next()){
+				Cart c = new Cart();
+				
+				c.setOrder_no(rset.getInt("ORDER_NO"));
+				c.setPrd_code(rset.getString("PRD_CODE"));
+				c.setPrd_name(rset.getString("PRD_NAME"));
+				c.setPrice(rset.getInt("PRICE"));
+				c.setOrder_count(rset.getShort("ORDER_COUNT"));
+				c.setOrder_check(rset.getString("ORDER_CHECK"));
+				
+				cartList.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);		
+		}
+
+		return cartList;
+	}
+	public HashMap<String, Attachment> imgList(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("cartImg");
+		
+		HashMap<String, Attachment> imgList = new HashMap<String, Attachment>();
 		
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()){
-				Cart c = new Cart();
-				c.setPrd_code(rset.getString("prd_code"));
-				c.setPrd_name(rset.getString("prd_name"));
-				c.setPrice(rset.getInt("price"));
-				c.setOrder_count(rset.getShort("order_count"));
+				Attachment a = new Attachment();
+				a.setChangeName(rset.getString("change_name"));
+				a.setOriginName(rset.getString("file_name"));
+				a.setUploadDate(rset.getDate("upload_date"));
+				a.setFilePath(rset.getString("save_route"));
 				
-				cartList.put("cartList", c);
+				imgList.put(rset.getString("prd_code"), a);
 			}
 			
 
@@ -137,7 +181,32 @@ public class CartDao {
 			close(rset);		
 		}
 
-		return cartList;
+		return imgList;
 	}
-	
+	public int getListCount(Connection con, String orderCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount");
+
+		int listCount = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, orderCheck);
+
+			rset = pstmt.executeQuery();			
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
+	}
 }

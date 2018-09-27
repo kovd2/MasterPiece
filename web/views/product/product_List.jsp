@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%	
 	ArrayList<Product> prdList = (ArrayList<Product>)request.getAttribute("prdList");
+System.out.println("prdList : " + prdList);
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
 	String category = (String)request.getAttribute("category");
 	String oc = (String)request.getAttribute("oc");		
@@ -12,7 +13,7 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();	
-	
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -274,7 +275,7 @@
 <body>
 
 	<%@ include file="../common/top.jsp"%>
-						
+	
 	<!-- 카테고리 div -->
 	<div class="wrap">
 		<!-- <div class="prdNaviLayer" style="display: inline-flex;">
@@ -447,6 +448,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<input type="hidden" id="gara">
 	<script>
 		
@@ -459,24 +461,24 @@
 		function goBuy(){
 			location.href="./delivery_page.jsp";
 		};
-		
+
 	 	function addCart(No){
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";
 			var count = $("#prd_count option:selected").val();
-			
-		
+	
 			if(confirm("장바구니로 가시겠습니까?") == true){
-				location.href="<%= request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";
+				location.href="<%=request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";
 			}else{
-				location.href="<%= request.getContextPath()%>/insertCart?t=n&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "&category=" + category + "";
-
+				location.href="<%=request.getContextPath()%>/insertCart?t=n&code="+ code+ "&count="+ count+ "&orderCheck="+ orderCheck+ "&user="+ user+ "&category="+ category + "";
 			}
 		};
+
 	</script>
 
 	<%@include file = "../common/footer.jsp" %>
+
 </body>
 </html>
 

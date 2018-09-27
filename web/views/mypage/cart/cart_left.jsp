@@ -16,6 +16,7 @@
 	font-family: dotum;
 	font-size: 15px;
 	text-align: left;
+	margin-left:10px;
 }
 
 }
