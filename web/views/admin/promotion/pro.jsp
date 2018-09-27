@@ -29,7 +29,7 @@
 	<table align="right">
 	<tr>
 	<td>
-	<input type="button" value = "등록">
+	<input type="button" value="등록" onclick="promotionAdd()">
 	</td>
 	<td>
 	<input type="button" value = "삭제">
@@ -40,21 +40,20 @@
 	<div>
 		<table id="mt" border="1" style="margin-top: 30px">
 		<tr align="center" style="background: lightgray; height: 50px">
-		<th>번호</th>
-		<th>all</th>
-		<th>코드</th>
-		<th style="width:80px;">제목</th>
-		<th>작성자</th>
-		<th>첨부</th>
-		<th>형태</th>
-		<th style="width:200px;">상태(기간)</th>
-		<th style="width:80px;">등록일</th>
-		<th>상태</th>
-		<th>보기</th>
+		<th style="width:50px;">번호</th>
+		<th style="width:275px;">제목</th>
+		<th style="width:125px;">등록일</th>
 		</tr>
 		</table>
 	</div>
 	
 	</div>
+	
+	<script>
+			function promotionAdd(){
+				
+				location.href="newpro.jsp";
+			}
+	</script>
 </body>
 </html>

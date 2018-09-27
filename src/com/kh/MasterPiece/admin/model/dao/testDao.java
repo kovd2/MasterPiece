@@ -1203,5 +1203,58 @@ public class testDao {
 		}
 		return list;
 	}
+	
+	public int insertPromotion(Connection con, String proTitle, String proUrl) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPromotion");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, proTitle);
+			pstmt.setString(2, proUrl);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 
+	public int insertAttachmentPromotion(Connection con, ArrayList<Attachment> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertPromotionAttachment");
+
+		try {
+			for(int i = 0; i < fileList.size(); i++){
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getChangeName());
+				pstmt.setString(2, fileList.get(i).getOriginName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				int level = 0;
+				if(i == 0) level = 0;
+				else level = 1;
+				pstmt.setInt(4, level);
+				pstmt.setString(5, fileList.get(i).getCode());
+
+				result = pstmt.executeUpdate();
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+
+		return result;
+	}
 }
