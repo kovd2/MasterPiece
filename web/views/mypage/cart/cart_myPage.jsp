@@ -9,9 +9,9 @@
 <style>
 	.bodyArea {
 		text-align:center;
-		width:1000px;
+		width:1300px;
 		background:white;
-		height:1200px;
+		height:auto;
 		margin:0 auto;
 	}
 </style>

@@ -6,9 +6,13 @@ import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.cart.model.dao.CartDao;
+import com.kh.MasterPiece.cart.model.vo.Cart;
+import com.kh.MasterPiece.product.model.dao.ProductDao;
 
 
 public class CartService {
@@ -54,14 +58,32 @@ public class CartService {
 		
 		return result;
 	}
-	public HashMap<String, Object> selectCart(String code, String id, int count, String orderCheck) {
+	public ArrayList<Cart> selectCart(String code, String id, int count, String orderCheck, int currentPage, int limit, String category) {
 		Connection con = getConnection();
 		
-		HashMap<String, Object> cartList = new CartDao().selectCart(con, code, id, count, orderCheck);
+		ArrayList<Cart> cartList = new CartDao().selectCart(con, code, id, count, orderCheck, currentPage, limit, category);
 		
 		close(con);
 		
 		return cartList;
+	}
+	public HashMap<String, Attachment> imgList() {
+		Connection con = getConnection();
+		
+		HashMap<String, Attachment> imgList = new CartDao().imgList(con);
+		
+		close(con);
+		
+		return imgList;
+	}
+	public int getListCount(String orderCheck) {
+Connection con = getConnection();
+		
+		int listCount = new CartDao().getListCount(con, orderCheck);
+		
+		close(con);
+		
+		return listCount;
 	}
 	
 }
