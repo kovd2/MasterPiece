@@ -330,20 +330,18 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<div class="categoryBox_css" id="mo">
 					모니터
 					<ul class="mo_menu">
-						<li onclick="location.href='https://www.google.com/'">모니터</li>
-						<li onclick="location.href='https://www.google.com/'">모니터 거치대</li>
-						<li onclick="location.href='https://www.google.com/'">어댑터</li>
-						<li onclick="location.href='https://www.google.com/'">모니터 받침대</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MONITOR'">모니터</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=ADAPTER'">모니터 어댑터</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="de">
 					주변기기
 					<ul class="de_menu">
-						<li onclick="location.href='https://www.google.com/'">키보드</li>
-						<li onclick="location.href='https://www.google.com/'">마우스</li>
-						<li onclick="location.href='https://www.google.com/'">스피커</li>
-						<li onclick="location.href='https://www.google.com/'">헤드셋</li>
-						<li onclick="location.href='https://www.google.com/'">마우스 패드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=KEYBOARD'">키보드</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MOUSE'">마우스</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=SPEAKER'">스피커</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=HEADSET'">헤드셋</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=PAD'">키보드 패드</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="cate">

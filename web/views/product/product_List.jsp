@@ -420,35 +420,35 @@
 				</div>				
 			<% } %>		
 			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'"><<</button>
+			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'">처음</button>
 			<% if(currentPage <= 1){ %>
-				<button disabled><</button>
+				<button class="ebtn" disabled><</button>
 			<% }else{%>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>&category=<%=category%>'"><</button>
+				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>&category=<%=category%>'">< 이전</button>
 			<% } %>
 			<% for(int p = startPage; p <= endPage; p++){ 
 					if(p == currentPage){%>
-						<button disabled><%= p %></button>
+						<button class="ebtn" disabled><%= p %></button>
 			<%      }else{%>
-						<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>&category=<%=category%>'"><%=p %></button>
+						<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=p%>&category=<%=category%>'"><%=p %></button>
 			<%      } %>
 			<% } %>			
 			
 
 			<% if(currentPage >= maxPage){ %>
-				<button disabled>></button>
+				<button class="ebtn" disabled>></button>
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1 %>&category=<%=category%>'">></button>
+				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1 %>&category=<%=category%>'">다음 ></button>
 
 			<% } %>
-			<button onclick="a()">>></button>
+			<button class="ebtn" onclick="a()">맨끝</button>
 		</div>
 			</div>
 		</div>
 	</div>
 	<input type="hidden" id="gara">
 	<script>
-		if(<%=loginUser%>!=null){
+		
 		function goDetail(No){
 			var code = No;
 			
@@ -459,7 +459,7 @@
 			location.href="./delivery_page.jsp";
 		};
 		
-		function addCart(No){
+	 	function addCart(No){
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";
@@ -491,7 +491,6 @@
 				});	
 			}
 		};
-		}
 	</script>
 
 	<%@include file = "../common/footer.jsp" %>

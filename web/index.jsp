@@ -404,8 +404,8 @@ a{ text-decoration:none }
 						Attachment ath = imgList.get(key);
 				%>
 		
-			 	<div class="imageList" align="center">
-			 		<div style="width:345px; height:300px;">
+			 	<div class="imageList" align="center" style="cursor:pointer;">
+			 		<div style="width:345px; height:300px;" onclick="goDetail('<%= list1.get(i).getPrd_code()%>')">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
 			 						width="200px" height="200px" style="margin-top:15px;"><br>
 		 				<span><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
@@ -416,7 +416,7 @@ a{ text-decoration:none }
 				<%} %>
 				</div>
 				<div>
-					 <div class="pageArea" align="center" style="margin-top: 7px;">
+									 <div class="pageArea" align="center" style="margin-top: 7px;">
 						 <% for(int p = startPage1; p <= maxPage1; p++){ %>
 		 						<button class="thisBtn1" value=<%=p %>><%= p %></button>
 						 <% 	} %>
@@ -435,7 +435,7 @@ a{ text-decoration:none }
 						Attachment ath = imgList.get(key);
 				%>
 		
-			 	<div class="imageList2" align="center">
+			 	<div class="imageList2" align="center" style="cursor:pointer;">
 			 		<div style="width:345px; height:300px;" onclick="goDetail('<%= list2.get(i).getPrd_code()%>')">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
 			 						width="200px" height="200px" style="margin-top:15px;"><br>
@@ -466,10 +466,10 @@ a{ text-decoration:none }
 		<div class="information" align="center">
 			<img  src="./images/kimjaeyup/information_1.gif" usemap="#informationFooter">
 			<map name="informationFooter">
-				<area shape="rect" coords="0,153,174,186" id="question" href="http://www.google.co.kr" title="1:1 상담센터">
-				<area shape="rect" coords="207,153,381,186" id="road" href="http://www.google.co.kr" title="찾아오시는길">
-				<area shape="rect" coords="412,153,588,187" id="road" href="http://www.google.co.kr" title="찾아오시는길">
-				<area shape="rect" coords="641,50,756,192" id="delivery" href="http://www.google.co.kr" title="운송수단 마감시간">
+				<area shape="rect" coords="0,153,174,186" id="question" href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionWrite.jsp" title="1:1 상담센터">
+				<area shape="rect" coords="207,153,381,186" id="road" title="찾아오시는길" target="_blank" onClick="window.open('http://localhost:8001/MasterPiece/views/main/roadMap.html','pagename','height=' + 800 + ',width=' + 710 + 'fullscreen=yes'); return false;">
+				<area shape="rect" coords="412,153,588,187" id="road" title="찾아오시는길" target="_blank"  onClick="window.open('http://localhost:8001/MasterPiece/views/main/roadMap.html','pagename','height=' + 800 + ',width=' + 710 + 'fullscreen=yes'); return false;">
+				<area shape="rect" coords="641,50,756,192" id="delivery" href="http://www.google.co.kr" title="운송수단 마감시간" >
 				<area shape="rect" coords="785,49,901,191" id="bank" href="http://www.google.co.kr" title="입금계좌안내">
 				<area shape="rect" coords="928,50,1042,192" id="ASsenter" href="http://www.google.co.kr" title="A/S이용안내">
 			</map>
@@ -516,10 +516,11 @@ a{ text-decoration:none }
 				
 				$(".imageArea").children("div.imageList").remove();
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList'align='center'style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
+					$div = $("<div class='imageList'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
 					$(".imageArea").append($div);
+					/* onclick="location.href='http://www.google.co.kr'" */
 					
-					$div2 = $("<div style='width:350px; height:300px;'>");						
+					$div2 = $("<div style='width:350px; height:300px;'>");				
 					$div.append($div2);
 					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
 					$span1 = $("<br><span style='font-weight:13px;'>");
@@ -528,7 +529,6 @@ a{ text-decoration:none }
 					$span2.append("판매가격 " + data.list[i].price + "원")
 					$div2.append($span1);
 					$div2.append($span2);
-					
 					console.log(data);
 					console.log(data.list[i].price);
 					console.log(data.imgList[data.list[i].prd_code].changeName);
@@ -551,7 +551,7 @@ a{ text-decoration:none }
 				
 				$(".imageArea2").children("div.imageList2").remove();
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px;'>");
+					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
 					$(".imageArea2").append($div);
 					
 					$div2 = $("<div style='width:350px; height:300px;'>");						
