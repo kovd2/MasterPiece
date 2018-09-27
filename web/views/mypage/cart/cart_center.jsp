@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*,com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*,com.kh.MasterPiece.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*,com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%
-Product p = (Product)request.getAttribute("p");
+HashMap<String, Object> cartList = (HashMap<String, Object>)request.getAttribute("cartList");
+System.out.println("장바구니페이지 들어옴");
 ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("imgList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -147,10 +148,9 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 </style>
 </head>
 <body>
-	<%@ include file="../../common/top.jsp"%>
 	<div class="wrap">
 		<div class="step">
-			<img src="../..//images/jinseok/icon/step_cart.PNG">
+			<img src="../../../images/jinseok/icon/step_cart.PNG">
 		</div>
 		<div class="cart_title">
 			<table>
@@ -164,13 +164,13 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 					<td style="width: 120px; height: 31px;">관리</td>
 				</tr>
 			</table>
-			<%for(int i = 0; i < list.size(); i++){ %>
+			<%-- <%for(int i = 0; i < cartList.size(); i++){ %>
 			<div class="cart_list">
 				<table>
 					<tr>
 						<td style="width: 39px; height: 31px;"><input type="checkbox"></td>
 						<td><img src="../../images/jinseok/cpu/i3_7100.jpg"style="width: 100px; height: 85px;"></td>
-						<td style="width: 400px; height: 31px;"><%p.getPrd_name();%></td>
+						<td style="width: 400px; height: 31px;"><%=cartList.get("") %></td>
 						<td style="width: 120px; height: 31px;">가격 : <%p.getPrice();%> 원</td>
 						<td style="width: 120px; height: 31px;">
 							<select id="prd_count">
@@ -186,7 +186,7 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 					</tr>
 				</table>
 			</div>
-			<%} %>
+			<%} %> --%>
 			<br><br><br><br><br>
 		<div class="price_area">
 			<div class="priceArea">
@@ -211,20 +211,18 @@ ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("img
 			</div>
 			</div>
 			
-			<img alt="" src="../../images/jinseok/icon/payment.png" style="width:1050px; height:230px;">
+			<img alt="" src="../../../images/jinseok/icon/payment.png" style="width:1050px; height:230px;">
 			
 			
-			<div class="go_shopping" onclick="goList()"><img src="../../images/jinseok/icon/cart_go_shopping_btn.gif"></div>
-			<div class="purchase" onclick="goBuy()"><img src="../../images/jinseok/icon/cart_pay_btn.gif"></div>
+			<div class="go_shopping" onclick="goList()"><img src="../../../images/jinseok/icon/cart_go_shopping_btn.gif"></div>
+			<div class="purchase" onclick="goBuy()"><img src="../../../images/jinseok/icon/cart_pay_btn.gif"></div>
 		</div>
 		<br><br><br><br>
 		</div>
 	</div>
 	<div style="width:100%; height:auto; display:inline-block;">	
 	
-	</div>
-	<%@include file = "../../common/footer.jsp" %>
-	
+	</div>	
 		<script>
 			function goList(){
 				location.href="./product_List.jsp";
