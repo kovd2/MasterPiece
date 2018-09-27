@@ -9,10 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.dao.MemberDao;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
+
 
 public class CartDao {
 	private Properties prop = new Properties();
@@ -27,7 +30,7 @@ public class CartDao {
 		}
 	}
 	//-----------------------------------유저 ORDER_CHECK 생성--------------------------------
-	public String insertOrderCheck(Connection con, String orderCheck) {
+	public String insertOrderCheck(Connection con) {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rset  = null;
@@ -105,6 +108,36 @@ public class CartDao {
 		}
 		return result;
 	}
-	
+	public HashMap<String, Object> selectCart(Connection con, String code, String id, int count, String orderCheck) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("cartList");
+		
+		HashMap<String, Object> cartList = new HashMap<String, Object>();
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				Cart c = new Cart();
+				c.setPrd_code(rset.getString("prd_code"));
+				c.setPrd_name(rset.getString("prd_name"));
+				c.setPrice(rset.getInt("price"));
+				c.setOrder_count(rset.getShort("order_count"));
+				
+				cartList.put("cartList", c);
+			}
+			
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);		
+		}
+
+		return cartList;
+	}
+	
 }

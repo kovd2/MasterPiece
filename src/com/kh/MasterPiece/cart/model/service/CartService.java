@@ -6,16 +6,17 @@ import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 import com.kh.MasterPiece.cart.model.dao.CartDao;
 
 
 public class CartService {
 	//-----------------------------------유저 ORDER_CHECK 생성--------------------------------
-	public String insertOrderCheck(String orderCheck) {
+	public String insertOrderCheck() {
 		Connection con = getConnection();
 		
-		String result = new CartDao().insertOrderCheck(con, orderCheck);
+		String result = new CartDao().insertOrderCheck(con);
 		
 		if(result!=null){
 			commit(con);
@@ -53,7 +54,15 @@ public class CartService {
 		
 		return result;
 	}
-
+	public HashMap<String, Object> selectCart(String code, String id, int count, String orderCheck) {
+		Connection con = getConnection();
+		
+		HashMap<String, Object> cartList = new CartDao().selectCart(con, code, id, count, orderCheck);
+		
+		close(con);
+		
+		return cartList;
+	}
 	
 }
 

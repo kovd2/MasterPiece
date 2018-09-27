@@ -274,6 +274,7 @@
 <body>
 
 	<%@ include file="../common/top.jsp"%>
+						
 	<!-- 카테고리 div -->
 	<div class="wrap">
 		<!-- <div class="prdNaviLayer" style="display: inline-flex;">
@@ -448,7 +449,7 @@
 	</div>
 	<input type="hidden" id="gara">
 	<script>
-		if(<%=loginUser%>!=null){
+		
 		function goDetail(No){
 			var code = No;
 			
@@ -467,31 +468,12 @@
 			
 		
 			if(confirm("장바구니로 가시겠습니까?") == true){
-				location.href="<%= request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+"&user="+user+"";
+				location.href="<%= request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";
 			}else{
-				$.ajax({
-					url : "insertCart",
-					data : {
-						code : code,
-						orderCheck : orderCheck,
-						user : user,
-						count : count,
-						t : "n"
-					},
-					type : "get",
-					success : function(data) {
-					 	window.location.replace("<%=request.getContextPath()%>/prdPageList.js?category=<%=request.getParameter("category")%>&data="+data)
-						if(<%=loginUser.getOrderCheck()%>==null){
-							<%
-							loginUser.setOrderCheck(request.getParameter("data"));
-							%>
-						}
-					}
+				location.href="<%= request.getContextPath()%>/insertCart?t=n&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "&category=" + category + "";
 
-				});	
 			}
 		};
-		}
 	</script>
 
 	<%@include file = "../common/footer.jsp" %>
