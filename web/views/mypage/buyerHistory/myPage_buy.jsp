@@ -12,9 +12,13 @@
 	.bodyArea {
 		text-align:center;
 		width:1000px;
+		height:auto;
 		background:green;
-		height:600px;
 		margin:0 auto;
+	}
+	
+	#gwangseong{
+		visibility: hidden;
 	}
 </style>
 </head>
@@ -22,9 +26,10 @@
 <%@ include file="/views/common/top.jsp" %> 
 <div class="bodyArea">
 <%@ include file="/views/mypage/buyerHistory/left.jsp" %> 
-<%@ include file="/views/mypage/buyerHistory/center.jsp" %> 
-</div>
+<%@ include file="/views/mypage/buyerHistory/center.jsp" %>
+ 
+
 <%@ include file="/views/common/footer.jsp" %>
-	
+</div>	
 </body>
 </html>

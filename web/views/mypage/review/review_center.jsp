@@ -178,6 +178,37 @@ select {
     margin-bottom: 20px;
 }
 
+.contents {
+	width: 937px;
+	box-sizing: border-box;
+	padding: 9px 0px;
+	text-align:left;
+	background-color:#f3f4f6;
+	
+}
+
+.board_data1{
+	width: 120px !important;
+	text-align: center;
+	display: inline-block;
+	margin-bottom:5px;
+}
+.board_data2{
+	width: 105px !important;
+	text-align: center;
+	display: inline-block;
+}
+.board_data3{
+	width:500px;
+	display: inline-block;
+	
+}
+.board_data4{
+	text-align:center;
+	width:100px;
+	display: inline-block;
+}
+
 </style>
 </head>
 <body>
@@ -190,7 +221,7 @@ select {
 				<div class='section_header_v2'
 					style='width: 937px; height: 140px; border: 1px #ccc solid; box-sizing: border-box; background-color: #F3F4F6;'>
 					<div style='float: left; padding-top: 7px; width: 774px;'>
-						<div>
+						<!-- <div>
 							<div
 								style='font-weight: bold; float: left; font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>조회기간</div>
 							<div style='float: left;'>
@@ -228,23 +259,24 @@ select {
 							</div>
 
 							<div style='clear: both;'></div>
-						</div>
+						</div> -->
 
-						<div style='padding-top: 7px;'>
+						<div style='padding-top: 30px;'>
 							<div
-								style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>게시글검색</div>
+								style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>검색</div>
 							<div style='float: left;'>
 								<select name="search_type" id="search_type"
 									style='box-sizing: border-box; height: 28px; width: 118px; vertical-align: bottom;'
 									onchange="$('#search_text').val('')">
 									<option value="1">견적게시판</option>
-									<option value="2">자유게시판</option>
+									<option value="2">유저게시판</option>
+									<option value="3">문의</option>
 								</select> <input id="search_text" name="search_text" type='text'
 									style='margin-left: 10px; box-sizing: border-box; height: 28px; width: 559px; padding-left: 10px;'
 									value="" />
 								<div
-									style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>최근
-									5년간의 구매 이력을 6개월 단위로 조회가 가능합니다.</div>
+									style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>지금까지
+									작성하신 모든 게시글을 확인 가능합니다.</div>
 							</div>
 
 							<div style='clear: both;'></div>
@@ -252,7 +284,7 @@ select {
 
 					</div>
 
-					<div style='float: left; padding-top: 7px;'>
+					<div style='float: left; padding-top: 35px;'>
 						<span onclick="period_views();"
 							style='cursor: pointer; display: inline-block; width: 152px; height: 63px; background-color: #454c5f; color: #fff; line-height: 62px; text-align: center;'>조회하기</span>
 					</div>
@@ -293,15 +325,43 @@ select {
 
 
 
-				
+
 				<div class='faq_figure'>
 
 					<div class='faq_caption'>
 						<div class='nth-child1'>번호</div>
-						<div class='nth-child2'>문의유형</div>
-						<div class='nth-child3'>내용</div>
+						<div class='nth-child2'>유형</div>
+						<div class='nth-child3'>제목</div>
 						<div class='nth-child4'>작성일자</div>
 						<div class='clear'></div>
+					</div>
+					
+					<div>
+						<div class="contents data"> 
+						<%
+							if (list == null) {
+						%>
+						<div class='contents no_data'>작성하신 글이 없습니다.</div>
+						<%
+							} else {
+								for (int i = 0; i < list.size(); i++) {
+						%>
+							<div 
+								class="board_data1"><%=list.get(i).getBoardNo()%></div> 
+							<div
+								class="board_data2"><%=list.get(i).getBoardCategory()%></div> 
+							<div
+								class="board_data3"><%=list.get(i).getBoardTitle()%></div> 
+							<div
+								class="board_data4"><%=list.get(i).getBoardDate()%></div>
+
+						<%
+							}
+							}
+						%>
+						
+						</div>
+
 					</div>
 				</div>
 				<div class='m_top20'></div>

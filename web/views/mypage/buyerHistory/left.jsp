@@ -73,23 +73,23 @@
 		<div class="myMenu_left">
 
 			<br> <br>
-			<div class="text" onclick="location.href='../member/myPage.jsp'">회원정보</div>
+			<div class="text" onclick="location.href='views/mypage/member/myPage.jsp'">회원정보</div>
 			<br>
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/view_history'">구매내역</div>
 			<br>
-			<div class="text" onclick="location.href='../cart/cart_myPage.jsp'">장바구니</div>
+			<div class="text" onclick="location.href='views/mypage/cart/cart_myPage.jsp'">장바구니</div>
 			<br>
-			<div class="text" onclick="location.href='../as/myPage_as.jsp'">A/S
+			<div class="text" onclick="location.href='views/mypage/as/myPage_as.jsp'">A/S
 				신청하기</div>
 			<br>
-			<div class="text" onclick="location.href='../as/check_myPage.jsp'">A/S
+			<div class="text" onclick="location.href='views/mypage/as/check_myPage.jsp'">A/S
 				조회하기</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../review/review_myPage.jsp'">내가 쓴 게시물</div>
+				onclick="location.href='<%=request.getContextPath()%>/Review_Servlet'">내가 쓴 게시물</div>
 			<br>
-			<div class="text" onclick="location.href='../faq/faq_myPage.jsp'">FAQ
+			<div class="text" onclick="location.href='views/mypage/faq/faq_myPage.jsp'">FAQ
 				자주하는 질문</div>
 			<br>
 			<div class="text"

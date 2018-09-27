@@ -6,10 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+.gshr {
+	 border-color: #f43641; 
+	 width:2000px;
+	 margin-left:-500px;
+}
+
 .centerWrapArea {
 	display: inline-block;
 	width: 79%;
-	height: 600px;
+	height: auto;
 	background: white;
 	float: right;
 	font-size: 12px;
@@ -148,49 +154,68 @@ div {
 
 .main_list .contents {
 	width: 937px;
-	border-bottom: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
 	box-sizing: border-box;
 	padding: 9px 0px;
+	text-align:left;
 }
+
 
 .label>.nth-child1 {
-	margin-left: 5px;
-	width: 25px;
-}
-
-.label>.nth-child2 {
 	width: 90px;
 }
 
-.label>.nth-child3 {
+.label>.nth-child2 {
 	width: 300px;
 	margin-left: 8px;
 }
 
-.label>.nth-child4 {
+.label>.nth-child3 {
 	width: 105px;
 }
 
-.label>.nth-child5 {
+.label>.nth-child4 {
 	width: 40px;
 }
 
-.label>.nth-child6 {
+.label>.nth-child5 {
 	width: 65px;
 }
 
-.label>.nth-child7 {
+.label>.nth-child6 {
 	width: 80px;
 }
 
-.label>.nth-child8 {
+.label>.nth-child7 {
 	width: 75px;
 }
 
-.label>.nth-child9 {
-	width: 105px;
+.contents>.data1{
+	padding-left:50px;
+	width:90px;
+}
+.contents>.data3{
+	width: 100px;
+    height: 100px;
+    padding-left: 30px;
+}
+.contents>.data4{
+ 	width:250px;
+}
+.contents>.data5{
+	padding-left:40px;
+}
+.contents>.data6{
+	padding-left:35px;
+}
+.contents>.data7{
+	padding-left:15px;
+}
+
+.contents>.data8{
+	padding-left:50px;
+}
+.contents>.data9{
+	padding-left:50px;
 }
 
 #ui-datepicker-div {
@@ -225,7 +250,7 @@ div {
 				style='width: 937px; height: 140px; border: 1px #ccc solid; box-sizing: border-box; background-color: #F3F4F6;'>
 				<div style='float: left; padding-top: 7px; width: 774px;'>
 					<div>
-						<div
+						<!-- <div
 							style='font-weight: bold; float: left; font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>조회기간</div>
 						<div style='float: left;'>
 							<table class='section_header_table'>
@@ -259,7 +284,7 @@ div {
 									aria-hidden="true"></i>
 							</div>
 							<span></span>
-						</div>
+						</div> -->
 						<!-- 	<script>
 							//기간조회
 							function period_views() {
@@ -454,7 +479,7 @@ $(function() {
 						<div style='clear: both;'></div>
 					</div>
 
-					<div style='padding-top: 7px;'>
+					<div style='padding-top: 30px;'>
 						<div
 							style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>상품검색</div>
 						<div style='float: left;'>
@@ -467,8 +492,8 @@ $(function() {
 								style='margin-left: 10px; box-sizing: border-box; height: 28px; width: 559px; padding-left: 10px;'
 								placeholder='상품명 또는 상품번호를 입력하세요.' value="" />
 							<div
-								style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>최근
-								5년간의 구매 이력을 6개월 단위로 조회가 가능합니다.</div>
+								style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>상품명과
+								상품번호로만 조회 가능합니다.</div>
 						</div>
 
 						<div style='clear: both;'></div>
@@ -476,7 +501,7 @@ $(function() {
 
 				</div>
 
-				<div style='float: left; padding-top: 7px;'>
+				<div style='float: left; padding-top: 30px;'>
 					<span onclick="period_views();"
 						style='cursor: pointer; display: inline-block; width: 152px; height: 63px; background-color: #454c5f; color: #fff; line-height: 62px; text-align: center;'>조회하기</span>
 				</div>
@@ -489,19 +514,13 @@ $(function() {
 			<div class='article middle_article'>
 
 				<div class='float_left'>
-					<div>
-						<span class='text-bold text-red'>1주일 이내</span> 구매하신 <span
-							class='text-bold text-red'>신규주문</span> 내역입니다.
+					<div >
+						<span class='text-bold text-red'></span> 구매하신 <span
+							class='text-bold text-red'>주문</span> 내역입니다.
 					</div>
-
-					<div class='m_top10'>
-						주문상세내역은 <span class='text-bold text-red'>주문상세보기</span>를 클릭해 주시기
-						바랍니다.
-					</div>
-
 				</div>
 
-				<div class='float_right'>
+				<!-- <div class='float_right'>
 					<select id='myzone_select_menu'
 						tails="date_num=2&date_1=2018-09-01&date_2=2018-09-08&search_type=&search_text=&">
 
@@ -517,7 +536,7 @@ $(function() {
 						<option value='기존적립금'>기존적립금</option>
 						<option value='교환.반품.AS 조회'>교환.반품.AS 조회</option>
 					</select>
-				</div>
+				</div> -->
 				<div class='clear'></div>
 			</div>
 			<!-- 리스트 -->
@@ -525,46 +544,42 @@ $(function() {
 
 				<div class='label'>
 
-					<span class='nth-child1'><input type='checkbox'
-						name="chkeck_all" class="chkeck_all" /></span> <span class='nth-child2'>주문일/주문번호</span>
-					<span class='nth-child3'>상품정보</span> <span class='nth-child4'>결제금액</span>
-					<span class='nth-child5'>총수량</span> <span class='nth-child6'>결제수단</span>
-					<span class='nth-child7'>처리현황</span> <span class='nth-child8'>배송방법</span>
+					<span class='nth-child1'>주문일/주문번호</span>
+					<span class='nth-child2'>상품정보</span> 
+					<span class='nth-child3'>결제금액</span>
+					<span class='nth-child4'>총수량</span> 
+					<span class='nth-child5'>결제수단</span>
+					<span class='nth-child6'>처리현황</span> 
+					<span class='nth-child7'>배송방법</span>
 
 				</div>
 				<% if(list==null) {%>
 				<div class='contents no_data'>1주일 이내에 구매하신 내역이 없습니다.</div>
 				<%}else{ 
-				for(int i =0; i<list.size(); i++){%>
+					for(int i =0; i<3; i++){%>
 
-				<div class='contents data'>
-					<span><input type="checkbox"></span>
-					<span class='contents data1'><%=list.get(i).getPayDate()%></span>
+					<div class='contents data'>
+						<span class='contents data1'><%=list.get(0).getPayDate()%>/</span>
+						<span class='contents data2'><%=list.get(0).getOrderCheck()%></span>
+						<span class='contents data3'><img alt=""
+							src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(0).getPrdCode()).getChangeName()%>" width="50px" height="50px"></span>
+						<span class='contetns data4'>동해물과백두산이마르고닳도록 하느님이 </span>
+						<span class='contents data5'><%=list.get(0).getPayPrice()%>원</span>
+						<span class='contents data6'><%=list.get(0).getOrderCount() %>개</span>
+						<span class='contents data7'><%=list.get(0).getBuyStatus()%></span>
+						<span class='contents data8'><%=list.get(0).getPayType() %></span>
+						<span class='contents data9'><%=list.get(0).getDeliveryOption() %></span>
+					</div>
 					
-					<span class='contents data2'><%=list.get(i).getBuyNo()%></span>
-					
-					<span class='contents data3'><img alt=""
-						src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(i).getPrdCode()).getChangeName()%>"
-						width="50px" height="50px"></span>
-						
-					<span class='contents data4'><%=list.get(i).getPayPrice()%></span>
-					<span class='contents data5'><%=list.get(i).getOrderCount() %></span>
-					<span class='contents data6'><%=list.get(i).getBuyStatus()%></span>
-					<span class='contents data7'><%=list.get(i).getPayType() %></span>
-					<span class='contents data8'><%=list.get(i).getDeliveryOption() %></span>
-
-
-
-
-				</div>
-
-
-				<%}} %>
+					<%} %>
+				<%} %>
 			</div>
 
 
+<hr class="gshr">
 
 		</div>
 	</div>
+
 </body>
 </html>

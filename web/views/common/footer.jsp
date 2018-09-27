@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-	<hr class="footerHr">
+	  <hr class="footerHr" id="gwangseong">
 	
 	<div class="footerCopyright" align="center">
 		<div class="footerLogo">
