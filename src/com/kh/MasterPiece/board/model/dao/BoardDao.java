@@ -537,7 +537,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -593,7 +593,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -649,7 +649,7 @@ public class BoardDao
 				b.setBOARD_TYPE(rset.getInt("board_type"));
 				b.setBOARD_PWD(rset.getString("board_pwd"));
 				b.setBOARD_NO(rset.getInt("board_no"));
-				b.setBOARD_CATEGORY(rset.getString("category_name"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
 				b.setBOARD_TITLE(rset.getString("board_title"));
 				b.setBOARD_CONTENT(rset.getString("board_content"));
 				b.setBOARD_WRITER(rset.getString("user_id"));
@@ -1038,7 +1038,7 @@ public class BoardDao
 			rset = stmt.executeQuery(query);
 			
 			list = new ArrayList<Board>();
-			
+
 			while(rset.next())
 			{
 				Board b = new Board();
@@ -1059,7 +1059,6 @@ public class BoardDao
 				
 				list.add(b);
 			}
-			/*System.out.println("list : " + list);*/
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -1381,6 +1380,174 @@ public class BoardDao
 		{
 			close(rset);
 			close(stmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> searchUserEstimateTitle(Connection conn, String title, int currentPage, int limit)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("searchUserEstimateTitle");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, "%"+title+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> searchUserEstimateWriter(Connection conn, String writer, int currentPage, int limit)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("searchUserEstimateWriter");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, "%"+writer+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> searchUserEstimateContent(Connection conn, String content, int currentPage, int limit)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = null;
+		
+		String query = prop.getProperty("searchUserEstimateContent");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, "%"+content+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Board>();
+			
+			while(rset.next())
+			{
+				Board b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+				
+				list.add(b);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
 		}
 		
 		return list;

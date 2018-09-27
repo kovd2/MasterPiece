@@ -121,10 +121,10 @@ table
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">
 					<span style="float:left">자주 묻는 질문</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectExchange.af'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">
@@ -238,7 +238,7 @@ table
 									반송정보
 								</td>
 								<td style="padding-left:10px;">
-									<input type="text" name="deliveryNumber" id="deliveryNumber" size="40" placeholder="운송장번호 - 없이 입력" style="font-size:small;">
+									<input type="text" name="trackingNumber" id="trackingNumber" size="40" placeholder="운송장번호 - 없이 입력" style="font-size:small;">
 								</td>
 							</tr>
 						</tbody>
@@ -399,8 +399,9 @@ table
 						for(var key in data)
 						{
 							var $userId = $("<input type='hidden' name='userId'>").val("<%= loginUser.getUserId() %>");
+							var $prdCode2 = $("<input style='display:none' type='text' name='prdCode'>").val(data[key].prdCode);
 							
-							$productListArea.append($prdCode);
+							$productListArea.append($prdCode2);
 						}
 					}
 				});

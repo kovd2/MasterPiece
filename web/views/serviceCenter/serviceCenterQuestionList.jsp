@@ -135,10 +135,10 @@
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectMoreList.sc'">
 					<span style="float:left">자주 묻는 질문</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangeWrite.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">
 					<span style="float:left">교환, 반품, AS접수 신청</span><span style="float: right;">></span>
 				</div>
-				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='serviceCenterExchangelist.jsp'">
+				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectExchange.af'">
 					<span style="float:left">교환, 반품, AS접수 조회</span><span style="float: right;">></span>
 				</div>
 				<div class="sideMenu menu menuAtt" style="height: 30px;" onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">
