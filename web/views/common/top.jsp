@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 	width: 1080px;
 	height: 100%;
 }
-.search {
+.search {   
 	position: absolute;
 	top: 50%;
 	left: 250px;
@@ -308,9 +308,9 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 				<div class="categoryBox_css" id="mp" onclick="location.href='<%=request.getContextPath()%>/views/product/product_List.jsp'">
 					MasterPiece
 					<ul class="mp_menu">
-						<li onclick="location.href='https://www.google.com/'">게임</li>
-						<li onclick="location.href='https://www.google.com/'">인터넷/사무</li>
-						<li onclick="location.href='https://www.google.com/'">그래픽</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GAME'">게임</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=INTERNET'">인터넷/사무</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GRAPHIC'">그래픽</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="com">

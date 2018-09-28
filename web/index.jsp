@@ -32,7 +32,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MasterPiece</title>
 
 <style>
 /******************************* 메인배너 CSS *******************************/
@@ -232,9 +232,9 @@ a{ text-decoration:none }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-
 	<%@ include file="./views/common/top.jsp"%>
 	
 	<!--------------------------------------- 메인 배너  --------------------------------------->
@@ -243,10 +243,13 @@ a{ text-decoration:none }
 	<div class="c_wrap">
 		<div class="carousel">
 			<ul class="list">
-				<li class="a1"></li>
+				<%-- <% for(int i = 0; i < list.size(); i++){%>
+					<li><img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="405px;" height="1080px;"></li>
+				<%} %> --%>
+				 <li class="a1"></li>
 				<li class="a2"></li>
 				<li class="a3"></li>
-				<li class="a4"></li>
+				<li class="a4"></li>  
 			</ul>
 		</div>
 		<p class="prev"><img src='./images/kimjaeyup/arrow_left.png' style="width:40px; height:50px;"></p>
@@ -254,14 +257,14 @@ a{ text-decoration:none }
 	</div>
 	<div class="left_banner">
 		<ul style="list-style:none;">
-			<li><a href="http://google.co.kr"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26096.jpg"></a></li>
-			<li><a href="http://google.co.kr"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26208.jpg"></a></li>
-			<li><a href="http://google.co.kr"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26103.jpg"></a></li>
+			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26096.jpg"></a></li>
+			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26208.jpg"></a></li>
+			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26103.jpg"></a></li>
 		</ul>
 	</div>
  	<div class="right_banner">
 		<span>
-			<a href="../event_zone/eventzone_view.htm?EventNo=17607&amp;bannerid=LeftTopWingBanner">
+			<a href="http://localhost:8001/MasterPiece/">
 				<img src='./images/kimjaeyup/right_banner.jpg'>
 			</a>
 		</span>
@@ -352,7 +355,7 @@ a{ text-decoration:none }
 				<span class="product_subMp1">MasterPiece PC</span>
 				<span class="product_subMp2">당사에서 제작한 걸작을 만나보실 수 있습니다.</span><br>
 				<div class="product_2">
-					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'" >
+					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(0).getPrd_code()%>')" >
 						<img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(0).getPrd_code()).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrd_name()%></span><br><hr class="product_hr">
@@ -362,7 +365,7 @@ a{ text-decoration:none }
 						<span class="product_event4">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
+					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(1).getPrd_code()%>')">
 						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(1).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(1).getPrd_name()%></span><br><hr class="product_hr">
@@ -371,7 +374,7 @@ a{ text-decoration:none }
 						<span class="product_event4" style="margin-right:10px;">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
+					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(2).getPrd_code()%>')">
 						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(2).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span><br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(2).getPrd_name()%></span><br><hr class="product_hr">
@@ -380,7 +383,7 @@ a{ text-decoration:none }
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="location.href='http://www.google.co.kr'">
+					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(3).getPrd_code()%>')">
 						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(3).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span> <br>
 						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(3).getPrd_name()%></span><br><hr class="product_hr">
@@ -415,11 +418,25 @@ a{ text-decoration:none }
 			 	</div>
 				<%} %>
 				</div>
-				<div>
-									 <div class="pageArea" align="center" style="margin-top: 7px;">
+				<div>	
+						<div class="pageArea" align="center" style="margin-top: 7px;">
+						 <% if(currentPage1 <= 1){ %>
+						 	<button class="thisBtn1" id="leftBtn1" disabled><</button>
+						 <%}else{ %>
+						 	<button class="thisBtn1" value=<%=currentPage1 - 1 %> id="leftBtn1"><</button>
+						 <%} %>
+						 
 						 <% for(int p = startPage1; p <= maxPage1; p++){ %>
 		 						<button class="thisBtn1" value=<%=p %>><%= p %></button>
 						 <% 	} %>
+						 
+						 <% if(currentPage1 >= maxPage1){ %>
+						 	<button class="thisBtn1" id="rightBtn1" disabled>></button>
+						 <%}else{ %>
+						 	<button class="thisBtn1" id="rightBtn1" value=<%=currentPage1 + 1 %>>></button>
+						 <%} %>
+						 
+						 
 					 </div>
 				</div>
 			</div><br><br><br>
@@ -448,11 +465,21 @@ a{ text-decoration:none }
 				</div>
 				<div>
 					 <div class="pageArea" align="center" style="margin-top: 7px;">
-		 
+		 				 <% if(currentPage2 <= 1){ %>
+						 	<button class="thisBtn2" id="leftBtn2" disabled><</button>
+						 <%}else{ %>
+						 	<button class="thisBtn2" value=<%=currentPage2 - 1 %> id="leftBtn2"><</button>
+						 <%} %>
+						 
 						 <% for(int p = startPage2; p <= maxPage2; p++){ %>
 		
 		 						<button class="thisBtn2" value=<%=p %>><%= p %></button>
 						 <% 	} %>
+						 <% if(currentPage2 >= maxPage2){ %>
+						 	<button class="thisBtn2" id="rightBtn2" disabled>></button>
+						 <%}else{ %>
+						 	<button class="thisBtn2" id="rightBtn2" value=<%=currentPage2 + 1 %>>></button>
+						 <%} %>
 						 
 					 </div>
 				</div>
@@ -506,7 +533,7 @@ a{ text-decoration:none }
 	<script>
 	$(".thisBtn1").click(function(){
 		var cp = $(this).val();
-
+		
 		 $.ajax({
 			url: "selectMain.tn",
 			data : {cp:cp},
@@ -515,10 +542,15 @@ a{ text-decoration:none }
 				var path = "images/product";
 				
 				$(".imageArea").children("div.imageList").remove();
+				
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
+					/* var a = data.list1.get[i].getPrd_code(); */
+					<%-- onclick="goDetail('<%= list1.get(i).getPrd_code()%>')" --%>
+					/* <div class="imageList" align="center" style="cursor:pointer;"> */
+					/* onclick='goDetail("data.list1.get[i].getPrd_code()")' */
+					$div = $("<div class='imageList' align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
+					/* $div.attr("onclick","goDetail(+"a"+);"); */
 					$(".imageArea").append($div);
-					/* onclick="location.href='http://www.google.co.kr'" */
 					
 					$div2 = $("<div style='width:350px; height:300px;'>");				
 					$div.append($div2);
@@ -534,10 +566,26 @@ a{ text-decoration:none }
 					console.log(data.imgList[data.list[i].prd_code].changeName);
 				}
 				
+				if(cp <= 1){
+					$("#leftBtn1").attr("disabled");				
+				}else{
+					$("#leftBtn1").val(cp - 1);
+					$("#leftBtn1").removeAttr("disabled");
+				}
+				
+			 	if(cp >= <%=maxPage1%>){
+					$("#rightBtn1").attr("disabled");			
+				}else{
+					$("#rightBtn1").val((cp * 1) + 1);
+					$("#rightBtn1").removeAttr("disabled");
+				}
+				
 				console.log(path);	
 			}
 		}); 
 	});
+	
+	
 
 	$(".thisBtn2").click(function(){
 		var cp = $(this).val();
@@ -550,6 +598,7 @@ a{ text-decoration:none }
 				var path = "images/product";
 				
 				$(".imageArea2").children("div.imageList2").remove();
+				
 				for(var i = 0; i < data.list.length; i++){
 					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
 					$(".imageArea2").append($div);
@@ -568,7 +617,20 @@ a{ text-decoration:none }
 					console.log(data.list[i].price);
 					console.log(data.imgList[data.list[i].prd_code].changeName);
 					
-					$
+					if(cp <= 1){
+						$("#leftBtn2").attr("disabled");				
+					}else{
+						$("#leftBtn2").val(cp - 1);
+						$("#leftBtn2").removeAttr("disabled");
+					}
+					
+				 	if(cp >= <%=maxPage2%>){
+						$("#rightBtn2").attr("disabled");			
+					}else{
+						$("#rightBtn2").val((cp * 1) + 1);
+						$("#rightBtn2").removeAttr("disabled");
+					}
+					
 				}
 				
 				console.log(path);	
