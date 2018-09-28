@@ -15,7 +15,6 @@ import com.kh.MasterPiece.board.model.vo.PageInfo;
 import com.kh.MasterPiece.cart.model.service.CartService;
 import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.vo.Member;
-import com.kh.MasterPiece.product.model.service.ProductService;
 
 @WebServlet("/insertCart")
 public class InsertCartServlet extends HttpServlet {
@@ -31,6 +30,7 @@ public class InsertCartServlet extends HttpServlet {
 		String id = request.getParameter("user");
 		int count = Integer.parseInt(request.getParameter("count"));
 		String category = request.getParameter("category");
+		
 		int result = 0;
 		Member m = (Member)request.getSession().getAttribute("loginUser");
 		String orderCheck = m.getOrderCheck();
@@ -62,15 +62,17 @@ public class InsertCartServlet extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
+		if(new CartService().test(m.getOrderCheck()) == null){
+			orderCheck=new CartService().insertOrderCheck();
+			m.setOrderCheck(orderCheck);
+			request.getSession().removeAttribute("loginUser");
+			request.getSession().setAttribute("loginUser", m);			
+		}
+		result  = new CartService().insertCart(code, orderCheck, id, count);
+		
 		ArrayList<Cart> cartList = new CartService().selectCart(code, id, count, orderCheck, currentPage, limit, category);
 		HashMap<String, Attachment> imgList = new CartService().imgList();
 		
-		if(new CartService().test(m.getOrderCheck()) == null){
-			 m.setOrderCheck(new CartService().insertOrderCheck());
-			 request.getSession().removeAttribute("loginUser");
-			 request.getSession().setAttribute("loginUser", m);
-		}
-		result  = new CartService().insertCart(code, orderCheck, id, count);
 		if(result > 0){			
 			if(request.getParameter("t").equals("n")){
 				response.sendRedirect("prdPageList.js?category=category");

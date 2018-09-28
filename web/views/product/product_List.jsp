@@ -403,7 +403,7 @@ System.out.println("prdList : " + prdList);
 						</div>
 						<div class="prd_count">수량
 							<select id="prd_count">
-								<option value="1" selected>1</option>
+								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -466,7 +466,7 @@ System.out.println("prdList : " + prdList);
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";
-			var count = $("#prd_count option:selected").val();
+			var count = $("#prd_count").val();
 	
 			if(confirm("장바구니로 가시겠습니까?") == true){
 				location.href="<%=request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";
