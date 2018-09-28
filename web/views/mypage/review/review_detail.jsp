@@ -130,12 +130,13 @@
 		<br>
 		
 		<div>
-			<INPUT type="button" class="btn" style="background: forestgreen; color: white; border: 1px solid white; border-radius: 5px; width: 50px; height: 28px; padding: 2px 4px; float: left;" onclick="a()" value="수정">
+			<INPUT type="button" class="btn" style="background: forestgreen; color: white; 
+					border: 1px solid white; border-radius: 5px; width: 50px; height: 28px; padding: 2px 4px;
+				 	 float: left;" onclick="a()" value="수정">
 		</div>
 		<script>
 			function a(){
 				alert("수정이 완료되었습니다.");
-				window.close();
 				var id = $("#boardId").val();
 				var content = $("#content").val();
 				var title = $("#title").val();
@@ -153,10 +154,27 @@
 		</script>
 	
 		<div>
-			<button type="button" class="btn"
-				style="background: orangered; color: white; border: 1px solid white; border-radius: 5px; width: 50px; height: 28px; padding: 2px 4px; float: right; margin-right: 5px;"
-				onclick="location.href='<%= request.getContextPath() %>/ReviewDeleteServlet?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
+			<input type="button" class="btn"
+				style="background: orangered; color: white; border: 1px solid white; border-radius: 5px; 
+				width: 50px; height: 28px; padding: 2px 4px; float: right; margin-right: 5px;" 
+				onclick="b()" value="삭제">
 		</div>
+		<script>
+		function b(){
+			alert("삭제가 완료되었습니다.");
+			window.close();
+			var id = $("#boardId").val();
+		
+			$.ajax({
+				url : "ReviewDeleteServlet",
+				data : {
+					boardId : id,
+
+				},
+				type : "get"
+			});
+		}
+		</script>
 		
 	</div>
 </body>

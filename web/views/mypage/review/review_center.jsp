@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 .centerWrapArea {
 	display: inline-block;
@@ -44,21 +47,20 @@ td, th {
 	display: table-cell;
 	vertical-align: inherit;
 }
-
 .section_header_table {
 	border-spacing: 0px;
 	border-collapse: collapse;
 	box-sizing: border-box;
 }
 
-input[type="text"], select {
+.mypage_input[type="text"], select {
 	padding: 0px;
 	box-shadow: none;
 	border: 1px solid #ccc;
 	font-size: 12px;
 }
 
-input, textarea, select, button {
+.mypage_input, textarea, select, button {
 	text-rendering: auto;
 	color: initial;
 	letter-spacing: normal;
@@ -72,7 +74,7 @@ input, textarea, select, button {
 	font: 400 13.3333px Arial;
 }
 
-input {
+.mypage_input {
 	-webkit-appearance: textfield;
 	background-color: white;
 	-webkit-rtl-ordering: logical;
@@ -229,9 +231,12 @@ select {
 			<div class='figure'>
 				<div class="center_top_title" align="left">내가 쓴 게시물</div>
 
-				<input type="hidden" name="date_num" id="date_num" value="2">
+				<input class="mypage_input" type="hidden" name="date_num" id="date_num" value="2">
 				<div class='section_header_v2'
 					style='width: 937px; height: 140px; border: 1px #ccc solid; box-sizing: border-box; background-color: #F3F4F6;'>
+					
+					<form action = "<%= request.getContextPath() %>/ReviewSearchServlet"> 
+					
 					<div style='float: left; padding-top: 7px; width: 774px;'>
 						<!-- <div>
 							<div
@@ -272,22 +277,22 @@ select {
 
 							<div style='clear: both;'></div>
 						</div> -->
-
-						<div style='padding-top: 30px;'>
-							<div
-								style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>검색</div>
+						<div id="search" class="search_review" style='padding-top: 30px;'>
+							<div style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>
+								검색
+							</div>
 							<div style='float: left;'>
 								<select name="search_type" id="search_type"
-									style='box-sizing: border-box; height: 28px; width: 118px; vertical-align: bottom;'
-									onchange="$('#search_text').val('')">
+									style='box-sizing: border-box; height: 28px; width: 118px; vertical-align: bottom;'>
 									<option value="1">견적게시판</option>
 									<option value="2">유저게시판</option>
 									<option value="3">문의</option>
-								</select> <input id="search_text" name="search_text" type='text'
-									style='margin-left: 10px; box-sizing: border-box; height: 28px; width: 559px; padding-left: 10px;'
-									value="" />
-								<div
-									style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>지금까지
+								</select> 
+								<input class="mypage_input" id="search_text" name="search_text" type='text'
+									style='margin-left: 10px; box-sizing: border-box; height: 28px; 
+									width: 559px; padding-left: 10px;'
+									value="" >
+								<div style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>지금까지
 									작성하신 모든 게시글을 확인 가능합니다.</div>
 							</div>
 
@@ -295,14 +300,16 @@ select {
 						</div>
 
 					</div>
-
 					<div style='float: left; padding-top: 35px;'>
-						<span onclick="period_views();"
-							style='cursor: pointer; display: inline-block; width: 152px; height: 63px; background-color: #454c5f; color: #fff; line-height: 62px; text-align: center;'>조회하기</span>
+						
+							<input class="mypage_input1" type="submit" value="조회하기" style='cursor: pointer; display: inline-block; 
+							width: 152px; height: 63px; background-color: #454c5f; color: #fff; 
+							line-height: 62px; text-align: center;'>
+						
 					</div>
-
+				
 					<div style='clear: both;'></div>
-
+					</form>
 				</div>
 
 
@@ -376,56 +383,100 @@ select {
 								}
 							</script>
 						</div>
+						
+						
+						
+						
 
 						<%-- 페이징 처리 --%>
 						<div class="pagingArea" align="center">
+							<%if(entire.equals("전체")){ %>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=1'"><<</button>
 							<%
-								if (currentPage <= 1) {
-							%>
+								if (currentPage <= 1) {	%>
 							<button disabled><</button>
 							<%
-								} else {
-							%>
+								} else { %>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage - 1%>'"><</button>
 							<%
-								}
-							%>
-
+								}%>
 							<%
 								for (int p = startPage; p <= endPage; p++) {
 									if (p == currentPage) {
 							%>
 							<button disabled><%=p%></button>
 							<%
-								} else {
-							%>
+								} else {%>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=p%>'"><%=p%></button>
 							<%
-								}
-							%>
-
+								}%>
 							<%
-								}
-							%>
+								}%>
 							<%
 								if (currentPage >= maxPage) {
 							%>
 							<button disabled>></button>
 							<%
-								} else {
-							%>
+								} else {%>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage + 1%>'">></button>
 							<%
-								}
-							%>
+								}%>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=maxPage%>'">>></button>
+						
+						
+						<%}else{ %>
+					
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=1'"><<</button>
+							<%
+								if (currentPage <= 1) {	%>
+							<button disabled><</button>
+							<%
+								} else { %>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=currentPage - 1%>'"><</button>
+							<%
+								}%>
+							<%
+								for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {
+							%>
+							<button disabled><%=p%></button>
+							<%
+								} else {%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=p%>'"><%=p%></button>
+							<%
+								}%>
+							<%
+								}%>
+							<%
+								if (currentPage >= maxPage) {
+							%>
+							<button disabled>></button>
+							<%
+								} else {%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=currentPage + 1%>'">></button>
+							<%
+								}%>
+							<button
+								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=maxPage%>'">>></button>
+					
+					
+					
+					
+					
+					
+						<%} %>
+										
 						</div>
+						
 					</div>
 				</div>
 				<div class='m_top20'></div>
