@@ -1257,4 +1257,33 @@ public class testDao {
 
 		return result;
 	}
+
+
+	public int newMemberCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int count = 0;
+		String query = prop.getProperty("newMemberCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery("SELECT COUNT(*) FROM MEMBER WHERE TO_CHAR(ENROLL_DATE,'MM') = TO_CHAR(SYSDATE,'MM')");
+			
+			if(rset.next()){
+				count = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+	
+		
+		
+		
+		
+		return count;
+	}
 }
