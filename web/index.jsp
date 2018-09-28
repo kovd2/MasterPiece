@@ -26,6 +26,34 @@
 	int maxPage2 = pi2.getMaxPage();
 	int startPage2 = pi2.getStartPage();
 	int endPage2 = pi2.getEndPage(); 
+	
+	Calendar currentCalendar = Calendar.getInstance();
+	int strDay = currentCalendar.get(Calendar.DATE);
+	int cnt=0;
+	if(application.getAttribute("now") != null){
+	int now = (int)application.getAttribute("now");
+	  if(now != strDay){
+	     cnt = 1;
+	  }
+	     }else{
+	        application.setAttribute("now",strDay);
+	        cnt = 1;
+	     }
+	   
+	Object value = application.getAttribute("cntVisit");
+	   
+	if(value != null){
+	      
+	    cnt = (Integer)value + 1;
+	    if(session.isNew() == true){
+	       cnt = cnt + 1;
+	    }
+	}
+	   
+	application.setAttribute("cntVisit", cnt);
+	   
+	   
+	
 %>
 
 <!DOCTYPE html>
