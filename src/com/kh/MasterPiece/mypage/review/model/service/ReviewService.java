@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
 import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.main.model.dao.MainDao;
 import com.kh.MasterPiece.mypage.review.model.dao.ReviewDao;
 import com.kh.MasterPiece.mypage.review.model.vo.Review;
 
@@ -69,5 +70,45 @@ public class ReviewService {
 	}
 
 
+	public int deleteContact(int boardId) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().deleteContact(conn, boardId);
+		
+		if(result > 0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 
+
+	public int searchCount(String writer, int searchType, String searchText) {
+		Connection con = getConnection();
+		
+		int listCount = new ReviewDao().searchCount(con, writer, searchType, searchText);
+				
+		close(con);
+		
+		
+		return listCount;
+	}
+
+
+	public ArrayList<Review> searchList(String writer, int searchType, String searchText, int currentPage, int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectList(writer, searchType, searchText, currentPage, limit, con);
+				
+		close(con);
+		
+		
+		return list;
+	}
 }

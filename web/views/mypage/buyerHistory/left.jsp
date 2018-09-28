@@ -80,18 +80,10 @@
 			<br>
 			<div class="text" onclick="location.href='views/mypage/cart/cart_myPage.jsp'">장바구니</div>
 			<br>
-			<div class="text" onclick="location.href='views/mypage/as/myPage_as.jsp'">A/S
-				신청하기</div>
-			<br>
-			<div class="text" onclick="location.href='views/mypage/as/check_myPage.jsp'">A/S
-				조회하기</div>
-			<br>
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/Review_Servlet'">내가 쓴 게시물</div>
 			<br>
-			<div class="text" onclick="location.href='views/mypage/faq/faq_myPage.jsp'">FAQ
-				자주하는 질문</div>
-			<br>
+
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/views/mypage/member/myPage2.jsp'">회원
 				탈퇴</div>
