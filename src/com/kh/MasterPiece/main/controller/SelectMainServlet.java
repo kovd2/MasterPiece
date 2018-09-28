@@ -16,7 +16,6 @@ import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.service.MainService;
 import com.kh.MasterPiece.main.model.vo.MainPageInfo;
-import com.kh.MasterPiece.main.model.vo.MainTest;
 import com.kh.MasterPiece.product.model.vo.Product;
 
 

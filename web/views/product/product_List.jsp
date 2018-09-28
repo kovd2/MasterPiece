@@ -424,10 +424,11 @@ System.out.println("prdList : " + prdList);
 			<div class="pagingArea" align="center">
 			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'">처음</button>
 			<% if(currentPage <= 1){ %>
-				<button class="ebtn" disabled><</button>
+				<button class="ebtn" disabled>< 이전</button>
 			<% }else{%>
 				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>&category=<%=category%>'">< 이전</button>
 			<% } %>
+			
 			<% for(int p = startPage; p <= endPage; p++){ 
 					if(p == currentPage){%>
 						<button class="ebtn" disabled><%= p %></button>
@@ -438,7 +439,7 @@ System.out.println("prdList : " + prdList);
 			
 
 			<% if(currentPage >= maxPage){ %>
-				<button class="ebtn" disabled>></button>
+				<button class="ebtn" disabled>다음 ></button>
 			<% }else{ %>
 				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1 %>&category=<%=category%>'">다음 ></button>
 

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.dao.MainDao;
-import com.kh.MasterPiece.main.model.vo.MainTest;
 import com.kh.MasterPiece.product.model.dao.ProductDao;
 import com.kh.MasterPiece.product.model.vo.Product;
 
