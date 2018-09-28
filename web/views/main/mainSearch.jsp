@@ -24,7 +24,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title><%=request.getAttribute("search") %>의 검색결과 : 컴퓨터 구매는 MasterPiece!</title>
 
 <style>
 
@@ -246,16 +246,16 @@
 			<% } %>
 			
 			<% }else{ %>
-				<div class="searchNull" style="color:black; text-align:center; font-size:23px; margin: 55px;" >
-					검색한 결과가 없습니다.
+				<div class="searchNull" style="text-align:center; margin-top:2px;">
+					<img src="<%=request.getContextPath() %>/images/kimjaeyup/noSearch.png">
 				</div>
 			
 			<% } %>
 		</div>
 		<!-- 페이징 처리 -->
 		<div class="pagingArea" align="center" style="margin-top: 15px; margin-bottom: 50px;">
+		<%if(!list.isEmpty()){ %>
 		<button class="pbtn" onclick="location.href='<%=request.getContextPath()%>/serch.tn?query=<%=search%>&currentPage=1'">처음</button>
-					
 		<% if (currentPage <= 1) { %>
 			<button class="pbtn" disabled>< 이전</button>
 		<% } else { %>
@@ -277,6 +277,9 @@
 			<button class="pbtn" onclick="location.href='<%=request.getContextPath()%>/serch.tn?query=<%=search%>&currentPage=<%=currentPage + 1%>'">다음 ></button>
 		<% } %>
 			<button class="pbtn" onclick="location.href='<%=request.getContextPath()%>/serch.tn?query=<%=search%>&currentPage=<%=maxPage%>'">맨끝</button>
+		<%}else{ %>
+		
+		<%} %>
 		</div>
 	</div>
 	

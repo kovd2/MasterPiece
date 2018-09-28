@@ -1,7 +1,8 @@
-package com.kh.MasterPiece.admin.controller;
+package com.kh.MasterPiece.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.admin.model.service.testService;
+import com.kh.MasterPiece.board.model.vo.Attachment;
+import com.kh.MasterPiece.prdOrder.model.service.PrdOrderService;
+import com.kh.MasterPiece.prdOrder.model.vo.PrdOrder;
 
 /**
- * Servlet implementation class StatisticsMainServlet
+ * Servlet implementation class SelectPrdListServlet
  */
-@WebServlet("/StatisticsMain.swy")
-public class StatisticsMainServlet extends HttpServlet {
+@WebServlet("/callPrdList.qc")
+public class SelectPrdListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StatisticsMainServlet() {
+    public SelectPrdListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +33,25 @@ public class StatisticsMainServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Integer> monthSales = new testService().monthSales();
-		int count = new testService().newMemberCount();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String userId = request.getParameter("userId");
+		
+		//System.out.println(userId);
+		
+		ArrayList<PrdOrder> prdList = new PrdOrderService().selectPrdOrder(userId);
+		HashMap<String, Attachment> imageList = new PrdOrderService().imageList();
+		
 		String page = "";
 		
-		if(monthSales!=null){
-			page = "/views/admin/statistics/statisticsMain.jsp";
-			request.setAttribute("monthSales", monthSales);
-			request.setAttribute("count", count);
-		}else{
-			page = "/views/common/errorPage.jsp";
-			request.setAttribute("msg", "에러");
+		if(prdList != null)
+		{
+			page = "views/board/quoteContactPrdOrder.jsp";
+			request.setAttribute("prdList", prdList);
+			request.setAttribute("imageList", imageList);
 		}
-		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	/**

@@ -1,11 +1,14 @@
 package com.kh.MasterPiece.mypage.review.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.MasterPiece.mypage.review.model.service.ReviewService;
 
 /**
  * Servlet implementation class ReviewDeleteServlet
@@ -26,8 +29,21 @@ public class ReviewDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		
+		System.out.println(boardId);
+		int result = new ReviewService().deleteContact(boardId);
+		
+		String page="";
+		
+		if(result >0){
+			
+		}
+		else{
+			request.setAttribute("msg", "삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp");
+		}
 	}
 
 	/**

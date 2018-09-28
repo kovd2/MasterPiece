@@ -3,7 +3,13 @@
 <!DOCTYPE html>
 <%
 	ArrayList<Integer> monthSales = (ArrayList<Integer>)request.getAttribute("monthSales");
+	int count = (int)request.getAttribute("count");
 	int a = 1;
+	
+	int cnt = 0;
+	if(application.getAttribute("cntVisit") != null){
+		cnt = (int)application.getAttribute("cntVisit");
+	}
 %>
 <html>
 <head>
@@ -23,6 +29,10 @@
 		<jsp:param name="name" value="5" />
 	</jsp:include>
 	<div id="main">
+	<div>
+	방문자 수 : <%=cnt%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	신규 가입자 : <%=count%>
+	</div><br>
 	<div>
 	<canvas id="myChart" width="300" height="300"></canvas>
 	</div>
@@ -88,31 +98,35 @@ var myChart = new Chart(ctx, {
 });
 var ctx2 = document.getElementById("myChart2");
 var myChart = new Chart(ctx2, {
-    type: 'bar',
+    type: 'pie',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
+    	    datasets: [{
+    	        data: [10, 20, 30,10, 20, 30,10, 20, 30],
+    	    	backgroundColor: [
+   	    	 'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+			]}],
+
+    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+    	    labels: [
+    	        'CPU',
+    	        'MAINBOARD',
+    	        'RAM',
+    	        'GRAPHIC',
+    	        'HDD/SSD',
+    	        'ODD',
+    	        'POWER',
+    	        'COOLER',
+    	        'CASE'
+    	    ]
+    	},
     options: {
         scales: {
             yAxes: [{

@@ -370,6 +370,7 @@ public class testService {
 		return result;
 	}
 
+
 	public int getPromotionListCount() {
 		Connection con = getConnection();
 		
@@ -433,4 +434,13 @@ public class testService {
 		return result;
 	}
 
+
+	public int newMemberCount() {
+		Connection con = getConnection();
+		int count = new testDao().newMemberCount(con);
+		
+		close(con);
+		
+		return count;
+	}
 }

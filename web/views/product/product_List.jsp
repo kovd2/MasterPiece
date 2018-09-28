@@ -403,7 +403,7 @@ System.out.println("prdList : " + prdList);
 						</div>
 						<div class="prd_count">수량
 							<select id="prd_count">
-								<option value="1" selected>1</option>
+								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -424,10 +424,11 @@ System.out.println("prdList : " + prdList);
 			<div class="pagingArea" align="center">
 			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=1&category=<%=category%>'">처음</button>
 			<% if(currentPage <= 1){ %>
-				<button class="ebtn" disabled><</button>
+				<button class="ebtn" disabled>< 이전</button>
 			<% }else{%>
 				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage - 1 %>&category=<%=category%>'">< 이전</button>
 			<% } %>
+			
 			<% for(int p = startPage; p <= endPage; p++){ 
 					if(p == currentPage){%>
 						<button class="ebtn" disabled><%= p %></button>
@@ -438,7 +439,7 @@ System.out.println("prdList : " + prdList);
 			
 
 			<% if(currentPage >= maxPage){ %>
-				<button class="ebtn" disabled>></button>
+				<button class="ebtn" disabled>다음 ></button>
 			<% }else{ %>
 				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?currentPage=<%=currentPage + 1 %>&category=<%=category%>'">다음 ></button>
 
@@ -466,7 +467,7 @@ System.out.println("prdList : " + prdList);
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";
-			var count = $("#prd_count option:selected").val();
+			var count = $("#prd_count").val();
 	
 			if(confirm("장바구니로 가시겠습니까?") == true){
 				location.href="<%=request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";

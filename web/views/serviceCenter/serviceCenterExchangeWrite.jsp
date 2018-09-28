@@ -378,19 +378,16 @@ table
 							console.log(data);
 							
 							var $orderNo = $("<span>").text(data[key].orderNo);
-							var $orderDate = $("<span>").text(data[key].orderDate);
-							$orderDate.append("　　　");
+							var $orderCheck = $("<span>").text("[" + data[key].orderCheck + "]");
+							$orderCheck.append(" ");
 							var $prdCode = $("<span>").text(data[key].prdCode);
 							$prdCode.append("　　　");
-							var $orderCheck = $("<span>").text(data[key].orderCheck);
-							$orderCheck.append("　　　");
 							var $orderCount = $("<span>").text(data[key].orderCount);
 							$orderCount.append("<br>");
 							
 							$productListArea.append($orderNo);
-							$productListArea.append($orderDate);
-							$productListArea.append($prdCode);
 							$productListArea.append($orderCheck);
+							$productListArea.append($prdCode);
 							$productListArea.append($orderCount);
 						}
 						$hyphen2.append("---------------------------------------------------<br>");

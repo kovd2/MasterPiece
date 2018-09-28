@@ -6,10 +6,11 @@ import java.sql.Date;
 public class Review implements Serializable{
 	
 	private int boardNo;			//글번호
-	private String boardCategory;		//글 유형(게시글위치)
-	private String boardTitle;		//글제목제목
+	private String boardCategory;	//글 유형(게시글위치)
+	private String boardTitle;		//글제목
 	private Date boardDate;			//글 작성날짜
 	private int boardId;
+	private String boardStatus;		//글 게시 여부
 	
 	
 	
@@ -24,6 +25,14 @@ public class Review implements Serializable{
 	}
 	
 	
+	
+	public String getBoardStatus() {
+		return boardStatus;
+	}
+
+	public void setBoardStatus(String boardStatus) {
+		this.boardStatus = boardStatus;
+	}
 
 	public int getBoardId() {
 		return boardId;
