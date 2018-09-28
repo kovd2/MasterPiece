@@ -16,6 +16,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.admin.model.vo.Promotion;
+import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.member.model.vo.Member;
@@ -1238,12 +1240,7 @@ public class testDao {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, fileList.get(i).getChangeName());
 				pstmt.setString(2, fileList.get(i).getOriginName());
-				pstmt.setString(3, fileList.get(i).getFilePath());
-				int level = 0;
-				if(i == 0) level = 0;
-				else level = 1;
-				pstmt.setInt(4, level);
-				pstmt.setString(5, fileList.get(i).getCode());
+				pstmt.setString(3, fileList.get(i).getFilePath());				
 
 				result = pstmt.executeUpdate();
 
@@ -1258,6 +1255,25 @@ public class testDao {
 		return result;
 	}
 
+
+
+	public int getPromotionListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("promotionListCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
 
 	public int newMemberCount(Connection con) {
 		Statement stmt = null;
@@ -1278,12 +1294,185 @@ public class testDao {
 		} finally {
 			close(stmt);
 			close(rset);
+
 		}
+
+		return listCount;
+	}
+
+
+	public ArrayList<Promotion> selectPromotionList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Promotion> list = null;
+
+
+		String query = prop.getProperty("promotionListpage");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Promotion>();
+
+			while(rset.next()){
+				
+				Promotion p = new Promotion();
+				
+				p.setPromotion_No(rset.getString("PROMOTION_NO"));
+				p.setPromotion_Title(rset.getString("PROMOTION_TITLE"));
+				p.setPromotion_DATE(rset.getString("PROMOTION_DATE"));
+				
+				list.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public Promotion promotionDetail(Connection con, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Promotion p = null;
+
+		String query = prop.getProperty("promotionDetail");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, no);
+
+			rset = pstmt.executeQuery();
 	
+			if(rset.next()){
+				p = new Promotion();
+				p.setPromotion_No(rset.getString("PROMOTION_NO"));
+				p.setPromotion_Title(rset.getString("PROMOTION_TITLE"));
+				p.setPromotion_DATE(rset.getString("PROMOTION_DATE"));
+				p.setPromotion_URL(rset.getString("PROMOTION_URL"));
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return p;
+	}
+
+
+	public Promotion_ATT promotion_ATTDetail(Connection con, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Promotion_ATT pa = null;
+
+		String query = prop.getProperty("promotion_ATTDetail");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, no);
+
+			rset = pstmt.executeQuery();
+	
+			if(rset.next()){
+				pa = new Promotion_ATT();
+				pa.setFile_code(rset.getString("FILE_CODE"));
+				pa.setChange_name(rset.getString("CHANGE_NAME"));
+				pa.setFile_name(rset.getString("FILE_NAME"));
+				pa.setUpload_date(rset.getString("UPLOAD_DATE"));
+				pa.setSave_route(rset.getString("SAVE_ROUTE"));
+				pa.setPromotion_no(rset.getString("PROMOTION_NO"));
+			
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return pa;
+	}
+
+
+	public int modifyPromotion(Connection con, String proTitle, String proUrl, String proNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("modifyPromotion");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			System.out.println();
+			pstmt.setString(1, proTitle);
+			pstmt.setString(2, proUrl);
+			pstmt.setInt(3, Integer.parseInt(proNo));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		
 		
-		
-		
-		return count;
+		return result;
+	}
+
+
+	public int modifyAttachmentPromotion(Connection con, ArrayList<Attachment> fileList, String proNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("modifyPromotionAttachment");
+
+		try {
+			for(int i = 0; i < fileList.size(); i++){
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getChangeName());
+				pstmt.setString(2, fileList.get(i).getOriginName());
+				pstmt.setString(3, fileList.get(i).getFilePath());		
+				pstmt.setInt(4, Integer.parseInt(proNo));
+				
+				result = pstmt.executeUpdate();
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+
+		return result;
 	}
 }

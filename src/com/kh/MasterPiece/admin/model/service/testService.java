@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
+import com.kh.MasterPiece.admin.model.vo.Promotion;
+import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.member.model.vo.Member;
@@ -349,11 +351,14 @@ public class testService {
 
 	public int insertPromotion(String proTitle, String proUrl, ArrayList<Attachment> fileList) {
 		Connection con = getConnection();
-		int result = new testDao().insertPromotion(con, proTitle, proUrl);
+		
+		int result = 0;
+		
+		int result1 = new testDao().insertPromotion(con, proTitle, proUrl);
 
 		int result2 = new testDao().insertAttachmentPromotion(con, fileList);
 		
-		if(result2 > 0){
+		if(result1 > 0 && result2 > 0){
 			commit(con);
 			result = 1;
 		}else{
@@ -364,6 +369,71 @@ public class testService {
 		
 		return result;
 	}
+
+
+	public int getPromotionListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new testDao().getPromotionListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Promotion> selectPromotionList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Promotion> list = new testDao().selectPromotionList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public Promotion promotionDetail(String no) {
+		Connection con = getConnection();
+		
+		Promotion p = new testDao().promotionDetail(con, no);
+		
+		
+		close(con);
+		
+		return p;
+	}
+
+	public Promotion_ATT promotion_ATTDetail(String no) {
+		Connection con = getConnection();
+		
+		Promotion_ATT pa = new testDao().promotion_ATTDetail(con, no);
+		
+		
+		close(con);
+		
+		return pa;
+	}
+
+	public int modifyPromotion(String proTitle, String proUrl, String proNo, ArrayList<Attachment> fileList) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		int result1 = new testDao().modifyPromotion(con, proTitle, proUrl, proNo);
+
+		int result2 = new testDao().modifyAttachmentPromotion(con, fileList, proNo);
+		
+		if(result1 > 0 && result2 > 0){
+			commit(con);
+			result = 1;
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 
 	public int newMemberCount() {
 		Connection con = getConnection();

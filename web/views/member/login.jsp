@@ -108,7 +108,7 @@
 		<tr>
 			<td style="font-size:13px; height:50px; display:table-cell; vertical-align:middle; text-align:left;">
 			<input style="width:20px; height:20px; float:left;margin-top:5px; margin:10px;" type="checkbox" id="checkBtn" name="checkBtn" <% if(userId.length() > 1) out.println("checked"); %>>
-				<span style="font-size:12px; padding-top: 8px; display: block; margin-top:5px;">아이디 저장</span>
+				<label for="checkBtn" style="font-size:12px; padding-top: 8px; display: block; margin-top:5px;">아이디 저장</label>
 			</td>
 			<td colspan="2" style="	padding-right:12px;"><input style="width:70px; height:30px; float:right;" class="btn btn-default" type="button" id="loginBtn" value="로그인" onclick="login()"></td>
 		</tr>

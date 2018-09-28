@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.*, com.kh.MasterPiece.member.model.vo.*, com.kh.MasterPiece.board.model.vo.*"%>
@@ -125,8 +126,7 @@
 				<%
 					} else {
 				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=p%>'"><%=p%></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=p%>'"><%=p%></button>
 				<%
 					}
 				%>
