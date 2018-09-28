@@ -11,6 +11,11 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();	
 
+int total = 0;
+for(int i = 0; i < cartList.size(); i++){
+	total += (cartList.get(i).getPrice() * cartList.get(i).getOrder_count());
+}
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,6 +55,8 @@ int endPage = pi.getEndPage();
 	height: auto;
 	margin: auto;
 	text-align: center;
+	font-size:11px;
+	font-weight:bold;
 	border-bottom: 1px solid black;
 }
 .wrap .cart_price_info{
@@ -203,22 +210,14 @@ int endPage = pi.getEndPage();
 			</table>
 			
 			<%for(int i = 0; i < cartList.size(); i++){ %>
-			<div class="cart_list">
-				<table>
+			<div>
+				<table class="cart_list">
 					<tr>
-						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList"></td>
+						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=cartList.get(i).getPrd_code()%>" class="check"></td>
 						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(cartList.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[<%=cartList.get(i).getPrd_code()%>]  <%=cartList.get(i).getPrd_name()%> </td>
 						<td style="width: 120px; height: 31px;">가격 : <%=cartList.get(i).getPrice() %> 원</td>
-						<td style="width: 120px; height: 31px;">
-							<select id="prd_count">
-								<option value="1" selected><%=cartList.get(i).getOrder_count()%></option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-						</td>
+						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getOrder_count()%> 개</td>
 						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getPrice() * cartList.get(i).getOrder_count()%>원</td>
 						<td style="width: 120px; height: 31px;"><button onclick="deleteCartList()">삭제</button></td>
 					</tr>
@@ -254,12 +253,9 @@ int endPage = pi.getEndPage();
 				<div class="priceArea">
 					<table style="margin-top: 25px; margin-left: 10px; width: 80%;">
 						<tr>
-							<td><span id="cart_prd_price">777777</span><span
-								id="cart_won">원</span></td>
-							<td><span id="cart_sale_price">000000</span><span
-								id="cart_won">원</span></td>
-							<td><span id="cart_total_price">7777777</span><span
-								id="cart_total_won">원</span></td>
+							<td><span id="cart_prd_price"><%= total%></span><span id="cart_won">원</span></td>
+							<td><span id="cart_sale_price">0</span><span id="cart_won">원</span></td>
+							<td><span id="cart_total_price"><%= total%></span><span id="cart_total_won">원</span></td>
 						</tr>
 					</table>
 					<div class="service_btn">
@@ -283,7 +279,7 @@ int endPage = pi.getEndPage();
 			
 			
 			<div class="go_shopping" onclick="goList()"><img src="/MasterPiece/images/jinseok/icon/cart_go_shopping_btn.gif"></div>
-			<div class="purchase" onclick="goBuy()"><img src="/MasterPiece/images/jinseok/icon/cart_pay_btn.gif"></div>
+			<div class="purchase" onclick="goBuy()"><img src="/MasterPiece/images/jinseok/icon/cart_pay_btn.gif" class="buy"></div>
 		</div>
 		<br><br><br><br>
 		</div>
@@ -293,11 +289,11 @@ int endPage = pi.getEndPage();
 	</div>	
 		<script>
 			function goList(){
-				location.href="./product_List.jsp";
+				location.href="<%=request.getContextPath()%>/prdPageList.js?category=CPU";
 			}
 			
 			function goBuy(){
-				location.href="./delivery_page.jsp";
+				location.href="<%=request.getContextPath()%>/delivery";
 			}
 			
 			
@@ -317,6 +313,22 @@ int endPage = pi.getEndPage();
 				}
 			}
 			
+			$(".buy").click(function(){
+				var val = "";
+				var value = [];
+				
+				$(".check:checked").each(function(index,item){
+					if(index!=0){
+						val += ",";
+					}
+					val += $(this).val();
+					value.push($(this).val());
+				})
+				if(val!=""){
+					location.href="<%= request.getContextPath() %>/delivery?code="+val;
+				}
+					
+			});
 		</script>
 </body>
 </html>

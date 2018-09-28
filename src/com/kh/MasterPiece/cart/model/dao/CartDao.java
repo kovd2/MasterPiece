@@ -122,9 +122,10 @@ public class CartDao {
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			
+			pstmt.setString(1, orderCheck);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 
 			rset = pstmt.executeQuery();
 			
@@ -137,6 +138,7 @@ public class CartDao {
 				c.setPrd_code(rset.getString("PRD_CODE"));
 				c.setPrd_name(rset.getString("PRD_NAME"));
 				c.setPrice(rset.getInt("PRICE"));
+				c.setPrice(rset.getInt("TOTAL"));
 				c.setOrder_count(rset.getShort("ORDER_COUNT"));
 				c.setOrder_check(rset.getString("ORDER_CHECK"));
 				
