@@ -1,17 +1,21 @@
 package com.kh.MasterPiece.prdOrder.model.dao;
 
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
+import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.prdOrder.model.vo.PrdOrder;
-import static com.kh.MasterPiece.common.JDBCTemplate.*;
 
 public class PrdOrderDao
 {
@@ -53,9 +57,10 @@ public class PrdOrderDao
 				PrdOrder p = new PrdOrder();
 				
 				p.setOrderDate(rset.getDate("order_date"));
-				p.setPrdCode(rset.getString("prd_code"));
-				p.setOrderCheck(rset.getString("order_check"));
+				p.setPrdCode(rset.getString("prd_name"));
+				p.setOrderCheck(rset.getString("prd_code"));
 				p.setOrderCount(rset.getInt("order_count"));
+				p.setPrice(rset.getInt("price"));
 				
 				list.add(p);
 			}
@@ -70,5 +75,48 @@ public class PrdOrderDao
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public HashMap<String, Attachment> imageList(Connection conn)
+	{
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		HashMap<String, Attachment> imageList = null;
+		
+		String query = prop.getProperty("imageList");
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			imageList = new HashMap<String, Attachment>();
+			
+			while(rset.next())
+			{
+				Attachment am = new Attachment();
+				
+				am.setChangeName(rset.getString("change_name"));
+				am.setOriginName(rset.getString("file_name"));
+				am.setUploadDate(rset.getDate("upload_date"));
+				am.setFilePath(rset.getString("save_route"));
+				am.setCode(rset.getString("prd_name"));
+				
+				/*imageList.put(am.getCode(), am);*/
+				imageList.put(am.getCode(), am);
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(stmt);
+		}
+		
+		return imageList;
 	}
 }

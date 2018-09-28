@@ -272,26 +272,26 @@
 								%>
 								<tr>
 								<input type="hidden" value=<%= as.getServiceNo() %>>
-									<td><%= as.getServiceNo() %></td>
+									<td style="width:80px;"><%= as.getServiceNo() %></td>
 									<td><%= as.getPrdCode() %></td>
-									<td><%= as.getReason() %></td>
+									<td style="width:60px;"><%= as.getReason() %></td>
 									<%
 										if(as.getBoardStatus().equals("N"))
 										{
 											as.setBoardStatus("처리중");
 									%>
-									<td><%= as.getBoardStatus() %></td>
+									<td style="width:80px;"><%= as.getBoardStatus() %></td>
 									<%
 										}
 										else if(as.getBoardStatus().equals("Y"))
 										{
 											as.setBoardStatus("처리완료");
 									%>
-									<td><%= as.getBoardStatus() %></td>
+									<td style="width:80px;"><%= as.getBoardStatus() %></td>
 									<%
 										}
 									%>
-									<td><%= as.getHowToRegister() %></td>
+									<td style="width:120px;"><%= as.getHowToRegister() %></td>
 								</tr>
 								<%
 									}
@@ -302,7 +302,7 @@
 				</div>
 				<br clear="both">
 				<div>
-					<button type="button" class="btn btn-danger pointer" style="padding:2px 4px; height:28px; color:white; background:#d9534f; float:right; border:1px solid white; border-radius:5px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">신청하기</button>
+					<button type="button" class="btn btn-danger pointer" style="margin-right:-100px; padding:2px 4px; height:28px; color:white; background:#d9534f; float:right; border:1px solid white; border-radius:5px;" onclick="location.href='/MasterPiece/views/serviceCenter/serviceCenterExchangeWrite.jsp'">신청하기</button>
 				</div>
 			</div>
 		</div>
