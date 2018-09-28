@@ -32,12 +32,13 @@ public class StatisticsMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Integer> monthSales = new testService().monthSales();
-		
+		int count = new testService().newMemberCount();
 		String page = "";
 		
 		if(monthSales!=null){
 			page = "/views/admin/statistics/statisticsMain.jsp";
 			request.setAttribute("monthSales", monthSales);
+			request.setAttribute("count", count);
 		}else{
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");
