@@ -7,7 +7,7 @@ public class Cart {
 	private String prd_name;
 	private int price;
 	private int order_count;
-	
+	private int hap;
 	public Cart(){}
 
 	public Cart(int order_no, String order_check, String prd_code, String prd_name, int price, int order_count) {
@@ -18,6 +18,14 @@ public class Cart {
 		this.prd_name = prd_name;
 		this.price = price;
 		this.order_count = order_count;
+	}
+
+	public int getHap() {
+		return hap;
+	}
+
+	public void setHap(int hap) {
+		this.hap = hap;
 	}
 
 	public int getOrder_no() {

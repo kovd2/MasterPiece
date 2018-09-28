@@ -1,22 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.MasterPiece.cart.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
-<%
-ArrayList<Cart> cartList = (ArrayList<Cart>)request.getAttribute("cartList");
-HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
-String orderCheck = (String)request.getAttribute("orderCheck");
-PageInfo pi = (PageInfo)request.getAttribute("pi");
-int listCount = pi.getListCount();
-int currentPage = pi.getCurrentPage();
-int maxPage = pi.getMaxPage();
-int startPage = pi.getStartPage();
-int endPage = pi.getEndPage();	
 
-int total = 0;
-for(int i = 0; i < cartList.size(); i++){
-	total += (cartList.get(i).getPrice() * cartList.get(i).getOrder_count());
-}
-
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -209,33 +193,33 @@ for(int i = 0; i < cartList.size(); i++){
 				</tr>
 			</table>
 			
-			<%for(int i = 0; i < cartList.size(); i++){ %>
+			<%for(int i = 0; i < list.size(); i++){ %>
 			<div>
 				<table class="cart_list">
 					<tr>
-						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=cartList.get(i).getPrd_code()%>" class="check"></td>
-						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(cartList.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
-						<td style="width: 400px; height: 31px;">[<%=cartList.get(i).getPrd_code()%>]  <%=cartList.get(i).getPrd_name()%> </td>
-						<td style="width: 120px; height: 31px;">가격 : <%=cartList.get(i).getPrice() %> 원</td>
-						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getOrder_count()%> 개</td>
-						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getPrice() * cartList.get(i).getOrder_count()%>원</td>
-						<td style="width: 120px; height: 31px;"><button onclick="deleteCartList()">삭제</button></td>
+						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getPrd_code()%>" class="check"></td>
+						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
+						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
+						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
+						<td style="width: 120px; height: 31px;"><%=list.get(i).getOrder_count()%> 개</td>
+						<td style="width: 120px; height: 31px;"><%=list.get(i).getPrice() * list.get(i).getOrder_count()%>원</td>
+						<td style="width: 120px; height: 31px;"><button onclick="deletelist()">삭제</button></td>
 					</tr>
 				</table>
 			</div>
 			<%} %>
 			<div class="pagingArea" align="center">
-			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/insertCart?currentPage=1&orderCheck=<%=orderCheck%>'">처음</button>
+			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy?currentPage=1%>'">처음</button>
 			<% if(currentPage <= 1){ %>
 				<button class="ebtn" disabled><</button>
 			<% }else{%>
-				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/insertCart?currentPage=<%=currentPage - 1 %>&orderCheck=<%=orderCheck%>'">< 이전</button>
+				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy?currentPage=<%=currentPage - 1 %>'">< 이전</button>
 			<% } %>
 			<% for(int p = startPage; p <= endPage; p++){ 
 					if(p == currentPage){%>
 						<button class="ebtn" disabled><%= p %></button>
 			<%      }else{%>
-						<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/insertCart?currentPage=<%=p%>&orderCheck=<%=orderCheck%>'"><%=p %></button>
+						<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy?currentPage=<%=p%>'"><%=p %></button>
 			<%      } %>
 			<% } %>			
 			
@@ -243,7 +227,7 @@ for(int i = 0; i < cartList.size(); i++){
 			<% if(currentPage >= maxPage){ %>
 				<button class="ebtn" disabled>></button>
 			<% }else{ %>
-				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/insertCart?currentPage=<%=currentPage + 1 %>&orderCheck=<%=orderCheck%>'">다음 ></button>
+				<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy?currentPage=<%=currentPage + 1 %>'">다음 ></button>
 
 			<% } %>
 			<button class="ebtn" onclick="a()">맨끝</button>
@@ -305,9 +289,9 @@ for(int i = 0; i < cartList.size(); i++){
 				}
 			}
 
-			function deleteCartList() {
+			function deletelist() {
 				if (confirm("선택한 목록을 삭제하시겠습니까?") == true) {
-					location.href = "<%=request.getContextPath()%>/deleteCartList";
+					location.href = "<%=request.getContextPath()%>/deletelist";
 				}else{
 					return false;
 				}

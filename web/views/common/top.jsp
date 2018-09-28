@@ -4,6 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="com.kh.MasterPiece.member.model.vo.Member, com.kh.MasterPiece.product.model.vo.*" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
+
 %>
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,10 @@
 package com.kh.MasterPiece.admin.model.service;
 
 
-import static com.kh.MasterPiece.common.JDBCTemplate.*;
+import static com.kh.MasterPiece.common.JDBCTemplate.close;
+import static com.kh.MasterPiece.common.JDBCTemplate.commit;
+import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
+import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.product.model.vo.Product; 
@@ -460,6 +464,26 @@ public class testService {
 		close(con);
 		
 		return sel_asc;
+	}
+
+	public int getCartList(Member m) {
+		Connection con = getConnection();
+		
+		int result = new testDao().getCartList(con, m);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Cart> selectCartList(int currentPage, int limit, Member m) {
+		Connection con = getConnection();
+		
+		ArrayList<Cart> list = new testDao().selectCartList(con, currentPage, limit, m);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

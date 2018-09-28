@@ -78,7 +78,7 @@
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/view_history'">구매내역</div>
 			<br>
-			<div class="text" onclick="location.href='views/mypage/cart/cart_myPage.jsp'">장바구니</div>
+			<div class="text" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy'">장바구니</div>
 			<br>
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/Review_Servlet'">내가 쓴 게시물</div>
