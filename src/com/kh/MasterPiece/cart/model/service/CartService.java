@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.MasterPiece.admin.model.dao.testDao;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.cart.model.dao.CartDao;
 import com.kh.MasterPiece.cart.model.vo.Cart;
@@ -84,6 +85,19 @@ Connection con = getConnection();
 		close(con);
 		
 		return listCount;
+	}
+	public int deleteCart(String[] values) {
+		Connection con = getConnection();
+		
+		int result = new CartDao().deleteCart(con, values);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+	
+		return result;
 	}
 	
 }
