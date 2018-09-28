@@ -219,7 +219,7 @@ for(int i = 0; i < cartList.size(); i++){
 						<td style="width: 120px; height: 31px;">가격 : <%=cartList.get(i).getPrice() %> 원</td>
 						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getOrder_count()%> 개</td>
 						<td style="width: 120px; height: 31px;"><%=cartList.get(i).getPrice() * cartList.get(i).getOrder_count()%>원</td>
-						<td style="width: 120px; height: 31px;"><button onclick="deleteCartList()">삭제</button></td>
+						<td style="width: 120px; height: 31px;"><button class="delete">삭제</button></td>
 					</tr>
 				</table>
 			</div>
@@ -313,6 +313,23 @@ for(int i = 0; i < cartList.size(); i++){
 				}
 			}
 			
+			$(".delete").click(function(){
+				var val = "";
+				var value = [];
+				$(".check:checked").each(function(index,item){
+					if(index!=0){
+						val += ",";
+					}
+					val += $(this).val();
+					value.push($(this).val());
+				})
+				if(val!=""){
+					location.href="<%= request.getContextPath() %>/deleteCartList?code="+val;
+				}
+					
+			});
+			
+				
 			$(".buy").click(function(){
 				var val = "";
 				var value = [];
