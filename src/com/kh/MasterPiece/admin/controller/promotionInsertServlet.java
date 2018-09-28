@@ -90,7 +90,7 @@ public class promotionInsertServlet extends HttpServlet {
 				
 				
 				if(result > 0){
-					response.sendRedirect(request.getContextPath() + "/views/admin/promotion/pro.jsp");
+					response.sendRedirect(request.getContextPath() + "/promotionList.h");
 				}else{
 					//실패시 저장된 파일 삭제
 					for(int i = 0; i < saveFiles.size(); i++){
