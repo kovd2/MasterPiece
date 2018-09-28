@@ -1461,4 +1461,82 @@ public class testDao {
 		return result;
 	}
 
+
+	public int newMemberCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("newMemberCount");
+		
+		int result = 0;
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public HashMap<String, Integer> sel_desc(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("sel_asc");
+		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()){
+				hmap.put(rset.getString(2), rset.getInt(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return hmap;
+	}
+
+
+	public HashMap<String, Integer> sel_asc(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("sel_asc");
+		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				hmap.put(rset.getString(2), rset.getInt(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return hmap;
+	}
+
 }

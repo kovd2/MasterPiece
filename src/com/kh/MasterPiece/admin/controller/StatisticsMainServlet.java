@@ -2,6 +2,9 @@ package com.kh.MasterPiece.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +35,9 @@ public class StatisticsMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Integer> monthSales = new testService().monthSales();
+		HashMap<String, Integer> sel_desc = new testService().sel_desc();
+		HashMap<String, Integer> sel_asc = new testService().sel_asc();
+		
 		int count = new testService().newMemberCount();
 		String page = "";
 		
@@ -39,6 +45,8 @@ public class StatisticsMainServlet extends HttpServlet {
 			page = "/views/admin/statistics/statisticsMain.jsp";
 			request.setAttribute("monthSales", monthSales);
 			request.setAttribute("count", count);
+			request.setAttribute("sel_desc", sel_desc);
+			request.setAttribute("sel_asc", sel_asc);
 		}else{
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");

@@ -55,6 +55,17 @@ background: lightblue;
 			<button id="menubar" class="btn"><input type="hidden" value="CASE">케이스</button>
 			<button style = "float: right; background:lightgray;" id="menubar" class="delete">삭제</button>
 		</div>
+		<div style="margin-top: 20px;margin-left: 20px">
+			<button id="menubar" class="btn"><input type="hidden" value="전체">전체</button>
+			<button id="menubar" class="btn"><input type="hidden" value="CPU">CPU</button>
+			<button id="menubar" class="btn"><input type="hidden" value="MAINBOARD">메인 보드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="GRAPHIC">그래픽카드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="ODD">ODD</button>
+			<button id="menubar" class="btn"><input type="hidden" value="POWER">파워 서플라이</button>
+			<button id="menubar" class="btn"><input type="hidden" value="COOL">쿨러</button>
+			<button id="menubar" class="btn"><input type="hidden" value="CASE">케이스</button>
+			<button style = "float: right; background:lightgray;" id="menubar" class="delete">삭제</button>
+		</div>
 		<div style="margin-top:20px;">
 			<table style="margin-left:20px" id="list">
 			<tr>
