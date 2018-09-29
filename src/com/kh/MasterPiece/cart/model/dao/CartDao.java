@@ -212,4 +212,27 @@ public class CartDao {
 
 		return listCount;
 	}
+	public int deleteCart(Connection con, String[] values) {
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("deleteCart");
+
+		int result = 0;
+
+		try {
+			for(int i = 0; i < values.length; i++){
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, values[i]);
+				result += pstmt.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+
+		return result;
+	}
 }

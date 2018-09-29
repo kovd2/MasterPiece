@@ -297,6 +297,23 @@
 				}
 			}
 			
+			$(".delete").click(function(){
+				var val = "";
+				var value = [];
+				$(".check:checked").each(function(index,item){
+					if(index!=0){
+						val += ",";
+					}
+					val += $(this).val();
+					value.push($(this).val());
+				})
+				if(val!=""){
+					location.href="<%= request.getContextPath() %>/deleteCartList?code="+val;
+				}
+					
+			});
+			
+				
 			$(".buy").click(function(){
 				var val = "";
 				var value = [];
