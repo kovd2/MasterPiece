@@ -484,7 +484,7 @@ System.out.println("prdList : " + prdList);
 			if(confirm("장바구니로 가시겠습니까?") == true){
 				location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 			}else{
-				
+				location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
 			}
 		};
 

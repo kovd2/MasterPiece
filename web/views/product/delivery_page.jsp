@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*,com.kh.MasterPiece.cart.model.vo.*,java.util.*"%>
+<%
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
+ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();	
+int total = 0;
+for(int i = 0; i < list.size(); i++){
+	total += list.get(i).getHap();
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +21,8 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script charset="UTF-8" type="text/javascript" src="http://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <title>Insert title here</title>
 <style>
 .wrap {
@@ -444,49 +460,55 @@
 	<div class="wrap">
 		<!-- 배송 및 주문 페이지 전체 div -->
 		<div class="step">
-			<img src="../../images/jinseok/icon/step_delivery.PNG">
+			<img src="/MasterPiece/images/jinseok/icon/step_delivery.PNG">
 		</div>
 		<div class="prd_delivery">
+		
 			<!-- 주문 상품 div -->
+			
 			<div class="delivery_title">주문상품</div>
+			<table>
+				<tr>
+					<th style="width: 100px; height: 31px;">이미지</th>
+					<th style="width: 350px; height: 31px;">상품명</th>
+					<th style="width: 100px; height: 31px;">상품 가격</th>
+					<th style="width: 100px; height: 31px;">수량</th>
+					<th style="width: 100px; height: 31px;">합계</th>
+				</tr>
+			</table>
+			<%for(int i = 0; i < list.size(); i++){ %>
 			<div class="delivery_tb">
 				<table>
 					<tr>
-						<th style="width: 100px; height: 31px;">이미지</th>
-						<th style="width: 350px; height: 31px;">상품명</th>
-						<th style="width: 100px; height: 31px;">상품 가격</th>
-						<th style="width: 100px; height: 31px;">수량</th>
-						<th style="width: 100px; height: 31px;">합계</th>
-					</tr>
-					<tr>
-						<td style="text-align: center;"><img
-							src="../../images/jinseok/cpu/i3_7100.jpg" style="width: 85px; height: 85px;"></td>
-						<td style="width: 350px; height: 31px;">[AMD] 라이젠 3 레이븐릿지
-							2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품) Ryean 3 2200G(3.5GHz) / 쿼드코어(4코어)
-							/ 라이젠 / 소켓AM4 / 6MB버퍼 / 14nm / AMD 라데온 Vega 8 내장그래픽</td>
-						<td style="width: 100px; height: 31px; font-size: 14px;">가격 :
-							217000원</td>
-						<td style="width: 100px; height: 31px;">수량</td>
-						<td style="width: 100px; height: 31px;">217000원</td>
+						<%-- <td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getPrd_code()%>" class="check"></td> --%>
+						<td style="width:100px; height:31px;"><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
+						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
+						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
+						<td style="width: 120px; height: 31px;"><%=list.get(i).getOrder_count()%> 개</td>
+						<td style="width: 120px; height: 31px;"><%=list.get(i).getPrice() * list.get(i).getOrder_count()%>원</td>
 					</tr>
 				</table>
 			</div>
+			<%} %>
+			
 		</div>
 		<div class="shipping_info">
+		
 			<!-- 배송지 정보 div -->
+			
 			<div class="delivery_title">배송지 정보</div>
 			<table class="shipping_tb">
 				<tr>
 					<th>받으시는 분</th>
-					<td><input type="text"></td>
+					<td><input type="text" value="<%=loginUser.getUserName()%>"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>배송지 명</th>
-					<td><input type="text"></td>
-				</tr>
+					<td><input type="text" value></td>
+				</tr> -->
 				<tr>
 					<th>전화번호</th>
-					<td><input type="tel" name="phone"></td>
+					<td><input type="tel" name="phone" value="<%=loginUser.getPhone()%>"></td>
 				</tr>
 				<tr>
 					<th>주소</th>
@@ -499,7 +521,7 @@
 				</tr>
 				<tr>
 					<th>상세주소</th>
-					<td><input type="text" id="address3" name="address3" class="long_text"></td>
+					<td><input type="text" id="address3" name="address3" class="long_text" value="<%=loginUser.getAddress()%>"></td>
 				</tr>
 				<tr>
 					<th>배송시 요구사항</th>
@@ -507,13 +529,13 @@
 				</tr>
 			</table>
 		</div>
-		<div class="delivery_wrap">
+		<!-- <div class="delivery_wrap">
 			<div class="delivery_title">배송지 선택</div>
 
 			<div class="delivery_left">
 				<div class="delivery">배송지 선택</div>
-			</div>
-			<div class="delivery_center">
+			</div> -->
+			<!-- <div class="delivery_center">
 				<ul>
 					<li><input type="radio" name="delivery" id="cj"><label
 						for="cj">CJ대한통운</label></li>
@@ -528,8 +550,11 @@
 				</ul>
 			</div>
 			<div class="delivery_right">택배사 별 정보사항</div>
-		</div>
+		</div> -->
 		<br> <br>
+		
+		<!-- 결제 방법 선택 div -->
+		
 		<div id="pay_price_method_layer" class="div_all_layer pay_box_layer">
 		<div style="width:100%; height:500px;">
 			<div id="pay_price_method_left">
@@ -542,18 +567,17 @@
 								<tr>
 									<th style="border-top: none;">결제방법 선택</th>
 										<td style="border-top: none;">
-											<input type="radio" name="pay_price_method" id="pay_price_method_1" value="bank">
+											<input type="radio" class="pay_price_method" name="pay_price_method" id="pay_price_method_1" value="bank">
 											<label for="pay_price_method_1">무통장입금</label> &nbsp; 
 												<span style="padding-left: 24px;">
-											<input type="radio" name="pay_price_method" id="pay_price_method_2" value="card">
+											<input type="radio" class="pay_price_method" name="pay_price_method" id="pay_price_method_2" value="card">
 											<label for="pay_price_method_2">신용카드</label></span>
 										</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<div id="pay_price_method_bank" class="pay_price_table_class"
-						style="display: none;">
+					<div id="pay_price_method_bank" class="pay_price_table_class" style="visibility: hidden;">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 								<tr id="pay_input_bank_select">
@@ -592,7 +616,7 @@
 					</div>
 
 
-					<div id="pay_price_method_no_bank" class="pay_price_table_class"style="display: none;">
+					<div id="pay_price_method_no_bank" class="pay_price_table_class"style="visibility: hidden;">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 								<tr>
@@ -639,7 +663,7 @@
 
 							</tbody>
 						</table>
-						<table id="pay_price_method_no_bank_addbox" style="display: none;">
+						<table id="pay_price_method_no_bank_addbox" style="visibility: hidden;">
 							<tbody>
 								<tr>
 									<th colspan="2" style="border-right: none">
@@ -661,16 +685,14 @@
 						</table>
 					</div>
 
-					<div id="pay_price_method_kakao" class="pay_price_table_class"
-						style="display: none;">
+					<div id="pay_price_method_kakao" class="pay_price_table_class"style="display: none;">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
-								<tr>
+								<!-- <tr>
 									<th>기존적립금</th>
 									<td>
 										<input type="textbox" name="point_can_use_kakao"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0onkeyup="usePointCheck('kakao');" readonly="">
 										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp;
-										 <!-- <img src="./images/pay_point_apply_btn.gif" alt="포인트적용" class="orange_btn" onclick="usePointCheck('kakao');"/> -->
 										<span style="padding-left: 8px;">(보유머니 <span class="pay_price_orage_font">0P</span>)</span>
 									</td>
 								</tr>
@@ -703,7 +725,7 @@
 										<input type="radio" name="pay_tax_bank" id="pay_tax_kakao_3" value="no">
 										<label for="pay_tax_kakao_3">신청안함</label> </span>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -721,7 +743,7 @@
 										<b>제품가격</b>
 									</dt>
 									<dd>
-										<b>222,000원</b>
+										<b><%=total %>원</b>
 									</dd>
 								</dl>
 								<dl>
@@ -735,15 +757,16 @@
 								<dl id="pay_price_total_print">
 									<dt>총 결제금액</dt>
 									<dd>
-										<span class="pay_box_right_total" id="printPayPrice">222,000</span>원
+										<span class="pay_box_right_total" id="printPayPrice"><%=total %></span>원
 									</dd>
 								</dl>
 							</div>
 						</div>
 
 						<div id="pay_right_btn_layer">
-							<img src="../../images/jinseok/icon/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="goCart();">
-							<img src="../../images/jinseok/icon/pay_go_pay_btn.gif" alt="결제하기" style="float: right" onclick="billingPage()" id="pay_submit_btn"> 
+							<img src="/MasterPiece/images/jinseok/icon/pay_go_cart_btn.gif" alt="장바구니로 가기" onclick="goCart();">
+							<img src="/MasterPiece
+							/images/jinseok/icon/pay_go_pay_btn.gif" alt="결제하기" style="float: right" onclick="billingPage()" id="pay_submit_btn"> 
 						</div>
 					</div>
 				</div>
@@ -790,11 +813,39 @@
 					
 				};
 				function goCart(){
-					location.href="./cart_page.jsp";
+					location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 				}
+				var select ="";
 				function billingPage(){
-					location.href="./billingPage.jsp";
-				}
+					var id = "<%=loginUser.getUserId()%>";
+					var price = <%=total%>;
+					var name = $("#id_bank_name").val();
+					if(select == "bank"){
+						if(name == ""){
+							alert("입금자 이름을 입력하시오.");
+							return false;
+						}						
+						location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=bank" + "&name=" + name + "";
+					
+					}else{
+						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=card" + "";
+					}
+				};
+				
+				$("input:radio[name=pay_price_method]").click(function(){
+					select = $(this).val();
+					
+					if(select == "bank"){
+						$("#pay_price_method_bank").css("visibility","visible");
+						$("#pay_price_method_no_bank_addbox").css("visibility","hidden");
+					}else{
+						$("#pay_price_method_bank").css("visibility","hidden");
+						$("#pay_price_method_no_bank_addbox").css("visibility","visible");
+					}
+				});
+				
+				
+				
 			</script>
 			<%@include file = "../common/footer.jsp" %>
 </body>

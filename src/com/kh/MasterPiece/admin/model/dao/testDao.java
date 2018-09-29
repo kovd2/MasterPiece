@@ -1602,6 +1602,7 @@ public class testDao {
 				
 				Cart c = new Cart();
 				c.setPrd_code(rset.getString("PRD_CODE"));
+				c.setOrder_no(rset.getInt("ORDER_NO"));
 				c.setPrd_name(rset.getString("PRD_NAME"));
 				c.setPrice(rset.getInt("PRICE"));
 				c.setOrder_count(rset.getInt("ORDER_COUNT"));

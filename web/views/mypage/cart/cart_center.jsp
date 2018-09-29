@@ -197,13 +197,13 @@
 			<div>
 				<table class="cart_list">
 					<tr>
-						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getPrd_code()%>" class="check"></td>
+						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getOrder_no()%>" class="check"></td>
 						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
 						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
 						<td style="width: 120px; height: 31px;"><%=list.get(i).getOrder_count()%> 개</td>
 						<td style="width: 120px; height: 31px;"><%=list.get(i).getPrice() * list.get(i).getOrder_count()%>원</td>
-						<td style="width: 120px; height: 31px;"><button onclick="deletelist()">삭제</button></td>
+						<td style="width: 120px; height: 31px;"><button class="delete">삭제</button></td>
 					</tr>
 				</table>
 			</div>
@@ -263,7 +263,7 @@
 			
 			
 			<div class="go_shopping" onclick="goList()"><img src="/MasterPiece/images/jinseok/icon/cart_go_shopping_btn.gif"></div>
-			<div class="purchase" onclick="goBuy()"><img src="/MasterPiece/images/jinseok/icon/cart_pay_btn.gif" class="buy"></div>
+			<div class="purchase"><img src="/MasterPiece/images/jinseok/icon/cart_pay_btn.gif" class="buy"></div>
 		</div>
 		<br><br><br><br>
 		</div>
@@ -275,25 +275,12 @@
 			function goList(){
 				location.href="<%=request.getContextPath()%>/prdPageList.js?category=CPU";
 			}
-			
-			function goBuy(){
-				location.href="<%=request.getContextPath()%>/delivery";
-			}
-			
-			
+					
 			function checkAll() {
 				if ($("#checkAll").is(':checked')) {
 					$("input[name=checkBoxList]").prop("checked", true);
 				} else {
 					$("input[name=checkBoxList]").prop("checked", false);
-				}
-			}
-
-			function deletelist() {
-				if (confirm("선택한 목록을 삭제하시겠습니까?") == true) {
-					location.href = "<%=request.getContextPath()%>/deletelist";
-				}else{
-					return false;
 				}
 			}
 			
@@ -314,7 +301,7 @@
 			});
 			
 				
-			$(".buy").click(function(){
+			$(".purchase").click(function(){
 				var val = "";
 				var value = [];
 				
@@ -326,7 +313,7 @@
 					value.push($(this).val());
 				})
 				if(val!=""){
-					location.href="<%= request.getContextPath() %>/delivery?code="+val;
+					location.href="<%= request.getContextPath() %>/insertPayment?code="+val;
 				}
 					
 			});
