@@ -43,7 +43,7 @@
 	<table align="center" style="margin-top: 40px">
 	<tr>
 	<td><input type="button" style="width:100px; height:50px;" value="수정" onclick="promotionModifyBtn()"></td>
-	<td><input type="button" style="width:100px; height:50px;" value="삭제" onclick="promotionDeleteBtn()"></td>
+	<td><input type="button" style="width:100px; height:50px;" value="삭제" onclick="location.href='<%= request.getContextPath() %>/promotionDelete.h?proNo=<%=p.getPromotion_No() %>'"></td>
 	</tr>
 	</table>
 	<input type="file" id="proImg1" name="proImg1" onchange="loadImg(this,1);">
@@ -85,6 +85,8 @@
 		
 		function promotionDeleteBtn(){
 			
+			$("#proNo").val().submit();
+			action="<%=request.getContextPath() %>/promotionModify.h"
 			location.href = "<%=request.getContextPath()%>/promotionDelete.h";
 			
 		}
