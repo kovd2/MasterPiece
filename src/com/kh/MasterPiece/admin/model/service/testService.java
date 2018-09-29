@@ -443,4 +443,23 @@ public class testService {
 		
 		return count;
 	}
+
+	public HashMap<String, Integer> sel_desc() {
+		Connection con = getConnection();
+		HashMap<String, Integer> sel_desc = new testDao().sel_desc(con);
+		
+		close(con);
+		
+		return sel_desc;
+	}
+
+	public HashMap<String, Integer> sel_asc() {
+		Connection con = getConnection();
+		HashMap<String, Integer> sel_asc = new testDao().sel_asc(con);
+		
+		close(con);
+		
+		return sel_asc;
+	}
+
 }
