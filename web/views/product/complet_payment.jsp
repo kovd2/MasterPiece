@@ -68,7 +68,7 @@
 	<%@include file = "../common/footer.jsp" %>
 	<script>
 	function goHome(){
-		location.href="../../index.jsp";
+		location.href="../../main.jsp";
 	}
 	</script>
 </body>

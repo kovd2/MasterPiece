@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
@@ -1646,6 +1647,203 @@ public class testDao {
 			close(pstmt);
 		}
 
+		return result;
+	}
+
+
+	public ArrayList<OrderConfirm> orderConfirmList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<OrderConfirm> list = null;
+
+
+		String query = prop.getProperty("selectCartList");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<OrderConfirm>();
+
+			while(rset.next()){
+				
+				OrderConfirm oc = new OrderConfirm();
+				oc.setPay_date(rset.getDate(2));
+				oc.setOrder_check(rset.getString(3));
+				oc.setPrd_name(rset.getString(4));
+				oc.setUser_id(rset.getString(5));
+				oc.setPay_price(rset.getInt(6));
+				oc.setPay_way(rset.getString(7));
+				oc.setPay_status(rset.getString(8));
+				oc.setPrd_code(rset.getString(9));
+				oc.setCount(rset.getInt(10));
+				
+				list.add(oc);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int getOrderConfirmCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("OrderConfirmCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public ArrayList<Product> detail(Connection con, String oc) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Product> list = null;
+
+
+		String query = prop.getProperty("detail");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, oc);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrd_name(rset.getString(1));
+				p.setCategory(rset.getString(2));
+				p.setSell_count(rset.getInt(3));
+				list.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public ArrayList<OrderConfirm> orderSearchList(Connection con, int currentPage, int limit, String ordercheck) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<OrderConfirm> list = null;
+
+
+		String query = prop.getProperty("orderSearchList");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setString(1, ordercheck);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<OrderConfirm>();
+
+			while(rset.next()){
+				
+				OrderConfirm oc = new OrderConfirm();
+				oc.setPay_date(rset.getDate(2));
+				oc.setOrder_check(rset.getString(3));
+				oc.setPrd_name(rset.getString(4));
+				oc.setUser_id(rset.getString(5));
+				oc.setPay_price(rset.getInt(6));
+				oc.setPay_way(rset.getString(7));
+				oc.setPay_status(rset.getString(8));
+				oc.setPrd_code(rset.getString(9));
+				oc.setCount(rset.getInt(10));
+				
+				list.add(oc);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+	public int getOrderSearchCount(Connection con, String orderCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("OrderSearchCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, orderCheck);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
 		return result;
 	}
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
+import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
@@ -490,6 +491,54 @@ public class testService {
 		Connection con = getConnection();
 		
 		int result = new testDao().promotionDelete(con, proNo);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<OrderConfirm> orderConfirmList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<OrderConfirm> list = new testDao().orderConfirmList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int getOrderConfirmCount() {
+		Connection con = getConnection();
+		
+		int result = new testDao().getOrderConfirmCount(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Product> detail(String oc) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> list = new testDao().detail(con, oc);
+		
+		close(con);
+		return list;
+	}
+
+	public ArrayList<OrderConfirm> orderSearchList(int currentPage, int limit, String oc) {
+		Connection con = getConnection();
+		
+		ArrayList<OrderConfirm> list = new testDao().orderSearchList(con, currentPage, limit, oc);
+		
+		close(con);
+		return list;
+	}
+
+	public int getOrderSearchCount(String oc) {
+		Connection con = getConnection();
+		
+		int result = new testDao().getOrderSearchCount(con, oc);
 		
 		close(con);
 		
