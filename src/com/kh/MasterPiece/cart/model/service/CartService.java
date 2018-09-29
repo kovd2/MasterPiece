@@ -50,6 +50,7 @@ public class CartService {
 		
 		return result;
 	}
+	
 	public String test(String orderCheck) {
 		Connection con = getConnection();
 		
@@ -59,6 +60,7 @@ public class CartService {
 		
 		return result;
 	}
+	
 	public ArrayList<Cart> selectCart(String code, String id, int count, String orderCheck, int currentPage, int limit, String category) {
 		Connection con = getConnection();
 		
@@ -68,6 +70,7 @@ public class CartService {
 		
 		return cartList;
 	}
+	
 	public HashMap<String, Attachment> imgList() {
 		Connection con = getConnection();
 		
@@ -77,6 +80,7 @@ public class CartService {
 		
 		return imgList;
 	}
+	
 	public int getListCount(String orderCheck) {
 Connection con = getConnection();
 		

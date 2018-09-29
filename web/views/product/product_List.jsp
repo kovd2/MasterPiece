@@ -402,7 +402,7 @@ System.out.println("prdList : " + prdList);
 							</dl>
 						</div>
 						<div class="prd_count">수량
-							<select id="prd_count">
+							<select id="<%= prdList.get(i).getPrd_code()%>">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -467,12 +467,24 @@ System.out.println("prdList : " + prdList);
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";
-			var count = $("#prd_count").val();
-	
+			var count = $("#"+code).val();
+			 $.ajax({
+					url: "insertCart",
+					data : {
+						code:code,
+						count:count
+						},
+					type : "get",
+					success:function(data){
+							
+					}
+				}); 
+			
+			
 			if(confirm("장바구니로 가시겠습니까?") == true){
-				location.href="<%=request.getContextPath()%>/insertCart?t=y&code=" + code + "&count=" + count +"&orderCheck=" + orderCheck+ "&user=" + user + "";
+				location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 			}else{
-				location.href="<%=request.getContextPath()%>/insertCart?t=n&code="+ code+ "&count="+ count+ "&orderCheck="+ orderCheck+ "&user="+ user+ "&category="+ category + "";
+				
 			}
 		};
 

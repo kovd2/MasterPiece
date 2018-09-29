@@ -20,6 +20,7 @@ import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
+import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.product.model.vo.Product;
@@ -1537,6 +1538,88 @@ public class testDao {
 		}
 		
 		return hmap;
+	}
+
+
+	public int getCartList(Connection con, Member m) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("CartList");
+
+		int listCount = 0;
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getOrderCheck());
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+
+		}
+
+
+
+		return listCount;
+	}
+
+
+	public ArrayList<Cart> selectCartList(Connection con, int currentPage, int limit, Member m) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Cart> list = null;
+
+
+		String query = prop.getProperty("selectCartList");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getOrderCheck());
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Cart>();
+
+			while(rset.next()){
+				
+				Cart c = new Cart();
+				c.setPrd_code(rset.getString("PRD_CODE"));
+				c.setPrd_name(rset.getString("PRD_NAME"));
+				c.setPrice(rset.getInt("PRICE"));
+				c.setOrder_count(rset.getInt("ORDER_COUNT"));
+				c.setHap(rset.getInt("HAP"));
+				
+				list.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
 	}
 
 }
