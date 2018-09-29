@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String id = request.getParameter("id");
+int price = Integer.parseInt(request.getParameter("price"));
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +16,7 @@
 <body>
 	<script>
 	/*아임포트 결제 api*/
-	
+ 
 	IMP.init('imp29263511');
 	
 	IMP.request_pay({
@@ -22,7 +26,7 @@
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
+	    buyer_name : 'test',
 	    buyer_tel : '010-1234-5678',
 	    buyer_addr : '서울특별시 강남구 삼성동',
 	    buyer_postcode : '123-456'
@@ -47,7 +51,7 @@
 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
 	    			alert(msg);
-	    			location.href="./complet_payment.jsp"
+	    			location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=card" + "&applyno=" + rsp.apply_num + "";
 	    		} else {
 	    			//[3] 아직 제대로 결제가 되지 않았습니다.
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -58,7 +62,7 @@
 	        msg += '에러내용 : ' + rsp.error_msg;
 
 	        alert(msg);
-	        location.href="./cart_page.jsp";
+	        location.href="<%=request.getContextPath()%>/main.jsp";
 	    }
 	});
 	</script>

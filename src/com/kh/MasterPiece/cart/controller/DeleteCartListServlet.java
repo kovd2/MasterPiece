@@ -41,7 +41,7 @@ public class DeleteCartListServlet extends HttpServlet {
 		String page = "";
 		
 		if(result > 0){
-			page = "views/mypage/cart/cart_myPage.jsp";
+			page = "/SelectCartList.swy";
 			
 		}else{
 			page = "views/common/errorPage.jsp";
