@@ -1622,4 +1622,30 @@ public class testDao {
 		return list;
 	}
 
+
+	public int promotionDelete(Connection con, String proNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("promotionDelete");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, proNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }

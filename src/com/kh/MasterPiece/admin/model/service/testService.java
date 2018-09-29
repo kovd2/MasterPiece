@@ -486,4 +486,14 @@ public class testService {
 		return list;
 	}
 
+	public int promotionDelete(String proNo) {
+		Connection con = getConnection();
+		
+		int result = new testDao().promotionDelete(con, proNo);
+		
+		close(con);
+		
+		return result;
+	}
+
 }
