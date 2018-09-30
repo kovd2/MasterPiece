@@ -9,7 +9,7 @@
 <body>
 <script>
 	window.onload = function(){
-		location.href="<%=request.getContextPath() %>/graphic.tn";
+		location.href="<%=request.getContextPath() %>/promotion.tn";
 	}
 </script>
 

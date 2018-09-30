@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.MasterPiece.admin.model.vo.Promotion;
+import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.dao.MainDao;
@@ -112,6 +114,29 @@ public class MainService {
 		
 		return listCount;
 	}
+	
+	//프로모션 리스트
+	public ArrayList<Promotion> promotionList() {
+		Connection con = getConnection();
+		
+		ArrayList<Promotion> list = new MainDao().promotionList(con);
+		
+		close(con);
+		
+		return list ;
+	}
+	
+	//프로모션 이미지
+	public HashMap<String, Promotion_ATT> promotionImageList() {
+		Connection con = getConnection();
+		
+		HashMap<String, Promotion_ATT> list = new MainDao().promotionImageList(con);
+		
+		close(con);
+		
+		return list;
+	}
+	
 }
 
 
