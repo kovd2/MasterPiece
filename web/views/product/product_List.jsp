@@ -411,10 +411,10 @@ System.out.println("prdList : " + prdList);
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="baskebtBtn" onclick="addCart('<%=prdList.get(i).getPrd_code()%>')">
+							<div class="basketBtn" onclick="addCart('<%=prdList.get(i).getPrd_code()%>')">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
-							<div class="buyBtn" onclick="goBuy();">
+							<div class="buyBtn" onclick="goBuy('<%=prdList.get(i).getPrd_code()%>');">
 								<img src="/MasterPiece/images/jinseok/icon/go_pay_btn.gif">
 							</div>
 						</div>
@@ -459,9 +459,63 @@ System.out.println("prdList : " + prdList);
 			location.href="<%= request.getContextPath()%>/prdDetail?code=" + code;
 		}
 		
-		function goBuy(){
-			location.href="./delivery_page.jsp";
+		function goBuy(No){
+			
+			$(".buyBtn").click(function(){
+				var code = No;
+				var orderCheck = "<%=loginUser.getOrderCheck()%>";
+				var user = "<%=loginUser.getUserId()%>";
+				var count = $("#"+code).val();
+				 $.ajax({
+						url: "insertCart",
+						data : {
+							code:code,
+							count:count
+							},
+						type : "get",
+						success:function(data){
+								
+						}
+					}); 
+				var val = "";
+				var value = [];
+				
+				$(".Prd_list").each(function(index,item){
+					if(index != 0){
+						val += ",";
+					}
+					val += $(this).val();
+					value.push($(this).val());
+				})
+				if(val != ""){
+					location.href="<%= request.getContextPath() %>/insertPayment?code="+val;
+				}
+			})
 		};
+				
+			<%-- var code = No;
+			var orderCheck = "<%=loginUser.getOrderCheck()%>";
+			var user = "<%=loginUser.getUserId()%>";
+			var count = $("#"+code).val();
+			 $.ajax({
+					url: "insertCart",
+					data : {
+						code:code,
+						count:count
+						},
+					type : "get",
+					success:function(data){
+							
+					}
+				}); 
+			
+			
+			if(confirm("구매 페이지로 가시겠습니까?") == true){
+				location.href="<%=request.getContextPath()%>/SelectCartList.swy?";
+			}else{
+				location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
+			}
+		}; --%>
 
 	 	function addCart(No){
 			var code = No;
