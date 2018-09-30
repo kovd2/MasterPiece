@@ -1658,7 +1658,7 @@ public class testDao {
 		ArrayList<OrderConfirm> list = null;
 
 
-		String query = prop.getProperty("selectCartList");
+		String query = prop.getProperty("selectCartList2");
 
 		try {
 

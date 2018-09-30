@@ -23,14 +23,20 @@ public class PayMentServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("옴");
 		String id = request.getParameter("id");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String select = request.getParameter("select");
 		String name = request.getParameter("name");
-		String applyno = request.getParameter("rsp.apply_num");
-		System.out.println(name);
+		String applyno = request.getParameter("applyno");
+		System.out.println("id : " + id);
+		System.out.println("price : " + price);
+		System.out.println("select : " + select);
+		System.out.println("name : " + name);
+		System.out.println("applyno : " + applyno);
 		Member m = (Member)request.getSession().getAttribute("loginUser");
 		String orderCheck = m.getOrderCheck();
+		
 		if(select.equals("bank")){
 			int result = new payMentService().payMentBank(id, price, select, name);
 			int result1 = new payMentService().testUp(orderCheck,result);

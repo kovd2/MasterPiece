@@ -828,7 +828,7 @@ for(int i = 0; i < list.size(); i++){
 						location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=bank" + "&name=" + name + "";
 					
 					}else{
-						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=card" + "";
+						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=" + select + "";
 					}
 				};
 				
