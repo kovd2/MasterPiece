@@ -119,9 +119,11 @@
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
+					<form action="<%= request.getContextPath() %>/gotoupdate.ue" method="post">
 						<table id="detailTable" style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
+									<input type="hidden" name="boardId" value="<%= b.getBOARD_ID() %>">
 									<th style="width:150px; border-right:none;">작성자</th>
 									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
 									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
@@ -131,11 +133,13 @@
 									<th style="vertical-align:middle; height:50px;">제목</th>
 									<!-- <td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td> -->
 									<td colspan="3"><span style="margin-left:20px;"/><%= b.getBOARD_TITLE() %></span></td>
+									<input type="hidden" name="title" value="<%= b.getBOARD_TITLE() %>">
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
 									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
 										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
+										<input type="hidden" name="content" value="<%= b.getBOARD_CONTENT() %>">
 									</td>
 								</tr>
 							</tbody>
@@ -146,11 +150,12 @@
 							{
 						%>
 						<div>
-							<button type="button" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;" onclick="location.href='<%= request.getContextPath() %>/gotoupdate.ue?title=<%= b.getBOARD_TITLE() %>&content=<%= b.getBOARD_CONTENT() %>&boardId=<%= b.getBOARD_ID() %>'">수정</button>
+							<button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;">수정</button>
 						</div>
 						<div>
 							<button type="button" class="btn" style="background:orangered; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.ue?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
 						</div>
+					</form>
 						<%
 							}
 						%>

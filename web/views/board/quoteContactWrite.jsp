@@ -6,6 +6,7 @@
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	String today = dateFormat.format(writeDate);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
