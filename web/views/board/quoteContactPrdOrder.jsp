@@ -126,7 +126,7 @@ table
 	{
 		if($("input[type='checkbox']").is(':checked'))
 		{
-			var prdTxt = $("input[name='prdCode']").val() + " " + $("input[name='orderCount']").val() + "개";
+			var prdTxt = $("input[name='prdCode']").val() + " " + "[" + $("input[name='orderCount']").val() + "개]";
 			
 			opener.document.getElementById("content").value = prdTxt;
 			
