@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.admin.model.vo.Promotion;
+import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.product.model.vo.Product;
@@ -358,13 +360,78 @@ public class MainDao {
 
 		return listCount;
 	}
+	
+	//프로모션 리스트
+	public ArrayList<Promotion> promotionList(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Promotion> list = new ArrayList();
+
+		String query = prop.getProperty("promotionList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+	
+			while(rset.next()){
+				Promotion p = new Promotion();
+				p.setPromotion_No(rset.getString("PROMOTION_NO"));
+				p.setPromotion_Title(rset.getString("PROMOTION_TITLE"));
+				p.setPromotion_DATE(rset.getString("PROMOTION_DATE"));
+				p.setPromotion_URL(rset.getString("PROMOTION_URL"));
+				
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+	}
+	
+	//프로모션 이미지
+	public HashMap<String, Promotion_ATT> promotionImageList(Connection con) {
+		PreparedStatement pstmt = null;
+		HashMap<String, Promotion_ATT> list = null;
+
+		ResultSet rset = null;
+
+		String query = prop.getProperty("promotionImageList");
+		System.out.println(query);
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			list = new HashMap<String, Promotion_ATT>();
+
+			while(rset.next()){
+				Promotion_ATT pa = new Promotion_ATT();
+				
+				pa.setFile_code(rset.getString("FILE_CODE"));
+				pa.setChange_name(rset.getString("CHANGE_NAME"));
+				pa.setFile_name(rset.getString("FILE_NAME"));
+				pa.setUpload_date(rset.getString("UPLOAD_DATE"));
+				pa.setSave_route(rset.getString("SAVE_ROUTE"));
+				pa.setPromotion_no(rset.getString("PROMOTION_NO"));
+				
+				list.put(rset.getString("PROMOTION_NO"), pa);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+
+		return list;
+	}
 }
-
-
-
-
-
-
 
 
 
