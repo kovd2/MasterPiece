@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.MasterPiece.prdOrder.model.vo.*, java.util.*, com.kh.MasterPiece.board.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.kh.MasterPiece.mypage.buyerhistory.model.vo.*, java.util.*, com.kh.MasterPiece.board.model.vo.*"%>
 <%
-	ArrayList<PrdOrder> prdList = (ArrayList<PrdOrder>)request.getAttribute("prdList");
+	ArrayList<BuyerHistory> buyList = (ArrayList<BuyerHistory>)request.getAttribute("buyList");
 	HashMap<String, Attachment> imageList = (HashMap<String, Attachment>)request.getAttribute("imageList");
 	
-	/* for(PrdOrder p : prdList)
+	/* for(BuyerHistory bh : buyList)
 	{
-		Attachment image = imageList.get(p.getPrdCode());
-		System.out.println("ㅋㅋ : " + image);
+		Attachment image = imageList.get(bh.getPrdName());
+		System.out.println(bh.getPrdName());
+		System.out.println("아니 왜 null이야 : " + image);
 	} */
 	
-	System.out.println("ㅎㅎ : " + imageList);
-	System.out.println("ㅋ");
+	/* System.out.println("ㅎㅎ : " + imageList);
+	System.out.println("ㅋ"); */
 %>
 <!DOCTYPE html>
 <html>
@@ -64,7 +65,7 @@ table
 </style>
 </head>
 <body>
-	<div class="header">장바구니</div>
+	<div class="header">구매내역</div>
 	<br><br>
 	<div align="center">
 		<table style="width:520px; text-align:center;" align="center">
@@ -81,18 +82,18 @@ table
 			</thead>
 			<tbody>
 				<%
-					for(PrdOrder p : prdList)
+					for(BuyerHistory bh : buyList)
 					{
-						Attachment image = imageList.get(p.getPrdCode());
+						Attachment image = imageList.get(bh.getPrdName());
 						
-						/* System.out.println("PPOOOIII : " + image); */
+						System.out.println("$%^& : " + image);
 				%>
 				<tr>
 					<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList"></td>
 					<td style="width:100px; height:100px;"><img style="width:100%; height:100%;" src="<%= request.getContextPath() %>/images/product/<%= image.getChangeName() %>"></td>
-					<td><input type="hidden" name="prdCode" value="<%= p.getPrdCode() %>"><%= p.getPrdCode() %></td>
-					<td><input type="hidden" name="orderCount" value="<%= p.getOrderCount() %>"><%= p.getOrderCount() %></td>
-					<td><%= p.getPrice() %>원</td>
+					<td><input type="hidden" name="prdCode" value="<%= bh.getPrdCode() %>"><%= bh.getPrdCode() %></td>
+					<td><input type="hidden" name="orderCount" value="<%= bh.getOrderCount() %>"><%= bh.getOrderCount() %></td>
+					<td><%= bh.getPayPrice() %>원</td>
 				</tr>
 				<%
 					}

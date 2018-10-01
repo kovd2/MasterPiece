@@ -104,7 +104,7 @@ table th
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">견적 요청</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="<%= request.getContextPath() %>/insert.qc" method="post" style="margin-top:-8px;">
+					<form action="<%= request.getContextPath() %>/insert.qc" method="post" style="margin-top:-8px;" id="exform">
 						<table style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">

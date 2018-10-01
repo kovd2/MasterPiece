@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
+	Board answerBoard = (Board)request.getAttribute("answerBoard");
 	ArrayList<Board> replyList = (ArrayList<Board>)request.getAttribute("replyList");
 %>
 <!DOCTYPE html>
@@ -87,6 +88,21 @@
 {
 	font-size:14px;
 }
+
+#answerTable
+{
+	border-spacing:0px;
+	border-collapse: collapse;
+}
+#answerTable>tbody>tr>th, #answerTable>tbody>tr>td
+{
+	border:1px solid lightgray;
+}
+#answerTable>tbody>tr>th
+{
+	text-align:left;
+	padding-left:10px;
+}
 </style>
 </head>
 <body>
@@ -137,8 +153,14 @@
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
+									<%
+										b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("\n", "<br>"));
+									%>
 									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
 										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
+									<%
+										b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("<br>", "\n"));
+									%>
 										<input type="hidden" name="content" value="<%= b.getBOARD_CONTENT() %>">
 									</td>
 								</tr>
@@ -160,7 +182,27 @@
 							}
 						%>
 						</div>
-						<br><br>
+						<br clear="both"><br>
+						<%
+							if(b.getQUE_STATUS().equals("Y"))
+							{
+						%>
+						<div style="background:#D5D5D5; font-size:14px;">
+							<table id="answerTable" style="width:100%;">
+							<tbody class="boardHead" style="font-size:14px;">
+								<tr>
+									<th style="vertical-align:middle; width:100px;">답변</th>
+									<td class="boardContent" colspan="3" style="vertical-align:middle;">
+										<span style="margin-left:20px;"><%= answerBoard.getBOARD_CONTENT() %></span>
+									</td>
+								</tr>
+							</tbody>
+							</table>
+						</div>
+						<%
+							}
+						%>
+						<br clear="both">
 						<!-- 댓글 -->
 						<div id="replyArea">
 							<table id="replyListTable" align="center">

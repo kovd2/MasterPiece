@@ -447,12 +447,21 @@ public class BoardService {
 
 	public ArrayList<Board> searchUserEstimateContent(String content, int currentPage, int limit)
 	{
-Connection conn = getConnection();
+		Connection conn = getConnection();
 		
 		ArrayList<Board> list = new BoardDao().searchUserEstimateContent(conn, content, currentPage, limit);
 		
 		close(conn);
 		
 		return list;
+	}
+
+	public Board selectAnswerOne(int boardId)
+	{
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectAnswerOne(conn, boardId);
+		
+		return b;
 	}	
 }

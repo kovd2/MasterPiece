@@ -86,4 +86,10 @@ public class PrdOrder implements Serializable
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return "PrdOrder [userId=" + userId + ", orderDate=" + orderDate + ", prdCode=" + prdCode + ", orderCheck="
+				+ orderCheck + ", orderCount=" + orderCount + ", price=" + price + "]";
+	}
 }

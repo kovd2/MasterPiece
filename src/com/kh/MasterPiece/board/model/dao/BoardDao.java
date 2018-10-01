@@ -1552,4 +1552,53 @@ public class BoardDao
 		
 		return list;
 	}
+	public Board selectAnswerOne(Connection conn, int boardId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		System.out.println("응? : " + boardId);
+		
+		Board b = null;
+		
+		String query = prop.getProperty("selectAnswerOne");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				b = new Board();
+				
+				b.setBOARD_ID(rset.getInt("board_id"));
+				b.setBOARD_TYPE(rset.getInt("board_type"));
+				b.setBOARD_PWD(rset.getString("board_pwd"));
+				b.setBOARD_NO(rset.getInt("board_no"));
+				b.setBOARD_CATEGORY(rset.getString("board_category"));
+				b.setBOARD_TITLE(rset.getString("board_title"));
+				b.setBOARD_CONTENT(rset.getString("board_content"));
+				b.setBOARD_WRITER(rset.getString("user_id"));
+				b.setREF_BOARD_ID(rset.getInt("ref_board_id"));
+				b.setBOARD_LEVEL(rset.getInt("board_level"));
+				b.setBOARD_DATE(rset.getDate("board_date"));
+				b.setBOARD_STATUS(rset.getString("board_status"));
+				b.setQUE_STATUS(rset.getString("que_status"));
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+	}
 }

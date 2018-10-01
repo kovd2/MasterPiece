@@ -41,7 +41,10 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		System.out.println(boardId);
 		
 		Board b = new BoardService().selectQuoteContactOne(boardNo);
+		Board answerBoard = new BoardService().selectAnswerOne(boardId);
 		ArrayList<Board> replyList = new BoardService().selectReplyQuoteContact(boardId);
+		
+		//System.out.println("답변이라능 : " + answerBoard);
 		
 		/*System.out.println("댓글이다! : " + replyList);*/
 				
@@ -51,6 +54,7 @@ public class SelectOneQuoteContactServlet extends HttpServlet {
 		{
 			page = "views/board/quoteContactDetail.jsp";
 			request.setAttribute("b", b);
+			request.setAttribute("answerBoard", answerBoard);
 			request.setAttribute("replyList", replyList);
 		}
 		else
