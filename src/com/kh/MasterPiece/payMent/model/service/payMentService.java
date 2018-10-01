@@ -22,10 +22,10 @@ public class payMentService {
 		return list;
 	}
 
-	public int payMentBank(String id, int price, String select, String name) {
+	public int payMentBank(String id, int price, String select, String name, String recipient, String address, String tel, String etc) {
 		Connection con = getConnection();
 		
-		int result = new payMentDao().payMentBank(con, id, price, select, name);
+		int result = new payMentDao().payMentBank(con, id, price, select, name, recipient, address, tel, etc);
 		
 		if(result > 0){
 			commit(con);
@@ -53,18 +53,78 @@ public class payMentService {
 		return result;
 	}
 
-	public int applyno(String id, int price, String select, String applyno) {
+	public int payMentCard(String id, int price, String select, String applyno, String recipient, String address, String tel, String etc) {
 		Connection con = getConnection();
 		
-		int result3 = new payMentDao().applyno(con, id, price, select, applyno);
+		int result2 = new payMentDao().payMentCard(con, id, price, select, applyno, recipient, address, tel, etc);
 		
-		if(result3 > 0){
+		if(result2 > 0){
 			commit(con);
 		}else{
 			rollback(con);
 		}
+		close(con);
+		return result2;
+	}
+
+	public int testUp2(String orderCheck, int result3) {
+		Connection con = getConnection();
 		
-		return result3;
+		int result = new payMentDao().testUp2(con, orderCheck, result3);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int afterPayment(String id, String orderCheck) {
+		Connection con = getConnection();
+		
+		int result = new payMentDao().afterPayment(con, id, orderCheck);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int buyHistory(String orderCheck) {
+		Connection con = getConnection();
+		
+		int result = new payMentDao().buyHistory(con, orderCheck);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int buyHistory2(String orderCheck) {
+		Connection con = getConnection();
+		
+		int result = new payMentDao().buyHistory2(con, orderCheck);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
 	}
 
 }
