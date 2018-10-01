@@ -13,6 +13,8 @@ int total = 0;
 for(int i = 0; i < list.size(); i++){
 	total += list.get(i).getHap();
 }
+
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -457,6 +459,7 @@ for(int i = 0; i < list.size(); i++){
 </head>
 <body>
 	<%@ include file="../common/top.jsp"%>
+	<input type="hidden" id="userAddress" value="<%=loginUser.getAddress() %>">
 	<div class="wrap">
 		<!-- 배송 및 주문 페이지 전체 div -->
 		<div class="step">
@@ -500,7 +503,7 @@ for(int i = 0; i < list.size(); i++){
 			<table class="shipping_tb">
 				<tr>
 					<th>받으시는 분</th>
-					<td><input type="text" value="<%=loginUser.getUserName()%>"></td>
+					<td><input type="text" value="<%=loginUser.getUserName()%>" id="name"></td>
 				</tr>
 				<!-- <tr>
 					<th>배송지 명</th>
@@ -508,11 +511,11 @@ for(int i = 0; i < list.size(); i++){
 				</tr> -->
 				<tr>
 					<th>전화번호</th>
-					<td><input type="tel" name="phone" value="<%=loginUser.getPhone()%>"></td>
+					<td><input type="tel" name="phone" value="<%=loginUser.getPhone()%>" id="tel"></td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input type="text" id="address1" name="address1">&nbsp;
+					<td><input type="text" id="address1" name="address1">
 					<input type="button" id="zipcode" value="우편번호" onclick="search_post()"></td>
 				</tr>
 				<tr>
@@ -521,11 +524,11 @@ for(int i = 0; i < list.size(); i++){
 				</tr>
 				<tr>
 					<th>상세주소</th>
-					<td><input type="text" id="address3" name="address3" class="long_text" value="<%=loginUser.getAddress()%>"></td>
+					<td><input type="text" id="address3" name="address3" class="long_text"></td>
 				</tr>
 				<tr>
 					<th>배송시 요구사항</th>
-					<td><input type="text" class="long_text"></td>
+					<td><input type="text" class="long_text" id = "etc"></td>
 				</tr>
 			</table>
 		</div>
@@ -600,7 +603,7 @@ for(int i = 0; i < list.size(); i++){
 								</tr>
 
 
-								<tr>
+								<!-- <tr>
 									<th>증빙서류신청</th>
 									<td>
 										<input type="radio" name="pay_tax_bank" id="pay_tax_bank_1" value="tax">
@@ -610,14 +613,14 @@ for(int i = 0; i < list.size(); i++){
 										<span style="padding-left: 20px;"><input type="radio" name="pay_tax_bank" id="pay_tax_bank_3" value="no">
 										<label for="pay_tax_bank_3">신청안함</label></span>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
 
 
 					<div id="pay_price_method_no_bank" class="pay_price_table_class"style="visibility: hidden;">
-						<table border="0" cellpadding="0" cellspacing="0">
+						<!-- <table border="0" cellpadding="0" cellspacing="0">
 							<tbody>
 								<tr>
 									<th>기존적립금</th>
@@ -662,7 +665,7 @@ for(int i = 0; i < list.size(); i++){
 								</tr>
 
 							</tbody>
-						</table>
+						</table> -->
 						<table id="pay_price_method_no_bank_addbox" style="visibility: hidden;">
 							<tbody>
 								<tr>
@@ -681,51 +684,6 @@ for(int i = 0; i < list.size(); i++){
 
 									</th>
 								</tr>
-							</tbody>
-						</table>
-					</div>
-
-					<div id="pay_price_method_kakao" class="pay_price_table_class"style="display: none;">
-						<table border="0" cellpadding="0" cellspacing="0">
-							<tbody>
-								<!-- <tr>
-									<th>기존적립금</th>
-									<td>
-										<input type="textbox" name="point_can_use_kakao"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0onkeyup="usePointCheck('kakao');" readonly="">
-										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp;
-										<span style="padding-left: 8px;">(보유머니 <span class="pay_price_orage_font">0P</span>)</span>
-									</td>
-								</tr>
-								<tr>
-									<th>I POINT</th>
-									<td>
-										<input type="textbox" name="i_point_use_kakao"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('kakao');"> 
-										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
-										<span style="padding-left: 8px;">(보유 I POINT<span class="pay_price_orage_font">0P</span>) &nbsp;&nbsp; &nbsp; 
-											<span style="padding-left: 40px;">
-											<input type="checkbox" name="i_point_vat_use"id="id_i_point_vat_use_kakao" value="use"onclick="iPointVatUse(this.id);">
-											<label for="id_i_point_vat_use_kakao">I POINT 세금계산서 및 현금영수증 발행</label></span>
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th>현금반품적립금</th>
-									<td>
-									<input type="textbox" name="cash_point_use_kakao" class="pay_textbox_style pay_textbox_short" style="text-align: right;" value="0" onkeyup="usePointCheck('kakao');"> 
-									<img src="./images/pay_orange_point_icon.gif" class="orange_icon"> &nbsp; &nbsp; &nbsp; 
-									<span style="padding-left: 8px;">(보유 현금반품적립금 <span class="pay_price_orage_font">0P</span>)</span>
-									</td>
-								</tr>
-
-								<tr style="display: none">
-									<th>증빙서류신청</th>
-									<td>
-										<input type="radio" name="pay_tax_bank" id="pay_tax_kakao_1" value="tax">
-										<label for="pay_tax_kakao_1">세금계산서</label> &nbsp; <span style="padding-left: 23px;">
-										<input type="radio" name="pay_tax_bank" id="pay_tax_kakao_3" value="no">
-										<label for="pay_tax_kakao_3">신청안함</label> </span>
-									</td>
-								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -816,19 +774,31 @@ for(int i = 0; i < list.size(); i++){
 					location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 				}
 				var select ="";
+				var address = document.getElementById("userAddress").value; + "";
+				var addressArr = address.split('|', 3);
+				
+				$("#address1").val(addressArr[0]);
+				$("#address2").val(addressArr[1]);
+				$("#address3").val(addressArr[2]);
 				function billingPage(){
 					var id = "<%=loginUser.getUserId()%>";
 					var price = <%=total%>;
 					var name = $("#id_bank_name").val();
+					var recipient = $('#name').val();
+					var address = addressArr;
+					var tel = $('#tel').val();
+					var etc = $('#etc').val();
 					if(select == "bank"){
 						if(name == ""){
 							alert("입금자 이름을 입력하시오.");
 							return false;
 						}						
-						location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=bank" + "&name=" + name + "";
+						location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=" + select + "&name=" + name + 
+								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "";
 					
 					}else{
-						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=" + select + "";
+						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=" + select +
+								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "";
 					}
 				};
 				
@@ -843,7 +813,6 @@ for(int i = 0; i < list.size(); i++){
 						$("#pay_price_method_no_bank_addbox").css("visibility","visible");
 					}
 				});
-				
 				
 				
 			</script>

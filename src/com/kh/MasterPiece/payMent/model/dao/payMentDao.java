@@ -77,7 +77,7 @@ public class payMentDao {
 		return list;
 	}
 
-	public int payMentBank(Connection con, String id, int price, String select, String name) {
+	public int payMentBank(Connection con, String id, int price, String select, String name, String recipient, String address, String tel, String etc) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		Statement stmt = null;
@@ -94,11 +94,14 @@ public class payMentDao {
 			pstmt.setInt(3, price);
 			pstmt.setString(4, "결제");
 			pstmt.setString(5, select);
+			pstmt.setString(6, address);
+			pstmt.setString(7, tel);
+			pstmt.setString(8, etc);
+			pstmt.setString(9, recipient);
 			
-
 			result = pstmt.executeUpdate();
 			stmt = con.createStatement();
-			rset = stmt.executeQuery("select SEQ_PAY_NO.CURRVAL FROM DUAL");
+			rset = stmt.executeQuery("SELECT SEQ_PAY_NO.CURRVAL FROM DUAL");
 			if(rset.next()){
 				result = rset.getInt(1);
 				System.out.println(result);
@@ -107,6 +110,8 @@ public class payMentDao {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
+			close(stmt);
+			close(rset);
 		}
 
 		return result;
@@ -134,9 +139,10 @@ public class payMentDao {
 		return result;
 	}
 
-	public int applyno(Connection con, String id, int price, String select, String applyno) {
+	public int payMentCard(Connection con, String id, int price, String select, String applyno, String recipient, String address, String tel, String etc) {
 		PreparedStatement pstmt = null;
-		int result3 = 0;
+		int result2 = 0;
+		
 		String query = prop.getProperty("cardPayment");
 		
 		try {
@@ -147,8 +153,12 @@ public class payMentDao {
 			pstmt.setInt(3, price);
 			pstmt.setString(4, "결제");
 			pstmt.setString(5, select);
+			pstmt.setString(6, address);
+			pstmt.setString(7, tel);
+			pstmt.setString(8, etc);
+			pstmt.setString(9, recipient);
 			
-			result3 = pstmt.executeUpdate();
+			result2 = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -156,7 +166,95 @@ public class payMentDao {
 		}finally{
 			close(pstmt);
 		}
-		return result3;
+		return result2;
+	}
+
+	public int testUp2(Connection con, String orderCheck, int result3) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateTest2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, result3);
+			pstmt.setString(2, orderCheck);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int afterPayment(Connection con, String id, String orderCheck) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("afterPayment");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, orderCheck);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int buyHistory(Connection con, String orderCheck) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("buyHistory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, orderCheck);
+			pstmt.setString(2, "입금 확인 중");
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int buyHistory2(Connection con, String orderCheck) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("buyHistory2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, orderCheck);
+			pstmt.setString(2, "배송 준비 중");
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 }
