@@ -64,4 +64,54 @@ public class ProductService {
 		
 		return listCount;
 	}
+	//------------------------------------인기상품 정렬----------------------------------------------------
+	public ArrayList<Product> popularList(int currentPage, int limit, String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> prdList = new ProductDao().popularList(con, currentPage, limit, category);
+		
+		close(con);
+		
+		return prdList;
+	}
+
+	public ArrayList<Product> newList(int currentPage, int limit, String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> prdList = new ProductDao().newList(con, currentPage, limit, category);
+		
+		close(con);
+		
+		return prdList;
+	}
+
+	public ArrayList<Product> lowList(int currentPage, int limit, String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> prdList = new ProductDao().lowList(con, currentPage, limit, category);
+		
+		close(con);
+		
+		return prdList;
+	}
+
+	public ArrayList<Product> highList(int currentPage, int limit, String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> prdList = new ProductDao().highList(con, currentPage, limit, category);
+		
+		close(con);
+		
+		return prdList;
+	}
+
+	public ArrayList<Product> recommendList(int currentPage, int limit, String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> prdList = new ProductDao().recommendList(con, currentPage, limit, category);
+		
+		close(con);
+		
+		return prdList;
+	}
 }

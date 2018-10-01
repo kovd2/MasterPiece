@@ -43,6 +43,10 @@
 	font-weight:bold;
 	border-bottom: 1px solid black;
 }
+.wrap .delete {
+	float:right;
+	
+}
 .wrap .cart_price_info{
 	width: 100%;
 	height: 350px;
@@ -189,7 +193,7 @@
 					<td style="width: 120px; height: 31px;">상품 가격</td>
 					<td style="width: 120px; height: 31px;">수량</td>
 					<td style="width: 120px; height: 31px;">합계</td>
-					<td style="width: 120px; height: 31px;">관리</td>
+					<!-- <td style="width: 120px; height: 31px;">관리</td> -->
 				</tr>
 			</table>
 			
@@ -197,17 +201,26 @@
 			<div>
 				<table class="cart_list">
 					<tr>
-						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getOrder_no()%>" class="check"></td>
+						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getOrder_no()%>" class="check" checked></td>
 						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
 						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
 						<td style="width: 120px; height: 31px;"><%=list.get(i).getOrder_count()%> 개</td>
 						<td style="width: 120px; height: 31px;"><%=list.get(i).getPrice() * list.get(i).getOrder_count()%>원</td>
+					</tr>
+				</table>
+			</div>
+			<%} %>
+			<%if(list.size() != 0){ %>
+			<div>
+				<table class="delete">				
+					<tr>
 						<td style="width: 120px; height: 31px;"><button class="delete">삭제</button></td>
 					</tr>
 				</table>
 			</div>
 			<%} %>
+			<%if(list.size() != 0){ %>
 			<div class="pagingArea" align="center">
 			<button class="ebtn" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy?currentPage=1%>'">처음</button>
 			<% if(currentPage <= 1){ %>
@@ -232,6 +245,7 @@
 			<% } %>
 			<button class="ebtn" onclick="a()">맨끝</button>
 		</div>
+			<%}%>
 			<br><br><br><br><br>
 		<div class="price_area">
 				<div class="priceArea">
@@ -272,6 +286,7 @@
 	
 	</div>	
 		<script>
+		/* ------------------------------------------상품 목록으로 가기 --------------------------------------------*/
 			function goList(){
 				location.href="<%=request.getContextPath()%>/prdPageList.js?category=CPU";
 			}
@@ -283,7 +298,7 @@
 					$("input[name=checkBoxList]").prop("checked", false);
 				}
 			}
-			
+		/* ------------------------------------------장바구니 상품 삭제 --------------------------------------------*/
 			$(".delete").click(function(){
 				var val = "";
 				var value = [];
@@ -298,13 +313,15 @@
 					location.href="<%= request.getContextPath() %>/deleteCartList?code="+val;
 				}
 					
-			});
-			
-				
+			});		
+		/* ------------------------------------------선택한 상품 구매하기--------------------------------------------*/
 			$(".purchase").click(function(){
 				var val = "";
 				var value = [];
-				
+				var cnt = $("input[name=checkBoxList]:checkbox:checked").length;
+				if(cnt < 1){
+					alert("한개 이상 선택하셔야 합니다.");
+				}
 				$(".check:checked").each(function(index,item){
 					if(index!=0){
 						val += ",";
@@ -314,9 +331,11 @@
 				})
 				if(val!=""){
 					location.href="<%= request.getContextPath() %>/insertPayment?code="+val;
-				}
-					
+				}				
 			});
+		
+			
+	
 		</script>
 </body>
 </html>

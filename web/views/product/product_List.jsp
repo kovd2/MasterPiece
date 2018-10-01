@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%	
 	ArrayList<Product> prdList = (ArrayList<Product>)request.getAttribute("prdList");
-System.out.println("prdList : " + prdList);
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
 	String category = (String)request.getAttribute("category");
 	String oc = (String)request.getAttribute("oc");		
@@ -145,7 +144,10 @@ System.out.println("prdList : " + prdList);
 	text-decoration:none;
 	cursor:pointer;
 }
-
+.top_menu_list on{
+	background:#c70000;
+	color:white;
+}
 .Prd_list_area .Prd_list {
 	width:100%;
 	height:200px;
@@ -374,11 +376,11 @@ System.out.println("prdList : " + prdList);
 			<div class="Prd_list_area">
 				<div class="top_menu">
 					<ul class="top_menu_area">
-						<li class="top_menu_list">인기상품순</li>
-						<li class="top_menu_list">신규등록순</li>
-						<li class="top_menu_list">추천상품순</li>
-						<li class="top_menu_list">낮은가격순</li>
-						<li class="top_menu_list">높은가격순</li>
+						<li class="top_menu_list" id="popularItem" onclick="popularItem('<%=category%>')">인기상품순</li>
+						<li class="top_menu_list" id="newItem" onclick="newItem('<%=category%>')">신규등록순</li>
+						<li class="top_menu_list" id="recommendItem" onclick="recommendItem('<%=category%>')">추천상품순</li>
+						<li class="top_menu_list" id="lowerPriceItem" onclick="lowerPriceItem('<%=category%>')">낮은가격순</li>
+						<li class="top_menu_list" id="highPriceItem" onclick="highPriceItem('<%=category%>')">높은가격순</li>
 					</ul>
 				</div>
 				
@@ -459,24 +461,55 @@ System.out.println("prdList : " + prdList);
 			location.href="<%= request.getContextPath()%>/prdDetail?code=" + code;
 		}
 		
-		function goBuy(No){
+		function popularItem(c){
+			var category = c;
 			
-			$(".buyBtn").click(function(){
-				var code = No;
-				var orderCheck = "<%=loginUser.getOrderCheck()%>";
-				var user = "<%=loginUser.getUserId()%>";
-				var count = $("#"+code).val();
-				 $.ajax({
-						url: "insertCart",
-						data : {
-							code:code,
-							count:count
-							},
-						type : "get",
-						success:function(data){
+			location.href="<%= request.getContextPath()%>/popularList?category=" + category;
+			$('#popularItem').addClass('on'); 
+		}
+		
+		function newItem(c){
+			var category = c;
+			
+			location.href="<%= request.getContextPath()%>/newList?category=" + category;
+		}
+		function recommendItem(c){
+			var category = c;
+			
+			location.href="<%= request.getContextPath()%>/recommendList?category=" + category;
+		}
+		function lowerPriceItem(c){
+			var category = c;
+			
+			location.href="<%= request.getContextPath()%>/lowList?category=" + category;
+		}
+		function highPriceItem(c){
+			var category = c;
+			
+			location.href="<%= request.getContextPath()%>/highList?category=" + category;
+		}
+		
+		function goBuy(No){
+			var code = No;
+			var orderCheck = "<%=loginUser.getOrderCheck()%>";
+			var user = "<%=loginUser.getUserId()%>";
+			var count = $("#"+code).val();
+				$.ajax({
+					url: "insertCart",
+					data : {
+						code:code,
+						count:count
+						},
+					type : "get",
+					success:function(data){
 								
-						}
-					}); 
+					}
+				}); 
+			if(confirm("구매 페이지로 가시겠습니까?") == true){
+					<%-- location.href="<%=request.getContextPath()%>/SelectCartList.swy?"; --%>
+			}else{
+					location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
+			}
 				var val = "";
 				var value = [];
 				
@@ -486,38 +519,13 @@ System.out.println("prdList : " + prdList);
 					}
 					val += $(this).val();
 					value.push($(this).val());
-				})
+				}) 
 				if(val != ""){
-					location.href="<%= request.getContextPath() %>/insertPayment?code="+val;
-				}
-			})
-		};
-				
-			<%-- var code = No;
-			var orderCheck = "<%=loginUser.getOrderCheck()%>";
-			var user = "<%=loginUser.getUserId()%>";
-			var count = $("#"+code).val();
-			 $.ajax({
-					url: "insertCart",
-					data : {
-						code:code,
-						count:count
-						},
-					type : "get",
-					success:function(data){
-							
-					}
-				}); 
-			
-			
-			if(confirm("구매 페이지로 가시겠습니까?") == true){
-				location.href="<%=request.getContextPath()%>/SelectCartList.swy?";
-			}else{
-				location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
+					location.href="<%=request.getContextPath()%>/insertPayment?code="+ val;
 			}
-		}; --%>
+		}
 
-	 	function addCart(No){
+		function addCart(No) {
 			var code = No;
 			var orderCheck = "<%=loginUser.getOrderCheck()%>";
 			var user = "<%=loginUser.getUserId()%>";

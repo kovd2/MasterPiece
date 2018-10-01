@@ -58,6 +58,7 @@ public class ProductPageListServlet extends HttpServlet {
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			ArrayList<Product> prdList = new ProductService().prdList(currentPage, limit, category);
+			
 			System.out.println("prdList : " + prdList);
 			
 			String page = "";
