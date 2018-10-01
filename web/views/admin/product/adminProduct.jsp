@@ -56,16 +56,17 @@ background: lightblue;
 			<button style = "float: right; background:lightgray;" id="menubar" class="delete">삭제</button>
 		</div>
 		<div style="margin-top: 20px;margin-left: 20px">
-			<button id="menubar" class="btn"><input type="hidden" value="전체">전체</button>
-			<button id="menubar" class="btn"><input type="hidden" value="CPU">CPU</button>
-			<button id="menubar" class="btn"><input type="hidden" value="MAINBOARD">메인 보드</button>
-			<button id="menubar" class="btn"><input type="hidden" value="GRAPHIC">그래픽카드</button>
-			<button id="menubar" class="btn"><input type="hidden" value="ODD">ODD</button>
-			<button id="menubar" class="btn"><input type="hidden" value="POWER">파워 서플라이</button>
-			<button id="menubar" class="btn"><input type="hidden" value="COOL">쿨러</button>
-			<button id="menubar" class="btn"><input type="hidden" value="CASE">케이스</button>
-			<button style = "float: right; background:lightgray;" id="menubar" class="delete">삭제</button>
+			<button id="menubar" class="btn"><input type="hidden" value="PAD">패드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="MONITOR">모니터</button>
+			<button id="menubar" class="btn"><input type="hidden" value="MOUSE">마우스</button>
+			<button id="menubar" class="btn"><input type="hidden" value="KEYBOARD">키보드</button>
+			<button id="menubar" class="btn"><input type="hidden" value="SPEAKER">스피커</button>
+			<button id="menubar" class="btn"><input type="hidden" value="ADAPTER">어댑터</button>
+			<button id="menubar" class="btn"><input type="hidden" value="HEADSET">헤드셋</button>
 		</div>
+		
+
+
 		<div style="margin-top:20px;">
 			<table style="margin-left:20px" id="list">
 			<tr>

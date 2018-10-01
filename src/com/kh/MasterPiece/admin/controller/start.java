@@ -35,11 +35,13 @@ public class start extends HttpServlet {
 		int result[] = new testService().Count();
 		HashMap<String, String[]> hmap = new testService().selectList();
 		int count = new testService().newMemberCount();
+		int cnt = new testService().cnt();
 		for(int i = 0; i < result.length; i++){
 			request.setAttribute(""+i, result[i]);
 		}
 		request.setAttribute("hmap", hmap);
 		request.setAttribute("count", count);
+		request.setAttribute("cnt", cnt);
 		RequestDispatcher view = request.getRequestDispatcher("adminMain.jsp");
 		view.forward(request, response);
 		
