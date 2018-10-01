@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8" import="java.util.*,
 								com.kh.MasterPiece.product.model.vo.*,
     							com.kh.MasterPiece.board.model.vo.*,
-    							com.kh.MasterPiece.main.model.vo.*"%>
+    							com.kh.MasterPiece.main.model.vo.*,
+    							com.kh.MasterPiece.admin.model.vo.*"%>
 <%
 	/* 모든 상품 */
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
@@ -26,6 +27,11 @@
 	int maxPage2 = pi2.getMaxPage();
 	int startPage2 = pi2.getStartPage();
 	int endPage2 = pi2.getEndPage(); 
+	
+	/* 프로모션 */
+	ArrayList<Promotion> pList = (ArrayList<Promotion>)request.getAttribute("plist");
+	HashMap<String, Promotion_ATT> pimgList =
+					(HashMap<String, Promotion_ATT>)request.getAttribute("pimgList");
 	
 	Calendar currentCalendar = Calendar.getInstance();
 	int strDay = currentCalendar.get(Calendar.DATE);
@@ -107,11 +113,7 @@
 	font-size: 50px;
 }
 
-.carousel .list li.a1 { background-image:url('./images/kimjaeyup/test/banner_1.png'); background-repeat: no-repeat;}
-.carousel .list li.a2 { background-image:url('./images/kimjaeyup/test/banner_2.png'); background-repeat: no-repeat; }
-.carousel .list li.a3 { background-image:url('./images/kimjaeyup/test/banner_3.png'); background-repeat: no-repeat; }
-.carousel .list li.a4 { background-image:url('./images/kimjaeyup/test/banner_4.png'); background-repeat: no-repeat; }
-	
+
 .prev {
 	position: absolute;
 	left: 0px;
@@ -254,8 +256,11 @@ a{ text-decoration:none }
 .right_banner{width: 105px; top:151px; left:1341px; position: absolute;}
 
 /* 메인 상품 페이징 버튼 CSS */
-.thisBtn1, .thisBtn2{background-color:#d9534f; color:white; cursor: pointer; border: none; font-size: 15px; padding: 5px 10px; margin:2px;}
-.thisBtn1:hover, .thisBtn2:hover{ background-color: #d2322d; color: white;}
+/* .thisBtn1, .thisBtn2{background-color:#d9534f; color:white; cursor: pointer; border: none; font-size: 15px; padding: 5px 10px; margin:2px;}
+.thisBtn1:hover, .thisBtn2:hover{ background-color: #d2322d; color: white;} */
+.thisBtn1, .thisBtn2{ cursor: pointer; background-color: white; border:#4c48483b 1px solid; font-size: 15px; padding: 5px 10px; margin:2px;}
+.thisBtn1:hover, .thisBtn2:hover{border:#727272 1px solid;}
+
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -271,13 +276,13 @@ a{ text-decoration:none }
 	<div class="c_wrap">
 		<div class="carousel">
 			<ul class="list">
-				<%-- <% for(int i = 0; i < list.size(); i++){%>
-					<li><img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>" width="405px;" height="1080px;"></li>
-				<%} %> --%>
-				 <li class="a1"></li>
-				<li class="a2"></li>
-				<li class="a3"></li>
-				<li class="a4"></li>  
+				<% for(int i = 0; i < pimgList.size(); i++){%>
+					<li>
+					<a href="<%=pList.get(i).getPromotion_URL()%>">
+						<img src="<%=request.getContextPath() %>/images/promotion/<%=pimgList.get(pList.get(i).getPromotion_No()).getChange_name()%>" width=1080px, height=450px, style = "background-repeat: no-repeat;">
+					</a>
+					</li>
+				<%} %>
 			</ul>
 		</div>
 		<p class="prev"><img src='./images/kimjaeyup/arrow_left.png' style="width:40px; height:50px;"></p>
@@ -285,9 +290,9 @@ a{ text-decoration:none }
 	</div>
 	<div class="left_banner">
 		<ul style="list-style:none;">
-			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26096.jpg"></a></li>
+			<li><a onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=HDD'"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26096.jpg"></a></li>
 			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26208.jpg"></a></li>
-			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26103.jpg"></a></li>
+			<li><a onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GAME'"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26103.jpg"></a></li>
 		</ul>
 	</div>
  	<div class="right_banner">
@@ -356,22 +361,22 @@ a{ text-decoration:none }
 			<div class="product_1">
 				<!-- <link rel="stylesheet" type="text/css" href="/main/css/index_renew_addmask.css?t=godo150414" media="all"> -->
 				<div class="view view-show" style="margin-right:140px;">
-					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(0).getPrd_code()).getChangeName()%> width="466" height="287" >
+					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(61).getPrd_code()).getChangeName()%> width="466" height="287" >
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName"><%=list.get(0).getPrd_name() %></p>
-						<p class="viewContent"><%=list.get(0).getPrice() %> 원</p>
+						<p class="productName"><%=list.get(61).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(61).getPrice() %> 원</p>
 						<p class="viewDetail">
 							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
 						</p>
 					</div>
 				</div>
 				<div class="view view-show">
-					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(1).getPrd_code()).getChangeName()%> width="466" height="287">
+					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(111).getPrd_code()).getChangeName()%> width="466" height="287">
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName"><%=list.get(0).getPrd_name() %></p>
-						<p class="viewContent"><%=list.get(0).getPrice() %>원</p>
+						<p class="productName"><%=list.get(111).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(111).getPrice() %>원</p>
 						<p class="viewDetail">
 							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
 						</p>
@@ -524,9 +529,9 @@ a{ text-decoration:none }
 				<area shape="rect" coords="0,153,174,186" id="question" href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionWrite.jsp" title="1:1 상담센터">
 				<area shape="rect" coords="207,153,381,186" id="road" title="찾아오시는길" target="_blank" onClick="window.open('http://localhost:8001/MasterPiece/views/main/roadMap.html','pagename','height=' + 800 + ',width=' + 710 + 'fullscreen=yes'); return false;">
 				<area shape="rect" coords="412,153,588,187" id="road" title="찾아오시는길" target="_blank"  onClick="window.open('http://localhost:8001/MasterPiece/views/main/roadMap.html','pagename','height=' + 800 + ',width=' + 710 + 'fullscreen=yes'); return false;">
-				<area shape="rect" coords="641,50,756,192" id="delivery" href="http://www.google.co.kr" title="운송수단 마감시간" >
-				<area shape="rect" coords="785,49,901,191" id="bank" href="http://www.google.co.kr" title="입금계좌안내">
-				<area shape="rect" coords="928,50,1042,192" id="ASsenter" href="http://www.google.co.kr" title="A/S이용안내">
+				<area shape="rect" coords="641,50,756,192" id="delivery" title="운송수단 마감시간" target="_blank" onClick="window.open('http://localhost:8001/MasterPiece/views/main/mainInfo01.html','pagename','height=' + 600 + ',width=' + 600 + 'fullscreen=yes'); return false;">
+				<area shape="rect" coords="785,49,901,191" id="bank" title="입금계좌안내" onClick="window.open('http://localhost:8001/MasterPiece/views/main/mainInfo02.html','pagename','height=' + 600 + ',width=' + 600 + 'fullscreen=yes'); return false;">
+				<area shape="rect" coords="928,50,1042,192" id="ASsenter" title="A/S이용안내" onClick="window.open('http://localhost:8001/MasterPiece/views/main/mainInfo03.html','pagename','height=' + 600 + ',width=' + 600 + 'fullscreen=yes'); return false;">
 			</map>
 		</div>
 
@@ -570,17 +575,11 @@ a{ text-decoration:none }
 				var path = "images/product";
 				
 				$(".imageArea").children("div.imageList").remove();
-				
+				console.log(data.list[0]);
 				for(var i = 0; i < data.list.length; i++){
-					/* var a = data.list1.get[i].getPrd_code(); */
-					<%-- onclick="goDetail('<%= list1.get(i).getPrd_code()%>')" --%>
-					/* <div class="imageList" align="center" style="cursor:pointer;"> */
-					/* onclick='goDetail("data.list1.get[i].getPrd_code()")' */
-					$div = $("<div class='imageList' align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
-					/* $div.attr("onclick","goDetail(+"a"+);"); */
+					$div = $("<div class='imageList' align='center' style='width: 350px; height:300px; margin: 4.5px; cursor:pointer;' onclick='goDetail("+data.list[i].prd_code+")'>");
 					$(".imageArea").append($div);
-					
-					$div2 = $("<div style='width:350px; height:300px;'>");				
+					$div2 = $("<div style='width:345px; height:300px;'>");				
 					$div.append($div2);
 					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
 					$span1 = $("<br><span style='font-weight:13px;'>");
@@ -628,9 +627,8 @@ a{ text-decoration:none }
 				$(".imageArea2").children("div.imageList2").remove();
 				
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;'>");
+					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;' onclick='goDetail("+data.list[i].prd_code+")'>");
 					$(".imageArea2").append($div);
-					
 					$div2 = $("<div style='width:350px; height:300px;'>");						
 					$div.append($div2);
 					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 

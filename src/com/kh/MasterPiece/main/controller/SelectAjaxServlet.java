@@ -69,7 +69,7 @@ public class SelectAjaxServlet extends HttpServlet {
 
 		MainPageInfo pi1 = new MainPageInfo(currentPage1, listCount1, limit1, maxPage1, startPage1, endPage1);
 
-		System.out.println(pi1);
+
 		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage1, limit1);
 		ArrayList<Product> list1 = new MainService().graphicList(currentPage1, limit1);
 		
