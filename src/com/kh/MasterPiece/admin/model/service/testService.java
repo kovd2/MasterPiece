@@ -570,6 +570,26 @@ public class testService {
 		
 		int result = new testDao().insertDeliver(con, oc);
 		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int updateDelivery(String[] dn) {
+		Connection con = getConnection();
+		
+		int result = new testDao().updateDelivery(con, dn);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
 		close(con);
 		
 		return result;

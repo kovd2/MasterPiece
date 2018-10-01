@@ -30,13 +30,13 @@ text-align: center
 
 
 <div id="main">
-<form action="<%=request.getContextPath() %>/InsertDelevery.swy" method="post" id="asdf">
+<form action="<%=request.getContextPath() %>/InsertDelivery.swy" method="post" id="asdf">
 	<div style="margin-left:20px; margin-top:20px;">
 		<input type="button" class = "delevery" value="배송">
 		<button class="refund">환불</button>
 	</div><br>
 	<div style="margin-left:20px;">
-	주문번호 : <input type="text" id = "t"> <input type="button" onclick="search()" value="검색">
+	주문자 : <input type="text" id = "t"> <input type="button" onclick="search()" value="검색">
 	</div><br>
 	<div>
 		<table id="mt" border="1">
@@ -70,6 +70,14 @@ text-align: center
 	</div>
 	</form>
 	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('input[id="t"]').keydown(function(){
+			if(event.keyCode === 13){
+				return false;
+			}
+		})
+	})
 	function search(){
 		location.href="<%= request.getContextPath() %>/SearchOrder.swy?a="+$("#t").val();
 	}

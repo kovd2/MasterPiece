@@ -33,7 +33,14 @@ public class InsertDeliveryServlet extends HttpServlet {
 		
 		int result = new testService().insertDeliver(oc);
 				
-		response.sendRedirect("OrderConfirm.swy");
+		if(result>0){
+			response.sendRedirect("OrderConfirm.swy");
+		}else{
+			request.setAttribute("msg", "에러");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		
+		
 		
 	}
 
