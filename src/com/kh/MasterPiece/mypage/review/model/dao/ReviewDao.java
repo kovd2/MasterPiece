@@ -31,7 +31,7 @@ public class ReviewDao {
 	}
 
 
-	//게시판 정보 불러오는 메소드
+	//게시판 정보 불러오는 메소드,페이징처리
 	public ArrayList<Review> selectList(String writer, Connection con, int currentPage, int limit) {
 
 		PreparedStatement pstmt = null;

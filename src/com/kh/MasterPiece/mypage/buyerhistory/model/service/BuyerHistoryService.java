@@ -10,14 +10,15 @@ import java.util.HashMap;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.mypage.buyerhistory.model.dao.BuyerHistoryDao;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
+import com.kh.MasterPiece.mypage.review.model.dao.ReviewDao;
 
 public class BuyerHistoryService {
 	
 	//결제금액 뺴고 나머지 데이터 가져오는 메소드
-	public ArrayList<BuyerHistory> viewHistory(String writer) {
+	public ArrayList<BuyerHistory> viewHistory(String writer, int currentPage, int limit) {
 		Connection con = getConnection();
 
-		ArrayList<BuyerHistory> list = new BuyerHistoryDao().viewHistory(con, writer);
+		ArrayList<BuyerHistory> list = new BuyerHistoryDao().viewHistory(con, writer, currentPage, limit);
 
 		close(con);
 
@@ -48,6 +49,17 @@ public class BuyerHistoryService {
 
 		return list;
 
+	}
+
+	//페이징처리메소드
+	public int getListCount(String writer) {
+		Connection con = getConnection();
+		
+		int listCount = new BuyerHistoryDao().getListCount(writer, con);
+		
+		close(con);
+		
+		return listCount;
 	}
 
 }

@@ -157,6 +157,7 @@ div {
 	box-sizing: border-box;
 	padding: 9px 0px;
 	text-align:left;
+	display: inline-block;
 }
 
 
@@ -189,33 +190,68 @@ div {
 	width: 75px;
 }
 
+
 .contents>.data1{
-	padding-left:50px;
-	width:90px;
+	width:85px;
+	height:30px;
+	display: inline-block;
+	text-align:center;
+	margin-left:25px;
+}
+.contents>.data2{
+	width:50px;
+	height:30px;
+	display:inline-block;
+
+}
+.contents>.productdata{
+	width:330px;
+	height:150px;
+	display:inline-block;
 }
 .contents>.data3{
 	width: 100px;
     height: 100px;
-    padding-left: 30px;
+   	display:inline-block;
 }
 .contents>.data4{
  	width:250px;
+ 	height:50px;
+ 	display: contents;
 }
 .contents>.data5{
-	padding-left:40px;
+	width:70px;
+	height:30px;
+	font-weight:bold;
+	color:red;
+	text-align:center;
+	display: inline-block;
 }
 .contents>.data6{
-	padding-left:35px;
+	width:40px;
+	height:30px;
+	text-align:center;
+	display: inline-block;
 }
 .contents>.data7{
-	padding-left:15px;
+	width:65px;
+	height:30px;
+	text-align:center;
+	display: inline-block;
 }
 
 .contents>.data8{
-	padding-left:50px;
+	width:80px;
+	height:30px;
+	text-align:center;
+	display: inline-block;
 }
 .contents>.data9{
-	padding-left:50px;
+	width:70px;
+	height:30px;
+	text-align:center;
+	display: inline-block;
+	
 }
 
 #ui-datepicker-div {
@@ -246,8 +282,10 @@ div {
 		<div class="center_top_content">
 			<div class="center_top_title" align="left">주문목록/배송조회</div>
 			<input type="hidden" name="date_num" id="date_num" value="2">
-			<div class='section_header_v2'
-				style='width: 937px; height: 140px; border: 1px #ccc solid; box-sizing: border-box; background-color: #F3F4F6;'>
+			<div class='section_header_v2'	style='width: 937px; height: 140px; border: 1px #ccc solid; 
+				box-sizing: border-box; background-color: #F3F4F6;'>
+				
+				<form action = "<%= request.getContextPath() %>/BuyerHistorySearch">
 				<div style='float: left; padding-top: 7px; width: 774px;'>
 					<div>
 						<!-- <div
@@ -473,9 +511,6 @@ $(function() {
 });
 </script> -->
 						<!-- 선택조회 끝 -->
-
-
-
 						<div style='clear: both;'></div>
 					</div>
 
@@ -502,12 +537,13 @@ $(function() {
 				</div>
 
 				<div style='float: left; padding-top: 30px;'>
-					<span onclick="period_views();"
-						style='cursor: pointer; display: inline-block; width: 152px; height: 63px; background-color: #454c5f; color: #fff; line-height: 62px; text-align: center;'>조회하기</span>
+					<input class="mypage_input1" type="submit" value="조회하기" style='cursor: pointer; display: inline-block; 
+							width: 152px; height: 63px; background-color: #454c5f; color: #fff; 
+							line-height: 62px; text-align: center;'>
 				</div>
 
 				<div style='clear: both;'></div>
-
+			</form>
 			</div>
 
 			<!-- 선택조회창 -->
@@ -556,25 +592,47 @@ $(function() {
 				<% if(list==null) {%>
 				<div class='contents no_data'>1주일 이내에 구매하신 내역이 없습니다.</div>
 				<%}else{ 
-					for(int i =0; i<3; i++){%>
+						for(int i =0; i<list.size(); i++){%>
 
 					<div class='contents data'>
-						<span class='contents data1'><%=list.get(0).getPayDate()%>/</span>
-						<span class='contents data2'><%=list.get(0).getOrderCheck()%></span>
-						<span class='contents data3'><img alt=""
-							src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(0).getPrdCode()).getChangeName()%>" width="50px" height="50px"></span>
-						<span class='contetns data4'>동해물과백두산이마르고닳도록 하느님이 </span>
-						<span class='contents data5'><%=list.get(0).getPayPrice()%>원</span>
-						<span class='contents data6'><%=list.get(0).getOrderCount() %>개</span>
-						<span class='contents data7'><%=list.get(0).getBuyStatus()%></span>
-						<span class='contents data8'><%=list.get(0).getPayType() %></span>
-						<span class='contents data9'><%=list.get(0).getDeliveryOption() %></span>
+						<div class='contents data1'><%=list.get(i).getPayDate()%>/</div>
+						<div class='contents data2'><%=list.get(i).getOrderCheck()%></div>
+						<div class='contents productdata'>
+						<div class='contents data3'><img alt=""
+							src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(0).getPrdCode()).getChangeName()%>" width="100px" height="100px"></div>
+						<div class='contents data4'><%=list.get(i).getPrdName() %> </div>
+						</div>
+						<div class='contents data5'><%=list.get(i).getPayPrice()%>원</div>
+						<div class='contents data6'><%=list.get(i).getOrderCount() %>개</div>
+						<div class='contents data7'><%=list.get(i).getBuyStatus()%></div>
+						<div class='contents data8'><%=list.get(i).getPayType() %></div>
+						<div class='contents data9'><%=list.get(i).getDeliveryOption() %></div>
 					</div>
 					
 					<%} %>
 				<%} %>
 			</div>
-
+						<%-- 페이징 처리 --%>
+						<div class="pagingArea" align="center">
+							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=1'"><<</button>
+							<%if (currentPage <= 1) {	%>
+							<button disabled><</button>
+							<%} else { %>
+							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=currentPage - 1%>'"><</button>
+							<%}%>
+							<%for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {	%>
+							<button disabled><%=p%></button>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=p%>'"><%=p%></button>
+							<%}%>
+							<%}%>
+							<%if (currentPage >= maxPage) {%>
+							<button disabled>></button>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=currentPage + 1%>'">></button>
+							<%}%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=maxPage%>'">>></button>
 
 <hr class="gshr">
 

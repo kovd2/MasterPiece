@@ -37,6 +37,11 @@
 	text-align: center;
 	cursor: pointer;
 }
+.section_header_table tr td:hover{
+	
+	background-color: #454c5f;
+	color:white;
+}
 
 div, li, dd, dt, table, td {
 	word-break: break-all;
@@ -238,7 +243,7 @@ select {
 					<form action = "<%= request.getContextPath() %>/ReviewSearchServlet"> 
 					
 					<div style='float: left; padding-top: 7px; width: 774px;'>
-						<!-- <div>
+						 <div>
 							<div
 								style='font-weight: bold; float: left; font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>조회기간</div>
 							<div style='float: left;'>
@@ -276,7 +281,7 @@ select {
 							</div>
 
 							<div style='clear: both;'></div>
-						</div> -->
+						</div>
 						<div id="search" class="search_review" style='padding-top: 30px;'>
 							<div style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>
 								검색
@@ -391,87 +396,49 @@ select {
 						<%-- 페이징 처리 --%>
 						<div class="pagingArea" align="center">
 							<%if(entire.equals("전체")){ %>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=1'"><<</button>
-							<%
-								if (currentPage <= 1) {	%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=1'"><<</button>
+							<%if (currentPage <= 1) {	%>
 							<button disabled><</button>
-							<%
-								} else { %>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage - 1%>'"><</button>
-							<%
-								}%>
-							<%
-								for (int p = startPage; p <= endPage; p++) {
-									if (p == currentPage) {
-							%>
+							<%} else { %>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage - 1%>'"><</button>
+							<%}%>
+							<%for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {	%>
 							<button disabled><%=p%></button>
-							<%
-								} else {%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=p%>'"><%=p%></button>
-							<%
-								}%>
-							<%
-								}%>
-							<%
-								if (currentPage >= maxPage) {
-							%>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=p%>'"><%=p%></button>
+							<%}%>
+							<%}%>
+							<%if (currentPage >= maxPage) {%>
 							<button disabled>></button>
-							<%
-								} else {%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage + 1%>'">></button>
-							<%
-								}%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=maxPage%>'">>></button>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=currentPage + 1%>'">></button>
+							<%}%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=<%=maxPage%>'">>></button>
 						
 						
 						<%}else{ %>
 					
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=1'"><<</button>
-							<%
-								if (currentPage <= 1) {	%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=1'"><<</button>
+							<%if (currentPage <= 1) {	%>
 							<button disabled><</button>
-							<%
-								} else { %>
+							<%} else { %>
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=currentPage - 1%>'"><</button>
-							<%
-								}%>
-							<%
-								for (int p = startPage; p <= endPage; p++) {
-									if (p == currentPage) {
-							%>
+							<%}%>
+							<%for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {%>
 							<button disabled><%=p%></button>
-							<%
-								} else {%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=p%>'"><%=p%></button>
-							<%
-								}%>
-							<%
-								}%>
-							<%
-								if (currentPage >= maxPage) {
-							%>
+							<%} else {%>
+							<button onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=p%>'"><%=p%></button>
+							<%}%>
+							<%}%>
+							<%if (currentPage >= maxPage) {%>
 							<button disabled>></button>
-							<%
-								} else {%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=currentPage + 1%>'">></button>
-							<%
-								}%>
-							<button
-								onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=maxPage%>'">>></button>
-					
-					
-					
-					
-					
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=currentPage + 1%>'">></button>
+							<%}%>
+							<button onclick="location.href='<%=request.getContextPath()%>/ReviewSearchServlet?currentPage=<%=maxPage%>'">>></button>
 					
 						<%} %>
 										
