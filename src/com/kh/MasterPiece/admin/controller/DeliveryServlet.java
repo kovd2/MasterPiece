@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.admin.model.service.testService;
+import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.board.model.vo.PageInfo;
-import com.kh.MasterPiece.member.model.vo.Member;
 
 /**
- * Servlet implementation class searchMemberServlet
+ * Servlet implementation class DeleveryServlet
  */
-@WebServlet("/searchMember.swy")
-public class searchMemberServlet extends HttpServlet {
+@WebServlet("/Delivery.swy")
+public class DeliveryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public searchMemberServlet() {
+    public DeliveryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +33,7 @@ public class searchMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//페이징처리 추가시 필요 변수 선언
 		int currentPage;		//현재 페이지를 표시할 변수
 		int limit;				//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
 		int maxPage;			//전체 페이지에서 가장 마지막 페이지
@@ -51,7 +52,7 @@ public class searchMemberServlet extends HttpServlet {
 		}
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = new testService().getMemberListCount();
+		int listCount = new testService().getDeliveryListCount();
 		//총 페이지수 계산
 		//예) 목록 수가 123개이면 페이지가 13개가 필요함
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -65,24 +66,22 @@ public class searchMemberServlet extends HttpServlet {
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-		
-		
-		String code = request.getParameter("code");
-		String val = request.getParameter("val");
-		ArrayList<Member> list = new testService().searchMemberList(code, val,currentPage, limit);
+
+		ArrayList<Delivery> list = new testService().deliveryList(currentPage, limit);
 		String page = "";
 		if(list != null){
 			page = "views/admin/member/member.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
-			request.setAttribute("cate", code);
-			request.setAttribute("val",val);
+			request.setAttribute("cate", "전체");
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
+		
+		
 	}
 
 	/**

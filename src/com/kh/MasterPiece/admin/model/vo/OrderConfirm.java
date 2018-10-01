@@ -13,14 +13,18 @@ public class OrderConfirm {
 	private String pay_status;
 	private String prd_code;
 	private int count;
-	
-	
-	
+	private String SHIPPING_ADDRESS;
+	private String SHIPPING_PHONE;
+	private String ETC;
+	private String NAME;
+	private int pay_no;
 	public OrderConfirm() {
 		super();
 	}
+	
 	public OrderConfirm(Date pay_date, String order_check, String prd_name, String user_id, int pay_price,
-			String pay_way, String pay_status, String prd_code) {
+			String pay_way, String pay_status, String prd_code, int count, String sHIPPING_ADDRESS,
+			String sHIPPING_PHONE, String eTC, String nAME) {
 		super();
 		this.pay_date = pay_date;
 		this.order_check = order_check;
@@ -30,6 +34,44 @@ public class OrderConfirm {
 		this.pay_way = pay_way;
 		this.pay_status = pay_status;
 		this.prd_code = prd_code;
+		this.count = count;
+		SHIPPING_ADDRESS = sHIPPING_ADDRESS;
+		SHIPPING_PHONE = sHIPPING_PHONE;
+		ETC = eTC;
+		NAME = nAME;
+	}
+	
+	public int getPay_no() {
+		return pay_no;
+	}
+
+	public void setPay_no(int pay_no) {
+		this.pay_no = pay_no;
+	}
+
+	public String getSHIPPING_ADDRESS() {
+		return SHIPPING_ADDRESS;
+	}
+	public void setSHIPPING_ADDRESS(String sHIPPING_ADDRESS) {
+		SHIPPING_ADDRESS = sHIPPING_ADDRESS;
+	}
+	public String getSHIPPING_PHONE() {
+		return SHIPPING_PHONE;
+	}
+	public void setSHIPPING_PHONE(String sHIPPING_PHONE) {
+		SHIPPING_PHONE = sHIPPING_PHONE;
+	}
+	public String getETC() {
+		return ETC;
+	}
+	public void setETC(String eTC) {
+		ETC = eTC;
+	}
+	public String getNAME() {
+		return NAME;
+	}
+	public void setNAME(String nAME) {
+		NAME = nAME;
 	}
 	public int getCount() {
 		return count;
@@ -85,12 +127,14 @@ public class OrderConfirm {
 	public void setPrd_code(String prd_code) {
 		this.prd_code = prd_code;
 	}
+
 	@Override
 	public String toString() {
 		return "OrderConfirm [pay_date=" + pay_date + ", order_check=" + order_check + ", prd_name=" + prd_name
 				+ ", user_id=" + user_id + ", pay_price=" + pay_price + ", pay_way=" + pay_way + ", pay_status="
-				+ pay_status + ", prd_code=" + prd_code + "]";
+				+ pay_status + ", prd_code=" + prd_code + ", count=" + count + ", SHIPPING_ADDRESS=" + SHIPPING_ADDRESS
+				+ ", SHIPPING_PHONE=" + SHIPPING_PHONE + ", ETC=" + ETC + ", NAME=" + NAME + "]";
 	}
-	
+
 	
 }

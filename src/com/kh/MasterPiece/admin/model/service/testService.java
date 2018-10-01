@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
+import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
@@ -163,10 +164,10 @@ public class testService {
 		return result;
 	}
 
-	public ArrayList<Member> searchMemberList(String code, String val) {
+	public ArrayList<Member> searchMemberList(String code, String val, int currentPage, int limit) {
 		Connection con = getConnection();
 		
-		ArrayList<Member> list = new testDao().searchMemberList(con, code, val);
+		ArrayList<Member> list = new testDao().searchMemberList(con, code, val, currentPage, limit);
 		
 		close(con);
 		
@@ -539,6 +540,35 @@ public class testService {
 		Connection con = getConnection();
 		
 		int result = new testDao().getOrderSearchCount(con, oc);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Delivery> deliveryList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Delivery> list = new testDao().deliveryList(con, currentPage, limit);
+		
+		close(con);
+		return list;
+	}
+
+	public int getDeliveryListCount() {
+		Connection con = getConnection();
+		
+		int result = new testDao().getDeleveryListCount(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int insertDeliver(String[] oc) {
+		Connection con = getConnection();
+		
+		int result = new testDao().insertDeliver(con, oc);
 		
 		close(con);
 		

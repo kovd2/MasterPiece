@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
 import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
@@ -581,7 +582,7 @@ public class testDao {
 	}
 
 
-	public ArrayList<Member> searchMemberList(Connection con, String code, String val) {
+	public ArrayList<Member> searchMemberList(Connection con, String code, String val, int currentPage, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Member> list = null;
@@ -599,7 +600,12 @@ public class testDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "%"+val+"%");
-			
+			//조회 시작할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 
@@ -1676,15 +1682,21 @@ public class testDao {
 			while(rset.next()){
 				
 				OrderConfirm oc = new OrderConfirm();
-				oc.setPay_date(rset.getDate(2));
-				oc.setOrder_check(rset.getString(3));
-				oc.setPrd_name(rset.getString(4));
-				oc.setUser_id(rset.getString(5));
-				oc.setPay_price(rset.getInt(6));
-				oc.setPay_way(rset.getString(7));
-				oc.setPay_status(rset.getString(8));
-				oc.setPrd_code(rset.getString(9));
-				oc.setCount(rset.getInt(10));
+				oc.setPay_date(rset.getDate("PAY_DATE"));
+				oc.setOrder_check(rset.getString("ORDER_CHECK"));
+				oc.setPrd_name(rset.getString("PRD_NAME"));
+				oc.setUser_id(rset.getString("USER_ID"));
+				oc.setPay_price(rset.getInt("PAY_PRICE"));
+				oc.setPay_way(rset.getString("PAY_WAY"));
+				oc.setPay_status(rset.getString("pay_status"));
+				oc.setPrd_code(rset.getString("PRD_CODE"));
+				oc.setCount(rset.getInt("COUNT"));
+				oc.setSHIPPING_ADDRESS(rset.getString("SHIPPING_ADDRESS"));
+				oc.setSHIPPING_PHONE(rset.getString("SHIPPING_PHONE"));
+				oc.setETC(rset.getString("ETC"));
+				oc.setNAME(rset.getString("NAME"));
+				oc.setPay_no(rset.getInt("PAY_NO"));
+				
 				
 				list.add(oc);
 			}
@@ -1832,6 +1844,113 @@ public class testDao {
 			pstmt.setString(1, orderCheck);
 			
 			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public int getDeleveryListCount(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("DeleveryListCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public ArrayList<Delivery> deliveryList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Delivery> list = null;
+
+
+		String query = prop.getProperty("deleveryList");
+
+		try {
+
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Delivery>();
+
+			while(rset.next()){
+				
+				Delivery oc = new Delivery();
+				
+				list.add(oc);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return list;
+	}
+
+
+	public int insertDeliver(Connection con, String[] oc) {
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("insertDeliver");
+		String query2 = prop.getProperty("search");
+		
+		try {
+			for(int i = 0; i < oc.length; i++){
+				PreparedStatement search  = con.prepareStatement(query2);
+				search.setString(1,oc[i]);
+				ResultSet r = search.executeQuery();
+				if(r.next()){
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, r.getString(""));
+					rset = pstmt.executeQuery();					
+				}
+			}
 			
 			if(rset.next()){
 				result = rset.getInt(1);

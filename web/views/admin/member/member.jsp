@@ -6,19 +6,14 @@
 	ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list");
 	String cate = (String) request.getAttribute("cate");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = 0;
-	int currentPage = 0;
-	int maxPage =0;
-	int startPage = 0;
-	int endPage = 0;
-	if(cate.equals("전체")){
-	 listCount = pi.getListCount();
-	 currentPage = pi.getCurrentPage();
-	 maxPage = pi.getMaxPage();
-	 startPage = pi.getStartPage();
-	 endPage = pi.getEndPage();
-	}
-%>
+	String val = (String) request.getAttribute("val");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,17 +60,15 @@
 					<td><%=list.get(i).getAddress()%></td>
 					<td><%=list.get(i).getPhone()%></td>
 					<td><%=list.get(i).getEmail()%></td>
-					<td align="center"><button class="delete">
-							<input type="hidden" value=<%=list.get(i).getUserNo()%>>삭제
+					<td align="center"><button class="delete" value="<%=list.get(i).getUserNo()%>">
+							삭제
 						</button></td>
 				</tr>
 				<%
 					}
 				%>
 			</table>
-			<%
-				if (cate.equals("전체")) {
-			%>
+			
 			<div class="pagingArea" align="center">
 				<%
 					if (cate.equals("전체")) {
@@ -86,7 +79,7 @@
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=1'"><<</button>
+					onclick="location.href='<%=request.getContextPath()%>/searchMember.swy?val=<%=val%>&code=<%=cate%>&currentPage=1'"><<</button>
 				<%
 					}
 				%>
@@ -126,7 +119,7 @@
 				<%
 					} else {
 				%>
-				<button onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=p%>'"><%=p%></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/searchMember.swy?val=<%=val%>&code=<%=cate%>&currentPage=<%=p%>'"><%=p%></button>
 				<%
 					}
 				%>
@@ -151,7 +144,7 @@
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=currentPage + 1%>'">></button>
+					onclick="location.href='<%=request.getContextPath()%>/searchMember.swy?val=<%=val%>&code=<%=cate%>&currentPage=<%=currentPage + 1%>'">></button>
 				<%
 					}
 				%>
@@ -167,14 +160,12 @@
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/productCategoryLists.swy?code=<%=cate%>&currentPage=<%=maxPage%>'">>></button>
+					onclick="location.href='<%=request.getContextPath()%>/searchMember.swy?val=<%=val%>&code=<%=cate%>&currentPage=<%=maxPage%>'">>></button>
 				<%
 					}
 				%>
 			</div>
-			<%
-				}
-			%>
+			
 		</div>
 	</div>
 
