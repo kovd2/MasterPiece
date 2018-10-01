@@ -89,6 +89,7 @@ background: lightblue;
 			</tr>
 			<%} %>
 			</table>
+			<!--여기부터 페이징  -->
 			<div class="pagingArea" align="center">
 			<%if(cate.equals("전체")){ %>
 			<button onclick="location.href='<%=request.getContextPath()%>/productList.swy?currentPage=1'"><<</button>

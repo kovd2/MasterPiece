@@ -109,6 +109,13 @@ a:HOVER {
 			<%} %>
 			</tr>
 			<tr>
+			<%if(view == 9){ %>
+				<td align="center" class="menu2" style="background: black; color:white;"><h3>배송관리</h3></td>
+			<%}else{ %>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/Delivery.swy'"><h3>배송관리</h3></td>
+			<%} %>
+			</tr>
+			<tr>
 			<%if(view == 6){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>문의관리</h3></td>
 			<%}else{ %>

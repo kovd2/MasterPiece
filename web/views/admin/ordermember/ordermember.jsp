@@ -30,9 +30,10 @@ text-align: center
 
 
 <div id="main">
+<form action="<%=request.getContextPath() %>/InsertDelevery.swy" method="post" id="asdf">
 	<div style="margin-left:20px; margin-top:20px;">
-		<button>배송</button>
-		<button>환불</button>
+		<input type="button" class = "delevery" value="배송">
+		<button class="refund">환불</button>
 	</div><br>
 	<div style="margin-left:20px;">
 	주문번호 : <input type="text" id = "t"> <input type="button" onclick="search()" value="검색">
@@ -40,39 +41,34 @@ text-align: center
 	<div>
 		<table id="mt" border="1">
 		<tr align="center" style="background: lightgray;">
-		<th><input type="checkbox"></th>
+		<th><input type="checkbox" id="check"></th>
 		<th style="width: 100px">주문일자</th>
 		<th style="width: 100px">주문번호</th>
 		<th style="width: 300px">상품정보</th>
 		<th style="width: 120px">주문자</th>
 		<th style="width: 90px">결제금액</th>
 		<th style="width: 50px">결제<br>방법</th>
-		<th style="width: 50px">결제<br>상태</th>
 		</tr>
 		<%for(int i = 0; i < list.size(); i++){ %>
 		<tr>
 		<td>
-		<%if(list.get(i).getPay_status().equals("N")){ %>
-			<input type="checkbox" disabled>
-		<%}else{ %>
-			<input type="checkbox">
-		<%} %>
+		<input type="checkbox" value=<%=list.get(i).getOrder_check()%> class="check" name="check">
 		</td>
 		<td><%=list.get(i).getPay_date() %></td>
 		<td><%=list.get(i).getOrder_check() %></td>
 		<td><a style="cursor: pointer;" onclick="detail(<%=list.get(i).getOrder_check() %>,<%=list.get(i).getCount()%>)" class="test"><%=list.get(i).getPrd_name() %>
 		<%if(list.get(i).getCount()>1){ %>
-		<br>외 <%=list.get(i).getCount()-1 %>개
+			<br>외 <%=list.get(i).getCount()-1 %>개
 		<%} %></a>
 		</td>
 		<td><%=list.get(i).getUser_id() %></td>
 		<td style="text-align: right"><%=list.get(i).getPay_price() %>원</td>
 		<td><%=list.get(i).getPay_way() %></td>
-		<td><%=list.get(i).getPay_status() %></td>		
 		<tr>
 		<%} %>
 		</table>
 	</div>
+	</form>
 	<script type="text/javascript">
 	function search(){
 		location.href="<%= request.getContextPath() %>/SearchOrder.swy?a="+$("#t").val();
@@ -98,6 +94,53 @@ text-align: center
 		check = window.open('<%=request.getContextPath()%>/Detail.swy?sel='+sel,'상세보기','width=300,height='+h+',left='+x+', top='+y);
 	}
 	
+	$("#check").click(function(){
+		if($(this).prop("checked")){
+			$(".check").prop("checked", true);
+		}else{
+			$(".check").prop("checked", false);
+		}
+	});
+	$(".check").click(function(){
+		if($(this).prop("checked")){
+			$(this).prop("checked", true)
+		}else{
+			if($("#check").prop("checked")){
+				$("#check").prop("checked",false)
+			}
+			$(this).prop("checked", false)
+		}
+	});
+	$(".delevery").click(function(){
+		var val = "";
+		var value = [];
+		$(".check:checked").each(function(index,item){
+			if(index!=0){
+				val += ",";
+			}
+			val += $(this).val();
+			value.push($(this).val());
+		})
+		alert(val);
+		if(val!=null){
+			$("#asdf").submit();
+		}
+	
+	});
+	$(".refund").click(function(){
+		var val = "";
+		var value = [];
+		$(".check:checked").each(function(index,item){
+			if(index!=0){
+				val += ",";
+			}
+			val += $(this).val();
+			value.push($(this).val());
+		})
+		if(val!=null){
+		}
+	
+	});
 	</script>
 	<%
 				if (cate.equals("전체")) {
