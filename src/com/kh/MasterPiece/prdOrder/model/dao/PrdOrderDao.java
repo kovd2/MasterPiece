@@ -58,7 +58,7 @@ public class PrdOrderDao
 				
 				p.setOrderDate(rset.getDate("order_date"));
 				p.setPrdCode(rset.getString("prd_name"));
-				p.setOrderCheck(rset.getString("prd_code"));
+				p.setOrderCheck(rset.getString("order_check"));
 				p.setOrderCount(rset.getInt("order_count"));
 				p.setPrice(rset.getInt("price"));
 				

@@ -176,7 +176,7 @@ table
 						<tbody>
 							<tr style="border:1px solid lightgray;">
 								<td colspan="2" style="border:1px solid lightgray; text-align:left; padding-left:10px; font-size:small;">
-									<input type="button" id="searchProduct" class="pointer" style="background:royalblue; width:80px; height:30px; text-align:center; color:white; border:1px solid royalblue;" value="상품검색">
+									<input type="button" id="callBuyList" name="callBuyList" class="pointer" style="background:royalblue; width:80px; height:30px; text-align:center; color:white; border:1px solid royalblue;" value="상품검색">
 									<div id="productListArea">
 									</div>
 								</td>
@@ -351,57 +351,16 @@ table
 	<script>
 		$(function()
 		{
-			var userId = "<%= loginUser.getUserId() %>";
-			
-			$("#searchProduct").click(function()
+			var prdList = null;
+			$("#callBuyList").click(function()
 			{
-				/* console.log("히히"); */
-				$.ajax(
-				{
-					url:"/MasterPiece/selectProduct.af",
-					context:this,
-					data:{userId:userId},
-					success:function(data)
-					{
-						var $productListArea = $("#productListArea");
-						$("#productListArea>*").remove();
-						$("#searchProduct").remove();
-						$productListArea.html('');
-						
-						var $hyphen1 = $("<span>");
-						var $hyphen2 = $("<span>");
-						$hyphen1.append("---------------------------------------------------<br>");
-						$productListArea.append($hyphen1);
-						
-						for(var key in data)
-						{
-							console.log(data);
-							
-							var $orderNo = $("<span>").text(data[key].orderNo);
-							var $orderCheck = $("<span>").text("[" + data[key].orderCheck + "]");
-							$orderCheck.append(" ");
-							var $prdCode = $("<span>").text(data[key].prdCode);
-							$prdCode.append("　　　");
-							var $orderCount = $("<span>").text(data[key].orderCount);
-							$orderCount.append("<br>");
-							
-							$productListArea.append($orderNo);
-							$productListArea.append($orderCheck);
-							$productListArea.append($prdCode);
-							$productListArea.append($orderCount);
-						}
-						$hyphen2.append("---------------------------------------------------<br>");
-						$productListArea.append($hyphen2);
-						
-						for(var key in data)
-						{
-							var $userId = $("<input type='hidden' name='userId'>").val("<%= loginUser.getUserId() %>");
-							var $prdCode2 = $("<input style='display:none' type='text' name='prdCode'>").val(data[key].prdCode);
-							
-							$productListArea.append($prdCode2);
-						}
-					}
-				});
+				var url = "<%= request.getContextPath() %>/callBuyList.po?userId=" + "<%= loginUser.getUserId() %>";
+				
+				console.log(url);
+				
+				prdList = window.open(url, "search", "width=540, height=740, toolbar=no, location=no, status=no, menubar=no, resizable=no");
+				
+				console.log(prdList);
 			});
 		});
 	</script>

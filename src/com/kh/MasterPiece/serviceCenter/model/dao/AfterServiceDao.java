@@ -90,7 +90,7 @@ public class AfterServiceDao
 				
 				as.setServiceNo(rset.getInt("service_no"));
 				as.setUserId(rset.getString("user_id"));
-				as.setPrdCode(rset.getString("prd_name"));
+				as.setPrdCode(rset.getString("prd_code"));
 				as.setReason(rset.getString("category_name"));
 				as.setBoardContent(rset.getString("board_content"));
 				as.setHowToRegister(rset.getString("how_to_register"));
