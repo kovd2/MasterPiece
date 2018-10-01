@@ -30,26 +30,33 @@ public class BuyerHistoryDao {
 		}
 	}
 
-	public ArrayList<BuyerHistory> viewHistory(Connection con, String writer) {
+	public ArrayList<BuyerHistory> viewHistory(Connection con, String writer, int currentPage, int limit) {
 		PreparedStatement pstmt1 = null;
 		ResultSet rset1 = null;
 		
 		
 		ArrayList<BuyerHistory> list = new ArrayList<BuyerHistory>();
 		
-		String query1 = prop.getProperty("selectHistory1");
+		String query1 = prop.getProperty("H_selectHistory");
 
 		
 		try {
 			pstmt1 = con.prepareStatement(query1);
 			
+			int startRow = (currentPage - 1) * limit +1;
+			int endRow = startRow + limit - 1;
+			
 			pstmt1.setString(1, writer);
+			pstmt1.setInt(2, startRow);
+			pstmt1.setInt(3, endRow);
 			
 			rset1 = pstmt1.executeQuery();
 						
 			while(rset1.next()){
 				BuyerHistory b = new BuyerHistory();
-
+				
+				
+				
 				b.setOrderCheck(rset1.getString("order_check"));
 				b.setBuyStatus(rset1.getString("buy_status"));
 				b.setDeliveryOption(rset1.getString("delivery_option"));
@@ -148,6 +155,33 @@ public class BuyerHistoryDao {
 			close(pstmt1);
 		}
 		return list;
+	}
+
+	//getCount 페이징처리
+	public int getListCount(String writer, Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("H_listCount");
+
+		int listCount = 0;
+
+		try {
+			pstmt =  con.prepareStatement(query);
+			pstmt.setString(1, writer);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
 	}
 
 }

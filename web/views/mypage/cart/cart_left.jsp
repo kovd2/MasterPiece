@@ -82,7 +82,7 @@
 			<div class="text" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy'">장바구니</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../review/review_myPage.jsp'">내가 쓴 게시물</div>
+				onclick="location.href='<%=request.getContextPath()%>/ReviewServlet'">내가 쓴 게시물</div>
 			<br>
 			<div class="text"
 				onclick="location.href='<%=request.getContextPath()%>/views/mypage/member/myPage2.jsp'">회원

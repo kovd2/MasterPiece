@@ -76,12 +76,12 @@
 			<div class="text" onclick="location.href='../member/myPage.jsp'">회원정보</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../buyerHistory/myPage_buy.jsp'">구매내역</div>
+				onclick="location.href='<%=request.getContextPath()%>/view_history'">구매내역</div>
 			<br>
 			<div class="text" onclick="location.href='<%=request.getContextPath()%>/SelectCartList.swy'">장바구니</div>
 			<br>
 			<div class="text"
-				onclick="location.href='../review/review_myPage.jsp'">내가 쓴 게시물</div>
+				onclick="location.href='<%=request.getContextPath()%>/ReviewServlet'">내가 쓴 게시물</div>
 			
 			<br>
 			<div class="text"

@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.* , com.kh.MasterPiece.mypage.buyerhistory.model.vo.*, com.kh.MasterPiece.board.model.vo.*" %>    
-<% ArrayList<BuyerHistory> list = (ArrayList<BuyerHistory>)request.getAttribute("list");
-	HashMap<String, Attachment> map = (HashMap<String,Attachment>)request.getAttribute("imageList");%>
+<% 
+ArrayList<BuyerHistory> list = (ArrayList<BuyerHistory>)request.getAttribute("list");
+HashMap<String, Attachment> map = (HashMap<String,Attachment>)request.getAttribute("imageList");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,7 +21,7 @@
 		text-align:center;
 		width:1000px;
 		height:auto;
-		background:green;
+		background:white;
 		margin:0 auto;
 	}
 	
