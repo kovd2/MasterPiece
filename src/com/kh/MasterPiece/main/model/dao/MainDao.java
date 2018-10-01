@@ -191,7 +191,7 @@ public class MainDao {
 		ResultSet rset = null;
 
 		String query = prop.getProperty("selectImageList");
-		System.out.println(query);
+		
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -400,7 +400,6 @@ public class MainDao {
 		ResultSet rset = null;
 
 		String query = prop.getProperty("promotionImageList");
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 

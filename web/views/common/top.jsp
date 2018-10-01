@@ -306,12 +306,11 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	<div class="topContainer">
 		<div class="categoryBox">
 			<div class="categoryNav" id="categoryNav">
-				<div class="categoryBox_css" id="mp" onclick="location.href='<%=request.getContextPath()%>/views/product/product_List.jsp'">
+				<div class="categoryBox_css" id="mp">
 					MasterPiece
 					<ul class="mp_menu">
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GAME'">게임</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=INTERNET'">인터넷/사무</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=GRAPHIC'">그래픽</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="com">
@@ -332,7 +331,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 					모니터
 					<ul class="mo_menu">
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MONITOR'">모니터</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=ADAPTER'">모니터 어댑터</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=ADAPTER'">어댑터</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="de">
@@ -342,13 +341,12 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=MOUSE'">마우스</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=SPEAKER'">스피커</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=HEADSET'">헤드셋</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=PAD'">키보드 패드</li>
 					</ul>
 				</div>
 				<div class="categoryBox_css" id="cate">
 					게시판
 					<ul class="cate_menu">
-						<li onclick="location.href='https://www.google.com/'">공지사항</li>
+						<li onclick="location.href='<%= request.getContextPath() %>/selectNoticeList.sc'">공지사항</li>
 						<li onclick="location.href='<%= request.getContextPath() %>/selectList.qc'">견적 문의</li>
 						<li onclick="location.href='<%= request.getContextPath() %>/selectList.ue'">회원 견적</li>
 					</ul>

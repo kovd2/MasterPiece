@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.synth.SynthStyle;
 
+import com.kh.MasterPiece.admin.model.vo.Promotion;
+import com.kh.MasterPiece.admin.model.vo.Promotion_ATT;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.board.model.vo.Board;
 import com.kh.MasterPiece.main.model.service.MainService;
@@ -59,7 +61,6 @@ public class SelectMainServlet extends HttpServlet {
 
 		MainPageInfo pi1 = new MainPageInfo(currentPage1, listCount1, limit1, maxPage1, startPage1, endPage1);
 
-		System.out.println(pi1);
 		//ArrayList<HashMap<String, Object>> list = new MainService().selectGraphicList(currentPage1, limit1);
 		ArrayList<Product> list1 = new MainService().graphicList(currentPage1, limit1);
 
@@ -99,6 +100,8 @@ public class SelectMainServlet extends HttpServlet {
 		HashMap<String, Attachment> imgList = new MainService().selectImageList();
 		
 		ArrayList<Board> banner = new MainService().mainBanner();
+		ArrayList<Promotion> plist = new MainService().promotionList();
+		HashMap<String, Promotion_ATT> pimgList = new MainService().promotionImageList();
 		
 		String page = null;
 		if(list != null){
@@ -108,6 +111,8 @@ public class SelectMainServlet extends HttpServlet {
 			request.setAttribute("list2", list2);
 			request.setAttribute("imgList", imgList);
 			request.setAttribute("pi", pi1);
+			request.setAttribute("plist", plist);
+			request.setAttribute("pimgList", pimgList);
 			request.setAttribute("banner", banner);
 		}else{
 			page = "views/common/errorPage.jsp";

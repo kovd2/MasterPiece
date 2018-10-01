@@ -4,9 +4,9 @@
     							com.kh.MasterPiece.admin.model.vo.*"%>
 <!DOCTYPE html>
 <%
-	/* graphic */
-	ArrayList<Promotion> list = (ArrayList<Promotion>)request.getAttribute("list");
-	HashMap<String, Promotion_ATT> imgList =
+	/* 프로모션 */
+	ArrayList<Promotion> pList = (ArrayList<Promotion>)request.getAttribute("list");
+	HashMap<String, Promotion_ATT> pimgList =
 					(HashMap<String, Promotion_ATT>)request.getAttribute("imgList");
 
 %>
@@ -22,6 +22,8 @@
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
+	width:450px;
+	height:1080px;
 }
 
 .c_wrap {
@@ -60,11 +62,6 @@
 	font-size: 50px;
 }
 
-.carousel .list li.a1 { background-image:url('./images/kimjaeyup/test/banner_1.png'); background-repeat: no-repeat;}
-.carousel .list li.a2 { background-image:url('./images/kimjaeyup/test/banner_2.png'); background-repeat: no-repeat; }
-.carousel .list li.a3 { background-image:url('./images/kimjaeyup/test/banner_3.png'); background-repeat: no-repeat; }
-.carousel .list li.a4 { background-image:url('./images/kimjaeyup/test/banner_4.png'); background-repeat: no-repeat; }
-	
 .prev {
 	position: absolute;
 	left: 0px;
@@ -103,32 +100,14 @@
 	<div class="c_wrap">
 		<div class="carousel">
 			<ul class="list">
-				 <% for(int i = 0; i < imgList.size(); i++){%>
-					<li><img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(i).getPromotion_No()).getChange_name()%>" width="405px;" height="1080px;"></li>
+				<% for(int i = 0; i < pimgList.size(); i++){%>
+					<li><img src="<%=request.getContextPath() %>/images/promotion/<%=pimgList.get(pList.get(i).getPromotion_No()).getChange_name()%>" width=1080px, height=450px, style = "background-repeat: no-repeat;"></li>
 				<%} %>
-				<!-- <li class="a1"></li>
-				<li class="a2"></li>
-				<li class="a3"></li>
-				<li class="a4"></li>   -->
 			</ul>
 		</div>
 		<p class="prev"><img src='./images/kimjaeyup/arrow_left.png' style="width:40px; height:50px;"></p>
 		<p class="next"><img src='./images/kimjaeyup/arrow_right.png' style="width:40px; height:50px;"></p>
-	</div>
-	<div class="left_banner">
-		<ul style="list-style:none;">
-			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26096.jpg"></a></li>
-			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26208.jpg"></a></li>
-			<li><a href="http://localhost:8001/MasterPiece/"><img src="http://image5.compuzone.co.kr/img/images/main2014/H/LeftTopWingBanner_26103.jpg"></a></li>
-		</ul>
-	</div>
- 	<div class="right_banner">
-		<span>
-			<a href="http://localhost:8001/MasterPiece/">
-				<img src='./images/kimjaeyup/right_banner.jpg'>
-			</a>
-		</span>
-	</div> 
+		</div>
 	</div>
 	
 	<!--------------------------------------- 메인 배너 스크립트 --------------------------------------->
