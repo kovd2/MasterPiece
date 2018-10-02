@@ -236,11 +236,13 @@ a{ text-decoration:none }
 .thisBtn1:hover, .thisBtn2:hover{ background-color: #d2322d; color: white;} */
 .thisBtn1, .thisBtn2{ cursor: pointer; background-color: white; border:#4c48483b 1px solid; font-size: 15px; padding: 5px 10px; margin:2px;}
 .thisBtn1:hover, .thisBtn2:hover{border:#727272 1px solid;}
+#footAutoGnbNavi li{cursor:pointer;}
 
-
+#right_gnb_plus, #right_gnb_minus {float:left; cursor:pointer; height:35px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -367,7 +369,129 @@ a{ text-decoration:none }
 	    },4000);
 	   });
 	});
+	
+	/* 좌측 플로팅 배너 */
+	$(document).ready(function(){
+		var tabIndex = 0;
+		$('#right_bar_layer li').click(function(){
+			tabIndex = $(this).index();
+			
+			$('#right_bar_layer li').each(function(idx){
+				$(this).find('img').attr('src', $(this).find('img').attr('src').replace('_off', '_on'));
+				if(tabIndex != idx){
+					$(this).find('img').attr('src', $(this).find('img').attr('src').replace('_on', '_off'));
+				}
+			});
+			$('#right_bar_layer>div').eq(tabIndex).show().siblings('div').hide();
+		});
+	});
+	$(document).on("click", "#right_gnb_plus", function(){
+		$(".right_common_navi").show();
+	});
+	$(document).on("click", "#right_gnb_minus", function(){
+		$(".right_common_navi").hide();
+	});
+	$(function(){ 
+		   var menupos = $(".right_layer").offset().top; 
+		   $(window).scroll(function(){ 
+		      if($(window).scrollTop() >= menupos) { 
+		         $(".right_layer").css("position","fixed"); 
+		         $(".right_layer").css("top","50");
+		         } else { 
+		         $(".right_layer").css("position","relative"); 
+		         $(".right_layer").css("top","0"); 
+		      } 
+		   }); 
+		}); 
+	
+	/* TOP, DOWN 버튼 사라지고 클릭시 이동 */
+	$(window).scroll(function(event){
+		var window_height		= $(window).height();
+		var leftGnbLeftPositon = ( $(window).width()/2 ) + 592 + 10;
+		$('#footAutoGnbNavi').css( 'left', leftGnbLeftPositon );
+		if( !$(this).scrollTop() ){
+			$('#footAutoGnbNavi').fadeOut( "slow", function() {});
+		}else{
+			$('#footAutoGnbNavi').fadeIn( "slow", function() {});
+		}
+	});
+	$('#footAutoGnbNaviUp').click(function(){
+	 $('html,body').animate({ scrollTop: 0 }, 'fast', function () {} );
+	});
+	$('#footAutoGnbNaviDown').click(function(){
+		var window_height		= $(window).height();
+		var document_height		= $(document).height();
+		$('html,body').animate({ scrollTop: window_height + document_height }, 'fast', function () {});
+	});
+	
+	$(function() {
+	    $(window).scroll(function() {
+	        if ($(this).scrollTop() > 600) {
+	            $('.ScrollButton').fadeIn();
+	        } else {
+	            $('.ScrollButton').fadeOut();
+	        }
+	    });
+	        
+	    $("#footAutoGnbNaviUp").click(function() {
+	        $('html').animate({scrollTop : 0}, 600);
+	    });
+	 
+	    $("#footAutoGnbNaviDown").click(function() {
+	        $('html').animate({scrollTop : ($('.footerP').offset().top)}, 600);
+	    });
+	});
+	
+	$('#footAutoGnbNavi li').find('img').hover(function() {
+		$(this).find('img').attr('src', $(this).find('img').attr('src').replace('_off', '_on'));
+		},
+		function() {
+			$(this).find('img').attr('src', $(this).find('img').attr('src').replace('_on', '_off'));
+		});
+	
+	
 	</script>
+	
+	<!-- 우측  레이어 -->
+	<div class="right_layer" style="z-index:990; position:absolute; ">
+		<div class="right_bar_layer right_bar_layer_tbn" id="right_bar_layer" style="top: 236px; display: block; height: 0px;">
+			<ul style="list-style: none;">
+				<li id="right_gnb_plus" style="margin-top: 70px;">
+					<img src="<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_plus_on.gif">
+				</li>
+				<li id="right_gnb_minus" style="margin-top: 70px;">
+					<img src="<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_minus_off.gif">
+				</li>
+			</ul>
+			<div class="right_common_navi" style="width:100px; height:536px; display:block; margin-left: 40px;">
+				<img src="<%=request.getContextPath()%>/images/kimjaeyup/right_common_on.jpg" usemap="#rightCommon">
+				<map name="rightCommon" class="cursorPrinter">
+					<area shape="rect" coords="1,0,70,55"  href="<%=request.getContextPath() %>/SelectCartList.swy" title="장바구니">
+					<area shape="rect" coords="1,56,70,110"  href="http://localhost:8001/MasterPiece/serch.tn?query=%EA%B2%80%EC%83%89" title="검색"> 
+					<area shape="rect" coords="1,111,70,179"  href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterQuestionWrite.jsp" title="1:1 상담하기">
+					<area shape="rect" coords="1,180,70,234" title="퀵운송료" onClick="window.open('http://localhost:8001/MasterPiece/views/main/mainInfo01.html','pagename','height=' + 600 + ',width=' + 600 + 'fullscreen=yes'); return false;">
+					<area shape="rect" coords="1,235,70,290" href="<%=request.getContextPath() %>/views/serviceCenter/serviceCenterExchangeWrite.jsp" title="AS신청">
+				</map>
+			</div>
+		</div>
+	</div>
+	
+	<!-- TOP, DOWN 버튼  -->
+	<div id="footAutoGnbNavi" style="left: 1393.5px; display: block; position: fixed; z-index: 900; bottom: 670px;">
+		<ul style="list-style: none; margin: 0px; padding: 0px;">
+			<li id="footAutoGnbNaviUp" class="ScrollButton" style="border-bottom:1px solid white;">&nbsp;
+				<img src="<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_top_off.jpg"
+				onmouseover="this.src='<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_top_on.jpg'"
+				onmouseout="this.src='<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_top_off.jpg'">
+			
+			</li>
+			<li id="footAutoGnbNaviDown" class="ScrollButton">&nbsp;
+				<img src="<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_down_off.jpg"
+				onmouseover="this.src='<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_down_on.jpg'"
+				onmouseout="this.src='<%=request.getContextPath()%>/images/kimjaeyup/right_gnb_down_off.jpg'">
+			</li>
+		</ul>
+	</div>
 	
 		<br>
 		<!--------------------------------------- 상품 목록  --------------------------------------->

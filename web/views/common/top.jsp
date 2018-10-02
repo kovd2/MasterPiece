@@ -133,13 +133,13 @@ pageEncoding="UTF-8"%>
 	cursor: pointer;
 }
 
-#mp {
+/* #mp {
 	border-top-left-radius: 4px;
 }
 
 #cate {
 	border-top-right-radius: 4px;
-}
+} */
 
 ul.mp_menu, ul.com_menu, ul.mo_menu, ul.de_menu, ul.cate_menu {
 	position: absolute;
@@ -162,11 +162,11 @@ ul.mp_menu>li, ul.com_menu>li, ul.mo_menu>li, ul.de_menu>li, ul.cate_menu>li {
 	margin-left: -40px;
 	padding-left: 20px;
 }
-ul.mp_menu{ width:182px; box-shadow: 3px 3px 10px #ea4c4c;  /* box-shadow: 3px 3px 10px #b5b5b5; */}
-ul.com_menu{ width:173px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.mo_menu{width:173px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.de_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
-ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
+ul.mp_menu{ width:182px; /* box-shadow: 3px 3px 10px #ea4c4c; */   box-shadow: 3px 3px 10px #292828cc; }
+ul.com_menu{ width:173px; box-shadow: 3px 3px 10px #292828cc;}
+ul.mo_menu{width:173px; box-shadow: 3px 3px 10px #292828cc;}
+ul.de_menu{width:174px; box-shadow: 3px 3px 10px #292828cc;}
+ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #292828cc;}
 
 .categoryBox_css:hover .mp_menu, .categoryBox_css:hover .com_menu,
 	.categoryBox_css:hover .mo_menu, .categoryBox_css:hover .de_menu,
@@ -260,7 +260,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 			<div id="userInfo" style="margin-top: -40px; margin-left: 40px;">
 				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
 				<li class="top_cart" style="list-style-type: none; display: inline-block;">
-				<a href="<%=request.getContextPath() %>/views/mypage/cart/cart_myPage.jsp" title="장바구니" style="color:black; font-size:12px; text-decoration:none">
+				<a href="<%=request.getContextPath() %>/SelectCartList.swy" title="장바구니" style="color:black; font-size:12px; text-decoration:none">
 				<img src="<%=request.getContextPath() %>/images/kimjaeyup/cart.png" style="width:35px; height:35px;">
 				장바구니</a></li>
 			</div>
