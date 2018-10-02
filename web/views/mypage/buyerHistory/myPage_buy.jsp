@@ -9,6 +9,8 @@ int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
+String entire = (String)request.getAttribute("entire");
+HashMap<String, String> ino =(HashMap<String, String>)request.getAttribute("map");  
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

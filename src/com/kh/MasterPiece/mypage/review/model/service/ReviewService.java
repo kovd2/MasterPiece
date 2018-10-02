@@ -6,6 +6,7 @@ import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 import static com.kh.MasterPiece.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.kh.MasterPiece.board.model.dao.BoardDao;
@@ -105,6 +106,19 @@ public class ReviewService {
 		Connection con = getConnection();
 		
 		ArrayList<Review> list = new ReviewDao().selectList(writer, searchType, searchText, currentPage, limit, con);
+				
+		close(con);
+		
+		
+		return list;
+	}
+
+
+	public ArrayList<Review> SearchDateList(String writer, String date, int currentPage, int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().SearchDateList(writer, date, currentPage, limit, con);
 				
 		close(con);
 		
