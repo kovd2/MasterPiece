@@ -12,7 +12,12 @@ HashMap<String, String[]> hmap = (HashMap<String, String[]>)request.getAttribute
 String[] str1 = hmap.get("a");
 String[] str2 = hmap.get("b");
 String[] str3 = hmap.get("c");
+int count = (int)request.getAttribute("count");
 
+int cnt = 0;
+if(application.getAttribute("cntVisit") != null){
+	cnt = (int)application.getAttribute("cntVisit");
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +47,7 @@ h3{
 			</tr>
 			<tr>
 				<td style="width:400px;"><h3>판매 진행</h3></td>
-				<td><h3>발주</h3></td>
+				<td><h3>회원 현황</h3></td>
 			</tr>
 			<tr>
 				<td><table>
@@ -62,16 +67,15 @@ h3{
 				</td>
 				<td><table>
 						<tr>
-							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/g.png"></td>
-							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/f.png"></td>
-							<td align="center" style="width:100px" ><img alt="" src="./images/sinwooyang/e.png"></td>
+							<td>방문자 수 : <%=cnt%></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;신규 가입자 : <%=count%></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td><h3 style="display: inline;">판매 취소</h3></td>
-				<td><h3 style="display: inline;">고객 문의 현황</h3><a style="margin-left:111px;" href="">더보기</a></td>
+				<td><h3 style="display: inline;">고객 문의 현황</h3><a style="margin-left:111px;" href="<%=request.getContextPath()%>/question.swy">더보기</a></td>
 			</tr>
 			<tr>
 				<td><table>
@@ -97,8 +101,8 @@ h3{
 				</td>
 			</tr>
 			<tr>
-				<td><h3 style="display: inline;">공지 사항</h3><a style="margin-left:200px;" href="">더보기</a></td>
-				<td><h3 style="display: inline;">견적</h3><a style="margin-left:200px;" href="">더보기</a></td>
+				<td><h3 style="display: inline;">공지 사항</h3><a style="margin-left:200px;" href="<%=request.getContextPath()%>/selectBoard.swy">더보기</a></td>
+				<td><h3 style="display: inline;">견적</h3><a style="margin-left:200px;" href="<%=request.getContextPath()%>/selectBoard.swy?a=1">더보기</a></td>
 			</tr>
 			<tr>
 				<td><table>

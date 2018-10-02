@@ -70,7 +70,7 @@ public class DeliveryServlet extends HttpServlet {
 		ArrayList<Delivery> list = new testService().deliveryList(currentPage, limit);
 		String page = "";
 		if(list != null){
-			page = "views/admin/member/member.jsp";
+			page = "views/admin/delivery/delivery.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
 			request.setAttribute("cate", "전체");

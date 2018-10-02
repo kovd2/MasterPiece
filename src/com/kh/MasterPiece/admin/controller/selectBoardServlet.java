@@ -77,6 +77,7 @@ public class selectBoardServlet extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("pi", pi);
 				request.setAttribute("cate", "전체");
+				request.setAttribute("a", request.getParameter("a"));
 				
 			}else{
 				page = "views/common/errorPage.jsp";

@@ -23,7 +23,6 @@
 		ascKey[i++] = iter.next();
 	} 
 	int count = (int)request.getAttribute("count");
-	int a = 1;
 	
 	int cnt = 0;
 	if(application.getAttribute("cntVisit") != null){

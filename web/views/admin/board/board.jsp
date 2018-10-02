@@ -10,6 +10,7 @@
 	ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("list");
 	String cate = (String) request.getAttribute("cate");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	String a = (String) request.getAttribute("a");
 	int listCount = 0;
 	int currentPage = 0;
 	int maxPage = 0;
@@ -99,6 +100,86 @@
 	</div>
 
 	<script>
+	window.onload = function(){
+		var a = <%=a%>;
+	
+		if(a==1)
+			change2();
+	}
+	function change2() {
+		var type = 1;
+		$("#sel option:eq(1)").attr("selected", "selected");
+		if(type != 6){
+			$("#add").css("visibility","hidden")
+		}else{
+			$("#add").css("visibility","visible")
+		}
+		$.ajax({
+			url : "selectBoardAjax.swy",
+			data : {
+				type : type
+			},
+			type : "get",
+			success : function(data) {
+				$(".content").remove();
+					for (var i = 0; i < data.boardList.length; i++) {
+						$tr = $("<tr class='content'>");
+						$td = $("<td>");
+						$td.append(data.boardList[i].BOARD_ID);
+						$td2 = $("<td>");
+						if(type == 6){
+							$a = $("<a href='./boardnDetail.swy?id="+data.boardList[i].BOARD_ID+"'>")
+							$a.append(data.boardList[i].BOARD_TITLE);
+							$td2.append($a);	
+						}else{
+							$td2.append(data.boardList[i].BOARD_TITLE);
+						}
+						$td3 = $("<td>");
+						$td3.append(data.boardList[i].BOARD_WRITER);
+						$tr.append($td);
+						$tr.append($td2);
+						$tr.append($td3);
+						$("#maintable").append($tr);
+					}
+					
+				$(".pagingArea>*").remove();
+					
+					if(data.bpi.maxPage!=0){
+					$button = $("<button class='btn' onclick = a(1)>");
+					$button.append("<<");
+					$(".pagingArea").append($button);
+					if(data.bpi.currentPage <= 1){ 
+						$button2  = $("<button class='btn' disabled>");	 
+					}else{
+						$button2  = $("<button class='btn' onclick = a("+(data.bpi.currentPage - 1)+")>");
+					}
+					$button2.append("<");
+					$(".pagingArea").append($button2);
+					for(var p = data.bpi.startPage; p <= data.bpi.endPage; p++){ 
+						if(p == data.bpi.currentPage){
+							$page = $("<button class='btn' disabled>");
+					    }else{
+					    	$page = $("<button class='btn' onclick=a("+p+")>");
+					   } 
+						$page.append(p);
+						$(".pagingArea").append($page);
+					} 			
+					
+					if(data.bpi.currentPage >= data.bpi.maxPage){ 
+						$button3 = $("<button class='btn' disabled>");
+					}else{ 
+						$button3 = $("<button class='btn' onclick=a("+(data.bpi.currentPage + 1)+")>");
+					} 
+					$button3.append(">");
+					$(".pagingArea").append($button3);
+					$button4 = $("<button class='btn' onclick=a("+data.bpi.maxPage+")>");
+					$button4.append(">>");
+					$(".pagingArea").append($button4);
+			}
+			}
+
+		});
+	};
 		function change() {
 			var type = $("#sel").val();
 			if(type != 6){
