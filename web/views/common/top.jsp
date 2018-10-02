@@ -302,7 +302,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #ea4c4c;}
 	</script>
 	<hr class="hrtop">
 	
-		<!------------------------------- 카테고리 바 ------------------------------->
+		<!--------------------------------- 카테고리 바 -------------------------------->
 	<div class="topContainer">
 		<div class="categoryBox">
 			<div class="categoryNav" id="categoryNav">

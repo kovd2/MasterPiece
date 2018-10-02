@@ -225,10 +225,11 @@ for(int i = 0; i < list.size(); i++){
 	width: 868px;
 	height: auto;
 	float: left;
-	border: 1px solid #dfdfe1;
+	/* border: 1px solid #dfdfe1; */
 	border-top: 1px solid #575f79;
-	background-color: #f7f7f7;
+	/* background-color: #f7f7f7; */
 	margin-left: 105px;
+	
 }
 
 #pay_method_list {
@@ -602,7 +603,6 @@ for(int i = 0; i < list.size(); i++){
 									</td>
 								</tr>
 
-
 								<!-- <tr>
 									<th>증빙서류신청</th>
 									<td>
@@ -618,54 +618,7 @@ for(int i = 0; i < list.size(); i++){
 						</table>
 					</div>
 
-
 					<div id="pay_price_method_no_bank" class="pay_price_table_class"style="visibility: hidden;">
-						<!-- <table border="0" cellpadding="0" cellspacing="0">
-							<tbody>
-								<tr>
-									<th>기존적립금</th>
-									<td>
-										<input type="textbox" name="point_can_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');" readonly=""> 
-										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
-										<span style="padding-left: 8px;">(보유머니 <span class="pay_price_orage_font">0P</span>)</span>
-									</td>
-								</tr>
-								<tr>
-									<th>I POINT</th>
-									<td>
-										<input type="textbox" name="i_point_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');"> 
-										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
-										<span style="padding-left: 8px;">(보유 I POINT <span class="pay_price_orage_font">0P</span>) &nbsp;&nbsp; &nbsp; 
-											<span style="padding-left: 40px;">
-											<input type="checkbox" name="i_point_vat_use" id="id_i_point_vat_use_no_bank" value="use" onclick="iPointVatUse(this.id);">
-											<label for="id_i_point_vat_use_no_bank">I POINT 세금계산서 및 현금영수증 발행</label>
-											</span>
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th>현금반품적립금</th>
-									<td>
-										<input type="textbox" name="cash_point_use_no_bank"class="pay_textbox_style pay_textbox_short"style="text-align: right;" value="0"onkeyup="usePointCheck('no_bank');">
-										<img src="./images/pay_orange_point_icon.gif" class="orange_icon">&nbsp; &nbsp; &nbsp; 
-										<span style="padding-left: 8px;">(보유 현금반품적립금 <span class="pay_price_orage_font">0P</span>)</span>
-									</td>
-								</tr>
-
-								<tr>
-									<th>증빙서류신청</th>
-									<td>
-									<input type="radio" name="pay_tax_bank"id="pay_tax_card_1" value="tax">
-										<label for="pay_tax_card_1">세금계산서</label> &nbsp; 
-										<span style="padding-left: 23px;">
-										<input type="radio"name="pay_tax_bank" id="pay_tax_card_3" value="no">
-										<label for="pay_tax_card_3">신청안함</label> 
-										</span>
-									</td>
-								</tr>
-
-							</tbody>
-						</table> -->
 						<table id="pay_price_method_no_bank_addbox" style="visibility: hidden;">
 							<tbody>
 								<tr>

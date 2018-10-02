@@ -189,5 +189,215 @@ public class ProductDao {
 
 		return listCount;
 	}
+
+	public ArrayList<Product> popularList(Connection con, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> prdList = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("popularList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			prdList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				prdList.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return prdList;
+	}
+
+	public ArrayList<Product> newList(Connection con, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> prdList = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("newList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			prdList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				prdList.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return prdList;
+	}
+
+	public ArrayList<Product> lowList(Connection con, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> prdList = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("lowPriceList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			prdList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				prdList.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return prdList;
+	}
+
+	public ArrayList<Product> highList(Connection con, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> prdList = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("highPriceList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			prdList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				prdList.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return prdList;
+	}
+
+	public ArrayList<Product> recommendList(Connection con, int currentPage, int limit, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> prdList = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("recommendList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			prdList = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				prdList.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return prdList;
+	}
 	
 }
