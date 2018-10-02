@@ -6,6 +6,7 @@ import static com.kh.MasterPiece.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,6 +79,7 @@ public class ReviewDao {
 
 
 	public int getListCount(String writer, Connection con) {
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -191,7 +193,7 @@ public class ReviewDao {
 		}
 		return result;
 	}
-	
+
 
 	public int searchCount(Connection con, String writer, int searchType, String searchText) {
 
@@ -232,33 +234,140 @@ public class ReviewDao {
 
 
 		try {if(searchType == 3){
-			
-		
+
+
 			String query = prop.getProperty("searchList1");
 			pstmt = con.prepareStatement(query);
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
+
 			pstmt.setString(1, writer);
 			pstmt.setString(2, searchText);
 			pstmt.setInt(3, startRow);
 			pstmt.setInt(4, endRow);
 		}else{
-			
+
 			String query = prop.getProperty("searchList2");
 			pstmt = con.prepareStatement(query);
-			
+
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
+
 			pstmt.setString(1, writer);
 			pstmt.setString(2, searchText);
 			pstmt.setInt(3, searchType);
 			pstmt.setInt(4, startRow);
 			pstmt.setInt(5, endRow);
-			
+
 		}
+		rset = pstmt.executeQuery();
+
+		searchList = new ArrayList<Review>();
+
+		while(rset.next()){
+			Review r = new Review();
+
+			r.setBoardNo(rset.getInt("board_no"));
+			r.setBoardCategory(rset.getInt("board_type"));
+			r.setBoardTitle(rset.getString("board_title"));
+			r.setBoardDate(rset.getDate("board_date"));
+			r.setBoardId(rset.getInt("board_id"));
+
+			searchList.add(r);
+		}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return searchList;
+	}
+
+
+	public ArrayList<Review> SearchDateList(String writer, String date, int currentPage, int limit, Connection con) {
+
+		PreparedStatement pstmt = null;
+		ArrayList<Review> searchList = null;
+
+		ResultSet rset = null;
+
+
+		try {
+			if(date.equals("yesterday")){
+
+
+				String query = prop.getProperty("searchYesterday");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("today")){
+
+				String query = prop.getProperty("searchToday");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("aweek")){
+				String query = prop.getProperty("searchAweek");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("amonth")){
+				String query = prop.getProperty("searchAmonth");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("sixmonth")){
+				String query = prop.getProperty("searchSixmonth");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("ayear")){
+				String query = prop.getProperty("searchAyear");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}
+			
 			rset = pstmt.executeQuery();
 
 			searchList = new ArrayList<Review>();

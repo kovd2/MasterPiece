@@ -27,6 +27,7 @@
 	</jsp:include>
 	<div id="main">
 	<div style="margin-left: 20px; margin-top: 20px;margin-bottom: 30px"><button class="delevery"style="width: 80px;height: 50px">배송완료</button></div>
+	<div style="margin-left: 20px;"><button class="po">배송 완료 목록</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="pr">배송 전 목록</button></div>
 	<form action="DeliveryCompletion.swy" method="post" id="com">
 	<table border="1" style="margin-left: 20px; margin-top: 20px;margin-bottom: 30px">
 	<tr>
@@ -80,6 +81,12 @@
 		}
 	
 	});
+	$(".pr").click(function(){
+		location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=1'
+	});
+	$(".po").click(function(){
+		location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=1' 
+	});
 	
 	
 	$("#check").click(function(){
@@ -115,7 +122,7 @@ $(".check").click(function(){
 				
 				<%}
 					for (int p = startPage; p <= endPage; p++) {
-							if (p == currentPage) {
+					if (p == currentPage) {
 				%>
 				<button disabled><%=p%></button>
 				<%

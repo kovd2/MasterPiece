@@ -242,44 +242,21 @@ select {
 					
 					<form action = "<%= request.getContextPath() %>/ReviewSearchServlet"> 
 					
-					<div style='float: left; padding-top: 7px; width: 774px;'>
+					<div style='float: left; padding-top: 18px; width: 774px;'>
 						 <div>
-							<div
-								style='font-weight: bold; float: left; font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>조회기간</div>
+							<div style='font-weight: bold; float: left; font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>조회기간</div>
 							<div style='float: left;'>
 								<table class='section_header_table'>
 									<tr>
-										<td>어제</td>
-										<td>오늘</td>
-										<td class='current'>1주일</td>
-										<td>1개월</td>
-										<td>6개월</td>
-										<td>1년</td>
+										<td onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=yesterday"'>어제</td>
+										<td onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=today"'>오늘</td>
+										<td class='current' onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=aweek"'>1주일</td>
+										<td onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=amonth"'>1개월</td>
+										<td onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=sixmonth"'>6개월</td>
+										<td onclick = 'location.href="<%= request.getContextPath()%>/DateSearch?date=ayear"'>1년</td>
 									</tr>
 								</table>
 							</div>
-
-							<div style='float: left; margin-left: 40px;'>
-								<input name="date_1" type='text'
-									style='float: left; box-sizing: border-box; height: 28px; width: 111px; padding-left: 15px;'
-									value='2018-09-01' id='datepicker1' />
-								<div id='t_datepicker1'
-									style='cursor: pointer; background-color: #fff; height: 28px; float: left; box-sizing: border-box; border: 1px solid #ccc; border-left: 0px; padding: 0px 5px; font-size: 18px;'>
-									<i class="fa fa-calendar fa-2" style='vertical-align: bottom;'
-										aria-hidden="true"></i>
-								</div>
-								<div class='text_wave'>~</div>
-								<input name="date_2" type='text'
-									style='float: left; box-sizing: border-box; height: 28px; width: 111px; padding-left: 15px;'
-									value='2018-09-08' id='datepicker2' />
-								<div id='t_datepicker2'
-									style='cursor: pointer; background-color: #fff; height: 28px; float: left; box-sizing: border-box; border: 1px solid #ccc; border-left: 0px; padding: 0px 5px; font-size: 18px;'>
-									<i class="fa fa-calendar fa-2" style='vertical-align: bottom;'
-										aria-hidden="true"></i>
-								</div>
-								<span></span>
-							</div>
-
 							<div style='clear: both;'></div>
 						</div>
 						<div id="search" class="search_review" style='padding-top: 30px;'>
@@ -396,6 +373,7 @@ select {
 						<%-- 페이징 처리 --%>
 						<div class="pagingArea" align="center">
 							<%if(entire.equals("전체")){ %>
+							
 							<button	onclick="location.href='<%=request.getContextPath()%>/ReviewServlet?currentPage=1'"><<</button>
 							<%if (currentPage <= 1) {	%>
 							<button disabled><</button>

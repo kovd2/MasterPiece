@@ -193,14 +193,14 @@ div {
 
 .contents>.data1{
 	width:85px;
-	height:30px;
+
 	display: inline-block;
 	text-align:center;
 	margin-left:25px;
 }
 .contents>.data2{
-	width:50px;
-	height:30px;
+	width:65px;
+
 	display:inline-block;
 
 }
@@ -215,13 +215,13 @@ div {
    	display:inline-block;
 }
 .contents>.data4{
- 	width:250px;
- 	height:50px;
+ 	width:260px;
+ 	
  	display: contents;
 }
 .contents>.data5{
 	width:70px;
-	height:30px;
+
 	font-weight:bold;
 	color:red;
 	text-align:center;
@@ -229,29 +229,32 @@ div {
 }
 .contents>.data6{
 	width:40px;
-	height:30px;
+
 	text-align:center;
 	display: inline-block;
 }
 .contents>.data7{
 	width:65px;
-	height:30px;
+
 	text-align:center;
 	display: inline-block;
 }
 
 .contents>.data8{
 	width:80px;
-	height:30px;
+
 	text-align:center;
 	display: inline-block;
 }
 .contents>.data9{
-	width:70px;
-	height:30px;
+	width:130px;
+
 	text-align:center;
 	display: inline-block;
 	
+}
+.data9 > btn{
+	font-size:13px;
 }
 
 #ui-datepicker-div {
@@ -519,16 +522,15 @@ $(function() {
 							style='font-weight: bold; float: left; padding: 0px 10px; margin-top: 7px;'>상품검색</div>
 						<div style='float: left;'>
 							<select name="search_type" id="search_type"
-								style='box-sizing: border-box; height: 28px; width: 118px; vertical-align: bottom;'
-								onchange="$('#search_text').val('')">
+								style='box-sizing: border-box; height: 28px; width: 118px; vertical-align: bottom;'>
 								<option value="1">상품명</option>
-								<option value="2">상품번호</option>
+								<option value="2">주문번호</option>
 							</select> <input id="search_text" name="search_text" type='text'
 								style='margin-left: 10px; box-sizing: border-box; height: 28px; width: 559px; padding-left: 10px;'
-								placeholder='상품명 또는 상품번호를 입력하세요.' value="" />
+								placeholder='상품명 또는 주문번호를 입력하세요.' value="" />
 							<div
 								style='padding-top: 6px; padding-left: 3px; font-size: 11px; color: #666;'>상품명과
-								상품번호로만 조회 가능합니다.</div>
+								주문번호로만 조회 가능합니다.</div>
 						</div>
 
 						<div style='clear: both;'></div>
@@ -606,14 +608,27 @@ $(function() {
 						<div class='contents data6'><%=list.get(i).getOrderCount() %>개</div>
 						<div class='contents data7'><%=list.get(i).getBuyStatus()%></div>
 						<div class='contents data8'><%=list.get(i).getPayType() %></div>
-						<div class='contents data9'><%=list.get(i).getDeliveryOption() %></div>
+						<div class='contents data9'><%=list.get(i).getDeliveryOption() %>
+							<button class='data9 btn' onclick="trace(<%=ino.get(list.get(i).getOrderCheck())%>)"
+								style='cursor: pointer; display: inline-block; 
+							width: 70px; height: 23px; background-color: #454c5f; color: #fff';>배송추적</button></div>
+						
 					</div>
 					
 					<%} %>
 				<%} %>
+				
+				<script type="text/javascript">
+               function trace(i){
+                  window.open("http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1="+i,"배송추적","width=600,height=900");
+               }
+            </script>
+            
 			</div>
 						<%-- 페이징 처리 --%>
 						<div class="pagingArea" align="center">
+							<%if(entire.equals("전체")){ %>
+							
 							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=1'"><<</button>
 							<%if (currentPage <= 1) {	%>
 							<button disabled><</button>
@@ -633,7 +648,31 @@ $(function() {
 							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=currentPage + 1%>'">></button>
 							<%}%>
 							<button	onclick="location.href='<%=request.getContextPath()%>/view_history?currentPage=<%=maxPage%>'">>></button>
-
+							
+							
+							<%}else{ %>
+							
+							<button	onclick="location.href='<%=request.getContextPath()%>/BuyerHistorySearch?currentPage=1'"><<</button>
+							<%if (currentPage <= 1) {	%>
+							<button disabled><</button>
+							<%} else { %>
+							<button	onclick="location.href='<%=request.getContextPath()%>/BuyerHistorySearch?currentPage=<%=currentPage - 1%>'"><</button>
+							<%}%>
+							<%for (int p = startPage; p <= endPage; p++) {
+									if (p == currentPage) {	%>
+							<button disabled><%=p%></button>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/BuyerHistorySearch?currentPage=<%=p%>'"><%=p%></button>
+							<%}%>
+							<%}%>
+							<%if (currentPage >= maxPage) {%>
+							<button disabled>></button>
+							<%} else {%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/BuyerHistorySearch?currentPage=<%=currentPage + 1%>'">></button>
+							<%}%>
+							<button	onclick="location.href='<%=request.getContextPath()%>/BuyerHistorySearch?currentPage=<%=maxPage%>'">>></button>
+							
+							<%} %>
 <hr class="gshr">
 
 		</div>

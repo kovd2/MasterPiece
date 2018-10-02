@@ -11,6 +11,10 @@ import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.mypage.buyerhistory.model.dao.BuyerHistoryDao;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 
+import com.kh.MasterPiece.mypage.review.model.dao.ReviewDao;
+import com.kh.MasterPiece.mypage.review.model.vo.Review;
+
+
 public class BuyerHistoryService {
 	
 	//결제금액 뺴고 나머지 데이터 가져오는 메소드
@@ -61,6 +65,7 @@ public class BuyerHistoryService {
 		return listCount;
 	}
 
+
 	public HashMap<String, Attachment> imageList2()
 	{
 		Connection con = getConnection();
@@ -82,4 +87,38 @@ public class BuyerHistoryService {
 		
 		return bh;
 	}
+
+	public ArrayList<BuyerHistory> searchList(String writer, int searchType, String searchText, int currentPage,int limit) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<BuyerHistory> list = new BuyerHistoryDao().selectList(writer, searchType, searchText, currentPage, limit, con);
+				
+		close(con);
+		
+		return list;
+	}
+
+	public int searchCount(String writer, int searchType, String searchText) {
+		Connection con = getConnection();
+		
+		int listCount = new BuyerHistoryDao().searchCount(con, writer, searchType, searchText);
+				
+		close(con);
+		
+		
+		return listCount;
+	}
+
+	public HashMap<String, String> invoiceNo() {
+		Connection con = getConnection();
+
+		HashMap<String, String> list = new BuyerHistoryDao().invoiceNo(con);
+
+		close(con);
+
+		return list;
+	}
+
+
 }
