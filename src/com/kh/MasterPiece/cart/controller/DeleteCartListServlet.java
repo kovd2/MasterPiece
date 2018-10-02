@@ -32,7 +32,6 @@ public class DeleteCartListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String value = request.getParameter("code");
-		
 		String values[] = value.split(",");
 			
 		int result = new CartService().deleteCart(values);	

@@ -10,11 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
 import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.vo.Member;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class payMentDao {
 	private Properties prop = new Properties();
@@ -29,7 +33,7 @@ public class payMentDao {
 		}
 	}
 
-	public ArrayList<Cart> selectPayMentList(Connection con, int currentPage, int limit, Member m) {
+	public ArrayList<Cart> selectPayMentList(Connection con, int currentPage, int limit, Member m, String prdCode) {
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
@@ -44,10 +48,12 @@ public class payMentDao {
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
+			
 			pstmt.setString(1, m.getUserId());
 			pstmt.setString(2, m.getOrderCheck());
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, endRow);
+			pstmt.setString(3, prdCode);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
 
 			rset = pstmt.executeQuery();
 
@@ -254,6 +260,83 @@ public class payMentDao {
 		}finally{
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public HashMap<String, Integer> count(Connection con, String orderCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("updateCount");
+		
+		HashMap<String, Integer> list = new HashMap<String, Integer>();
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			
+			pstmt.setString(1, orderCheck);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				list.put(rset.getString("prd_code"), rset.getInt("order_count"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+		
+	}
+
+	public int update(Connection con, HashMap<String, Integer> map) {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("update");
+//		update product set sell_count = sell_count + ? where prd_code = ?
+		ArrayList<String> key = new ArrayList<String>();
+		Set<String> set = map.keySet();
+		Iterator<String> iter = set.iterator();
+		int j = 0;
+		while(iter.hasNext()){
+			key.add(iter.next());
+			System.out.println(key.get(j++));
+		}
+		int count = 0;
+		try {
+			System.out.println(map.size());
+			/*for(int i = 0; i < map.size(); i++){
+			stmt = con.createStatement();
+			rset = stmt.executeQuery("select sell_count from product where prd_code ="+key.get(i));
+			if(rset.next()){
+				count = rset.getInt(1);
+			}
+			pstmt = con.prepareStatement(query);
+			System.out.println(query);
+			pstmt.setInt(1, count + map.get(key.get(i)));
+			pstmt.setString(2, key.get(i));
+			System.out.println("asdf");
+			result += pstmt.executeUpdate();
+			System.out.println("end1");
+			}
+			System.out.println("end2");*/
+			
+			pstmt = con.prepareStatement(query);
+			result += pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(stmt);
+			close(rset);
+		}
+		
 		return result;
 	}
 

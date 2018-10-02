@@ -5,6 +5,7 @@ import static com.kh.MasterPiece.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.MasterPiece.cart.model.vo.Cart;
 import com.kh.MasterPiece.member.model.vo.Member;
@@ -12,10 +13,10 @@ import com.kh.MasterPiece.payMent.model.dao.payMentDao;
 
 public class payMentService {
 
-	public ArrayList<Cart> selectPayMentList(int currentPage, int limit, Member m, String[] values) {
+	public ArrayList<Cart> selectPayMentList(int currentPage, int limit, Member m, String[] values, String prdCode) {
 		Connection con = getConnection();
 		
-		ArrayList<Cart> list = new payMentDao().selectPayMentList(con, currentPage, limit, m);
+		ArrayList<Cart> list = new payMentDao().selectPayMentList(con, currentPage, limit, m, prdCode);
 		
 		close(con);
 		
@@ -116,6 +117,31 @@ public class payMentService {
 		Connection con = getConnection();
 		
 		int result = new payMentDao().buyHistory2(con, orderCheck);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public HashMap<String, Integer> count(String orderCheck) {
+		Connection con = getConnection();
+		
+		HashMap<String, Integer> list = new payMentDao().count(con, orderCheck);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int update(HashMap<String, Integer> map) {
+		Connection con = getConnection();
+		
+		int result = new payMentDao().update(con, map);
 		
 		if(result > 0){
 			commit(con);

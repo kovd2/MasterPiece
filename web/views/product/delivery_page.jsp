@@ -488,7 +488,7 @@ for(int i = 0; i < list.size(); i++){
 						<td style="width:100px; height:31px;"><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
 						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
-						<td style="width: 120px; height: 31px;"><%=list.get(i).getOrder_count()%> 개</td>
+						<td style="width: 120px; height: 31px;"><input type="hidden" id="orderCount" value="<%=list.get(i).getOrder_count()%>"><%=list.get(i).getOrder_count()%> 개</td>
 						<td style="width: 120px; height: 31px;"><%=list.get(i).getPrice() * list.get(i).getOrder_count()%>원</td>
 					</tr>
 				</table>
@@ -723,6 +723,7 @@ for(int i = 0; i < list.size(); i++){
                     }).open();
 					
 				};
+				
 				function goCart(){
 					location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 				}
@@ -733,6 +734,7 @@ for(int i = 0; i < list.size(); i++){
 				$("#address1").val(addressArr[0]);
 				$("#address2").val(addressArr[1]);
 				$("#address3").val(addressArr[2]);
+				
 				function billingPage(){
 					var id = "<%=loginUser.getUserId()%>";
 					var price = <%=total%>;
@@ -741,17 +743,19 @@ for(int i = 0; i < list.size(); i++){
 					var address = addressArr;
 					var tel = $('#tel').val();
 					var etc = $('#etc').val();
+					var count = $('#orderCount').val();
+					
 					if(select == "bank"){
 						if(name == ""){
 							alert("입금자 이름을 입력하시오.");
 							return false;
 						}						
 						location.href="<%=request.getContextPath()%>/payMent?id="+ id + "&price=" + price + "&select=" + select + "&name=" + name + 
-								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "";
+								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "&count=" + count + "";
 					
 					}else{
 						location.href="<%=request.getContextPath()%>/views/product/billingPage.jsp?id="+ id + "&price=" + price + "&select=" + select +
-								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "";
+								"&recipient=" + recipient + "&address=" + address + "&tel=" + tel + "&etc=" + etc + "&count=" + count + "";
 					}
 				};
 				

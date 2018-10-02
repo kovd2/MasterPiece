@@ -201,7 +201,7 @@
 			<div>
 				<table class="cart_list">
 					<tr>
-						<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" value="<%=list.get(i).getOrder_no()%>" class="check" checked></td>
+						<td style="width: 39px; height: 31px;"><input onchange="asdf()"type="checkbox" name="checkBoxList" value="<%=list.get(i).getOrder_no()%>" class="check" checked></td>
 						<td><img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(list.get(i).getPrd_code()).getChangeName()%>"style="width: 100px; height: 85px;"></td>
 						<td style="width: 400px; height: 31px;">[<%=list.get(i).getPrd_code()%>]  <%=list.get(i).getPrd_name()%> </td>
 						<td style="width: 120px; height: 31px;">가격 : <%=list.get(i).getPrice() %> 원</td>
@@ -210,6 +210,8 @@
 					</tr>
 				</table>
 			</div>
+			<input type="hidden" class="<%=list.get(i).getOrder_no()%>price" value = "<%=list.get(i).getPrice() %>">
+			<input type="hidden" class="<%=list.get(i).getOrder_no()%>" value = "<%=list.get(i).getPrd_code()%>">
 			<%} %>
 			<%if(list.size() != 0){ %>
 			<div>
@@ -251,12 +253,12 @@
 				<div class="priceArea">
 					<table style="margin-top: 25px; margin-left: 10px; width: 80%;">
 						<tr>
-							<td><span id="cart_prd_price"><%= total%></span><span id="cart_won">원</span></td>
-							<td><span id="cart_sale_price">0</span><span id="cart_won">원</span></td>
-							<td><span id="cart_total_price"><%= total%></span><span id="cart_total_won">원</span></td>
+							<td style="width:200px"><span id="cart_prd_price"><span><%= total%></span></span><span id="cart_won">원</span></td>
+							<td style="width:200px"><span id="cart_sale_price">0</span><span id="cart_won"></span></td>
+							<td style="width:200px"><span id="cart_total_price"><span><%= total%></span></span><span id="cart_total_won">원</span></td>
 						</tr>
 					</table>
-					<div class="service_btn">
+					<!-- <div class="service_btn">
 						<span id="service_price">20,000원 </span><button>신청</button>
 					</div>
 					<br>
@@ -270,7 +272,7 @@
 					<br>
 					<div class="service_btn4">
 						<span id="service_price">9,900원 </span><button>신청</button>
-					</div>
+					</div> -->
 				</div>
 
 				<img alt="" src="/MasterPiece/images/jinseok/icon/payment.png" style="width:837px; height:200px;">
@@ -317,7 +319,8 @@
 		/* ------------------------------------------선택한 상품 구매하기--------------------------------------------*/
 			$(".purchase").click(function(){
 				var val = "";
-				var value = [];
+				var val2 ="";
+				var temp = "";
 				var cnt = $("input[name=checkBoxList]:checkbox:checked").length;
 				if(cnt < 1){
 					alert("한개 이상 선택하셔야 합니다.");
@@ -325,16 +328,36 @@
 				$(".check:checked").each(function(index,item){
 					if(index!=0){
 						val += ",";
+						val2 +=",";
 					}
 					val += $(this).val();
-					value.push($(this).val());
+					temp = $(this).val();
+					val2 += $("."+temp).val();
 				})
 				if(val!=""){
-					location.href="<%= request.getContextPath() %>/insertPayment?code="+val;
+					location.href="<%= request.getContextPath() %>/insertPayment?code="+val+"&prd_code="+val2;
 				}				
 			});
 		
-			
+			function asdf(){
+				var val = "";
+				var val2 = 0;
+				var temp = 0;
+				$(".check:checked").each(function(index,item){
+					val = $(this).val() + "price";
+					temp = $("."+val).val()*1;
+					val2 += temp;
+				})
+				
+				$("#cart_prd_price>*").remove();
+				$span = $("<span>");
+				$span.append(val2);
+				$("#cart_prd_price").append($span);
+				$("#cart_total_price>*").remove();
+				$span2 = $("<span>");
+				$span2.append(val2);
+				$("#cart_total_price").append($span2);
+			}
 	
 		</script>
 </body>
