@@ -3,7 +3,8 @@
 								com.kh.MasterPiece.product.model.vo.*,
     							com.kh.MasterPiece.board.model.vo.*,
     							com.kh.MasterPiece.main.model.vo.*,
-    							com.kh.MasterPiece.admin.model.vo.*"%>
+    							com.kh.MasterPiece.admin.model.vo.*,
+    							java.sql.*,java.io.*"%>
 <%
 	/* 모든 상품 */
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
@@ -33,34 +34,9 @@
 	HashMap<String, Promotion_ATT> pimgList =
 					(HashMap<String, Promotion_ATT>)request.getAttribute("pimgList");
 	
-	Calendar currentCalendar = Calendar.getInstance();
-	int strDay = currentCalendar.get(Calendar.DATE);
-	int cnt=0;
-	if(application.getAttribute("now") != null){
-	int now = (int)application.getAttribute("now");
-	  if(now != strDay){
-	     cnt = 1;
-	  }
-	     }else{
-	        application.setAttribute("now",strDay);
-	        cnt = 1;
-	     }
-	   
-	Object value = application.getAttribute("cntVisit");
-	   
-	if(value != null){
-	      
-	    cnt = (Integer)value + 1;
-	    if(session.isNew() == true){
-	       cnt = cnt + 1;
-	    }
-	}
-	   
-	application.setAttribute("cntVisit", cnt);
-	   
-	   
 	
 %>
+
 
 <!DOCTYPE html>
 <html>
@@ -268,6 +244,49 @@ a{ text-decoration:none }
 
 </head>
 <body>
+<%! 
+    int count;
+    Connection conn;
+    Statement stmt;
+    ResultSet rs;
+    String sql;
+    %>
+    
+    <%
+    try{
+     Class.forName("oracle.jdbc.driver.OracleDriver");
+     
+     conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","MasterPiece","MasterPiece");
+     stmt=conn.createStatement();
+    }catch(Exception e){
+     System.out.println("DB연결 실패");
+    }
+    %>
+    
+    <%
+    try{
+     rs=stmt.executeQuery("Select cnt from cnt where to_char(d,'yyyymmdd') = to_char(sysdate,'yyyymmdd')");
+     
+     if(rs.next()){
+     	count=rs.getInt("cnt");
+     	rs.close();
+        sql="Update cnt set cnt="+(++count)+"where to_char(d,'yyyymmdd') = to_char(sysdate,'yyyymmdd')";
+        
+        stmt.executeUpdate(sql);
+        stmt.close();
+     }else{
+    	sql="insert into cnt values(1,sysdate)";
+    	stmt.executeUpdate(sql);
+    	stmt.close();
+     }
+     
+    }catch(Exception e){
+     System.out.println("DB호출 실패");
+     e.printStackTrace();
+    } finally { 
+    	conn.close();
+    }
+    %>
 	<%@ include file="./views/common/top.jsp"%>
 	
 	<!--------------------------------------- 메인 배너  --------------------------------------->

@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.MasterPiece.admin.model.vo.Cnt;
 import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
@@ -2008,4 +2009,87 @@ public class testDao {
 		return result;
 	}
 
+
+	public int cnt(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery("select cnt from cnt where to_char(d,'yyyymmdd') = to_char(d,'yyyymmdd')");
+			if(rset.next()){
+				result = rset.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public HashMap<String, Integer> cntList(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery("select to_char(d,'mm/dd') as d,cnt from cnt where to_char(d,'yyyymmdd') between to_char(sysdate-7,'yyyymmdd') and to_char(sysdate,'yyyymmdd') order by d");
+			while(rset.next()){
+				System.out.println(rset.getString("d"));
+				result.put(rset.getString("d"), rset.getInt("cnt"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Cnt> cntList2(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Cnt> result = new ArrayList<Cnt>();
+		
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery("select to_char(d,'mm/dd') as d,cnt from cnt where to_char(d,'yyyymmdd') between to_char(sysdate-7,'yyyymmdd') and to_char(sysdate,'yyyymmdd') order by d");
+			while(rset.next()){
+				Cnt c = new Cnt();
+				c.setCnt(rset.getInt("cnt"));
+				c.setD(rset.getString("d"));
+				result.add(c);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return result;
+	}
 }

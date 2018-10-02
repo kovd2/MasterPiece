@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.admin.model.vo.*"%>
 <!DOCTYPE html>
 <%
 	ArrayList<Integer> monthSales = (ArrayList<Integer>)request.getAttribute("monthSales");
 
 
 	HashMap<String, Integer> descMap = (HashMap<String, Integer>)request.getAttribute("sel_desc");
-	 HashMap<String, Integer> ascMap = (HashMap<String, Integer>)request.getAttribute("sel_asc"); 
-	
+	HashMap<String, Integer> ascMap = (HashMap<String, Integer>)request.getAttribute("sel_asc"); 
+	HashMap<String, Integer> cnt = (HashMap<String, Integer>)request.getAttribute("cnt");
+	ArrayList<Cnt> count = (ArrayList<Cnt>)request.getAttribute("count");
 	Set<String> keySet = descMap.keySet();
 	Iterator<String> iter = keySet.iterator();
 	String descKey[] = new String[4];
 	String ascKey[] = new String[4];
+	String key[] = new String[cnt.size()];
 	int i = 0;
 	while(iter.hasNext()){
 		descKey[i++] = iter.next();
@@ -22,12 +24,15 @@
 	while(iter.hasNext()){
 		ascKey[i++] = iter.next();
 	} 
-	int count = (int)request.getAttribute("count");
 	
-	int cnt = 0;
-	if(application.getAttribute("cntVisit") != null){
-		cnt = (int)application.getAttribute("cntVisit");
+	i = 0;
+	keySet = cnt.keySet();
+	iter = keySet.iterator();
+	while(iter.hasNext()){
+		key[i++] = iter.next();
 	}
+	
+	
 %>
 <html>
 <head>
@@ -38,6 +43,7 @@
 <style type="text/css">
 #main>div{
 	display: inline-block;
+	margin: 20px
 }
 
 </style>
@@ -46,21 +52,17 @@
 	<jsp:include page="../common/menu.jsp">
 		<jsp:param name="name" value="5" />
 	</jsp:include>
-	<div id="main">
+	<div id="main" style="margin-left: 50px;margin-top: 50px">
 	<div>
-	방문자 수 : <%=cnt%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	신규 가입자 : <%=count%>
-	</div><br>
-	<div style="margin-left:400px">최다 판매 품목</div><br>
-	<div>
-	<canvas id="myChart" width="300" height="300"></canvas>
+	<div align="center">최저 판매 카테고리</div>
+	<canvas id="myChart3" width="300" height="300"></canvas>
 	</div>
 	<div>
+	<div align="center">최다 판매 카테고리</div>
 	<canvas id="myChart2" width="300" height="300"></canvas>
-	</div><br>
-	<div style="margin-left:100px">최저 판매 품목</div><br>
+	</div><br><br>
 	<div>
-	<canvas id="myChart3" width="300" height="300"></canvas>
+	<canvas id="myChart" width="300" height="300"></canvas>
 	</div>
 	<div>
 	<canvas id="myChart4" width="300" height="300"></canvas>
@@ -173,31 +175,18 @@ var myChart = new Chart(ctx3, {
 
 
 var ctx4 = document.getElementById("myChart4");
-var myChart = new Chart(ctx4, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+var myLineChart = new Chart(ctx4, {
+    type: 'line',
+    data:{
+    	
+    	datasets: [{
+    		label:'일 별 방문자수',
+	        data: [<%for(int j = 0; j < count.size(); j++){%><%=count.get(j).getCnt()%><%if(j<count.size()-1){%>,<%}%><%}%>],
+	        	borderColor:['rgba(255,99,132,1)'],
+	        	fill:[false],
+	        	lineTension:0
+    	}],
+	    labels: [<%for(int j = 0; j < count.size(); j++){%>'<%=count.get(j).getD()%>'<%if(j<count.size()-1){%>,<%}%><%}%>]
     },
     options: {
         scales: {

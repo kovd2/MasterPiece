@@ -14,10 +14,7 @@ String[] str2 = hmap.get("b");
 String[] str3 = hmap.get("c");
 int count = (int)request.getAttribute("count");
 
-int cnt = 0;
-if(application.getAttribute("cntVisit") != null){
-	cnt = (int)application.getAttribute("cntVisit");
-}
+int cnt = (int)request.getAttribute("cnt");
 %>
 <!DOCTYPE html>
 <html>

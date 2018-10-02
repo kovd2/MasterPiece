@@ -3,8 +3,6 @@ package com.kh.MasterPiece.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.admin.model.service.testService;
+import com.kh.MasterPiece.admin.model.vo.Cnt;
 
 /**
  * Servlet implementation class StatisticsMainServlet
@@ -37,13 +36,14 @@ public class StatisticsMainServlet extends HttpServlet {
 		ArrayList<Integer> monthSales = new testService().monthSales();
 		HashMap<String, Integer> sel_desc = new testService().sel_desc();
 		HashMap<String, Integer> sel_asc = new testService().sel_asc();
-		
-		int count = new testService().newMemberCount();
+		HashMap<String, Integer> cnt = new testService().cntList();
+		ArrayList<Cnt> count = new testService().cntList2();
 		String page = "";
 		
 		if(monthSales!=null){
 			page = "/views/admin/statistics/statisticsMain.jsp";
 			request.setAttribute("monthSales", monthSales);
+			request.setAttribute("cnt", cnt);
 			request.setAttribute("count", count);
 			request.setAttribute("sel_desc", sel_desc);
 			request.setAttribute("sel_asc", sel_asc);

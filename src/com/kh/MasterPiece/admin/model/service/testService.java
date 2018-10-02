@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.MasterPiece.admin.model.dao.testDao;
+import com.kh.MasterPiece.admin.model.vo.Cnt;
 import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
 import com.kh.MasterPiece.admin.model.vo.Promotion;
@@ -590,6 +591,36 @@ public class testService {
 		}else{
 			rollback(con);
 		}
+		close(con);
+		
+		return result;
+	}
+
+	public int cnt() {
+		Connection con = getConnection();
+		
+		int result = new testDao().cnt(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public HashMap<String, Integer> cntList() {
+		Connection con = getConnection();
+		
+		HashMap<String, Integer> result = new testDao().cntList(con);
+		
+		close(con);
+		
+		return result;
+	}
+	
+	public ArrayList<Cnt> cntList2() {
+		Connection con = getConnection();
+		
+		ArrayList<Cnt> result = new testDao().cntList2(con);
+		
 		close(con);
 		
 		return result;
