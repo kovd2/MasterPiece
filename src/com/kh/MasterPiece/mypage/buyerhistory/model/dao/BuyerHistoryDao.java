@@ -184,6 +184,74 @@ public class BuyerHistoryDao {
 		return listCount;
 	}
 
+
+	public HashMap<String, Attachment> imageList2(Connection con)
+	{
+		PreparedStatement pstmt1 = null;
+		ResultSet rset1 = null;
+		
+		
+		HashMap<String, Attachment> list = new HashMap<String, Attachment>();
+		
+		String query1 = prop.getProperty("selectAttachment2");
+		
+		try
+		{
+			pstmt1 = con.prepareStatement(query1);				
+			rset1 = pstmt1.executeQuery();
+						
+			while(rset1.next())
+			{
+				Attachment a = new Attachment();
+				
+				a.setChangeName(rset1.getString("change_name"));
+				a.setOriginName(rset1.getString("file_name"));
+				a.setUploadDate(rset1.getDate("upload_date"));
+				a.setFilePath(rset1.getString("save_route"));
+				a.setCode(rset1.getString("prd_name"));
+				
+				list.put(a.getCode(), a);
+			}	
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rset1);
+			close(pstmt1);
+		}
+		return list;
+	}
+
+	public BuyerHistory viewHistoryOne(Connection conn, String userId)
+	{
+		PreparedStatement pstmt = null;
+		BuyerHistory bh = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("viewHistoryOne");
+		
+		try
+		{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				bh = new BuyerHistory();
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bh;
+	}
+
 	public ArrayList<BuyerHistory> selectList(String writer, int searchType, String searchText, int currentPage,int limit, Connection con) {
 
 		PreparedStatement pstmt = null;
@@ -318,5 +386,6 @@ public class BuyerHistoryDao {
 		}
 		return list;
 	}
+
 
 }

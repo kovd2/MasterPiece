@@ -141,7 +141,7 @@
 								<tr style="height:50px;">
 									<input type="hidden" name="boardId" value="<%= b.getBOARD_ID() %>">
 									<th style="width:150px; border-right:none;">작성자</th>
-									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
+									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= b.getBOARD_WRITER() %></td>
 									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
 									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= b.getBOARD_DATE() %></td>
 								</tr>
@@ -166,83 +166,82 @@
 								</tr>
 							</tbody>
 						</table>
-						<br>
 						<%
 							if(b.getBOARD_WRITER().equals(loginUser.getUserId()))
 							{
 						%>
+						<br>
 						<div>
 							<button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;">수정</button>
 						</div>
 						<div>
 							<button type="button" class="btn" style="background:orangered; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.qc?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
 						</div>
-						</form>
-						<%
-							}
-						%>
-						</div>
-						<br clear="both"><br>
-						<%
-							if(b.getQUE_STATUS().equals("Y"))
-							{
-						%>
-						<div style="background:#D5D5D5; font-size:14px;">
-							<table id="answerTable" style="width:100%;">
-							<tbody class="boardHead" style="font-size:14px;">
-								<tr>
-									<th style="vertical-align:middle; width:100px;">답변</th>
-									<td class="boardContent" colspan="3" style="vertical-align:middle;">
-										<span style="margin-left:20px;"><%= answerBoard.getBOARD_CONTENT() %></span>
-									</td>
-								</tr>
-							</tbody>
-							</table>
-						</div>
-						<%
-							}
-						%>
-						<br clear="both">
-						<!-- 댓글 -->
-						<div id="replyArea">
-							<table id="replyListTable" align="center">
+					</form>
+					<%
+						}
+					%>
+					</div>
+					<br clear="both"><br>
+					<%
+						if(b.getQUE_STATUS().equals("Y"))
+						{
+					%>
+					<div style="background:#D5D5D5; font-size:14px;">
+						<table id="answerTable" style="width:100%;">
+						<tbody class="boardHead" style="font-size:14px;">
+							<tr>
+								<th style="vertical-align:middle; width:100px;">답변</th>
+								<td class="boardContent" colspan="3" style="vertical-align:middle;">
+									<span style="margin-left:20px;"><%= answerBoard.getBOARD_CONTENT() %></span>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
+					<%
+						}
+					%>
+					<br clear="both">
+					<!-- 댓글 -->
+					<div id="replyArea">
+						<table id="replyListTable" align="center">
+							<%
+								for(Board replyBoard : replyList)
+								{
+							%>
+							<tr>
+								<td style="width:100px; font-size:14px;"><%= replyBoard.getBOARD_WRITER() %></td>
+								<td style="width:440px; font-size:14px;"><%= replyBoard.getBOARD_CONTENT() %></td>
 								<%
-									for(Board replyBoard : replyList)
+									if(replyBoard.getBOARD_WRITER().equals(loginUser.getUserId()))
 									{
 								%>
-								<tr>
-									<td style="width:100px; font-size:14px;"><%= replyBoard.getBOARD_WRITER() %></td>
-									<td style="width:440px; font-size:14px;"><%= replyBoard.getBOARD_CONTENT() %></td>
-									<%
-										if(replyBoard.getBOARD_WRITER().equals(loginUser.getUserId()))
-										{
-									%>
-									<td style="font-size:14px;"><input type="button" value="X"><input type="hidden" value="<%= replyBoard.getBOARD_ID() %>"></td>
-									<%
-										}
-									%>
-								</tr>
-								<!-- #replyListTable>tr>td { font-size:14px; } -->
+								<td style="font-size:14px;"><input type="button" value="X"><input type="hidden" value="<%= replyBoard.getBOARD_ID() %>"></td>
 								<%
 									}
 								%>
-							</table>
-						</div>
-						<div class="container" style="margin:auto; border:1px solid lightgray; width:600px; height:100px;">
-							<table id="replyTable" style="margin-top:20px;">
-								<tr>
-									<td style="width:100px; text-align:center; font-size:14px;"><%= loginUser.getUserId() %></td>
-									<td style="width:440px;"><textarea id="replyContent" rows="3" cols="55" style="resize:none; margin-top:4px;"></textarea></td>
-									<td><button id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
-								</tr>
-							</table>
-						</div>
+							</tr>
+							<!-- #replyListTable>tr>td { font-size:14px; } -->
+							<%
+								}
+							%>
+						</table>
+					</div>
+					<div class="container" style="margin:auto; border:1px solid lightgray; width:600px; height:100px;">
+						<table id="replyTable" style="margin-top:20px;">
+							<tr>
+								<td style="width:100px; text-align:center; font-size:14px;"><%= loginUser.getUserId() %></td>
+							<td style="width:440px;"><textarea id="replyContent" rows="3" cols="55" style="resize:none; margin-top:4px;"></textarea></td>
+								<td><button type="button" id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br clear="both">
 	</div>
+	<br clear="both">
 	<br><br><br>
 	<%@ include file="../common/footer.jsp" %>
 	<%

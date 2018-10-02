@@ -119,13 +119,13 @@
 					<span style="padding-left:10px; font-weight:bold; font-size:large; float:left; width:290px; margin-top:-5px;">유저 견적 게시판</span>
 					<br clear="both">
 					<hr style="margin-top:3px; border-color:#f43641;">
-					<form action="<%= request.getContextPath() %>/gotoupdate.ue" method="post">
+					<form id="" class=""action="<%= request.getContextPath() %>/gotoupdate.ue" method="post">
 						<table id="detailTable" style="width:100%;">
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<input type="hidden" name="boardId" value="<%= b.getBOARD_ID() %>">
 									<th style="width:150px; border-right:none;">작성자</th>
-									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
+									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= b.getBOARD_WRITER() %></td>
 									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
 									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= b.getBOARD_DATE() %></td>
 								</tr>
@@ -156,7 +156,7 @@
 							{
 						%>
 						<div>
-							<button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;">수정</button>
+						 <button type="submit" class="btn" style="background:forestgreen; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:left;">수정</button>
 						</div>
 						<div>
 							<button type="button" class="btn" style="background:orangered; color:white; border:1px solid white; border-radius:5px; width:50px; height:28px; padding:2px 4px; float:right; margin-right:5px;" onclick="location.href='<%= request.getContextPath() %>/deleteOne.ue?boardId=<%= b.getBOARD_ID() %>'">삭제</button>
@@ -197,7 +197,7 @@
 							<tr>
 								<td style="width:100px; text-align:center; font-size:14px;"><%= loginUser.getUserId() %></td>
 								<td style="width:440px;"><textarea id="replyContent" rows="3" cols="55" style="resize:none; margin-top:4px;"></textarea></td>
-								<td><button id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
+								<td><button type="button" id="addReply" class="pointer" style="width:50px; height:50px; background:dodgerblue; color:white; border:1px solid white; border-radius:5px;">등록</button></td>
 							</tr>
 						</table>
 					</div>
@@ -218,6 +218,7 @@
 	%>
 	
 	<script>
+	
 	$(function()
 	{
 		$("#addReply").click(function()

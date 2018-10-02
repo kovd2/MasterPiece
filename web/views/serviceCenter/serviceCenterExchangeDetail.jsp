@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.MasterPiece.serviceCenter.model.vo.*, com.kh.MasterPiece.prdOrder.model.vo.*, java.util.*"%>
+	pageEncoding="UTF-8" import="com.kh.MasterPiece.serviceCenter.model.vo.*, java.util.*"%>
 <%
 	AfterService as = (AfterService)request.getAttribute("as");
-	ArrayList<PrdOrder> list = (ArrayList<PrdOrder>)request.getAttribute("list");
 	
-	System.out.println(as);
-	System.out.println(list);
+	//System.out.println("aaa2 : " + as);
 %>
 <!DOCTYPE html>
 <html>
@@ -176,26 +174,14 @@ table
 							<tr style="border:1px solid lightgray;">
 								<td colspan="2" style="border:1px solid lightgray; text-align:left; padding-left:10px; font-size:small;">
 									<div id="productListArea">
-										<%
-											for(PrdOrder p : list)
-											{
-										%>
-										<span>----------------------------------------------</span><br>
-										<span><%= p.getOrderDate() %>　　　</span>
-										<span><%= p.getPrdCode()%>　　　</span>
-										<span><%= p.getOrderCheck() %>　　　</span>
-										<span><%= p.getOrderCount() %></span><br>
-										<span>----------------------------------------------</span>
-										<%
-											}
-										%>
+										<span><%= as.getPrdCode() %></span>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td style="border:1px solid lightgray; width:100px; height:45px; font-size:small; padding-left:10px;">신청 사유</td>
 								<td>
-									<span><%= as.getReason() %></span>
+									<span style="font-size:small;"><%= as.getReason() %></span>
 								</td>
 							</tr>
 						</tbody>
@@ -232,7 +218,7 @@ table
 									선택
 								</td>
 								<td style="padding-left:10px;">
-									<span><%= as.getHowToRegister() %></span>
+									<span style="font-size:small;"><%= as.getHowToRegister() %></span>
 								</td>
 							</tr>
 							<tr>
@@ -240,10 +226,10 @@ table
 									반송정보
 								</td>
 								<td style="padding-left:10px;">
-									<span><%= as.getTrackingNumber() %></span>
-									<%
+									<span style="font-size:small;"><%= as.getTrackingNumber() %></span>
+									<%-- <%
 										System.out.println("ㅋㅋ : " + as.getTrackingNumber());
-									%>
+									%> --%>
 								</td>
 							</tr>
 						</tbody>

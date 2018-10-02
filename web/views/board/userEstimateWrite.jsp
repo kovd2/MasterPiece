@@ -67,6 +67,10 @@ table th
 {
 	cursor:pointer;
 }
+.pointer:hover
+{
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -113,9 +117,13 @@ table th
 									<td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td>
 								</tr>
 								<tr>
-									<th style="vertical-align:middle;">내용</th>
+									<th rowspan="2" style="vertical-align:middle;">내용</th>
+									<td colspan="3" style="text-align:left"><input type="button" class="pointer" id="callprdList" name="callprdList" style="background:darkblue; color:white; margin-left:10px; height:35px; border:1px solid #ccc; border-radius:5px;" value="장바구니"/></td>
+								</tr>
+								<tr>
+									<!-- <th style="vertical-align:middle;">내용</th> -->
 									<td class="boardContent" colspan="3" style="text-align:center; height:300px;">
-										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
+										<textarea cols="10" rows="15" placeholder="내용을 입력하세요." name="content" id="content" style="width:495px; height:280px; border:1px solid #ccc; border-radius:4px; resize: none;"></textarea>
 									</td>
 								</tr>
 								<tr>
@@ -148,5 +156,22 @@ table th
 			request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
 		}
 	%>
+	
+	<script>
+		$(function()
+		{
+			var prdList = null;
+			$("#callprdList").click(function()
+			{
+				var url = "<%= request.getContextPath() %>/callPrdList.qc?userId=" + "<%= loginUser.getUserId() %>";
+				
+				console.log(url);
+				
+				prdList = window.open(url, "search", "width=540, height=740, toolbar=no, location=no, status=no, menubar=no, resizable=no");
+				
+				console.log(prdList);
+			});
+		});
+	</script>
 </body>
 </html>

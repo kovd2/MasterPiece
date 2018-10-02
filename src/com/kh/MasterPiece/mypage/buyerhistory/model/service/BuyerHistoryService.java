@@ -10,8 +10,10 @@ import java.util.HashMap;
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.mypage.buyerhistory.model.dao.BuyerHistoryDao;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
+
 import com.kh.MasterPiece.mypage.review.model.dao.ReviewDao;
 import com.kh.MasterPiece.mypage.review.model.vo.Review;
+
 
 public class BuyerHistoryService {
 	
@@ -63,6 +65,29 @@ public class BuyerHistoryService {
 		return listCount;
 	}
 
+
+	public HashMap<String, Attachment> imageList2()
+	{
+		Connection con = getConnection();
+
+		HashMap<String, Attachment> list = new BuyerHistoryDao().imageList2(con);
+
+		close(con);
+
+		return list;
+	}
+
+	public BuyerHistory viewHistoryOne(String userId)
+	{
+		Connection conn = getConnection();
+		
+		BuyerHistory bh = new BuyerHistoryDao().viewHistoryOne(conn, userId);
+		
+		close(conn);
+		
+		return bh;
+	}
+
 	public ArrayList<BuyerHistory> searchList(String writer, int searchType, String searchText, int currentPage,int limit) {
 		
 		Connection con = getConnection();
@@ -94,5 +119,6 @@ public class BuyerHistoryService {
 
 		return list;
 	}
+
 
 }

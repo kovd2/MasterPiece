@@ -71,9 +71,7 @@ table
 		<table style="width:520px; text-align:center;" align="center">
 			<thead>
 				<tr>
-					<th>
-						<input type="checkbox" name="checkAll" id="checkAll" onclick="checkAll()"> 
-					</th>
+					<th></th>
 					<th>이미지</th>
 					<th>상품정보</th>
 					<th>수량</th>
@@ -85,13 +83,11 @@ table
 					for(BuyerHistory bh : buyList)
 					{
 						Attachment image = imageList.get(bh.getPrdName());
-						
-						System.out.println("$%^& : " + image);
 				%>
 				<tr>
-					<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList"></td>
+					<td style="width: 39px; height: 31px;"><input type="radio" name="checkBoxList" class="check" value="<%= bh.getPrdCode() %>,<%= bh.getPrdName() %>"></td>
 					<td style="width:100px; height:100px;"><img style="width:100%; height:100%;" src="<%= request.getContextPath() %>/images/product/<%= image.getChangeName() %>"></td>
-					<td><input type="hidden" name="prdCode" value="<%= bh.getPrdCode() %>"><%= bh.getPrdCode() %></td>
+					<td><input type="hidden" name="prdCode" value="<%= bh.getPrdCode() %>"><%= bh.getPrdName() %></td>
 					<td><input type="hidden" name="orderCount" value="<%= bh.getOrderCount() %>"><%= bh.getOrderCount() %></td>
 					<td><%= bh.getPayPrice() %>원</td>
 				</tr>
@@ -127,18 +123,66 @@ table
 	
 	function submit()
 	{
-		if($("input[type='checkbox']").is(':checked'))
+		var val = "";
+		var $inputCode = $("<input type='text'>");
+		var $inputName = $("<input type='text'>");
+		var sp1 = "";
+		var sp2 = "";
+		
+		$(".check:checked").each(function(index,item)
 		{
-			var prdTxt = $("input[name='prdCode']").val() + " " + "[" + $("input[name='orderCount']").val() + "개]";
+			var sp = $(this).val().split(",");
+			sp1 = sp[0];
+			sp2 = sp[1];
 			
-			opener.document.getElementById("content").value = prdTxt;
+			if(index != 0)
+			{
+				val += "<br>";
+			}
+			val += $(this).val();
+			$inputCode.val(sp1);
+			$inputName.val(sp2);
+			
+			/* alert($inputCode.val());
+			alert($inputName.val()); */
+		});
+		
+		if(val != "")
+		{
+			opener.document.getElementById("productListArea").innerHTML = sp2;
+			opener.document.getElementById("hiddenArea").value = ($inputCode.val());
+			
+			window.close();
+		}
+		else
+		{
+			alert("1개의 상품을 선택하세요.");
+		}
+		
+		/* var val = "";
+		var val2 = "";
+		
+		$(".check:checked").each(function(index,item)
+		{
+			if(index != 0)
+			{
+				val += "<br>";
+				val2 += "\n";
+			}
+			val += $(this).val();
+			val2 += $(this).val();
+		});
+		if(val != "")
+		{
+			opener.document.getElementById("productListArea").innerHTML += val;
+			opener.document.getElementById("hiddenArea").value += val2;
 			
 			window.close();
 		}
 		else
 		{
 			alert("1개 이상의 상품을 선택하세요.");
-		}
+		} */		
 	}
 	</script>
 </body>

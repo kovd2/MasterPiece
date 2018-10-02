@@ -177,8 +177,12 @@ table
 							<tr style="border:1px solid lightgray;">
 								<td colspan="2" style="border:1px solid lightgray; text-align:left; padding-left:10px; font-size:small;">
 									<input type="button" id="callBuyList" name="callBuyList" class="pointer" style="background:royalblue; width:80px; height:30px; text-align:center; color:white; border:1px solid royalblue;" value="상품검색">
-									<div id="productListArea">
-									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div id="productListArea" style="font-size:small; padding-left:10px;"></div>
+									<textarea id="hiddenArea" style="display:none;" name="prdCode"></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -352,6 +356,7 @@ table
 		$(function()
 		{
 			var prdList = null;
+			
 			$("#callBuyList").click(function()
 			{
 				var url = "<%= request.getContextPath() %>/callBuyList.po?userId=" + "<%= loginUser.getUserId() %>";
