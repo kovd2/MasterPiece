@@ -39,11 +39,11 @@ public class BuyerHistorySearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String writer = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserId());
 		
-		int currentPage;	//현재 페이지를 표시할 변수
-		int limit;			//한 페이지에 게시글이 몇 개가 보여질 것인지 표시
-		int maxPage;		//전체 페이지에서 가장 마지막 페이지
-		int startPage;		//한 번에 표시될 페이지가 시작할 페이지
-		int endPage;		//한 번에 표시될 페이지가 끝나는 페이지
+		int currentPage;
+		int limit;			
+		int maxPage;		
+		int startPage;		
+		int endPage;		
 
 		currentPage = 1;
 
@@ -85,7 +85,7 @@ public class BuyerHistorySearch extends HttpServlet {
 			request.setAttribute("searchType", searchType);
 			request.setAttribute("searchText", searchText);
 			request.setAttribute("pi", pi);
-			//request.setAttribute("entire", "아무거나");
+			request.setAttribute("entire", "all");
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "실패");

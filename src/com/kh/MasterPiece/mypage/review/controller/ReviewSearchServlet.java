@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.board.model.vo.PageInfo;
-import com.kh.MasterPiece.main.model.vo.MainPageInfo;
 import com.kh.MasterPiece.member.model.vo.Member;
 import com.kh.MasterPiece.mypage.review.model.service.ReviewService;
 import com.kh.MasterPiece.mypage.review.model.vo.Review;
@@ -71,8 +70,6 @@ public class ReviewSearchServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 		ArrayList<Review> list = new ReviewService().searchList(writer, searchType, searchText, currentPage, limit);
-		
-		System.out.println(list);
 		
 		String page = null;
 		if(list != null){

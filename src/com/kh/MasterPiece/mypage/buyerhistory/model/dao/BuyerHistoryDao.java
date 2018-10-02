@@ -184,4 +184,139 @@ public class BuyerHistoryDao {
 		return listCount;
 	}
 
+	public ArrayList<BuyerHistory> selectList(String writer, int searchType, String searchText, int currentPage,int limit, Connection con) {
+
+		PreparedStatement pstmt = null;
+		ArrayList<BuyerHistory> searchList = null;
+
+		ResultSet rset = null;
+
+
+		try {if(searchType == 1){
+			
+			String query = prop.getProperty("H_searchList1");
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, writer);
+			pstmt.setString(2, searchText);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+		}else{
+			
+			String query = prop.getProperty("H_searchList2");
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, writer);
+			pstmt.setString(2, searchText);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
+		}
+			rset = pstmt.executeQuery();
+
+			searchList = new ArrayList<BuyerHistory>();
+
+			while(rset.next()){
+				BuyerHistory b = new BuyerHistory();
+
+				b.setOrderCheck(rset.getString("order_check"));
+				b.setBuyStatus(rset.getString("buy_status"));
+				b.setDeliveryOption(rset.getString("delivery_option"));
+				b.setPayDate(rset.getDate("pay_date"));
+				b.setPrdCode(rset.getString("prd_code"));
+				b.setPrdName(rset.getString("prd_name"));
+				b.setPayPrice(rset.getInt("pay_price"));
+				b.setOrderCount(rset.getInt("order_count"));
+				b.setPayType(rset.getString("pay_type"));
+				
+				searchList.add(b);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return searchList;
+	}
+
+	public int searchCount(Connection con, String writer, int searchType, String searchText) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int listCount = 0;
+
+		try {if(searchType ==1){
+			String query = prop.getProperty("H_searchCount1");
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, writer);
+			pstmt.setString(2, searchText);
+
+			
+		}else{
+			String query = prop.getProperty("H_searchCount2");
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, writer);
+			pstmt.setString(2, searchText);
+
+		}
+			
+			rset = pstmt.executeQuery();            
+
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		return listCount;
+	}
+
+	public HashMap<String, String> invoiceNo(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+
+		HashMap<String, String> list = new HashMap<String, String>();
+
+		String query = prop.getProperty("invoiceNo");
+
+
+		try {
+			pstmt = con.prepareStatement(query);      
+
+			rset = pstmt.executeQuery();
+
+
+
+			while(rset.next()){
+				list.put(rset.getString("ORDER_CHECK"), rset.getString("INVOICE_NO"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
 }
