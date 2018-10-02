@@ -27,8 +27,9 @@ public class InsertPaymentListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String value = request.getParameter("code");		
+		String value = request.getParameter("code");
 		String values[] = value.split(",");
+		String prdCode = request.getParameter("prd_code");
 		
 		int currentPage;		
 		int limit;				
@@ -59,7 +60,7 @@ public class InsertPaymentListServlet extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		HashMap<String, Attachment> imgList = new testService().imgList();
-		ArrayList<Cart> list = new payMentService().selectPayMentList(currentPage, limit, m, values);
+		ArrayList<Cart> list = new payMentService().selectPayMentList(currentPage, limit, m, values, prdCode);
 		String page = "";
 		if(list != null){
 			page = "views/product/delivery_page.jsp";

@@ -376,7 +376,7 @@
 			<div class="Prd_list_area">
 				<div class="top_menu">
 					<ul class="top_menu_area">
-						<li class="top_menu_list" id="popularItem" onclick="popularItem('<%=category%>')">인기상품순</li>
+						<li class="top_menu_list" id="popularItem" onclick="popularItem('<%=category%>')" >인기상품순</li>
 						<li class="top_menu_list" id="newItem" onclick="newItem('<%=category%>')">신규등록순</li>
 						<li class="top_menu_list" id="recommendItem" onclick="recommendItem('<%=category%>')">추천상품순</li>
 						<li class="top_menu_list" id="lowerPriceItem" onclick="lowerPriceItem('<%=category%>')">낮은가격순</li>
@@ -463,8 +463,9 @@
 		
 		function popularItem(c){
 			var category = c;
+			var type = "인기";
 			
-			location.href="<%= request.getContextPath()%>/popularList?category=" + category;
+			location.href="<%= request.getContextPath()%>/prdPageList.js?category=" + category;
 			$('#popularItem').addClass('on'); 
 		}
 		
@@ -490,9 +491,9 @@
 		}
 		
 		function goBuy(No){
+			if('<%=loginUser.getUserId()%>' != null){
+		
 			var code = No;
-			var orderCheck = "<%=loginUser.getOrderCheck()%>";
-			var user = "<%=loginUser.getUserId()%>";
 			var count = $("#"+code).val();
 				$.ajax({
 					url: "insertCart",
@@ -523,12 +524,15 @@
 				if(val != ""){
 					location.href="<%=request.getContextPath()%>/insertPayment?code="+ val;
 			}
+			}else{
+				alert("로그인을 먼저 하세요.");
+				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
+			}
 		}
 
 		function addCart(No) {
+			if('<%=loginUser.getUserId()%>'!=null){
 			var code = No;
-			var orderCheck = "<%=loginUser.getOrderCheck()%>";
-			var user = "<%=loginUser.getUserId()%>";
 			var count = $("#"+code).val();
 			 $.ajax({
 					url: "insertCart",
@@ -542,11 +546,14 @@
 					}
 				}); 
 			
-			
 			if(confirm("장바구니로 가시겠습니까?") == true){
 				location.href="<%=request.getContextPath()%>/SelectCartList.swy";
 			}else{
 				location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
+			}
+			}else{
+				alert("로그인을 먼저 하세요.");
+				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
 			}
 		};
 
