@@ -27,7 +27,7 @@
 	</jsp:include>
 	<div id="main">
 	<div style="margin-left: 20px; margin-top: 20px;margin-bottom: 30px"><button class="delevery"style="width: 80px;height: 50px">배송완료</button></div>
-	<div style="margin-left: 20px;"><button class="po">배송 완료 목록</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="pr">배송 전 목록</button></div>
+	<div style="margin-left: 20px;"><button class="po">배송 완료 목록</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="pr">배송 중 목록</button></div>
 	<form action="DeliveryCompletion.swy" method="post" id="com">
 	<table border="1" style="margin-left: 20px; margin-top: 20px;margin-bottom: 30px">
 	<tr>
@@ -38,7 +38,7 @@
 	<th style="width:300px">주소</th>
 	<th style="width:120px">전화번호</th>
 	<th style="width:200px">기타사항</th>
-	<th style="width:100px">배송택배</th>
+	<th style="width:100px">배송상태</th>
 	</tr>
 	<%for(int i = 0; i < list.size(); i++){ %>
 	<tr>
@@ -58,7 +58,7 @@
 	</td>
 	<td style="width:120px"><%=list.get(i).getSHIPPING_PHONE() %></td>
 	<td style="width:200px"><%=list.get(i).getETC() %></td>
-	<td style="width:100px"><%=list.get(i).getDELIVERY_OPTION() %></td>
+	<td style="width:100px"><%=list.get(i).getStatus() %></td>
 	</tr>
 	<%} %>
 	</table>
@@ -75,6 +75,7 @@
 			value.push($(this).val());
 			
 		})
+		
 		if(val != null){
 			
 			$("#com").submit();
@@ -82,10 +83,10 @@
 	
 	});
 	$(".pr").click(function(){
-		location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=1'
+		location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중'
 	});
 	$(".po").click(function(){
-		location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=1' 
+		location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송완료' 
 	});
 	
 	
@@ -108,17 +109,17 @@ $(".check").click(function(){
 });
 </script>
 	<%
-				if (cate.equals("전체")) {
+				if (cate.equals("배송중")) {
 			%>
 			<div class="pagingArea" align="center">
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=1'"><<</button>
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중&currentPage=1'"><<</button>
 
 				<%if (currentPage <= 1) {%>
 				<button disabled><</button>
 				<%	} else {%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=<%=currentPage - 1%>'"><</button>
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중&currentPage=<%=currentPage - 1%>'"><</button>
 				
 				<%}
 					for (int p = startPage; p <= endPage; p++) {
@@ -128,12 +129,58 @@ $(".check").click(function(){
 				<%
 					} else {%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=<%=p%>'"><%=p%></button>
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중&currentPage=<%=p%>'"><%=p%></button>
 				<%
 					}
 				
 					}
 				
+					if (currentPage >= maxPage) {
+				%>
+				<button disabled>></button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중&currentPage=<%=currentPage + 1%>'">></button>
+				
+				<%
+					}
+				%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중&currentPage=<%=maxPage%>'">>></button>
+			</div>
+			<%
+				}else{
+			%>
+			<div class="pagingArea" align="center">
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송완료&currentPage=1'"><<</button>
+
+				<%
+					if (currentPage <= 1) {
+				%>
+				<button disabled><</button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송완료&currentPage=<%=currentPage - 1%>'"><</button>
+				
+				<%
+					}
+				
+					for (int p = startPage; p <= endPage; p++) {
+							if (p == currentPage) {
+				%>
+				<button disabled><%=p%></button>
+				<%
+					} else {%>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송완료&currentPage=<%=p%>'"><%=p%></button>
+				<%
+					}
+				
+					}
+			
 					if (currentPage >= maxPage) {
 				%>
 				<button disabled>></button>
@@ -147,52 +194,6 @@ $(".check").click(function(){
 				%>
 				<button
 					onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?currentPage=<%=maxPage%>'">>></button>
-			</div>
-			<%
-				}else{
-			%>
-			<div class="pagingArea" align="center">
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/SearchOrder.swy?currentPage=1&a=<%=cate%>'"><<</button>
-
-				<%
-					if (currentPage <= 1) {
-				%>
-				<button disabled><</button>
-				<%
-					} else {%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/SearchOrder.swy?currentPage=<%=currentPage - 1%>&a=<%=cate%>'"><</button>
-				
-				<%
-					}
-				
-					for (int p = startPage; p <= endPage; p++) {
-							if (p == currentPage) {
-				%>
-				<button disabled><%=p%></button>
-				<%
-					} else {%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/SearchOrder.swy?currentPage=<%=p%>&a=<%=cate%>'"><%=p%></button>
-				<%
-					}
-				
-					}
-			
-					if (currentPage >= maxPage) {
-				%>
-				<button disabled>></button>
-				<%
-					} else {%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/SearchOrder.swy?currentPage=<%=currentPage + 1%>&a=<%=cate%>'">></button>
-				
-				<%
-					}
-				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/SearchOrder.swy?currentPage=<%=maxPage%>&a=<%=cate%>'">>></button>
 			</div>
 			
 			<%} %>

@@ -16,6 +16,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
+
 import com.kh.MasterPiece.admin.model.vo.Cnt;
 import com.kh.MasterPiece.admin.model.vo.Delivery;
 import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
@@ -1659,7 +1661,7 @@ public class testDao {
 	}
 
 
-	public ArrayList<OrderConfirm> orderConfirmList(Connection con, int currentPage, int limit) {
+	public ArrayList<OrderConfirm> orderConfirmList(Connection con, int currentPage, int limit, String status) {
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
@@ -1674,8 +1676,9 @@ public class testDao {
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 
 			rset = pstmt.executeQuery();
 
@@ -1716,8 +1719,8 @@ public class testDao {
 	}
 
 
-	public int getOrderConfirmCount(Connection con) {
-		Statement stmt = null;
+	public int getOrderConfirmCount(Connection con,String status) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		int result = 0;
@@ -1725,17 +1728,18 @@ public class testDao {
 		String query = prop.getProperty("OrderConfirmCount");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, status);
+			
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
 				result = rset.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		
@@ -1817,6 +1821,7 @@ public class testDao {
 				oc.setPay_status(rset.getString(8));
 				oc.setPrd_code(rset.getString(9));
 				oc.setCount(rset.getInt(10));
+				oc.setPay_no(rset.getInt("pay_no"));
 				
 				list.add(oc);
 			}
@@ -1862,7 +1867,7 @@ public class testDao {
 	}
 
 
-	public int getDeleveryListCount(Connection con) {
+	public int getDeleveryListCount(Connection con,String st) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -1872,7 +1877,7 @@ public class testDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			
+			pstmt.setString(1, st);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
@@ -1890,7 +1895,7 @@ public class testDao {
 	}
 
 
-	public ArrayList<Delivery> deliveryList(Connection con, int currentPage, int limit) {
+	public ArrayList<Delivery> deliveryList(Connection con, int currentPage, int limit, String st) {
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
@@ -1905,8 +1910,9 @@ public class testDao {
 
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, st);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 
 			rset = pstmt.executeQuery();
 
@@ -1922,7 +1928,7 @@ public class testDao {
 				oc.setSHIPPING_PHONE(rset.getString("SHIPPING_PHONE"));
 				oc.setETC(rset.getString("ETC"));
 				oc.setDELIVERY_OPTION(rset.getString("DELIVERY_OPTION"));				
-				
+				oc.setStatus(rset.getString("buy_status"));
 				
 				list.add(oc);
 			}
@@ -1957,14 +1963,13 @@ public class testDao {
 				rset = search.executeQuery();
 				if(rset.next()){
 					pstmt = con.prepareStatement(query);
-					pstmt.setString(1, "6513218");
+					pstmt.setString(1, "1234567891011");
 					pstmt.setString(2, oc[i]);
 					pstmt.setString(3, rset.getString("SHIPPING_ADDRESS"));
 					pstmt.setString(4, rset.getString("SHIPPING_PHONE"));
 					pstmt.setString(5, rset.getString("ETC"));
 					result += pstmt.executeUpdate();
 					stmt = con.createStatement();
-					result += stmt.executeUpdate("UPDATE PAYMENT SET PAY_STATUS = 'Y' WHERE PAY_NO = "+rset.getString("PAY_NO"));
 					stmt2 = con.createStatement();
 					result += stmt2.executeUpdate("UPDATE BUY_HISTORY SET BUY_STATUS = '배송중' WHERE ORDER_CHECK = " + oc[i]);
 					
@@ -2088,6 +2093,146 @@ public class testDao {
 		} finally {
 			close(stmt);
 			close(rset);
+		}
+		
+		return result;
+	}
+
+
+	public Board boardDetail2(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+
+		String query = prop.getProperty("boardDetail2");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rset = pstmt.executeQuery();
+	
+			if(rset.next()){
+				b = new Board();
+				b.setBOARD_ID(rset.getInt("BOARD_ID"));
+				b.setBOARD_TITLE(rset.getString("BOARD_TITLE"));
+				b.setBOARD_WRITER(rset.getString("BOARD_WRITER"));
+				b.setBOARD_CONTENT(rset.getString("BOARD_CONTENT"));
+				b.setBOARD_DATE(rset.getDate("BOARD_DATE"));
+			}
+
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+
+		return b;
+	}
+
+
+	public ArrayList<Product> list(Connection con, String category) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("list");
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, category);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				Product p = new Product();
+				p.setPrice(rset.getInt("price"));
+				p.setPrd_name(rset.getString("prd_name"));
+				p.setPrd_code(rset.getString("prd_code"));
+				
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+	}
+
+
+	public int queInsert(Connection con, String id, String content) {
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 =null;
+		
+		String query = prop.getProperty("queInsert");
+		
+		int result = 0;
+		//;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,content);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+			if(result>0){
+				pstmt2 = con.prepareStatement("update board set QUE_STATUS = 'Y' WHERE BOARD_ID = "+id);
+				result += pstmt2.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+	public int cancelDeliver(Connection con, String[] pn) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("cancelDeliver");
+		
+		try {
+			for(int i = 0; i < pn.length; i++){
+				pstmt  = con.prepareStatement(query);
+				pstmt.setString(1,pn[i]);
+				result+=pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int complete(Connection con, String[] pn) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("complete");
+		
+		try {
+			for(int i = 0; i < pn.length; i++){
+				pstmt  = con.prepareStatement(query);
+				pstmt.setString(1,pn[i]);
+				result+=pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;

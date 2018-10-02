@@ -105,14 +105,14 @@ a:HOVER {
 			<%if(view == 4){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>주문관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/OrderConfirm.swy'"><h3>주문관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/OrderConfirm.swy?status=N'"><h3>주문관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>
 			<%if(view == 9){ %>
 				<td align="center" class="menu2" style="background: black; color:white;"><h3>배송관리</h3></td>
 			<%}else{ %>
-				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/Delivery.swy'"><h3>배송관리</h3></td>
+				<td align="center" class="menu2" onclick="location.href='<%=request.getContextPath()%>/Delivery.swy?st=배송중'"><h3>배송관리</h3></td>
 			<%} %>
 			</tr>
 			<tr>

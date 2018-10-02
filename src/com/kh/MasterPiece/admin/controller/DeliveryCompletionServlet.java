@@ -33,7 +33,7 @@ public class DeliveryCompletionServlet extends HttpServlet {
 		int result = new testService().updateDelivery(dn);
 		
 		if(result>0){
-			response.sendRedirect("Delivery.swy");
+			response.sendRedirect("Delivery.swy?st=배송중");
 		}else{
 			request.setAttribute("msg", "에러");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

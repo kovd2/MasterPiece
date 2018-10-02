@@ -499,20 +499,20 @@ public class testService {
 		return result;
 	}
 
-	public ArrayList<OrderConfirm> orderConfirmList(int currentPage, int limit) {
+	public ArrayList<OrderConfirm> orderConfirmList(int currentPage, int limit, String status) {
 		Connection con = getConnection();
 		
-		ArrayList<OrderConfirm> list = new testDao().orderConfirmList(con, currentPage, limit);
+		ArrayList<OrderConfirm> list = new testDao().orderConfirmList(con, currentPage, limit, status);
 		
 		close(con);
 		
 		return list;
 	}
 
-	public int getOrderConfirmCount() {
+	public int getOrderConfirmCount(String status) {
 		Connection con = getConnection();
 		
-		int result = new testDao().getOrderConfirmCount(con);
+		int result = new testDao().getOrderConfirmCount(con,status);
 		
 		close(con);
 		
@@ -547,19 +547,19 @@ public class testService {
 		return result;
 	}
 
-	public ArrayList<Delivery> deliveryList(int currentPage, int limit) {
+	public ArrayList<Delivery> deliveryList(int currentPage, int limit, String st) {
 		Connection con = getConnection();
 		
-		ArrayList<Delivery> list = new testDao().deliveryList(con, currentPage, limit);
+		ArrayList<Delivery> list = new testDao().deliveryList(con, currentPage, limit, st);
 		
 		close(con);
 		return list;
 	}
 
-	public int getDeliveryListCount() {
+	public int getDeliveryListCount(String st) {
 		Connection con = getConnection();
 		
-		int result = new testDao().getDeleveryListCount(con);
+		int result = new testDao().getDeleveryListCount(con,st);
 		
 		close(con);
 		
@@ -621,6 +621,71 @@ public class testService {
 		
 		ArrayList<Cnt> result = new testDao().cntList2(con);
 		
+		close(con);
+		
+		return result;
+	}
+
+	public Board boardDetail2(String id) {
+		Connection con = getConnection();
+		
+		Board b = new testDao().boardDetail2(con, id);
+		
+		close(con);
+		
+		return b;
+	}
+
+	public ArrayList<Product> list(String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> list = new testDao().list(con, category);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int queInsert(String id, String content) {
+		Connection con = getConnection();
+		
+		int result = new testDao().queInsert(con, id, content);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int cancelDeliver(String[] pn) {
+		Connection con = getConnection();
+		
+		int result = new testDao().cancelDeliver(con, pn);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public int complete(String[] pn) {
+		Connection con = getConnection();
+		
+		int result = new testDao().complete(con, pn);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
 		close(con);
 		
 		return result;

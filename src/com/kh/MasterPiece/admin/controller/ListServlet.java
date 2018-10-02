@@ -11,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.MasterPiece.admin.model.service.testService;
-import com.kh.MasterPiece.admin.model.vo.OrderConfirm;
-import com.kh.MasterPiece.board.model.vo.PageInfo;
-import com.kh.MasterPiece.member.model.vo.Member;
+import com.kh.MasterPiece.product.model.vo.Product;
 
 /**
- * Servlet implementation class OrderConfirmServlet
+ * Servlet implementation class ListServlet
  */
-@WebServlet("/OrderConfirm.swy")
-public class OrderConfirmServlet extends HttpServlet {
+@WebServlet("/List.swy")
+public class ListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderConfirmServlet() {
+    public ListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,45 +32,19 @@ public class OrderConfirmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage;		
-		int limit;				
-		int maxPage;			
-		int startPage;         
-		int endPage;          
+		String category = request.getParameter("category");
+		ArrayList<Product> list = new testService().list(category);
 		
-		currentPage = 1;
-
-		limit = 10;
-
-		if(request.getParameter("currentPage") != null){
-			currentPage 
-			= Integer.parseInt(request.getParameter("currentPage"));
-		}
-		String status = request.getParameter("status");
-		int listCount = new testService().getOrderConfirmCount(status);
-		maxPage = (int)((double)listCount / limit + 0.9);
-		startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-		endPage = startPage + limit - 1;
-		if(maxPage < endPage){
-			endPage = maxPage;
-		}
-
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-
-		ArrayList<OrderConfirm> list = new testService().orderConfirmList(currentPage,limit,status);
 		String page = "";
-		if(list != null){
-			page = "views/admin/ordermember/ordermember.jsp";
+		if(list!=null){
+			page="views/admin/board/list.jsp";
 			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
-			request.setAttribute("cate", status);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	/**

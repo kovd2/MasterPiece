@@ -11,6 +11,7 @@ public class Delivery {
 	private String SHIPPING_PHONE; 
 	private String ETC; 
 	private String DELIVERY_OPTION;
+	private String status;
 	
 	public Delivery() {
 		super();
@@ -26,6 +27,13 @@ public class Delivery {
 		SHIPPING_PHONE = sHIPPING_PHONE;
 		ETC = eTC;
 		DELIVERY_OPTION = dELIVERY_OPTION;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public int getDELIVERY_NO() {
 		return DELIVERY_NO;
