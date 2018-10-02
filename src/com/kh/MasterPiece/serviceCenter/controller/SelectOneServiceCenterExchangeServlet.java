@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.MasterPiece.board.model.service.BoardService;
-import com.kh.MasterPiece.board.model.vo.Board;
-import com.kh.MasterPiece.prdOrder.model.service.PrdOrderService;
-import com.kh.MasterPiece.prdOrder.model.vo.PrdOrder;
+import com.kh.MasterPiece.board.model.vo.PageInfo;
+import com.kh.MasterPiece.mypage.buyerhistory.model.service.BuyerHistoryService;
+import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
 import com.kh.MasterPiece.serviceCenter.model.service.AfterServiceService;
 import com.kh.MasterPiece.serviceCenter.model.vo.AfterService;
 
@@ -38,26 +37,17 @@ public class SelectOneServiceCenterExchangeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		int serviceNo = Integer.parseInt(request.getParameter("serviceNo"));
-		String userId = request.getParameter("userId");
-		
-		System.out.println("userId : " + userId);
 		
 		AfterService as = new AfterServiceService().selectServiceCenterExchangeOne(serviceNo);
-		ArrayList<PrdOrder> list = new PrdOrderService().selectPrdOrder(userId);
 		
-		System.out.println(as);
-		System.out.println(list);
+		//System.out.println("aaa : " + as);
 		
 		String page = "";
 		
 		if(as != null)
 		{
-			if(list != null)
-			{
-				page = "views/serviceCenter/serviceCenterExchangeDetail.jsp";
-				request.setAttribute("as", as);
-				request.setAttribute("list", list);
-			}
+			page = "views/serviceCenter/serviceCenterExchangeDetail.jsp";
+			request.setAttribute("as", as);
 		}
 		else
 		{
