@@ -198,7 +198,13 @@ table
 						<tbody>
 							<tr style="border:1px solid lightgray;">
 								<td colspan="2" style="border:1px solid lightgray; height:100px; text-align:left; padding-left:10px; font-size:small;">
+									<%
+										as.setBoardContent(as.getBoardContent().replace("\n", "<br>"));
+									%>
 									<span style="width:98%; height:100px; resize:none;"><%= as.getBoardContent() %></span>
+									<%
+										as.setBoardContent(as.getBoardContent().replace("<br>", "\n"));
+									%>
 								</td>
 							</tr>
 						</tbody>

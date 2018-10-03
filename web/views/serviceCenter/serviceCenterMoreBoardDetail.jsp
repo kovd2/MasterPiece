@@ -153,7 +153,13 @@
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
 									<td class="boardContent" colspan="3" style="height:300px; vertical-align:top;">
+										<%
+											b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("\n", "<br>"));
+										%>
 										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
+										<%
+											b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("<br>", "\n"));
+										%>
 									</td>
 								</tr>
 							</tbody>
