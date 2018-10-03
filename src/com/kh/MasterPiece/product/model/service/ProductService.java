@@ -114,4 +114,13 @@ public class ProductService {
 		
 		return prdList;
 	}
+	public ArrayList<Product> bestPrd(String category) {
+		Connection con = getConnection();
+		
+		ArrayList<Product> bestPrd = new ProductDao().bestPrd(con, category);
+		
+		close(con);
+		
+		return bestPrd;
+	}
 }
