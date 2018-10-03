@@ -293,7 +293,7 @@
 				<ul class="bestPrd_list">
 				<%for(int i = 0; i < bestPrd.size(); i++){ %>
 					<li class="bestPrd">
-						<div class="product_img">
+						<div class="product_img" onclick="goDetail('<%= prdList.get(i).getPrd_code()%>')">
 							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(bestPrd.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
 							<div class="Prd_name">
 								[<%=bestPrd.get(i).getPrd_code() %>]<%=bestPrd.get(i).getPrd_name() %>
@@ -407,7 +407,6 @@
 			var category = c;
 			
 			location.href="<%= request.getContextPath()%>/popularList?category=" + category;
-			$('#popularItem').addClass('on'); 
 		}
 		
 		function newItem(c){
@@ -448,22 +447,9 @@
 					}
 				}); 
 			if(confirm("구매 페이지로 가시겠습니까?") == true){
-					<%-- location.href="<%=request.getContextPath()%>/SelectCartList.swy?"; --%>
+					location.href="<%=request.getContextPath()%>/detailPayment?pcode="+ code;
 			}else{
 					location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
-			}
-				var val = "";
-				var value = [];
-				
-				$(".Prd_list").each(function(index,item){
-					if(index != 0){
-						val += ",";
-					}
-					val += $(this).val();
-					value.push($(this).val());
-				}) 
-				if(val != ""){
-					location.href="<%=request.getContextPath()%>/insertPayment?code="+ val;
 			}
 		 	<%}else{%>
 				alert("로그인을 먼저 하세요.");

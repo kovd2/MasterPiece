@@ -33,53 +33,48 @@ public class payMentDao {
 		}
 	}
 
-	public ArrayList<Cart> selectPayMentList(Connection con, int currentPage, int limit, Member m, String prdCode) {
+	public ArrayList<Cart> selectPayMentList(Connection con, int currentPage, int limit, Member m, String[] prdCode2) {
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
-		ArrayList<Cart> list = null;
-
+		ArrayList<Cart> list = new ArrayList<Cart>();
+;
 
 		String query = prop.getProperty("selectPayMentList");
 
 		try {
-
-			pstmt = con.prepareStatement(query);
-
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-			
-			pstmt.setString(1, m.getUserId());
-			pstmt.setString(2, m.getOrderCheck());
-			pstmt.setString(3, prdCode);
-			pstmt.setInt(4, startRow);
-			pstmt.setInt(5, endRow);
-
-			rset = pstmt.executeQuery();
-
-			list = new ArrayList<Cart>();
-
-			while(rset.next()){
+			for (int i = 0; i < prdCode2.length; i++) {
+				pstmt = con.prepareStatement(query);
 				
-				Cart c = new Cart();
-				c.setPrd_code(rset.getString("PRD_CODE"));
-				c.setPrd_name(rset.getString("PRD_NAME"));
-				c.setPrice(rset.getInt("PRICE"));
-				c.setOrder_count(rset.getInt("ORDER_COUNT"));
-				c.setHap(rset.getInt("HAP"));
-				
-				list.add(c);
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, m.getUserId());
+				pstmt.setString(2, m.getOrderCheck());
+				pstmt.setString(3, prdCode2[i]);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+
+				rset = pstmt.executeQuery();
+
+				while (rset.next()) {
+
+					Cart c = new Cart();
+					c.setPrd_code(rset.getString("PRD_CODE"));
+					c.setPrd_name(rset.getString("PRD_NAME"));
+					c.setPrice(rset.getInt("PRICE"));
+					c.setOrder_count(rset.getInt("ORDER_COUNT"));
+					c.setHap(rset.getInt("HAP"));
+
+					list.add(c);
+				}
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 			close(rset);
 		}
-
-
-
 		return list;
 	}
 
@@ -338,6 +333,85 @@ public class payMentDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Cart> selectPayMentDetailPrdList(Connection con, int currentPage, int limit, Member m, String pcode) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Cart> list = new ArrayList<Cart>();
+
+		String query = prop.getProperty("selectPayMentList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getOrderCheck());
+			pstmt.setString(3, pcode);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				Cart c = new Cart();
+				c.setPrd_code(rset.getString("PRD_CODE"));
+				c.setPrd_name(rset.getString("PRD_NAME"));
+				c.setPrice(rset.getInt("PRICE"));
+				c.setOrder_count(rset.getInt("ORDER_COUNT"));
+				c.setHap(rset.getInt("HAP"));
+
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+	}
+
+	public ArrayList<Cart> selectPayMentList2(Connection con, Member m, String pcode) {
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		ArrayList<Cart> list = new ArrayList<Cart>();
+
+		String query = prop.getProperty("selectPayMentList2");
+
+		try {
+				pstmt = con.prepareStatement(query);
+
+				pstmt.setString(1, m.getUserId());
+				pstmt.setString(2, m.getOrderCheck());
+				pstmt.setString(3, pcode);
+
+				rset = pstmt.executeQuery();
+
+				while (rset.next()) {
+
+					Cart c = new Cart();
+					c.setPrd_code(rset.getString("PRD_CODE"));
+					c.setPrd_name(rset.getString("PRD_NAME"));
+					c.setPrice(rset.getInt("PRICE"));
+					c.setOrder_count(rset.getInt("ORDER_COUNT"));
+					c.setHap(rset.getInt("HAP"));
+
+					list.add(c);
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
 	}
 
 }
