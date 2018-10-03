@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*, com.kh.MasterPiece.product.model.vo.*,com.kh.MasterPiece.board.model.vo.*"%>
 <%	
 	ArrayList<Product> prdList = (ArrayList<Product>)request.getAttribute("prdList");
+	ArrayList<Product> bestPrd = (ArrayList<Product>)request.getAttribute("bestPrd");
 	HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
 	String category = (String)request.getAttribute("category");
 	String oc = (String)request.getAttribute("oc");		
@@ -280,31 +281,6 @@
 	
 	<!-- 카테고리 div -->
 	<div class="wrap">
-		<!-- <div class="prdNaviLayer" style="display: inline-flex;">
-			<div class="mainLayer" style="width:200px;">
-				<ul class="mainNavi">
-					<li>컴퓨터 부품</li>
-					<ul class="mainTitle">
-						<li>CPU</li>
-						<li>메인보드</li>
-						<li>메모리</li>
-						<li>그래픽카드</li>
-						<li>저장장치</li>
-						<li>ODD</li>
-						<li>파워</li>
-						<li>쿨러</li>
-						<li>케이스</li>
-					</ul>
-				</ul>
-			</div>
-			<div class="subLayer" style="width:200px;">
-				<ul class="subNavi">
-					<li>-------</li>
-					<li>Intel</li>
-					<li>AMD</li>
-				</ul>
-			</div>
-		</div> -->
 		<!-- 추천상품 div -->
 		<div class="bestPrd_area">
 			<div class="sec_tit"
@@ -315,51 +291,17 @@
 			</div>
 			<div class="bestPrd_box">
 				<ul class="bestPrd_list">
+				<%for(int i = 0; i < bestPrd.size(); i++){ %>
 					<li class="bestPrd">
 						<div class="product_img">
-							<img src="/MasterPiece/images/jinseok/cpu/i7_8700K.jpg">
+							<img src="<%=request.getContextPath()%>/images/product/<%=imgList.get(bestPrd.get(i).getPrd_code()).getChangeName()%>" class="Prd_img">
 							<div class="Prd_name">
-								[대리점정품]인텔 코어8세대 i7-8700K 커피레이크 (CPU/3.7GHz/12MB/LGA1151-V2)
-								<div class="Prd_price">569,000원</div>
+								[<%=bestPrd.get(i).getPrd_code() %>]<%=bestPrd.get(i).getPrd_name() %>
+								<div class="Prd_price"><%=bestPrd.get(i).getPrice() %>원</div>
 							</div>
 						</div>
 					</li>
-					<li class="bestPrd">
-						<div class="product_img">
-							<img src="/MasterPiece/images/jinseok/cpu/i7_8700.jpg">
-							<div class="Prd_name">
-								[대리점정품]인텔 코어8세대 i7-8700 커피레이크 (CPU/3.2GHz/12MB/LGA1151-V2)
-								<div class="Prd_price">555,000원</div>
-							</div>
-						</div>
-					</li>
-					<li class="bestPrd">
-						<div class="product_img">
-							<img src="/MasterPiece/images/jinseok/cpu/i7_7740X.jpg">
-							<div class="Prd_name">
-								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
-								<div class="Prd_price">89,900원</div>
-							</div>
-						</div>
-					</li>
-					<li class="bestPrd">
-						<div class="product_img">
-							<img src="/MasterPiece/images/jinseok/cpu/i5_8600K.jpg">
-							<div class="Prd_name">
-								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
-								<div class="Prd_price">89,900원</div>
-							</div>
-						</div>
-					</li>
-					<li class="bestPrd">
-						<div class="product_img">
-							<img src="/MasterPiece/images/jinseok/cpu/i5_8600.jpg">
-							<div class="Prd_name">
-								[AMD] 라이젠 3 레이븐릿지 2200G (쿼드코어/3.5GHz/쿨러포함/대리점정품)
-								<div class="Prd_price">89,900원</div>
-							</div>
-						</div>
-					</li>
+					<%} %>
 				</ul>
 			</div>
 		</div>
@@ -463,9 +405,8 @@
 		
 		function popularItem(c){
 			var category = c;
-			var type = "인기";
 			
-			location.href="<%= request.getContextPath()%>/prdPageList.js?category=" + category;
+			location.href="<%= request.getContextPath()%>/popularList.js?category=" + category;
 			$('#popularItem').addClass('on'); 
 		}
 		
@@ -482,12 +423,12 @@
 		function lowerPriceItem(c){
 			var category = c;
 			
-			location.href="<%= request.getContextPath()%>/lowList?category=" + category;
+			location.href="<%= request.getContextPath()%>/lowPrice?category=" + category;
 		}
 		function highPriceItem(c){
 			var category = c;
 			
-			location.href="<%= request.getContextPath()%>/highList?category=" + category;
+			location.href="<%= request.getContextPath()%>/highPrice?category=" + category;
 		}
 		
 		function goBuy(No){

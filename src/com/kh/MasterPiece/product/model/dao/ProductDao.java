@@ -399,5 +399,41 @@ public class ProductDao {
 		}		
 		return prdList;
 	}
+	public ArrayList<Product> bestPrd(Connection con, String category) {
+		PreparedStatement pstmt = null;
+		ArrayList<Product> bestPrd = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("bestPrd");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, category);
+
+			rset = pstmt.executeQuery();
+
+			bestPrd = new ArrayList<Product>();
+
+			while(rset.next()){
+				Product p = new Product();
+				
+				p.setPrd_code(rset.getString("PRD_CODE"));
+				p.setPrice(rset.getInt("PRICE"));
+				p.setPrd_name(rset.getString("PRD_NAME"));
+				p.setManufacturer(rset.getString("MANUFACTURER"));
+				p.setCategory(rset.getString("CATEGORY"));
+				
+				bestPrd.add(p);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return bestPrd;
+	}
 	
 }
