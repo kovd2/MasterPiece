@@ -24,7 +24,7 @@ public class ProductPageListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		System.out.println("옴");
 		HashMap<String, Object> imgList = new ProductService().imgList();
 		//------------------------------------------------상품 리스트--------------------------------------------------------------
 		String category = request.getParameter("category");
@@ -60,6 +60,7 @@ public class ProductPageListServlet extends HttpServlet {
 			ArrayList<Product> prdList = new ProductService().prdList(currentPage, limit, category);
 			ArrayList<Product> bestPrd = new ProductService().bestPrd(category);
 			System.out.println("prdList : " + prdList);
+			System.out.println("bestPrd : " + bestPrd);
 			
 			String page = "";
 

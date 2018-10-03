@@ -4,6 +4,7 @@
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 HashMap<String, Attachment> imgList = (HashMap<String, Attachment>)request.getAttribute("imgList");
 ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+
 int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();

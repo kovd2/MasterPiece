@@ -3,6 +3,7 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("imgList");
+	String category = (String)request.getAttribute("category");
 	String beforeBuyIntelCpu = (String)request.getAttribute("beforeBuyIntelCpu");
 	String intelCpuDevision = (String)request.getAttribute("intelCpuDevision");
 	String beforeBuyAMDCpu = (String)request.getAttribute("beforeBuyAMDCpu");
@@ -14,6 +15,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 .wrap {
@@ -325,7 +327,7 @@
 							<li>수량</li>
 							<li>
 								<div>
-									<select id="prd_count">
+									<select id="<%= p.getPrd_code()%>">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -353,8 +355,8 @@
 						</ul>
 					</div>
 					<div class="btn_layout">
-						<div class="goCart" onclick="goCart()">장바구니</div>
-						<div class="goBuy" onclick="goBuy()">바로구매</div>
+						<div class="goCart" onclick="goCart('<%=p.getPrd_code()%>')">장바구니</div>
+						<div class="goBuy" onclick="goBuy('<%=p.getPrd_code()%>')">바로구매</div>
 					</div>
 				</div>
 			</div>
@@ -531,19 +533,59 @@
 	</div>
 	</div>
 		<script>
-		function goCart(){
-			var code1 = Code1;
-			var price = price1;
-			var count = $("#prd_count option:selected").val();
+			function goCart(No){
+				<%if (request.getSession().getAttribute("loginUser") != null) {%>
+				var code = No;
+				var count = $("#"+code).val();
+				 $.ajax({
+						url: "insertCart",
+						data : {
+							code:code,
+							count:count
+							},
+						type : "get",
+						success:function(data){
+								
+						}
+					}); 
+				
+				if(confirm("장바구니로 가시겠습니까?") == true){
+					location.href="<%=request.getContextPath()%>/SelectCartList.swy";
+				}else{
+					location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
+				}
+				<%} else {%>
+					alert("로그인을 먼저 하세요.");
+					location.href="<%=request.getContextPath()%>/views/member/login.jsp";
+				<%}%> 
+			};
 			
-			if(confirm("장바구니에 추가 하시겠습니까?") == true){
-				location.href="<%= request.getContextPath()%>/insertCart?code=" + code1 + "&price=" + price + "&count=" + count;
-			}else{
-				return false;
-			}
-		};
-			function goBuy(){
-				location.href="./delivery_page.jsp";
+			function goBuy(No){
+				<%if (request.getSession().getAttribute("loginUser") != null) {%>
+				
+				var code = No;
+				var pcode = No;
+				var count = $("#"+code).val();
+					$.ajax({
+						url: "insertCart",
+						data : {
+							code:code,
+							count:count
+							},
+						type : "get",
+						success:function(data){
+									
+						}
+					}); 
+				if(confirm("구매 페이지로 가시겠습니까?") == true){
+						location.href="<%=request.getContextPath()%>/detailPayment?pcode=" + pcode;
+				}else{
+						location.href="<%=request.getContextPath()%>/prdDetail?code=" + code;
+				}
+			 	<%} else {%>
+					alert("로그인을 먼저 하세요.");
+					location.href="<%=request.getContextPath()%>/views/member/login.jsp";
+				<%}%>
 			}
 		</script>
 </body>

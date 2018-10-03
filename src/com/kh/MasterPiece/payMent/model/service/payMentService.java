@@ -13,10 +13,9 @@ import com.kh.MasterPiece.payMent.model.dao.payMentDao;
 
 public class payMentService {
 
-	public ArrayList<Cart> selectPayMentList(int currentPage, int limit, Member m, String[] values, String prdCode) {
+	public ArrayList<Cart> selectPayMentList(int currentPage, int limit, Member m, String[] values, String[] prdCode2) {
 		Connection con = getConnection();
-		
-		ArrayList<Cart> list = new payMentDao().selectPayMentList(con, currentPage, limit, m, prdCode);
+		ArrayList<Cart> list = new payMentDao().selectPayMentList(con, currentPage, limit, m, prdCode2);
 		
 		close(con);
 		
@@ -151,6 +150,15 @@ public class payMentService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<Cart> selectPayMentList2(Member m, String pcode) {
+		Connection con = getConnection();
+		ArrayList<Cart> list = new payMentDao().selectPayMentList2(con, m, pcode);
+		
+		close(con);
+		
+		return list;
 	}
 
 }
