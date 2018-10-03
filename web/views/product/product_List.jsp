@@ -355,7 +355,7 @@
 							</select>
 						</div>
 						<div class="btnArea">&nbsp;
-							<div class="basketBtn" onclick="addCart('<%=prdList.get(i).getPrd_code()%>')">
+							<div class="basketBtn" onclick="addCart('<%=prdList.get(i).getPrd_code()%>');">
 								<img src="/MasterPiece/images/jinseok/icon/go_cart_btn.gif">
 							</div>&nbsp;&nbsp;
 							<div class="buyBtn" onclick="goBuy('<%=prdList.get(i).getPrd_code()%>');">
@@ -406,7 +406,7 @@
 		function popularItem(c){
 			var category = c;
 			
-			location.href="<%= request.getContextPath()%>/popularList.js?category=" + category;
+			location.href="<%= request.getContextPath()%>/popularList?category=" + category;
 			$('#popularItem').addClass('on'); 
 		}
 		
@@ -432,8 +432,8 @@
 		}
 		
 		function goBuy(No){
-			if(<%=request.getSession().getAttribute("loginUser")%> != null){
-		
+			<%if(request.getSession().getAttribute("loginUser") != null){%>
+			
 			var code = No;
 			var count = $("#"+code).val();
 				$.ajax({
@@ -465,14 +465,14 @@
 				if(val != ""){
 					location.href="<%=request.getContextPath()%>/insertPayment?code="+ val;
 			}
-		 	}else{
+		 	<%}else{%>
 				alert("로그인을 먼저 하세요.");
 				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
-			} 
+			<%}%> 
 		}
 
 		function addCart(No) {
-			 if(<%=request.getSession().getAttribute("loginUser")%>!=null){
+			<%if(request.getSession().getAttribute("loginUser") != null){%>
 			var code = No;
 			var count = $("#"+code).val();
 			 $.ajax({
@@ -492,10 +492,10 @@
 			}else{
 				location.href="<%=request.getContextPath()%>/prdPageList.js?category=<%=category%>";
 			}
-			}else{
+			<%}else{%>
 				alert("로그인을 먼저 하세요.");
 				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
-			} 
+			<%}%> 
 		};
 
 	</script>

@@ -58,7 +58,7 @@ public class ProductPageListServlet extends HttpServlet {
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			ArrayList<Product> prdList = new ProductService().prdList(currentPage, limit, category);
-			
+			ArrayList<Product> bestPrd = new ProductService().bestPrd(category);
 			System.out.println("prdList : " + prdList);
 			
 			String page = "";
@@ -66,6 +66,7 @@ public class ProductPageListServlet extends HttpServlet {
 			if (prdList != null) {
 				page = "views/product/product_List.jsp";
 				request.setAttribute("prdList", prdList);
+				request.setAttribute("bestPrd", bestPrd);
 				request.setAttribute("imgList", imgList);
 				request.setAttribute("pi", pi);
 				request.setAttribute("category", category);
