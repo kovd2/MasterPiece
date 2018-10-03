@@ -201,11 +201,13 @@
 							$td.append(data.boardList[i].BOARD_ID);
 							$td2 = $("<td>");
 							if(type == 6){
-								$a = $("<a href='./boardnDetail.swy?id="+data.boardList[i].BOARD_ID+"'>")
+								$a = $("<a href='./boardDetail.swy?id="+data.boardList[i].BOARD_ID+"'>")
 								$a.append(data.boardList[i].BOARD_TITLE);
 								$td2.append($a);	
 							}else{
-								$td2.append(data.boardList[i].BOARD_TITLE);
+								$a = $("<a href='./BoardDetail2.swy?id="+data.boardList[i].BOARD_ID+"'>")
+								$a.append(data.boardList[i].BOARD_TITLE);
+								$td2.append($a)
 							}
 							$td3 = $("<td>");
 							$td3.append(data.boardList[i].BOARD_WRITER);
@@ -274,7 +276,9 @@
 							$a.append(data.boardList[i].BOARD_TITLE);
 							$td2.append($a);	
 						}else{
-							$td2.append(data.boardList[i].BOARD_TITLE);
+							$a = $("<a href='./BoardDetail2.swy?id="+data.boardList[i].BOARD_ID+"'>")
+							$a.append(data.boardList[i].BOARD_TITLE);
+							$td2.append($a)
 						}
 						$td3 = $("<td>");
 						$td3.append(data.boardList[i].BOARD_WRITER);

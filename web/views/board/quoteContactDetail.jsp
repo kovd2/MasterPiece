@@ -193,7 +193,7 @@
 							<tr>
 								<th style="vertical-align:middle; width:100px;">답변</th>
 								<td class="boardContent" colspan="3" style="vertical-align:middle;">
-									<span style="margin-left:20px;"><%= answerBoard.getBOARD_CONTENT() %></span>
+									<textarea readonly="readonly"style="resize: none; width: 90%;height: 200px"><%= answerBoard.getBOARD_CONTENT() %></textarea>
 								</td>
 							</tr>
 						</tbody>

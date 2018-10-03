@@ -50,9 +50,10 @@ public class DeliveryServlet extends HttpServlet {
 			currentPage 
 			= Integer.parseInt(request.getParameter("currentPage"));
 		}
+		String st = request.getParameter("st");
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = new testService().getDeliveryListCount();
+		int listCount = new testService().getDeliveryListCount(st);
 		//총 페이지수 계산
 		//예) 목록 수가 123개이면 페이지가 13개가 필요함
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -66,14 +67,14 @@ public class DeliveryServlet extends HttpServlet {
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-
-		ArrayList<Delivery> list = new testService().deliveryList(currentPage, limit);
+		System.out.println(st+ ":" + pi);
+		ArrayList<Delivery> list = new testService().deliveryList(currentPage, limit, st);
 		String page = "";
 		if(list != null){
 			page = "views/admin/delivery/delivery.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
-			request.setAttribute("cate", "전체");
+			request.setAttribute("cate", st);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "에러");

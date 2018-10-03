@@ -32,11 +32,15 @@ text-align: center
 <div id="main">
 <form action="<%=request.getContextPath() %>/InsertDelivery.swy" method="post" id="asdf">
 	<div style="margin-left:20px; margin-top:20px;">
-		<input type="button" class = "delevery" value="배송">
-		<button class="refund">환불</button>
+		<button style="display:inline;" type="button" onclick="pr()">결제 전</button>
+		<button style="display:inline;" type="button" onclick="po()">결제 완료</button><br><br>
+		<input style="display: none;" type="button" class = "delevery" value="배송">
+		<button style="display: none;" type="button" class="refund">환불</button>
+		<button style="display: none;" type="button" class="complete">결제 확인</button>
+		<button style="display: none;" type="button" class="cancel">취소</button>
 	</div><br>
 	<div style="margin-left:20px;">
-	주문자 : <input type="text" id = "t"> <input type="button" onclick="search()" value="검색">
+	주문번호 : <input type="text" id = "t"> <input type="button" onclick="search()" value="검색">
 	</div><br>
 	<div>
 		<table id="mt" border="1">
@@ -53,6 +57,7 @@ text-align: center
 		<tr>
 		<td>
 		<input type="checkbox" value=<%=list.get(i).getOrder_check()%> class="check" name="check">
+		<input type="hidden" value=<%=list.get(i).getPay_no() %> class=<%=list.get(i).getOrder_check()%>>
 		</td>
 		<td><%=list.get(i).getPay_date() %></td>
 		<td><%=list.get(i).getOrder_check() %></td>
@@ -71,12 +76,33 @@ text-align: center
 	</form>
 	<script type="text/javascript">
 	
+	function pr(){
+		
+		location.href='<%=request.getContextPath()%>/OrderConfirm.swy?status=N';
+	}
+	
+	function po(){
+		
+		location.href='<%=request.getContextPath()%>/OrderConfirm.swy?status=Y';
+	}
+	
 	$(document).ready(function(){
 		$('input[id="t"]').keydown(function(){
 			if(event.keyCode === 13){
 				return false;
 			}
 		})
+		if("<%=(String)request.getAttribute("cate")%>"=="N"){
+			$(".cancel").css("display","inline");
+			$(".complete").css("display","inline");
+			$(".refund").css("display","none");
+			$(".delevery").css("display","none");
+		}else{
+			$(".refund").css("display","inline");
+			$(".delevery").css("display","inline");
+			$(".complete").css("display","none");
+			$(".cancel").css("display","none");
+		}
 	})
 	function search(){
 		location.href="<%= request.getContextPath() %>/SearchOrder.swy?a="+$("#t").val();
@@ -129,29 +155,60 @@ text-align: center
 			val += $(this).val();
 			value.push($(this).val());
 		})
-		alert(val);
-		if(val!=null){
+		if(val!=""){
 			$("#asdf").submit();
 		}
 	
 	});
 	$(".refund").click(function(){
 		var val = "";
-		var value = [];
+		var value = "";
 		$(".check:checked").each(function(index,item){
 			if(index!=0){
-				val += ",";
+				value += ",";
 			}
-			val += $(this).val();
-			value.push($(this).val());
+			val = $(this).val();
+			value += $("."+val).val();
 		})
-		if(val!=null){
+		if(val!=""){
+			alert(value);
+			location.href='<%=request.getContextPath()%>/Refund.swy?val='+value;
+		}
+	
+	});
+	$(".cancel").click(function(){
+		var val = "";
+		var value = "";
+		$(".check:checked").each(function(index,item){
+			if(index!=0){
+				value += ",";
+			}
+			val = $(this).val();
+			value += $("."+val).val();
+		})
+		if(val!=""){
+			location.href='<%=request.getContextPath()%>/Cancel.swy?val='+value;
+		}
+	
+	});
+	$(".complete").click(function(){
+		var val = "";
+		var value = "";
+		$(".check:checked").each(function(index,item){
+			if(index!=0){
+				value += ",";
+			}
+			val = $(this).val();
+			value += $("."+val).val();
+		})
+		if(val!=""){
+			location.href='<%=request.getContextPath()%>/Complete.swy?val='+value;
 		}
 	
 	});
 	</script>
 	<%
-				if (cate.equals("전체")) {
+				if (cate.equals("N")) {
 			%>
 			<div class="pagingArea" align="center">
 				<button
@@ -202,7 +259,7 @@ text-align: center
 					onclick="location.href='<%=request.getContextPath()%>/OrderConfirm.swy?currentPage=<%=maxPage%>'">>></button>
 			</div>
 			<%
-				}else{
+				}else if(cate.equals("Y")){
 			%>
 			<div class="pagingArea" align="center">
 				<button
