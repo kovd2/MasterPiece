@@ -491,7 +491,7 @@
 		}
 		
 		function goBuy(No){
-			if('<%=loginUser.getUserId()%>' != null){
+			if(<%=request.getSession().getAttribute("loginUser")%> != null){
 		
 			var code = No;
 			var count = $("#"+code).val();
@@ -524,14 +524,14 @@
 				if(val != ""){
 					location.href="<%=request.getContextPath()%>/insertPayment?code="+ val;
 			}
-			}else{
+		 	}else{
 				alert("로그인을 먼저 하세요.");
 				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
-			}
+			} 
 		}
 
 		function addCart(No) {
-			if('<%=loginUser.getUserId()%>'!=null){
+			 if(<%=request.getSession().getAttribute("loginUser")%>!=null){
 			var code = No;
 			var count = $("#"+code).val();
 			 $.ajax({
@@ -554,7 +554,7 @@
 			}else{
 				alert("로그인을 먼저 하세요.");
 				location.href="<%=request.getContextPath()%>/views/member/login.jsp";
-			}
+			} 
 		};
 
 	</script>
