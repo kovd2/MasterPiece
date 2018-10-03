@@ -58,12 +58,15 @@
 	</td>
 	<td style="width:120px"><%=list.get(i).getSHIPPING_PHONE() %></td>
 	<td style="width:200px"><%=list.get(i).getETC() %></td>
-	<td style="width:100px"><%=list.get(i).getStatus() %></td>
+	<td style="width:100px;cursor: pointer;" onclick="detail()"><%=list.get(i).getStatus() %></td>
 	</tr>
 	<%} %>
 	</table>
 	</form>
 	<script type="text/javascript">
+	function detail(){
+		window.open('<%=request.getContextPath()%>/views/admin/delivery/deliveryDetail.jsp','배송추적', 'width=500, height=700');
+	}
 	$(".delevery").click(function(){
 		var val = null;
 		var value = [];
