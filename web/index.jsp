@@ -239,9 +239,17 @@ a{ text-decoration:none }
 #footAutoGnbNavi li{cursor:pointer;}
 
 #right_gnb_plus, #right_gnb_minus {float:left; cursor:pointer; height:35px;}
+
+.gPrice1, .cPrice1{font-size:12px;}
+.gPrice2, .cPrice2{font-size: 13px;font-weight: bold; letter-spacing: -2px; padding-right: 5px;}
+.gPrice3, .cPrice3{font-size: 17px;font-weight: bold; color: #ee2929;}
+
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 </head>
@@ -504,24 +512,24 @@ a{ text-decoration:none }
 			<div class="product_1">
 				<!-- <link rel="stylesheet" type="text/css" href="/main/css/index_renew_addmask.css?t=godo150414" media="all"> -->
 				<div class="view view-show" style="margin-right:140px;">
-					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(61).getPrd_code()).getChangeName()%> width="466" height="287" >
+					<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(280).getPrd_code())).getChangeName()%>" width="466px;" height="287px;" >
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName"><%=list.get(61).getPrd_name() %></p>
-						<p class="viewContent"><%=list.get(61).getPrice() %> 원</p>
+						<p class="productName"><%=list.get(280).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(280).getPrice() %> 원</p>
 						<p class="viewDetail">
-							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
+							<a class="info" href="http://localhost:8001/MasterPiece/prdDetail?code=<%=list.get(280).getPrd_code()%>">자세히 보기 &gt;</a>
 						</p>
 					</div>
 				</div>
 				<div class="view view-show">
-					<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(111).getPrd_code()).getChangeName()%> width="466" height="287">
+					<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(250).getPrd_code())).getChangeName()%>" width="466" height="287">
 						<div class="mask"></div>
 						<div class="product_content">
-						<p class="productName"><%=list.get(111).getPrd_name() %></p>
-						<p class="viewContent"><%=list.get(111).getPrice() %>원</p>
+						<p class="productName"><%=list.get(250).getPrd_name() %></p>
+						<p class="viewContent"><%=list.get(250).getPrice() %>원</p>
 						<p class="viewDetail">
-							<a class="info" href="http://www.google.co.kr"title="">자세히 보기 &gt;</a>
+							<a class="info" href="http://localhost:8001/MasterPiece/prdDetail?code=<%=list.get(250).getPrd_code()%>">자세히 보기 &gt;</a>
 						</p>
 					</div>
 				</div>
@@ -531,41 +539,40 @@ a{ text-decoration:none }
 				<span class="product_subMp1">MasterPiece PC</span>
 				<span class="product_subMp2">당사에서 제작한 걸작을 만나보실 수 있습니다.</span><br>
 				<div class="product_2">
-					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(0).getPrd_code()%>')" >
-						<img src="<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(0).getPrd_code()).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
+					<div class="product_mp1 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(512).getPrd_code()%>')" >
+						<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(512).getPrd_code())).getChangeName()%>"style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(0).getPrd_name()%></span><br><hr class="product_hr">
+						<span class="product_name"><%=list.get(512).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2"><%=list.get(0).getPrice()%>원</span>
+						<span class="product_btm2"><%=list.get(512).getPrice()%>원</span>
 						<span class="product_event1" style="margin-right:10px;">경품</span>
 						<span class="product_event4">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(1).getPrd_code()%>')">
-						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(1).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
+					<div class="product_mp2 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(511).getPrd_code()%>')">
+						<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(511).getPrd_code())).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(1).getPrd_name()%></span><br><hr class="product_hr">
+						<span class="product_name"><%=list.get(511).getPrd_name()%></span><br><hr class="product_hr">
 						<span class="product_btm1">판매가격 </span>
-						<span class="product_btm2"><%=list.get(1).getPrice()%>원</span>
+						<span class="product_btm2"><%=list.get(511).getPrice()%>원</span>
 						<span class="product_event4" style="margin-right:10px;">사은품</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(2).getPrd_code()%>')">
-						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(2).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
+					<div class="product_mp3 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(515).getPrd_code()%>')">
+						<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(512).getPrd_code())).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span><br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(2).getPrd_name()%></span><br><hr class="product_hr">
-						<span class="product_btm1" style="text-decoration: line-through;">1,230,000원 </span>
-						<span class="product_btm2"><%=list.get(2).getPrice()%>원</span>
+						<span class="product_name"><%=list.get(515).getPrd_name()%></span><br><hr class="product_hr">
+						<span class="product_btm1" style="text-decoration: line-through;">532000원 </span>
+						<span class="product_btm2"><%=list.get(515).getPrice()%>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
-					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(3).getPrd_code()%>')">
-						<img src=<%=request.getContextPath() %>/images/product/<%=imgList.get(list.get(3).getPrd_code()).getChangeName()%> style="width: 200px; height: 220px;"> <br>
+					<div class="product_mp4 product_2" style="cursor: pointer;" title="MasterPiece PC" onclick="goDetail('<%= list.get(511).getPrd_code()%>')">
+						<img src="<%=request.getContextPath() %>/images/product/<%=(imgList.get(list.get(513).getPrd_code())).getChangeName()%>" style="width: 200px; height: 220px;"> <br>
 						<span class="product_comment"">비주얼도 성능도 만족하는 조립PC!</span> <br>
-						<span class="product_name">[MasterPiece] 추천 조립PC! <%=list.get(3).getPrd_name()%></span><br><hr class="product_hr">
-						<span class="product_btm1" style="text-decoration: line-through;">1,100,000원 </span>
-						<%-- <span class="product_btm2"><%=list.get(3).getPrice() %>원</span> --%>
-						<span class="product_btm2"><%=list.get(3).getPrice()%>원</span>
+						<span class="product_name"><%=list.get(508).getPrd_name()%></span><br><hr class="product_hr">
+						<span class="product_btm1" style="text-decoration: line-through;">615000원 </span>
+						<span class="product_btm2"><%=list.get(513).getPrice()%>원</span>
 						<span class="product_event6" style="margin-right:10px;">특가</span>
 						<span class="product_event3">무료배송</span>
 					</div>
@@ -587,9 +594,9 @@ a{ text-decoration:none }
 			 		<div style="width:345px; height:300px;" onclick="goDetail('<%= list1.get(i).getPrd_code()%>')">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
 			 						width="200px" height="200px" style="margin-top:15px;"><br>
-		 				<span><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
-		 				<span>판매가격</span>
-		 				<span><%=list1.get(i).getPrice() %>원</span>
+		 				<span class="gPrice1"><%=list1.get(i).getPrd_name()%></span><br><hr class="product_hr">
+		 				<span class="gPrice2">판매가격</span>
+		 				<span class="gPrice3"><%=list1.get(i).getPrice() %>원</span>
 		 			</div>
 			 	</div>
 				<%} %>
@@ -602,11 +609,11 @@ a{ text-decoration:none }
 						 	<button class="thisBtn1" value=<%=currentPage1 - 1 %> id="leftBtn1"><</button>
 						 <%} %>
 						 
-						 <% for(int p = startPage1; p <= maxPage1; p++){ %>
+						 <% for(int p = startPage1; p <= 5; p++){ %>
 		 						<button class="thisBtn1" value=<%=p %>><%= p %></button>
 						 <% 	} %>
 						 
-						 <% if(currentPage1 >= maxPage1){ %>
+						 <% if(currentPage1 >= 5){ %>
 						 	<button class="thisBtn1" id="rightBtn1" disabled>></button>
 						 <%}else{ %>
 						 	<button class="thisBtn1" id="rightBtn1" value=<%=currentPage1 + 1 %>>></button>
@@ -632,9 +639,9 @@ a{ text-decoration:none }
 			 		<div style="width:345px; height:300px;" onclick="goDetail('<%= list2.get(i).getPrd_code()%>')">
 			 			<img src="<%=request.getContextPath() %>/images/product/<%=ath.getChangeName()%>"
 			 						width="200px" height="200px" style="margin-top:15px;"><br>
-		 				<span><%=list2.get(i).getPrd_name()%></span><br><hr class="product_hr">
-		 				<span>판매가격</span>
-		 				<span><%=list2.get(i).getPrice() %>원</span>
+		 				<span class="cPrice1"><%=list2.get(i).getPrd_name()%></span><br><hr class="product_hr">
+		 				<span class="cPrice2">판매가격</span>
+		 				<span class="cPrice3"><%=list2.get(i).getPrice() %>원</span>
 		 			</div>
 			 	</div>
 				<%} %>
@@ -647,11 +654,11 @@ a{ text-decoration:none }
 						 	<button class="thisBtn2" value=<%=currentPage2 - 1 %> id="leftBtn2"><</button>
 						 <%} %>
 						 
-						 <% for(int p = startPage2; p <= maxPage2; p++){ %>
+						 <% for(int p = startPage2; p <= 5; p++){ %>
 		
 		 						<button class="thisBtn2" value=<%=p %>><%= p %></button>
 						 <% 	} %>
-						 <% if(currentPage2 >= maxPage2){ %>
+						 <% if(currentPage2 >= 5){ %>
 						 	<button class="thisBtn2" id="rightBtn2" disabled>></button>
 						 <%}else{ %>
 						 	<button class="thisBtn2" id="rightBtn2" value=<%=currentPage2 + 1 %>>></button>
@@ -717,20 +724,28 @@ a{ text-decoration:none }
 			success:function(data){
 				var path = "images/product";
 				
+				/* .gPrice1, .cPrice1{font-size:12px;} 이름
+				.gPrice2, .cPrice2{font-size: 13px;font-weight: bold; letter-spacing: -2px; padding-right: 5px;} 판매가격
+				.gPrice3, .cPrice3{font-size: 17px;font-weight: bold; color: #ee2929;} ~원 */ 
+				
+				
 				$(".imageArea").children("div.imageList").remove();
 				console.log(data.list[0]);
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList' align='center' style='width: 350px; height:300px; margin: 4.5px; cursor:pointer;' onclick='goDetail("+data.list[i].prd_code+")'>");
+					$div = $("<div class='imageList' align='center' style='font-size: 12px; width: 350px; height:300px; margin: 4.5px; cursor:pointer;' onclick='goDetail(\""+data.list[i].prd_code+"\")'>");
 					$(".imageArea").append($div);
 					$div2 = $("<div style='width:345px; height:300px;'>");				
 					$div.append($div2);
 					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
-					$span1 = $("<br><span style='font-weight:13px;'>");
-					$span2 = $("<br><span style='font-color:red;'><hr class='product_hr'>");
+					$span1 = $("<br><span style='font-size:11.5px;'>");
+					$span2 = $("<span style='font-size: 13px;font-weight: bold; letter-spacing: -2px; padding-right: 5px;'><hr class='product_hr'>");
+					$span3 = $("<span style='font-size: 17px;font-weight: bold; color: #ee2929;'>");
 					$span1.append(data.list[i].prd_name)
-					$span2.append("판매가격 " + data.list[i].price + "원")
+					$span2.append("판매가격 ")
+					$span3.append(data.list[i].price + "원")
 					$div2.append($span1);
 					$div2.append($span2);
+					$div2.append($span3);
 					console.log(data);
 					console.log(data.list[i].price);
 					console.log(data.imgList[data.list[i].prd_code].changeName);
@@ -743,7 +758,7 @@ a{ text-decoration:none }
 					$("#leftBtn1").removeAttr("disabled");
 				}
 				
-			 	if(cp >= <%=maxPage1%>){
+			 	if(cp >= 5){
 					$("#rightBtn1").attr("disabled");			
 				}else{
 					$("#rightBtn1").val((cp * 1) + 1);
@@ -770,18 +785,20 @@ a{ text-decoration:none }
 				$(".imageArea2").children("div.imageList2").remove();
 				
 				for(var i = 0; i < data.list.length; i++){
-					$div = $("<div class='imageList2'align='center' style='width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;' onclick='goDetail("+data.list[i].prd_code+")'>");
+					$div = $("<div class='imageList2'align='center' style='font-size: 12px; width: 350px; height:300px; display: inline-block; margin: 4.5px; cursor:pointer;' onclick='goDetail(\""+data.list[i].prd_code+"\")'>");
 					$(".imageArea2").append($div);
 					$div2 = $("<div style='width:350px; height:300px;'>");						
 					$div.append($div2);
 					$div2.append("<img src='"+path+"/"+data.imgList[data.list[i].prd_code].changeName+"' width='200px' height='200px' style='margin-top:15px;'>"); 
-					$span1 = $("<br><span style='font-weight:13px;'>");
-					$span2 = $("<br><span style='font-color:red;'><hr class='product_hr'>");
+					$span1 = $("<br><span style='font-size:14px;'>");
+					$span2 = $("<span style='font-size: 13px;font-weight: bold; letter-spacing: -2px; padding-right: 5px;'><hr class='product_hr'>");
+					$span3 = $("<span style='font-size: 17px;font-weight: bold; color: #ee2929;'>");
 					$span1.append(data.list[i].prd_name)
-					$span2.append("판매가격 " + data.list[i].price + "원")
+					$span2.append("판매가격 ")
+					$span3.append(data.list[i].price + "원")
 					$div2.append($span1);
 					$div2.append($span2);
-					
+					$div2.append($span3);
 					console.log(data);
 					console.log(data.list[i].price);
 					console.log(data.imgList[data.list[i].prd_code].changeName);
@@ -793,7 +810,7 @@ a{ text-decoration:none }
 						$("#leftBtn2").removeAttr("disabled");
 					}
 					
-				 	if(cp >= <%=maxPage2%>){
+				 	if(cp >= 5){
 						$("#rightBtn2").attr("disabled");			
 					}else{
 						$("#rightBtn2").val((cp * 1) + 1);
