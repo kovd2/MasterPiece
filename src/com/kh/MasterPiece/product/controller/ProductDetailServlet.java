@@ -48,14 +48,17 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
-		
-		/*Product p = new ProductService().prdDetail(code);*/
+		System.out.println("옴");
+		HashMap<String, Object> infoImg = new ProductService().infoImg();
+		System.out.println("infoImg : " + infoImg);
 		HashMap<String, Object> hmap = new ProductService().prdDetail(code);
+		HashMap<String, Object> hmap2 = new ProductService().prdDetail2(code);
 		
 		Product p = (Product) hmap.get("product");
 		ArrayList<Attachment> imgList = (ArrayList<Attachment>)hmap.get("attachment");
+		ArrayList<Attachment> imgList2 = (ArrayList<Attachment>)hmap2.get("attachment");
 		
-		
+		System.out.println("imgList2 : " + imgList2);
 		
 		String page = "";
 		
@@ -63,15 +66,15 @@ public class ProductDetailServlet extends HttpServlet {
 			page = "views/product/product_info.jsp";
 			request.setAttribute("p", p);
 			request.setAttribute("imgList", imgList);
+			request.setAttribute("imgList2", imgList2);
 			
-			if(p.getManufacturer().equals("Intel") && p.getCategory().equals("CPU")){
+			
+			if(p.getManufacturer().equals("INTEL") && p.getCategory().equals("CPU")){
 				request.setAttribute("beforeBuyIntelCpu", prop.getProperty("beforeBuyIntelCpu"));
 				request.setAttribute("intelCpuDevision", prop.getProperty("intelCpuDevision"));	
-				request.setAttribute("i3_8100InfoImage", prop.getProperty("i3_8100InfoImage"));
 			}
 			if(p.getManufacturer().equals("AMD") && p.getCategory().equals("CPU")){
 				request.setAttribute("beforeBuyAMDCpu", prop.getProperty("beforeBuyAMDCpu"));
-				request.setAttribute("R5_1500X_info", prop.getProperty("R5_1500X_info"));
 			}
 			
 			
@@ -81,7 +84,6 @@ public class ProductDetailServlet extends HttpServlet {
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	/**

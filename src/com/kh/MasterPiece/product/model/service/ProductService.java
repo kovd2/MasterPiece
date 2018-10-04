@@ -30,6 +30,15 @@ public class ProductService {
 		
 		return imgList;
 	}
+	public HashMap<String, Object> infoImg() {
+		Connection con = getConnection();
+		
+		HashMap<String, Object> infoImg = new ProductDao().infoImg(con);
+		
+		close(con);
+		
+		return infoImg;
+	}
 
 	public HashMap<String, Object> prdDetail(String code) {
 		Connection con = getConnection();
@@ -40,6 +49,17 @@ public class ProductService {
 		close(con);
 		
 		return hmap;
+	}
+	
+	public HashMap<String, Object> prdDetail2(String code) {
+		Connection con = getConnection();
+		HashMap<String, Object> hmap2 = null;
+		
+		hmap2 = new ProductDao().imgList2(con, code);
+		
+		close(con);
+		
+		return hmap2;
 	}
 
 	public ArrayList<Product> prdList(int currentPage, int limit, String category) {
@@ -123,4 +143,5 @@ public class ProductService {
 		
 		return bestPrd;
 	}
+
 }
