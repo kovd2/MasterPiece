@@ -41,7 +41,7 @@ public class SelectPrdListServlet extends HttpServlet {
 		
 		ArrayList<PrdOrder> prdList = new PrdOrderService().selectPrdOrder(userId);
 		HashMap<String, Attachment> imageList = new PrdOrderService().imageList();
-		
+		System.out.println(prdList);
 		String page = "";
 		
 		if(prdList != null)

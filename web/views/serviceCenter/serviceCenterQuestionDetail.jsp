@@ -152,18 +152,18 @@
 							<tbody class="boardHead" style="font-size:14px;">
 								<tr style="height:50px;">
 									<th style="width:150px; border-right:none;">작성자</th>
-									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= loginUser.getUserId() %></td>
+									<td style="width:250px; border-left:none; border-right:none; font-weight:bold; padding-left:20px;"><%= b.getBOARD_WRITER() %></td>
 									<td style="width:100px; border-left:none; border-right:none; font-weight:bold; text-align:right;">작성일자</td>
 									<td style="width:150px; border-left:none; font-weight:bold; text-align:right; padding-right:30px;"><%= b.getBOARD_DATE() %></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">문의유형</th>
-									<td colspan="3"><span style="margin-left:20px;"><%= b.getBOARD_CATEGORY() %></span></td>
+									<td colspan="3"><span><%= b.getBOARD_CATEGORY() %></span></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
 									<!-- <td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td> -->
-									<td colspan="3"><span style="margin-left:20px;"/><%= b.getBOARD_TITLE() %></span></td>
+									<td colspan="3"><span><%= b.getBOARD_TITLE() %></span></td>
 								</tr>
 								<tr>
 									<th style="vertical-align:middle;">내용</th>
@@ -171,7 +171,7 @@
 										<%
 											b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("\n", "<br>"));
 										%>
-										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
+										<span><%= b.getBOARD_CONTENT() %></span>
 										<%
 											b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("<br>", "\n"));
 										%>

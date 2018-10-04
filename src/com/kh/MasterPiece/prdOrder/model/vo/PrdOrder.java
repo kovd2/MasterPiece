@@ -19,20 +19,39 @@ public class PrdOrder implements Serializable
 	private String userId;
 	private Date orderDate;
 	private String prdCode;
+	private String prdName;
+	private String category;
 	private String orderCheck;
 	private int orderCount;
 	private int price;
+	private String content;
 	
 	public PrdOrder(){}
 
-	public PrdOrder(String userId, Date orderDate, String prdCode, String orderCheck, int orderCount, int price) {
+	
+
+	public PrdOrder(String userId, Date orderDate, String prdCode, String prdName, String category, String orderCheck,
+			int orderCount, int price, String content) {
 		super();
 		this.userId = userId;
 		this.orderDate = orderDate;
 		this.prdCode = prdCode;
+		this.prdName = prdName;
+		this.category = category;
 		this.orderCheck = orderCheck;
 		this.orderCount = orderCount;
 		this.price = price;
+		this.content = content;
+	}
+
+
+
+	public String getPrdName() {
+		return prdName;
+	}
+
+	public void setPrdName(String prdName) {
+		this.prdName = prdName;
 	}
 
 	public String getUserId() {
@@ -59,6 +78,14 @@ public class PrdOrder implements Serializable
 		this.prdCode = prdCode;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getOrderCheck() {
 		return orderCheck;
 	}
@@ -83,13 +110,24 @@ public class PrdOrder implements Serializable
 		this.price = price;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "PrdOrder [userId=" + userId + ", orderDate=" + orderDate + ", prdCode=" + prdCode + ", orderCheck="
-				+ orderCheck + ", orderCount=" + orderCount + ", price=" + price + "]";
+		return "PrdOrder [userId=" + userId + ", orderDate=" + orderDate + ", prdCode=" + prdCode + ", prdName="
+				+ prdName + ", category=" + category + ", orderCheck=" + orderCheck + ", orderCount=" + orderCount
+				+ ", price=" + price + ", content=" + content + "]";
 	}
+
+	
 }
