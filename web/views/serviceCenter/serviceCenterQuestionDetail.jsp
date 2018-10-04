@@ -91,6 +91,20 @@
 {
 	cursor:pointer;
 }
+#answerTable
+{
+	border-spacing:0px;
+	border-collapse: collapse;
+}
+#answerTable>tbody>tr>th, #answerTable>tbody>tr>td
+{
+	border:1px solid lightgray;
+}
+#answerTable>tbody>tr>th
+{
+	text-align:left;
+	padding-left:10px;
+}
 </style>
 </head>
 <body>

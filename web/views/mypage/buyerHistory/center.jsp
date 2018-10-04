@@ -389,8 +389,11 @@ div {
 						<div class='contents data1'><%=list.get(i).getPayDate()%>/</div>
 						<div class='contents data2'><%=list.get(i).getOrderCheck()%></div>
 						<div class='contents productdata'>
-							<div class='contents data3'><img alt=""	src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(0).getPrdCode()).getChangeName()%>" width="100px" height="100px"></div>
-							<div class='contents data4'><%=list.get(i).getPrdName() %> </div>
+
+						<div class='contents data3'><img alt=""
+							src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(i).getPrdCode()).getChangeName()%>" width="100px" height="100px"></div>
+						<div class='contents data4'><%=list.get(i).getPrdName() %> </div>
+
 						</div>
 						<div class='contents data5'><%=list.get(i).getPayPrice()%>원</div>
 						<div class='contents data6'><%=list.get(i).getOrderCount() %>개</div>

@@ -3,13 +3,11 @@
 <%
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> imgList = (ArrayList<Attachment>)request.getAttribute("imgList");
+	ArrayList<Attachment> imgList2 = (ArrayList<Attachment>)request.getAttribute("imgList2");
 	String category = (String)request.getAttribute("category");
 	String beforeBuyIntelCpu = (String)request.getAttribute("beforeBuyIntelCpu");
 	String intelCpuDevision = (String)request.getAttribute("intelCpuDevision");
 	String beforeBuyAMDCpu = (String)request.getAttribute("beforeBuyAMDCpu");
-	String i3_8100InfoImage = (String)request.getAttribute("i3_8100InfoImage");
-	String R5_1500X_info = (String)request.getAttribute("R5_1500X_info");
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -366,10 +364,10 @@
 		<div class="detail_tab_layer" id="id_detail_tab_info"
 			style="padding-top: -0px; margin-left: 0px;">
 			<ul>
-				<li class="detail_tab_info detail_tab_select"><b>상세정보</b></li>
-				<li class="detail_tab_comment"><b>상품리뷰</b></li>
-				<li class="detail_tab_deliver"><b>배송정보</b></li>
-				<li class="detail_tab_change"><b>반품ㆍ교환</b></li>
+				<li class="detail_tab_info detail_tab_select" id="moveBtn1"><b>상세정보</b></li>
+				<li class="detail_tab_comment" onclick="moveBtn('2')"><b>상품리뷰</b></li>
+				<li class="detail_tab_deliver" onclick="moveBtn('3')"><b>배송정보</b></li>
+				<li class="detail_tab_change" onclick="moveBtn('4')"><b>반품ㆍ교환</b></li>
 			</ul>
 		</div>
 		<br>
@@ -389,12 +387,7 @@
 				<%} %>
 			</div>
 			<div class="detail_info">
-				<%if(i3_8100InfoImage != null){ %>
-					<p align="center"><img src="<%=request.getContextPath()%>/images/jinseok/cpu/<%=i3_8100InfoImage%>"></p>
-				<%} %>
-				<%if(R5_1500X_info != null){ %>
-					<p align="center"><img src="<%=request.getContextPath()%>/images/jinseok/cpu/<%=R5_1500X_info%>"></p>
-				<%} %>
+				<img id="prdImage" src="<%=request.getContextPath()%>/images/product/infoImage/<%=imgList2.get(0).getChangeName()%>">
 			</div>
 		</div>
 		<br>
@@ -402,10 +395,10 @@
 		<div class="detail_tab_layer" id="id_detail_tab_info"
 			style="padding-top: -0px; margin-left: 0px;">
 			<ul>
-				<li class="detail_tab_info"><b>상세정보</b></li>
-				<li class="detail_tab_comment  detail_tab_select"><b>상품리뷰</b></li>
-				<li class="detail_tab_deliver"><b>배송정보</b></li>
-				<li class="detail_tab_change"><b>반품ㆍ교환</b></li>
+				<li class="detail_tab_info"onclick="moveBtn('1')"><b>상세정보</b></li>
+				<li class="detail_tab_comment  detail_tab_select" id="moveBtn2"><b>상품리뷰</b></li>
+				<li class="detail_tab_deliver" onclick="moveBtn('3')"><b>배송정보</b></li>
+				<li class="detail_tab_change" onclick="moveBtn('4')"><b>반품ㆍ교환</b></li>
 			</ul>
 		</div>
 		<div class="review_area" style="width:100%; height:auto;">
@@ -415,10 +408,10 @@
 		<div class="detail_tab_layer" id="id_detail_tab_info"
 			style="padding-top: -0px; margin-left: 0px;">
 			<ul>
-				<li class="detail_tab_info"><b>상세정보</b></li>
-				<li class="detail_tab_comment"><b>상품리뷰</b></li>
-				<li class="detail_tab_deliver detail_tab_select"><b>배송정보</b></li>
-				<li class="detail_tab_change"><b>반품ㆍ교환</b></li>
+				<li class="detail_tab_info" onclick="moveBtn('1')"><b>상세정보</b></li>
+				<li class="detail_tab_comment" onclick="moveBtn('2')"><b>상품리뷰</b></li>
+				<li class="detail_tab_deliver detail_tab_select" id="moveBtn3"><b>배송정보</b></li>
+				<li class="detail_tab_change" onclick="moveBtn('4')"><b>반품ㆍ교환</b></li>
 			</ul>
 		</div>
 		<div id="detail_deliver_info" class="detail_info_box">
@@ -452,10 +445,10 @@
 		<div class="detail_tab_layer" id="id_detail_tab_info"
 			style="padding-top: -0px; margin-left: 0px;">
 			<ul>
-				<li class="detail_tab_info"><b>상세정보</b></li>
-				<li class="detail_tab_comment"><b>상품리뷰</b></li>
-				<li class="detail_tab_deliver"><b>배송정보</b></li>
-				<li class="detail_tab_change detail_tab_select"><b>반품ㆍ교환</b></li>
+				<li class="detail_tab_info" onclick="moveBtn('1')"><b>상세정보</b></li>
+				<li class="detail_tab_comment" onclick="moveBtn('2')"><b>상품리뷰</b></li>
+				<li class="detail_tab_deliver" onclick="moveBtn('3')"><b>배송정보</b></li>
+				<li class="detail_tab_change detail_tab_select" id="moveBtn4"><b>반품ㆍ교환</b></li>
 			</ul>
 		</div>
 		<div id="detail_return_info" class="detail_info_box">
@@ -587,6 +580,12 @@
 					location.href="<%=request.getContextPath()%>/views/member/login.jsp";
 				<%}%>
 			}
+			 
+			function moveBtn(no){
+		        var offset = $("#moveBtn" + no).offset();
+		        $('html, body').animate({scrollTop : offset.top}, 100);
+		    }
+
 		</script>
 </body>
 </html>

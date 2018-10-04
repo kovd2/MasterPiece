@@ -60,7 +60,6 @@ public class BuyerHistoryDao {
 				
 				b.setOrderCheck(rset1.getString("order_check"));
 				b.setBuyStatus(rset1.getString("buy_status"));
-				b.setDeliveryOption(rset1.getString("delivery_option"));
 				b.setPayDate(rset1.getDate("pay_date"));
 				b.setPrdCode(rset1.getString("prd_code"));
 				b.setPrdName(rset1.getString("prd_name"));

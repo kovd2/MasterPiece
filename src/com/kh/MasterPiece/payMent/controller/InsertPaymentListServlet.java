@@ -30,6 +30,7 @@ public class InsertPaymentListServlet extends HttpServlet {
 		String value = request.getParameter("code");
 		String values[] = value.split(",");
 		String prdCode = request.getParameter("prd_code");
+		String prdCode2[] = prdCode.split(",");
 		
 		int currentPage;		
 		int limit;				
@@ -60,7 +61,7 @@ public class InsertPaymentListServlet extends HttpServlet {
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		HashMap<String, Attachment> imgList = new testService().imgList();
-		ArrayList<Cart> list = new payMentService().selectPayMentList(currentPage, limit, m, values, prdCode);
+		ArrayList<Cart> list = new payMentService().selectPayMentList(currentPage, limit, m, values, prdCode2);
 		String page = "";
 		if(list != null){
 			page = "views/product/delivery_page.jsp";
