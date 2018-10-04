@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.MasterPiece.board.model.vo.*, java.util.*"%>
 <%
 	Board b = (Board)request.getAttribute("b");
+	Board answerBoard = (Board)request.getAttribute("answerBoard");
 %>
 <!DOCTYPE html>
 <html>
@@ -167,6 +168,25 @@
 						<br>
 					</div>
 					<br><br>
+					<%
+						if(b.getQUE_STATUS().equals("Y"))
+						{
+					%>
+					<div style="background:#D5D5D5; font-size:14px;">
+						<table id="answerTable" style="width:100%;">
+						<tbody class="boardHead" style="font-size:14px;">
+							<tr>
+								<th style="vertical-align:middle; width:100px;">답변</th>
+								<td class="boardContent" colspan="3" style="vertical-align:middle;">
+									<textarea readonly="readonly"style="resize: none; width: 90%;height: 200px"><%= answerBoard.getBOARD_CONTENT() %></textarea>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</div>

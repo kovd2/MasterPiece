@@ -37,13 +37,17 @@ public class SelectOneServiceCenterQuestion extends HttpServlet {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
 		Board b = new BoardService().selectServiceCenterQuestionOne(boardNo);
+		Board answerBoard = new BoardService().selectAnswerOne(boardId);
 		
 		String page = "";
+		
+		System.out.println("우히 : " + answerBoard);
 		
 		if(b != null)
 		{
 			page = "views/serviceCenter/serviceCenterQuestionDetail.jsp";
 			request.setAttribute("b", b);
+			request.setAttribute("answerBoard", answerBoard);
 		}
 		else
 		{
