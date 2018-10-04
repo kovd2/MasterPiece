@@ -64,8 +64,7 @@ public class BuyerHistoryDao {
 				b.setPrdCode(rset1.getString("prd_code"));
 				b.setPrdName(rset1.getString("prd_name"));
 				b.setPayPrice(rset1.getInt("pay_price"));
-				b.setOrderCount(rset1.getInt("order_count"));
-				b.setPayType(rset1.getString("pay_type"));
+				b.setOrderCount(rset1.getInt("count"));
 				
 				list.add(b);
 			}

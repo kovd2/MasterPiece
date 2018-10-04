@@ -125,7 +125,7 @@ text-align: center
 		
 		var h = 30+(32*count);
 		
-		check = window.open('<%=request.getContextPath()%>/Detail.swy?sel='+sel,'상세보기','width=300,height='+h+',left='+x+', top='+y);
+		check = window.open('<%=request.getContextPath()%>/Detail.swy?sel='+sel,'상세보기','width=600,height='+h+',left='+x+', top='+y);
 	}
 	
 	$("#check").click(function(){
@@ -171,7 +171,6 @@ text-align: center
 			value += $("."+val).val();
 		})
 		if(val!=""){
-			alert(value);
 			location.href='<%=request.getContextPath()%>/Refund.swy?val='+value;
 		}
 	

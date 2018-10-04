@@ -170,7 +170,7 @@ div {
 }
 
 .label>.nth-child4 {
-	width: 40px;
+	width: 50px;
 }
 
 .label>.nth-child5 {
@@ -200,7 +200,7 @@ div {
 
 }
 .contents>.productdata{
-	width:330px;
+	width:350px;
 	height:150px;
 	display:inline-block;
 }
@@ -210,7 +210,7 @@ div {
    	display:inline-block;
 }
 .contents>.data4{
- 	width:260px;
+ 	width:300px;
  	
  	display: contents;
 }
@@ -374,12 +374,12 @@ div {
 					<span class='nth-child1'>주문일/주문번호</span>
 					<span class='nth-child2'>상품정보</span> 
 					<span class='nth-child3'>결제금액</span>
-					<span class='nth-child4'>총수량</span> 
-					<span class='nth-child5'>결제수단</span>
+					<span class='nth-child4'>주문수량</span> 
 					<span class='nth-child6'>처리현황</span> 
 					<span class='nth-child7'>배송방법</span>
 
 				</div>
+				
 				<% if(list==null) {%>
 				<div class='contents no_data'>1주일 이내에 구매하신 내역이 없습니다.</div>
 				<%}else{ 
@@ -392,15 +392,14 @@ div {
 
 						<div class='contents data3'><img alt=""
 							src="<%=request.getContextPath()%>/images/product/<%=map.get(list.get(i).getPrdCode()).getChangeName()%>" width="100px" height="100px"></div>
-						<div class='contents data4'><%=list.get(i).getPrdName() %> </div>
+						<div class='contents data4'><a onclick="detail2(<%=list.get(i).getOrderCheck()%>,<%=list.get(i).getOrderCount() %>)"><%=list.get(i).getPrdName() %></a> </div>
 
 						</div>
 						<div class='contents data5'><%=list.get(i).getPayPrice()%>원</div>
 						<div class='contents data6'><%=list.get(i).getOrderCount() %>개</div>
 						<div class='contents data7'><%=list.get(i).getBuyStatus()%></div>
-						<div class='contents data8'><%=list.get(i).getPayType() %></div>
-						<div class='contents data9'><%=list.get(i).getDeliveryOption() %>
-							<button class='data9 btn' onclick="trace(<%=ino.get(list.get(i).getOrderCheck())%>)"
+						<div class='contents data9'>
+							<button class='data9 btn' onclick="detail()"
 								style='cursor: pointer; display: inline-block; 
 							width: 70px; height: 23px; background-color: #454c5f; color: #fff';>배송추적</button></div>
 						
@@ -413,6 +412,29 @@ div {
                function trace(i){
                   window.open("http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1="+i,"배송추적","width=600,height=900");
                }
+               function detail(){
+           		window.open('<%=request.getContextPath()%>/views/admin/delivery/deliveryDetail.jsp','배송추적', 'width=500, height=700');
+           	}
+               var x = 0;
+           	var y = 0;
+           	var check;
+           	document.onmousedown=function(){
+           		if(check != null){
+           			check.close();
+           			check = null;
+           		}
+           	}
+           	document.onmousemove=function(){
+           		  x=event.x;
+           		  y=event.y;
+           	}
+           	
+           	function detail2(sel,count){
+           		
+           		var h = 100+(50*count);
+           		
+           		check = window.open('<%=request.getContextPath()%>/Detail.swy?sel='+sel,'상세보기','width=600,height='+h+',left='+x+', top='+y);
+           	}
             </script>
             
 			</div>
