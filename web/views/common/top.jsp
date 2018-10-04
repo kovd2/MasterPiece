@@ -323,7 +323,7 @@ ul.cate_menu{width:174px; box-shadow: 3px 3px 10px #292828cc;}
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=HDD'">저장 장치</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=ODD'">ODD</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=POWER'">파워</li>
-						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=COOL'">쿨러</li>
+						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=COOLER'">쿨러</li>
 						<li onclick="location.href='<%=request.getContextPath()%>/prdPageList.js?category=CASE'">케이스</li>
 					</ul>
 				</div>
