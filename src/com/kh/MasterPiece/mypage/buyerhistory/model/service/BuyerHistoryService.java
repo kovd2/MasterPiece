@@ -16,7 +16,7 @@ import com.kh.MasterPiece.mypage.review.model.vo.Review;
 
 
 public class BuyerHistoryService {
-	
+
 	//결제금액 뺴고 나머지 데이터 가져오는 메소드
 	public ArrayList<BuyerHistory> viewHistory(String writer, int currentPage, int limit) {
 		Connection con = getConnection();
@@ -28,10 +28,10 @@ public class BuyerHistoryService {
 		return list;
 
 	}
-	
+
 	//이미지 가져오는 메소드
 	public HashMap<String, Attachment> imageList() {
-		
+
 		Connection con = getConnection();
 
 		HashMap<String, Attachment> list = new BuyerHistoryDao().imageList(con);
@@ -43,7 +43,7 @@ public class BuyerHistoryService {
 
 	//결제테이블 쪽 데이터 가져오는 메소드
 	public HashMap<String, BuyerHistory> viewHistory2(String writer) {
-	
+
 		Connection con = getConnection();
 
 		HashMap<String, BuyerHistory> list = new BuyerHistoryDao().viewHistory2(con, writer);
@@ -57,11 +57,11 @@ public class BuyerHistoryService {
 	//페이징처리메소드
 	public int getListCount(String writer) {
 		Connection con = getConnection();
-		
+
 		int listCount = new BuyerHistoryDao().getListCount(writer, con);
-		
+
 		close(con);
-		
+
 		return listCount;
 	}
 
@@ -80,33 +80,33 @@ public class BuyerHistoryService {
 	public BuyerHistory viewHistoryOne(String userId)
 	{
 		Connection conn = getConnection();
-		
+
 		BuyerHistory bh = new BuyerHistoryDao().viewHistoryOne(conn, userId);
-		
+
 		close(conn);
-		
+
 		return bh;
 	}
 
 	public ArrayList<BuyerHistory> searchList(String writer, int searchType, String searchText, int currentPage,int limit) {
-		
+
 		Connection con = getConnection();
-		
+
 		ArrayList<BuyerHistory> list = new BuyerHistoryDao().selectList(writer, searchType, searchText, currentPage, limit, con);
-				
+
 		close(con);
-		
+
 		return list;
 	}
 
 	public int searchCount(String writer, int searchType, String searchText) {
 		Connection con = getConnection();
-		
+
 		int listCount = new BuyerHistoryDao().searchCount(con, writer, searchType, searchText);
-				
+
 		close(con);
-		
-		
+
+
 		return listCount;
 	}
 
@@ -120,5 +120,19 @@ public class BuyerHistoryService {
 		return list;
 	}
 
+	public ArrayList<BuyerHistory> SearchDateList(String writer, String date, int currentPage, int limit) {
+
+		Connection con = getConnection();
+
+		ArrayList<BuyerHistory> list = new BuyerHistoryDao().SearchDateList(writer, date, currentPage, limit, con);
+
+		close(con);
+
+		return list;
+	}
+
+
+
 
 }
+

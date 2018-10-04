@@ -295,38 +295,6 @@ select {
 				</div>
 
 
-
-				<!-- <div class='article middle_article'>
-
-						<div class='float_left'>
-							<div>
-
-								<span class='text-bold text-red'>게시글확인</span>
-							</div>
-
-							<div class='m_top10'>문의하신 내용의 답변은 MY쇼핑정보 > 나의 문의현황 > 1:1
-								답변확인에서 확인하실 수 있습니다.</div>
-
-						</div>
-
-						<div class='float_right'>
-							<select id='myzone_select_menu'
-								tails="date_num=2&date_1=2018-09-06&date_2=2018-09-13&search_type=&search_text=&">
-
-								<option value='1:1 문의하기'>1:1 문의하기</option>
-								<option value='1:1 답변확인' selected>1:1 답변확인</option>
-
-
-							</select>
-						</div>
-
-						<div class='clear'></div>
-
-					</div> -->
-
-
-
-
 				<div class='faq_figure'>
 
 					<div class='faq_caption'>

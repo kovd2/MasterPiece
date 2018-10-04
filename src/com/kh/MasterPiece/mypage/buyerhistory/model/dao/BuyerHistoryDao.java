@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.MasterPiece.board.model.vo.Attachment;
 import com.kh.MasterPiece.mypage.buyerhistory.model.vo.BuyerHistory;
+import com.kh.MasterPiece.mypage.review.model.vo.Review;
 
 
 
@@ -245,7 +246,7 @@ public class BuyerHistoryDao {
 			}
 		}
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -385,6 +386,118 @@ public class BuyerHistoryDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public ArrayList<BuyerHistory> SearchDateList(String writer, String date, int currentPage, int limit, Connection con) {
+		
+		
+		PreparedStatement pstmt = null;
+		ArrayList<BuyerHistory> searchList = null;
+
+		ResultSet rset = null;
+
+
+		try {
+			if(date.equals("yesterday")){
+
+
+				String query = prop.getProperty("H_searchYesterday");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("today")){
+
+				String query = prop.getProperty("H_searchToday");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("aweek")){
+				String query = prop.getProperty("H_searchAweek");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("amonth")){
+				String query = prop.getProperty("H_searchAmonth");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("sixmonth")){
+				String query = prop.getProperty("H_searchSixmonth");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}else if(date.equals("ayear")){
+				String query = prop.getProperty("H_searchAyear");
+				pstmt = con.prepareStatement(query);
+
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+
+				pstmt.setString(1, writer);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+
+			}
+			
+			rset = pstmt.executeQuery();
+
+			searchList = new ArrayList<BuyerHistory>();
+
+			while(rset.next()){
+				
+				BuyerHistory b = new BuyerHistory();
+
+				b.setOrderCheck(rset.getString("order_check"));
+				b.setBuyStatus(rset.getString("buy_status"));
+				b.setDeliveryOption(rset.getString("delivery_option"));
+				b.setPayDate(rset.getDate("pay_date"));
+				b.setPrdCode(rset.getString("prd_code"));
+				b.setPrdName(rset.getString("prd_name"));
+				b.setPayPrice(rset.getInt("pay_price"));
+				b.setOrderCount(rset.getInt("order_count"));
+				b.setPayType(rset.getString("pay_type"));
+				
+				searchList.add(b);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}		
+		return searchList;
 	}
 
 
