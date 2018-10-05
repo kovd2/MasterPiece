@@ -57,10 +57,13 @@ public class PrdOrderDao
 				PrdOrder p = new PrdOrder();
 				
 				p.setOrderDate(rset.getDate("order_date"));
-				p.setPrdCode(rset.getString("prd_name"));
+				p.setPrdCode(rset.getString("prd_code"));
+				p.setPrdName(rset.getString("prd_name"));
+				p.setCategory(rset.getString("category"));
 				p.setOrderCheck(rset.getString("order_check"));
 				p.setOrderCount(rset.getInt("order_count"));
 				p.setPrice(rset.getInt("price"));
+				p.setContent(rset.getString("content"));
 				
 				list.add(p);
 			}
@@ -101,7 +104,7 @@ public class PrdOrderDao
 				am.setOriginName(rset.getString("file_name"));
 				am.setUploadDate(rset.getDate("upload_date"));
 				am.setFilePath(rset.getString("save_route"));
-				am.setCode(rset.getString("prd_name"));
+				am.setCode(rset.getString("prd_code"));
 				
 				/*imageList.put(am.getCode(), am);*/
 				imageList.put(am.getCode(), am);

@@ -87,12 +87,12 @@ table
 						
 						/* System.out.println("PPOOOIII : " + image); */
 				%>
-				<tr>
-					<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" class="check" value="<%= p.getPrdCode() %> [<%= p.getOrderCount() %>개]"></td>
+				<tr class = "<%= p.getPrdCode() %>">
+					<td style="width: 39px; height: 31px;"><input type="checkbox" name="checkBoxList" class="check" value="<%= p.getContent() %> [<%= p.getOrderCount() %>개]★<%= p.getPrdName() %>☆<%= p.getCategory() %>☆<%= p.getPrdCode() %>"></td>
 					<td style="width:100px; height:100px;"><img style="width:100%; height:100%;" src="<%= request.getContextPath() %>/images/product/<%= image.getChangeName() %>"></td>
-					<td><input type="hidden" name="prdCode" class="prdCode" value="<%= p.getPrdCode() %>"><%= p.getPrdCode() %></td>
-					<td><input type="hidden" name="orderCount" class="orderCount" value="<%= p.getOrderCount() %>"><%= p.getOrderCount() %></td>
-					<td><%= p.getPrice() %>원</td>
+					<td><input type="hidden" name="prdCode" class="prdCode" value="<%= p.getPrdName() %>"><%= p.getPrdName() %></td>
+					<td style="width:50px;"><input type="hidden" name="orderCount" class="orderCount" value="<%= p.getOrderCount() %>"><%= p.getOrderCount() %></td>
+					<td style="width:80px;"><%= p.getPrice() %>원</td>
 				</tr>
 				<%
 					}
@@ -127,7 +127,11 @@ table
 	function submit()
 	{
 		var val = "";
-		var tf = "";
+		var tf = "true";
+		var category = new Array();
+		var prd = new Array();
+		var vval = "";
+		var vvval = "";
 		
 		$(".check:checked").each(function(index,item)
 		{
@@ -135,26 +139,58 @@ table
 			{
 				val += "\n";
 			}
-			val += $(this).val();
+			vval = $(this).val().split("★");
+			vvval = vval[1].split("☆");
+			console.log(vval[0]);
+			val += vvval[0];
 			
-			var examTextCPU = "인텔(소켓1151-V2)/64(32)비트/헥사코어/쓰레드 12개/3.2GHz/터보부스트 4.6Ghz 지원/14나노/65W/AS3년/쿨러포함/윈도 7이하 운영체제 사용 시 반드시 사용하시는 보드가 지원하는지 확인 바랍니다.";
-			var splitTextCPU = examTextCPU.split("/");
-			var examTextMB = "인텔(소켓1151-V2)/(인텔) B360/M-ATX (24.4x24.4cm)/전원부: 10페이즈/DDR4/메모리 용량: 최대 64GB/XMP/VGA 연결: PCIe3.0 x16/멀티 GPU: CrossFire X/PCIe 슬롯 수: 4개/SATA3: 6개/M.2: 3개/7.1ch/그래픽 출력: D-SUB, DVI, HDMI/PS/2: 2개/USB2.0: 후면 2개/USB3.0: 후면 2개/USB3.1: 후면 2개/기가비트 LAN/UEFI/인텔 옵테인";
-			var splitTextMB = examTextMB.split("/");
-			
-			/* alert(splitTextCPU[0]);
-			alert(splitTextMB[0]); */
-			
-			if(splitTextCPU[0] == splitTextMB[0])
-			{
-				tf = "true";
-			}
-			else
-			{
-				tf = "false";
-				$(this).parent().parent().css({"background":"red", "color":"white"});
-			}
+			prd[index] = $(this).val().split("/");
+			category[index] = $(this).val().split("☆");
 		});
+		
+		for(var i=0; i<prd.length; i++)
+		{
+			if(category[i][1] == "CPU")
+			{	
+				for(var j=0; j<prd.length; j++)
+				{
+					if(category[j][1] == "MAINBOARD")
+					{
+						if(prd[i][0].substring(0, 9) != prd[j][0].substring(0, 9))
+						{
+							tf = "false";
+
+							$("."+category[j][2]).css({"background":"orangered", "color":"white"});
+							$("."+category[i][2]).css({"background":"orangered", "color":"white"});
+							
+							alert("CPU와 메인보드의 호환이 맞지 않습니다.");
+							
+							break;
+						}
+					}
+				}
+			}
+			else if(category[i][1] == "MAINBOARD")
+			{
+				for(var j=0; j<prd.length; j++)
+				{
+					if(category[j][1] == "MEMORY")
+					{
+						if(prd[i][4].substring(1, 5) != prd[j][0].substring(0, 4))
+						{
+							tf = "false";
+							
+							$("."+category[j][2]).css({"background":"orangered", "color":"white"});
+							$("."+category[i][2]).css({"background":"orangered", "color":"white"});
+							
+							alert("메인보드와 메모리의 호환이 맞지 않습니다.");
+							
+							break;
+						}
+					}
+				}
+			}
+		}
 		
 		if(tf == "true")
 		{
@@ -171,7 +207,19 @@ table
 		}
 		else
 		{
-			alert("호환성 다름!");
+			if(confirm("계속하시겠습니까?"))
+			{
+				if(val != "")
+				{
+					opener.document.getElementById("content").value += val;
+					
+					window.close();
+				}
+				else
+				{
+					alert("1개 이상의 상품을 선택하세요.");
+				}
+			}
 		}
 	}
 	</script>

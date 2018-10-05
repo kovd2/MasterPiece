@@ -132,7 +132,7 @@
 								<tr>
 									<th style="vertical-align:middle; height:50px;">제목</th>
 									<!-- <td colspan="3" style="text-align:center"><input type="text" placeholder="제목을 입력하세요." name="title" style="width:500px; height:30px; border:1px solid #ccc; border-radius:4px;"/></td> -->
-									<td colspan="3"><span style="margin-left:20px;"/><%= b.getBOARD_TITLE() %></span></td>
+									<td colspan="3"><span><%= b.getBOARD_TITLE() %></span></td>
 									<input type="hidden" name="title" value="<%= b.getBOARD_TITLE() %>">
 								</tr>
 								<tr>
@@ -141,7 +141,7 @@
 									<%
 										b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("\n", "<br>"));
 									%>
-										<span style="margin-left:20px;"><%= b.getBOARD_CONTENT() %></span>
+										<span style><%= b.getBOARD_CONTENT() %></span>
 									<%
 										b.setBOARD_CONTENT(b.getBOARD_CONTENT().replace("<br>", "\n"));
 									%>
