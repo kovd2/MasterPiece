@@ -2237,4 +2237,44 @@ public class testDao {
 		
 		return result;
 	}
+
+
+	public int refundDeliver(Connection con, String[] pn) {
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("refundDeliver");
+		try {
+			for(int i = 0; i < pn.length; i++){
+				pstmt2 = con.prepareStatement("select * from payment where pay_no = ?");
+				pstmt2.setString(1, pn[i]);
+				
+				rset = pstmt2.executeQuery();
+				rset.next();
+				pstmt  = con.prepareStatement(query);
+				pstmt.setInt(1, rset.getInt("pay_price"));
+				pstmt.setString(2, rset.getString("pay_way"));
+				pstmt.setString(3,pn[i]);
+				result+=pstmt.executeUpdate();
+				
+				pstmt3 = con.prepareStatement("update payment set pay_status = 's' where pay_no = ?");
+				pstmt3.setString(1, pn[i]);
+				pstmt3.executeUpdate();
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(pstmt2);
+			close(pstmt3);
+			close(rset);
+		}
+		
+		return result;
+	}
 }

@@ -31,7 +31,7 @@ public class RefundServlet extends HttpServlet {
 		String str = request.getParameter("val");
 		String[] pn = str.split(",");
 		
-		int result = new testService().cancelDeliver(pn);
+		int result = new testService().refundDeliver(pn);
 		
 		if(result>0){
 			response.sendRedirect("OrderConfirm.swy?status=Y");

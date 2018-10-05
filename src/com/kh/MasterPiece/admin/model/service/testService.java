@@ -691,4 +691,19 @@ public class testService {
 		return result;
 	}
 
+	public int refundDeliver(String[] pn) {
+		Connection con = getConnection();
+		
+		int result = new testDao().refundDeliver(con, pn);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
 }
